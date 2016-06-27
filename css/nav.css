@@ -1,0 +1,64 @@
+
+/* palette
+#fabc01 - yellow
+#443d28 - brown
+#f1f1f1 
+#fff
+#000
+
+#1d92de - blue (*hover for the links)
+017fcb*/
+
+.w-100 { box-sizing: border-box; width: 100%; margin: auto; }
+.mxw-100 { box-sizing: border-box; max-width: 100%; margin: auto; }
+.mxw-80 { box-sizing: border-box; max-width: 80%; margin: auto; }
+
+
+._md-nav-bar-list {
+	max-width: 80%;
+	margin:auto;
+}
+
+.snav,
+.sub-snav {
+	display: none;
+	position: relative;
+	padding:0;
+	margin:0;
+	list-style-type: none;
+	text-align: left;
+	margin-top: 1em;
+}
+
+.sub-snav {
+	position: relative;
+}
+
+
+.md-nav-item {
+	width: 15%;
+}
+
+.md-nav-item:hover button,
+.md-nav-item:hover a {
+	text-align: left;
+}
+
+.mnav-item:hover .snav{
+	display: block;
+}
+
+.snav li,
+.snav li button {
+	vertical-align: top;
+}
+
+.mnav-item .snav > li:hover .sub-snav {
+	display: inline-block;	
+}
+
+
+.sub-snav li a,
+.sub-snav li button {
+	margin-top:-0.6em;
+}

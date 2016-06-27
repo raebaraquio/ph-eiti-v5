@@ -9,20 +9,56 @@
     <meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title></title>
+    <link rel="stylesheet" href="css/angular-material.min.css">
+    <link rel="stylesheet" href="css/nav.css">
 </head>	
 <body>
-	<h1>Heading 1</h1>
+    <div class="w-100">    
+        <div class="mxw-80">
+            <h1>Log here</h1>    
+        </div>  
+        <md-nav-bar nav-bar-aria-label="navigation links">
+            <md-nav-item md-nav-href="Activities/" name="page1" class="mnav-item">Page One
+                <ul class="dropdown-menu snav">
+                    <li><md-button href="Activities/">Something</md-button></li>
+                    <li><md-button>Something else</md-button>
+                        <ul class="dropdown-menu sub-snav">
+                            <li><md-button href="Activities/">Something 2</md-button></li>
+                            <li><md-button>Something else 2</md-button></li>
+                        </ul>
+                    </li>
+                </ul>
+            </md-nav-item>
+            <md-nav-item md-nav-click="goto('page2')" name="page2" class="mnav-item">Page Two</md-nav-item>
+            <md-nav-item md-nav-click="goto('page3')" name="page3" class="mnav-item">Page Three
+                <ul class="dropdown-menu snav">
+                    <li><md-button>Something</md-button></li>
+                    <li><md-button>Something else</md-button></li>
+                </ul>
+            </md-nav-item>    
+        </md-nav-bar>        
+    </div>
 
-    <div data-ng-view></div>
+    <div class="w-100" layout="row">
+        
+    </div>
+
 
 	<!-- Lazy loading -->
-	<script src="js/vendor/angular.js?"></script>
-    <script src="js/vendor/angular-route.js?v1.01"></script>
-    <script src="js/vendor/angular-resource.js?v1.01"></script>
+	<script src="js/vendor/angular.js"></script>
+    
     <script src="js/vendor/angular-animate.js?v1.01"></script>
+    <script src="js/vendor/angular-route.js?v1.01"></script>
+    <script src="js/vendor/angular-aria.js"></script>
+    <script src="js/vendor/angular-messages.js"></script>
+
+    <script src="js/vendor/angular-resource.js?v1.01"></script>
     <script src="js/vendor/angular-sanitize.js?v1.01"></script>
     <script src="js/vendor/angular-cookies.js?v1.01"></script>    
     <script src="js/vendor/angular-busy.js?v1.01"></script>
+
+    <script src="js/vendor/angular-material.js"></script>
+
 
     <!--<script src="js/vendor/moment.min.js?v1.01"></script>-->
     <!--script src="js/modules/utilsModule.js?v1.01"></script-->
