@@ -2,7 +2,7 @@ var ph = angular.module('ph',['ngMaterial']);
 
 ph.config(function($mdThemingProvider) {
 	/* Yellow is primary ; Blue is accent */
-var customPrimary = {
+var defaultPrimary = {
         '50': '#fede7c',
         '100': '#fed863',
         '200': '#fed149',
@@ -19,10 +19,10 @@ var customPrimary = {
         'A700': '#7b5c00'
     };
     $mdThemingProvider
-        .definePalette('customPrimary', 
-                        customPrimary);
+        .definePalette('defaultPrimary', 
+                        defaultPrimary);
 
-    var customAccent = {
+    var defaultAccent = {
         '50': '#064475',
         '100': '#08528d',
         '200': '#0960a5',
@@ -39,10 +39,10 @@ var customPrimary = {
         'A700': '#9acffa'
     };
     $mdThemingProvider
-        .definePalette('customAccent', 
-                        customAccent);
+        .definePalette('defaultAccent', 
+                        defaultAccent);
 
-    var customWarn = {
+    var defaultWarn = {
         '50': '#ffcc80',
         '100': '#ffc166',
         '200': '#ffb74d',
@@ -59,10 +59,10 @@ var customPrimary = {
         'A700': '#804c00'
     };
     $mdThemingProvider
-        .definePalette('customWarn', 
-                        customWarn);
+        .definePalette('defaultWarn', 
+                        defaultWarn);
 	
-	var customBackground = {
+	var defaultBackground = {
         '50': '#ffffff',
         '100': '#ffffff',
         '200': '#ffffff',
@@ -79,14 +79,22 @@ var customPrimary = {
         'A700': '#b1b1b1'
     };
     $mdThemingProvider
-        .definePalette('customBackground', 
-                        customBackground);
+        .definePalette('defaultBackground', 
+                        defaultBackground);
 
 	$mdThemingProvider.theme('default')
-	   .primaryPalette('customPrimary')
-	   .accentPalette('customAccent')
-	   .warnPalette('customWarn')
-	   .backgroundPalette('customBackground')
+	   .primaryPalette('defaultPrimary')
+	   .accentPalette('defaultAccent')
+	   .warnPalette('defaultWarn')
+	   .backgroundPalette('defaultBackground')
+
+
+
+	// $mdThemingProvider.theme('altTheme')
+	//    .primaryPalette('altPrimary')
+	//    .accentPalette('altAccent')
+	//    .warnPalette('altWarn')
+	//    .backgroundPalette('altBackground')
 	
 
 	/* Blue is primary; Yellow is accent;
