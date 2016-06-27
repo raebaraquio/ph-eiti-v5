@@ -3,3 +3,10 @@ html {
     font-size: 100%; /*1em=14px*/
     font-family: sans-serif;    
 }
+
+#slider {
+	background-color: #fabc01;
+	color: #fff;
+	min-height:250px;
+	display: block;
+}

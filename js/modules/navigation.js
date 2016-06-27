@@ -1,4 +1,4 @@
-angular.module('navMod',[])
+angular.module('navMod',['ngRoute'])
 .factory('NavigationFactory',function(){
 	var NavigationFactory = {
 		get : function(){
@@ -38,7 +38,7 @@ angular.module('navMod',[])
 							{
 								id:"msg-members",
 								name: "MSG Members",
-								href:"",
+								href:"MSG-Members",
 								subnav : [
 									{
 										id:"government",
@@ -56,12 +56,12 @@ angular.module('navMod',[])
 										href: "Industry"
 									}
 								]
-							},
-							{
+							}
+							/*,{
 								id:"secretariat",
 								name: "Secretariat",
 								href: "Secretariat"
-							}
+							}*/
 						]
 					},
 					{
@@ -110,13 +110,6 @@ angular.module('navMod',[])
 						]
 					},
 					{
-						id:"country-reports",
-						name: "Country Reports",
-						href: "Country-Reports",
-						subnav: [
-						]
-					},
-					{
 						id:"news",
 						name: "News",
 						href: "News",
@@ -141,6 +134,13 @@ angular.module('navMod',[])
 								name: "archive",
 								href: "Archive"
 							}
+						]
+					},
+					{
+						id:"country-reports",
+						name: "Country Reports",
+						href: "Country-Reports",
+						subnav: [
 						]
 					}
 			];
