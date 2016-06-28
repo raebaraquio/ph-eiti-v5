@@ -159,20 +159,20 @@ pheiti.config(function($mdThemingProvider) {
                         customWarn);
 
     var customBackground = {
-        '50': '#737373',
-        '100': '#666666',
-        '200': '#595959',
-        '300': '#4d4d4d',
-        '400': '#404040',
-        '500': '#333',
-        '600': '#262626',
-        '700': '#1a1a1a',
-        '800': '#0d0d0d',
-        '900': '#000000',
-        'A100': '#808080',
-        'A200': '#8c8c8c',
-        'A400': '#999999',
-        'A700': '#000000'
+        '50': '#ffffff',
+        '100': '#ffffff',
+        '200': '#ffffff',
+        '300': '#ffffff',
+        '400': '#fefefe',
+        '500': '#f1f1f1',
+        '600': '#e4e4e4',
+        '700': '#d7d7d7',
+        '800': '#cbcbcb',
+        '900': '#bebebe',
+        'A100': '#ffffff',
+        'A200': '#ffffff',
+        'A400': '#ffffff',
+        'A700': '#b1b1b1'
     };
     $mdThemingProvider
         .definePalette('customBackground', 
