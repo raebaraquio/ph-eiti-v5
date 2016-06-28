@@ -14,23 +14,8 @@
 	margin:auto;
 }
 
-.snav,
-.sub-snav {
-	display: none;
-	position: relative;
-	padding:0;
-	margin:0;
-	list-style-type: none;
-	text-align: left;
-	margin-top: 1em;
-}
-
-.sub-snav {
-	position: relative;
-}
-
 .md-nav-item {
-	width: 17.5%;
+	min-width: 16.6%;
 }
 
 .md-nav-item > button,
@@ -49,19 +34,49 @@
 	display: block;
 }
 
+.snav,
+.sub-snav {
+	display: none;
+	position: inherit; /*relative;*/
+	padding:0;
+	margin:0;
+	list-style-type: none;
+	text-align: left;
+	margin-top: 1em;
+}
+
+.sub-snav {
+	display: block;
+	position: relative;
+}
+
+.sub-snav {
+	margin-left: 1.75em;
+}
+
+
 .snav li,
 .snav li button,
-.snav li a {
+.snav li a,
+.snav li span {
 	vertical-align: top;
 }
 
-.snav li,
-.sub-snav li {
-	background-color: #f1f1f1;
+.snav li span {
+	margin-top: 1.15em;
 }
 
+
+.snav li,
+.sub-snav li {
+	background-color: #fff; /*1f1f1;*/
+	min-width: 200px;
+}
+
+
 .mnav-item .snav > li:hover .sub-snav {
-	display: inline-block;	
+	/*display: inline-block;	*/
+	display: block;
 }
 
 
@@ -69,3 +84,4 @@
 .sub-snav li button {
 	margin-top:-0.6em;
 }
+

@@ -10,9 +10,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PH-EITI | Philippine Extractive Industries Transparency Initiative</title>
+    <!-- <title>PH-EITI | Philippine Extractive Industries Transparency Initiative</title> -->
     <link rel="icon" type="image/gif" href="images/eitifavicon.ico">
     <link rel="stylesheet" href="css/angular-material.min.css?v1.1.0-rc2"> 
+    <link rel="stylesheet" href="css/font-awesome.min.css"> 
     <link rel="stylesheet" href="css/basic.css"> 
     <link rel="stylesheet" href="css/main.css"> 
     <link rel="stylesheet" href="css/nav.css"> 
@@ -24,20 +25,21 @@
         </div>  
         <md-nav-bar nav-bar-aria-label="navigation links">
             <md-nav-item data-ng-repeat="(kmnav,vmnav) in main_nav" md-nav-href="{{vmnav.href}}" name="{{vmnav.id}}" class="mnav-item">{{vmnav.name}}
-                <ul class="snav" data-ng-if="vmnav.subnav.length > 0">
+                <ul class="snav" md-whiteframe="1" data-ng-if="vmnav.subnav.length > 0">
                     <li data-ng-repeat="(ksnav,vsnav) in vmnav.subnav"><md-button href="{{vmnav.href}}/#/{{vsnav.href}}" name="{{vsnav.id}}">{{vsnav.name}}</md-button>
+                        <md-divider data-ng-if="vsnav.subnav.length > 0"></md-divider>
                         <ul class="sub-snav" data-ng-if="vsnav.subnav.length > 0">
                             <li data-ng-repeat="(ksunav,vsunav) in vsnav.subnav"><md-button href="{{vmnav.href}}/#/{{vsnav.href}}/{{vsunav.href}}" name="{{vsunav.id}}">{{vsunav.name}}</md-button></li>
                         </ul>
                     </li>
                 </ul>
             </md-nav-item>
-        </md-nav-bar>             
+        </md-nav-bar
     </div>
     
     <div class="wd-100" id="slider">   
         <div class="mxw-80">
-            <h1>How much?</h1>  
+            <h1>Banner</h1>  
         </div>   
     </div>
 

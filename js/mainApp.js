@@ -1,8 +1,8 @@
 var pheiti = angular.module('pheiti',['ngMaterial','navMod']);
 
 pheiti.config(function($mdThemingProvider) {
-	/* Yellow is primary ; Blue is accent */
-var defaultPrimary = {
+	/* Yellow is primary ; Blue is accent 
+    var defaultPrimary = {
         '50': '#fede7c',
         '100': '#fed863',
         '200': '#fed149',
@@ -95,24 +95,24 @@ var defaultPrimary = {
 	//    .accentPalette('altAccent')
 	//    .warnPalette('altWarn')
 	//    .backgroundPalette('altBackground')
-	
+	*/
 
-	/* Blue is primary; Yellow is accent;
-	  var customPrimary = {
-        '50': '#8bc8f0',
-        '100': '#74bded',
-        '200': '#5eb3ea',
-        '300': '#47a8e7',
-        '400': '#309de4',
-        '500': '#1d92de',
-        '600': '#1a83c7',
-        '700': '#1774b1',
-        '800': '#14659a',
-        '900': '#115784',
-        'A100': '#a1d3f3',
-        'A200': '#b8ddf6',
-        'A400': '#cee8f9',
-        'A700': '#0e486d'
+	/* Blue is primary; Yellow is accent; */
+	 var customPrimary = {
+        '50': '#4c8cc7',
+        '100': '#3b7fbe',
+        '200': '#3572aa',
+        '300': '#2f6597',
+        '400': '#295883',
+        '500': '#234b70',
+        '600': '#1d3e5d',
+        '700': '#173149',
+        '800': '#112436',
+        '900': '#0b1722',
+        'A100': '#5f98cd',
+        'A200': '#72a5d3',
+        'A400': '#86b1d9',
+        'A700': '#050a0f'
     };
     $mdThemingProvider
         .definePalette('customPrimary', 
@@ -139,51 +139,50 @@ var defaultPrimary = {
                         customAccent);
 
     var customWarn = {
-        '50': '#f3c195',
-        '100': '#f0b37e',
-        '200': '#eea667',
-        '300': '#eb9950',
-        '400': '#e98b39',
-        '500': '#e67e22',
-        '600': '#d67118',
-        '700': '#bf6516',
-        '800': '#a85913',
-        '900': '#924d10',
-        'A100': '#f6ceab',
-        'A200': '#f8dcc2',
-        'A400': '#fbe9d9',
-        'A700': '#7b410e'
+        '50': '#ffb280',
+        '100': '#ffa266',
+        '200': '#ff934d',
+        '300': '#ff8333',
+        '400': '#ff741a',
+        '500': '#ff6400',
+        '600': '#e65a00',
+        '700': '#cc5000',
+        '800': '#b34600',
+        '900': '#993c00',
+        'A100': '#ffc199',
+        'A200': '#ffd1b3',
+        'A400': '#ffe0cc',
+        'A700': '#803200'
     };
     $mdThemingProvider
         .definePalette('customWarn', 
                         customWarn);
 
     var customBackground = {
-        '50': '#ffffff',
-        '100': '#ffffff',
-        '200': '#ffffff',
-        '300': '#ffffff',
-        '400': '#fefefe',
-        '500': '#f1f1f1',
-        '600': '#e4e4e4',
-        '700': '#d7d7d7',
-        '800': '#cbcbcb',
-        '900': '#bebebe',
-        'A100': '#ffffff',
-        'A200': '#ffffff',
-        'A400': '#ffffff',
-        'A700': '#b1b1b1'
+        '50': '#737373',
+        '100': '#666666',
+        '200': '#595959',
+        '300': '#4d4d4d',
+        '400': '#404040',
+        '500': '#333',
+        '600': '#262626',
+        '700': '#1a1a1a',
+        '800': '#0d0d0d',
+        '900': '#000000',
+        'A100': '#808080',
+        'A200': '#8c8c8c',
+        'A400': '#999999',
+        'A700': '#000000'
     };
     $mdThemingProvider
         .definePalette('customBackground', 
                         customBackground);
 
-   	$mdThemingProvider.theme('default')
+    $mdThemingProvider.theme('default')
        .primaryPalette('customPrimary')
        .accentPalette('customAccent')
        .warnPalette('customWarn')
        .backgroundPalette('customBackground')
-    */
 	
 });
 

@@ -5,7 +5,7 @@ html {
 }
 
 #slider {
-	background-color: #fabc01;
+	background-color:#f1f1f1; /*#fabc01;*/
 	color: #fff;
 	min-height:250px;
 	display: block;
