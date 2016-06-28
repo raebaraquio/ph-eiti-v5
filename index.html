@@ -1,61 +1,47 @@
 <!DOCTYPE html>
-<html lang="en" data-ng-app="ph">
+<html lang="en" data-ng-app="pheiti">
 <head>
 	<meta charset="utf-8">
+    <meta name="description" content="PH-EITI Working Towards More Transparency and Accountability in Extractive Industries">
+    <meta name="keywords" content="PH-EITI, Philippine EITI, EITI Philippines, EITI PH, EITI in PH, Transparency Initiative, Accountability, Transparency, Extractive Industries">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="-1">
     <meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
-    <link rel="stylesheet" href="css/angular-material.min.css">
-    <link rel="stylesheet" href="css/nav.css">
+    <title>PH-EITI | Philippine Extractive Industries Transparency Initiative</title>
+    <link rel="icon" type="image/gif" href="images/eitifavicon.ico">
+    <link rel="stylesheet" href="css/angular-material.min.css?v1.1.0-rc2"> 
+    <link rel="stylesheet" href="css/basic.css"> 
+    <link rel="stylesheet" href="css/main.css"> 
+    <link rel="stylesheet" href="css/nav.css"> 
 </head>	
-<body>
-    <div class="w-100">    
+<body ng-cloak>
+    <div class="wd-100" data-ng-controller="NavigationController">    
         <div class="mxw-80">
             <h1>Log here</h1>    
         </div>  
         <md-nav-bar nav-bar-aria-label="navigation links">
-            <md-nav-item md-nav-href="Activities/" name="page1" class="mnav-item">Page One
-                <ul class="dropdown-menu snav">
-                    <li><md-button href="Activities/">Something</md-button></li>
-                    <li><md-button>Something else</md-button>
-                        <ul class="dropdown-menu sub-snav">
-                            <li><md-button href="Activities/">Something 2</md-button></li>
-                            <li><md-button>Something else 2</md-button></li>
+            <md-nav-item data-ng-repeat="(kmnav,vmnav) in main_nav" md-nav-href="{{vmnav.href}}" name="{{vmnav.id}}" class="mnav-item">{{vmnav.name}}
+                <ul class="snav" data-ng-if="vmnav.subnav.length > 0">
+                    <li data-ng-repeat="(ksnav,vsnav) in vmnav.subnav"><md-button href="{{vmnav.href}}/#/{{vsnav.href}}" name="{{vsnav.id}}">{{vsnav.name}}</md-button>
+                        <ul class="sub-snav" data-ng-if="vsnav.subnav.length > 0">
+                            <li data-ng-repeat="(ksunav,vsunav) in vsnav.subnav"><md-button href="{{vmnav.href}}/#/{{vsnav.href}}/{{vsunav.href}}" name="{{vsunav.id}}">{{vsunav.name}}</md-button></li>
                         </ul>
                     </li>
                 </ul>
             </md-nav-item>
-            <md-nav-item md-nav-click="goto('page2')" name="page2" class="mnav-item">Page Two</md-nav-item>
-            <md-nav-item md-nav-click="goto('page3')" name="page3" class="mnav-item">Page Three
-                <ul class="dropdown-menu snav">
-                    <li><md-button>Something</md-button></li>
-                    <li><md-button>Something else</md-button></li>
-                </ul>
-            </md-nav-item>    
-        </md-nav-bar>        
+        </md-nav-bar>             
     </div>
-
-    <div class="w-100">    
+    
+    <div class="wd-100" id="slider">   
         <div class="mxw-80">
-            <h1>Box 1</h1>  
-        </div>
+            <h1>How much?</h1>  
+        </div>   
     </div>
 
-    <div class="w-100">    
-        <div class="mxw-80">
-            <div layout="column">
-                <div flex>1</div>
-                <div flex="50">2</div>
-            </div>
-        </div>
-    </div>
-
-
-	<!-- Lazy loading -->
+	<!-- Framework/Libraries -->
 	<script src="js/vendor/angular.js"></script>
     
     <script src="js/vendor/angular-animate.js?v1.01"></script>
@@ -70,10 +56,13 @@
 
     <script src="js/vendor/angular-material.js"></script>
 
-
+    <!-- Utilities -->
     <!--<script src="js/vendor/moment.min.js?v1.01"></script>-->
     <!--script src="js/modules/utilsModule.js?v1.01"></script-->
-	<script src="js/mainApp.js"></script>
+
+    <!-- Application -->
+    <script src="js/modules/navigation.js"></script>
+    <script src="js/mainApp.js"></script>
 
 </body>
 </html>

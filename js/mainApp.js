@@ -1,6 +1,6 @@
-var ph = angular.module('ph',['ngMaterial']);
+var pheiti = angular.module('pheiti',['ngMaterial','navMod']);
 
-ph.config(function($mdThemingProvider) {
+pheiti.config(function($mdThemingProvider) {
 	/* Yellow is primary ; Blue is accent */
 var defaultPrimary = {
         '50': '#fede7c',
@@ -191,3 +191,9 @@ var defaultPrimary = {
  	$routeProvider
  	.when()
 }); */
+
+pheiti.config(function($mdThemingProvider) {
+  $mdThemingProvider.theme('default')
+    // .primaryPalette('pink')
+    // .accentPalette('orange');
+});

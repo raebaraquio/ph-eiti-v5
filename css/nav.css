@@ -9,11 +9,6 @@
 #1d92de - blue (*hover for the links)
 017fcb*/
 
-.w-100 { box-sizing: border-box; width: 100%; margin: auto; }
-.mxw-100 { box-sizing: border-box; max-width: 100%; margin: auto; }
-.mxw-80 { box-sizing: border-box; max-width: 80%; margin: auto; }
-
-
 ._md-nav-bar-list {
 	max-width: 80%;
 	margin:auto;
@@ -34,11 +29,17 @@
 	position: relative;
 }
 
-
 .md-nav-item {
-	width: 15%;
+	width: 17.5%;
 }
 
+.md-nav-item > button,
+.md-nav-item > a {
+	font-weight: bold;
+}
+
+.md-nav-item button,
+.md-nav-item a,
 .md-nav-item:hover button,
 .md-nav-item:hover a {
 	text-align: left;
@@ -49,8 +50,14 @@
 }
 
 .snav li,
-.snav li button {
+.snav li button,
+.snav li a {
 	vertical-align: top;
+}
+
+.snav li,
+.sub-snav li {
+	background-color: #f1f1f1;
 }
 
 .mnav-item .snav > li:hover .sub-snav {
