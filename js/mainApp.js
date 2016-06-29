@@ -191,8 +191,8 @@ pheiti.config(function($mdThemingProvider) {
  	.when()
 }); */
 
-pheiti.config(function($mdThemingProvider) {
-  $mdThemingProvider.theme('default')
+// pheiti.config(function($mdThemingProvider) {
+//   $mdThemingProvider.theme('default')
     // .primaryPalette('pink')
     // .accentPalette('orange');
-});
+// });

@@ -2,6 +2,10 @@
 .fl-left { float: left; }
 .fl-right { float: right; }
 
+.gutters {
+	margin: 5px auto;
+}
+
 .ta-left { text-align: left; }
 .ta-right { text-align: right; }
 .ta-center { text-align: center; }

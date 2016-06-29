@@ -1,4 +1,4 @@
-angular.module('navMod',['ngRoute'])
+angular.module('navMod',['ngRoute','utilsModule'])
 .factory('NavigationFactory',function(){
 	var NavigationFactory = {
 		get : function(){
@@ -92,7 +92,7 @@ angular.module('navMod',['ngRoute'])
 							{
 								id:"activity-reports",
 								name: "Activity Reports",
-								href: "Acitvity-Reports"
+								href: "Activity-Reports"
 							},
 							{
 								id:"infographics",
@@ -148,28 +148,32 @@ angular.module('navMod',['ngRoute'])
 	};
 	return NavigationFactory;	
 })
-.controller('NavigationController',['$scope','$location','NavigationFactory','$rootScope','$route',
-	function($scope,$location,NavigationFactory,$rootScope,$route){
+.controller('NavigationController',['$scope','$location','NavigationFactory','$rootScope','$route','utilsService',
+	function($scope,$location,NavigationFactory,$rootScope,$route,utilsService){
 	$scope.active = {
 		mnav : '',
 		subnav : ''
 	}
-	
+
 	$scope.getnavigation = function() {
 		$scope.main_nav = [];
-		$scope.main_nav = NavigationFactory.get();	
-		console.log($scope.main_nav)
+		$scope.main_nav = NavigationFactory.get();
+		if ($location.$$absUrl.match(/#/gi)){
+			var locs = $location.$$absUrl.split('#');
+			var host = locs[0].split('/');
+		}
+		else {
+			var host = $location.$$absUrl.split('/');
+		}
+		if (utilsService.inObj($scope.main_nav,'href',host[host.length-2])) {
+			$scope.active.mnav = utilsService.getObjOtherPropVal($scope.main_nav,'href',host[host.length-2],'id');
+		}
+		$scope.active.subnav = ''
 	}
-
-	// if ($location.$$absUrl.match(/#/gi)){
-		console.log($location.$$absUrl)
-		// $scope.active.mnav = $location.$$absUrl.split('app')[1].split('/')[1]
-		// $scope.active.subnav = ''
-	// }
 
 	$rootScope.$on('$routeChangeSuccess', function(next, current) { 
 		try {
-			$scope.active.subnav = $location.path().split('/')[1]	
+			$scope.active.subnav = $location.path().split('/')[1]
 			if ($route.current.title) {
 				document.title = $route.current.title;	
 			}
@@ -178,7 +182,9 @@ angular.module('navMod',['ngRoute'])
 			
 		}
 	});
+
 	$scope.getnavigation()
+
 }])
 .directive('footersitemap',function(){
 	// var templateurl = 'app/Navigation/footer-sitemap-template.html'

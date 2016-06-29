@@ -9,6 +9,10 @@
 #1d92de - blue (*hover for the links)
 017fcb*/
 
+.md-nav-bar {
+	background-color: #f7f7f7 !important;
+}
+
 ._md-nav-bar-list {
 	max-width: 80%;
 	margin:auto;
@@ -85,3 +89,7 @@
 	margin-top:-0.6em;
 }
 
+
+.toDefaultColor {
+	color: #333;
+}

@@ -2,30 +2,64 @@
 <html lang="en" data-ng-app="resources">
 <head>
 	<meta charset="utf-8">
+    <meta name="description" content="PH-EITI Resources">
+    <meta name="keywords" content="PH-EITI Resources">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="-1">
     <meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
+	<title>Resources | ph-eiti.org</title>
+    <link rel="icon" type="image/gif" href="../images/eitifavicon.ico">
+    <link rel="stylesheet" href="../css/angular-material.min.css?v1.1.0-rc2"> 
+    <link rel="stylesheet" href="../css/font-awesome.min.css"> 
+    <link rel="stylesheet" href="../css/basic.css"> 
+    <link rel="stylesheet" href="../css/main.css"> 
+    <link rel="stylesheet" href="../css/nav.css"> 
 </head>	
-<body>
-	<h1>Resources 1</h1>
+<body ng-cloak>
+    <div class="wd-100" id="logo-wrapper">
+        <div class="mxw-80" id="logo-wrapper--inner">
+            <img class="gutters" src="../images/logo-without-text.png" alt="PH-EITI" title="PH-EITI" width="165"/> 
+        </div>  
+    </div>
+    <div class="wd-100" data-ng-controller="NavigationController"> 
+        <md-nav-bar nav-bar-aria-label="navigation links" md-selected-nav-item="active.mnav">
+            <md-nav-item data-ng-repeat="(kmnav,vmnav) in main_nav" md-nav-href="../{{vmnav.href}}" name="{{vmnav.id}}" class="mnav-item">{{vmnav.name}}
+                <ul class="snav" md-whiteframe="1" data-ng-if="vmnav.subnav.length > 0">
+                    <li data-ng-repeat="(ksnav,vsnav) in vmnav.subnav" data-ng-class="{'toDefaultColor':active.mnav===vmnav.id && active.subnav!==vsnav.href}"><md-button href="../{{vmnav.href}}/#/{{vsnav.href}}" name="{{vsnav.id}}">{{vsnav.name}}</md-button>
+                        <md-divider data-ng-if="vsnav.subnav.length > 0"></md-divider>
+                        <ul class="sub-snav" data-ng-if="vsnav.subnav.length > 0">
+                            <li data-ng-repeat="(ksunav,vsunav) in vsnav.subnav" data-ng-class="{'toDefaultColor':active.mnav===vmnav.id}"><md-button href="../{{vmnav.href}}/#/{{vsnav.href}}/{{vsunav.href}}" name="{{vsunav.id}}">{{vsunav.name}}</md-button></li>
+                        </ul>
+                    </li>
+                </ul>
+            </md-nav-item>
+        </md-nav-bar
+    </div>
 
-    <div data-ng-view></div>
+    <div class="wd-100">   
+        <div class="mxw-80">
+            <div data-ng-view></div>
+        </div>
+    </div>
 
-	<!-- Lazy loading -->
-	<script src="../js/vendor/angular.js?"></script>
-    <script src="../js/vendor/angular-route.js?v1.01"></script>
-    <script src="../js/vendor/angular-resource.js?v1.01"></script>
+    <script src="../js/vendor/angular.js?"></script>
     <script src="../js/vendor/angular-animate.js?v1.01"></script>
+    <script src="../js/vendor/angular-route.js?v1.01"></script>
+    <script src="../js/vendor/angular-aria.js"></script>
+    <script src="../js/vendor/angular-messages.js"></script>
+
+    <script src="../js/vendor/angular-resource.js?v1.01"></script>
     <script src="../js/vendor/angular-sanitize.js?v1.01"></script>
     <script src="../js/vendor/angular-cookies.js?v1.01"></script>    
     <script src="../js/vendor/angular-busy.js?v1.01"></script>
 
+    <script src="../js/vendor/angular-material.js"></script>
+
     <!--<script src="js/vendor/moment.min.js?v1.01"></script>-->
-    <!--script src="js/modules/utilsModule.js?v1.01"></script-->
+    <script src="../js/modules/utilsModule.js?v1.01"></script>
+    <script src="../js/modules/navigation.js"></script>
 	<script src="js/resourcesApp.js"></script>
 
 </body>

@@ -4,9 +4,19 @@ html {
     font-family: sans-serif;    
 }
 
+#logo-wrapper {
+	background-color: #fff;
+}
+
+#logo-wrapper--inner {
+
+}
+
 #slider {
-	background-color:#f1f1f1; /*#fabc01;*/
+	background-color:#fabc01; /*#f1f1f1*/
 	color: #fff;
 	min-height:250px;
 	display: block;
 }
+
+
