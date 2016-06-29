@@ -1,6 +1,6 @@
 var resourcesApp = angular.module('resources',['ngRoute','ngSanitize','ngCookies','navMod','ngMaterial','utilsModule']);
 
- resourcesApp.config(function($routeProvider){
+resourcesApp.config(function($routeProvider){
  	$routeProvider
 	 	.when('/',
 	 	{

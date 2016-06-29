@@ -1,0 +1,66 @@
+<div class="page-content" style="padding-bottom:50px;">
+    <div id="subcontent"  data-ng-show="current_annex.title">
+        <small class="link-map-hier"><a href="#/">EITI Report</a>&nbsp;&nbsp; > &nbsp;&nbsp; <a href="#/{{current_report.id}}">{{current_report.title}}</a>&nbsp;&nbsp; > &nbsp;&nbsp; <a href="#/{{current_report.id}}/{{current_annex.href}}">{{current_annex.title}}</a></small>
+        <br /><br />
+        <h1 style="padding-bottom:0px;margin-bottom:0px;">{{current_annex.title}}</h1>
+        <!-- <small class="lastupdated-mark">Updated on {{current_annex.lastupdated}} </small> -->
+        <!-- <br /><br /> -->
+        <p data-ng-show="current_annex.file">
+	        <a class="button-secondaryaction" data-ng-click="open_file(current_annex.file)">Download</a>
+	    </p>
+        <div class="clearfix"></div>
+        <div style="text-align:left;margin-top:25px;" data-ng-show="current_annex.file && current_annex.multiple==false">
+            <iframe src="{{current_annex.file}}" style="width:600px; height:760px;" frameborder="0"></iframe>
+        </div>
+        <div data-ng-show="!current_annex.file && current_annex.multiple==false">
+            <p>Document not yet available.</p>
+        </div>
+        <div data-ng-show="current_annex.multiple==true && !current_annex.media">
+            <p>
+                <select style="padding:5px;margin-top:25px;font-weight:bold;width:130px;" 
+                    data-ng-options="ksec as ksec for (ksec,sect) in current_annex.templates" 
+                    data-ng-change="refresh_annexTemplate()"
+                    data-ng-model="selected_AnnexTemplate">
+                    <option value="Companies">Companies</option>
+                    <option value="Government">Government</option>
+                </select>
+                &nbsp;
+                <input type="text" data-ng-model="filterAnnexTemplate" style="padding:6px;" placeholder="Search keyword here" size="30"/>
+                &nbsp;:&nbsp; <strong>{{ (completedTemplates | filter:filterAnnexTemplate).length }} result<span data-ng-show="(completedTemplates | filter:filterAnnexTemplate).length > 1">s</span> found</strong>
+            </p>
+
+            <div style="margin-top:10px;border-top:1px solid #ccc;">
+                <div  data-ng-show="completedTemplates.length > 0" >
+                    <div class="fl-left chips w50"data-ng-repeat="(k,cr) in completedTemplates | filter:filterAnnexTemplate" title="{{cr.company}}">
+                        <div class="fl-left ta-center chips-thumb--ico">
+                            <img src="../../images/icons/svg/document9.svg" class="va-mid" width="20px" />
+                        </div>
+                        <div class="fl-left chips-excerpt--ico ta-left va-mid" style="box-sizing:border-box;padding-top:6px;">
+                            <span data-ng-click="open_file(cr.file)" class="va-mid">{{shorten(cr.company,40)}}</span>
+                        </div>
+                        <div class="fl-right thumb ta-center chips-thumb--open"  title="{{cr.company}}" >
+                            <img class="va-mid" src="../../images/icons/svg/download147--darkgray.svg" data-ng-if="cr.file" data-ng-click="open_file(cr.file)" alt="Open/Download {{cr.company}} Reporting Template"  title="Open/Download {{cr.company}} Reporting Template" width="20px" style="margin:9px auto;"/>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!-- <ul id="homenews-list" data-ng-show="completedTemplates.length > 0">
+                    <li data-ng-repeat="(k,cr) in completedTemplates | filter:filterAnnexTemplate" title="{{cr.company}}">
+                        <strong class="left-col" style="margin-top:10px;"><a data-ng-click="open_file(cr.file)">{{cr.company}}</a></strong>
+                        <a class="button-secondaryaction right-col" data-ng-if="cr.file" data-ng-click="open_file(cr.file)" style="width:78px">Download</a>
+                        <div class="clearfix"></div>
+                    </li>
+                </ul> -->
+                <div data-ng-show="completedTemplates.length == 0">
+                    <p>Document/s not yet available.</p>
+                </div>
+            </div>
+        </div>
+        <div data-ng-show="current_annex.media">
+            <p data-ng-show="!current_annex.media_src">Material is not yet available.</p>
+        </div>
+    </div>
+    <div id="subcontent" class="ta-center" data-ng-show="!current_annex.title">
+        <p>Requested data not found.</p>
+    </div>
+</div>

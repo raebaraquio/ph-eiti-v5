@@ -12,15 +12,15 @@ wieApp.config(function($routeProvider){
 	 		redirectTo:'/History'
 	 	})
 
-	 	.when('/Standard',
+	 	.when('/The-EITI-Standard',
 	 	{
-	 		title: 'Standard',
+	 		title: 'EITI Standard',
 	 		templateUrl:'./template/standard.html'
 	 	})
 
-	 	.when('/Priciples',
+	 	.when('/The-EITI-Principles',
 	 	{
-	 		title: 'Principles',
+	 		title: 'EITI Principles',
 	 		templateUrl:'./template/principles.html'
 	 	})
 	 	

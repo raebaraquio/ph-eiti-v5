@@ -1,0 +1,60 @@
+<header>
+    <h1>{{current_report.title}}</h1>
+</header>
+
+<div class="wd-100">
+    <md-content layout="row" data-ng-show="current_report.content" >
+        <div flex="33" data-ng-repeat="(k,cr) in current_report.content" title="{{cr.title}}">
+            <md-card>
+                <!-- <img data-ng-src="img/{{cr.card_img}}" class="md-card-image" alt="{{cr.title}}" width="100%" style="max-height: 270px !important; "/> -->
+                <!-- <img data-ng-show="cr.multiple==false" ng-src="../images/icons/svg/document9.svg" class="md-avatar" />
+                <img data-ng-show="cr.multiple==true" ng-src="../images/icons/svg/folder173.svg" class="md-avatar" />
+                <img data-ng-show="cr.media" ng-src="../images/icons/svg/film57.svg" class="md-avatar" /> -->
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{shorten(cr.title,40)}}</span>
+                        <!-- <span class="md-subhead">{{cr.date}}</span> -->
+                    </md-card-title-text>
+                </md-card-title>
+                <md-divider></md-divider>
+                <md-card-actions layout="row" layout-align="start center">
+                    <md-button data-ng-if="cr.multiple==true || cr.media" class="md-secondary"  data-ng-click="goto_activity(current_report.id+'/'+cr.href)" alt="Go to {{cr.title}}"  title="Go to {{cr.title}}">Open</md-button>
+                    <md-button data-ng-if="cr.multiple==false" class="md-secondary"  data-ng-click="goto_activity(current_report.id+'/'+cr.href)"  data-ng-click="open_file(cr.file)" alt="Open/Download {{cr.title}}"  title="Open/Download {{cr.title}}">Open</md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+        
+    </md-content>   
+    <div class="ta-center" data-ng-show="!current_report.title">
+        <p>Requested data not found.</p>
+    </div> 
+</div>
+
+<!-- <div class="page-content" style="padding-bottom:50px;">
+    <div id="subcontent" data-ng-show="current_report.title">
+        <small class="link-map-hier"><a href="#/">EITI Report</a>&nbsp;&nbsp; > &nbsp;&nbsp; <a href="#/{{current_report.id}}">{{current_report.title}}</a></small>
+        <br /><br />
+        <h1 style="padding-bottom:0px;margin-bottom:0px;">{{current_report.title}}</h1>
+        <small class="lastupdated-mark">Updated on {{current_report.lastupdated}} </small>
+        <div style="margin-top:25px;" data-ng-show="current_report.content" >  
+            <div class="fl-left chips w50"  data-ng-if="current_report.content" data-ng-repeat="(k,cr) in current_report.content" title="{{cr.title}}">
+                <div class="fl-left ta-center chips-thumb--ico">
+                    <img data-ng-if="cr.multiple==false" src="../../images/icons/svg/document9.svg" class="va-mid" width="20px" />
+                    <img data-ng-if="cr.multiple==true" data-ng-src="../../images/icons/svg/folder173.svg" class="va-mid" width="20px" />
+                    <img data-ng-if="cr.media" data-ng-src="../../images/icons/svg/film57.svg" class="va-mid" width="16px" />
+                </div>
+                <div class="fl-left chips-excerpt--ico ta-left va-mid">
+                    <a href="#/{{current_report.id}}/{{cr.href}}" class="va-mid">{{shorten(cr.title,40)}}</a>
+                </div>
+                <div class="fl-right thumb ta-center chips-thumb--open"  title="{{cr.title}}" >
+                    <img data-ng-if="cr.multiple==true || cr.media" class="va-mid" src="../../images/icons/svg/right154--darkgray.svg" data-ng-click="goto_activity(current_report.id+'/'+cr.href)" alt="Go to {{cr.title}}"  title="Go to {{cr.title}}" width="11px" style="margin:9px auto;"/>
+                    <img data-ng-if="cr.multiple==false" class="va-mid" src="../../images/icons/svg/download147--darkgray.svg" data-ng-click="open_file(cr.file)" alt="Open/Download {{cr.title}}"  title="Open/Download {{cr.title}}" width="20px" style="margin:9px auto;"/>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div id="subcontent" class="ta-center" data-ng-show="!current_report.title">
+        <p>Requested data not found.</p>
+    </div>
+</div> -->

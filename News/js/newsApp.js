@@ -1,5 +1,37 @@
 var newsApp = angular.module('news',['ngRoute','ngSanitize','ngCookies','navMod','ngMaterial','utilsModule']);
 
+newsApp.config(function($routeProvider){
+    $routeProvider
+        .when('/Media-Releases',
+        {
+            title: 'Media Releases | News',
+            templateUrl:'./template/media-releases.html'
+        })
+
+        .when('/In-the-News',
+        {
+            title: 'In the News | News',
+            templateUrl:'./template/in-the-news.html'
+        })
+
+        .when('/Newsletter',
+        {
+            title: 'Newsletter | News',
+            templateUrl:'./template/newsletter.html'
+        })
+
+        .when('/Archive',
+        {
+            title: 'Archive | News',
+            templateUrl:'./template/archive.html'
+        })
+
+        .otherwise({
+            redirectTo: '/In-the-News'
+        });;
+}); 
+
+
 newsApp.config(function($mdThemingProvider) {
 
 	/* Blue is primary; Yellow is accent; */
