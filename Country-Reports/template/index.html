@@ -6,7 +6,7 @@
     <md-content layout="row">
         <div flex="33" data-ng-repeat="(k,cr) in countryreports" title="{{cr.title}}">
             <md-card>
-                <img data-ng-src="img/{{cr.card_img}}" class="md-card-image" alt="{{cr.title}}" width="100%" style="max-height: 270px !important; "/>
+                <!-- <img data-ng-src="img/{{cr.card_img}}" class="md-card-image" alt="{{cr.title}}" width="100%" style="max-height: 270px !important; "/>
                 <md-card-title>
                     <md-card-title-text>
                         <span class="md-headline">{{cr.title}}</span>
@@ -16,12 +16,26 @@
                 <md-divider></md-divider>
                 <md-card-actions layout="row" layout-align="start center">
                     <md-button class="md-raised md-accent" data-ng-click="goto_activity(cr.id)">Open</md-button>
+                    <md-button class="md-accent" data-ng-click="goto_activity(cr.id)">Open</md-button>
+                </md-card-actions> -->
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{cr.title}}</span>
+                        <span class="md-subhead">{{cr.date}}</span>
+                    </md-card-title-text>
+                    <md-card-title-media>
+                        <div class="md-media-md card-media">
+                            <img data-ng-src="img/{{cr.card_img}}" class="md-card-image" alt="{{cr.title}}"/>
+                        </div>
+                    </md-card-title-media>
+                </md-card-title>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button class="md-accent" data-ng-click="goto_activity(cr.id)">Open</md-button>
                 </md-card-actions>
-            </md-card>
+            </md-card>            
         </div>
     </md-content>    
 </div>
-
 
 <!-- <div class="page-content" style="padding-bottom:50px;">
     <div id="subcontent">

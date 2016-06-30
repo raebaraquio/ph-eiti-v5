@@ -3,32 +3,127 @@
 </header>
 
 <div class="wd-100">
-    <md-content layout="row" data-ng-show="current_report.content" >
-        <div flex="33" data-ng-repeat="(k,cr) in current_report.content" title="{{cr.title}}">
-            <md-card>
-                <!-- <img data-ng-src="img/{{cr.card_img}}" class="md-card-image" alt="{{cr.title}}" width="100%" style="max-height: 270px !important; "/> -->
-                <!-- <img data-ng-show="cr.multiple==false" ng-src="../images/icons/svg/document9.svg" class="md-avatar" />
-                <img data-ng-show="cr.multiple==true" ng-src="../images/icons/svg/folder173.svg" class="md-avatar" />
-                <img data-ng-show="cr.media" ng-src="../images/icons/svg/film57.svg" class="md-avatar" /> -->
+    <md-content class="md-padding" layout-xs="row" layout="column" data-ng-show="current_report.content">
+        <div flex-xs flex="70" layout="row">
+            <md-card flex="33" data-ng-repeat="(k,cr) in current_report.content" name="{{cr.title}}" data-ng-if="k < 3">
                 <md-card-title>
+                    <md-card-title-media>
+                        <div class="md-media-sm card-media" layout layout-align="center center" style="background-color:#f7f7f7;" >
+                            <!-- md-svg-icon="person" -->
+                            <md-icon data-ng-show="cr.multiple==false" md-svg-src = '../images/icons/svg/document9.svg' style="color:grey"></md-icon>
+                            <md-icon data-ng-show="cr.multiple==true" md-svg-src = '../images/icons/svg/folder173.svg' style="color:grey"></md-icon>
+                            <md-icon data-ng-show="cr.media" md-svg-src = '../images/icons/svg/film57.svg' style="color:grey"></md-icon>
+                        </div>
+                    </md-card-title-media>
                     <md-card-title-text>
-                        <span class="md-headline">{{shorten(cr.title,40)}}</span>
-                        <!-- <span class="md-subhead">{{cr.date}}</span> -->
+                        <span style="margin-left:8px;margin-top:17px">{{shorten(cr.title,40)}}</span>    
+                        <!-- <span class="md-subhead description">...</span> -->
                     </md-card-title-text>
+                    <md-divider></md-divider>
+                    <md-card-actions layout-align="end center">                     
+                        <md-button data-ng-if="cr.multiple==true || cr.media" class="md-accent"  data-ng-click="goto_activity(current_report.id+'/'+cr.href)" alt="Go to {{cr.title}}"  title="Go to {{cr.title}}">Go to page</md-button>
+                        <md-button data-ng-if="cr.multiple==false" class="md-accent" data-ng-click="open_file(cr.file)" alt="Open/Download {{cr.title}}"  title="Open/Download {{cr.title}}">Open</md-button>
+                    </md-card-actions>
                 </md-card-title>
-                <md-divider></md-divider>
-                <md-card-actions layout="row" layout-align="start center">
-                    <md-button data-ng-if="cr.multiple==true || cr.media" class="md-secondary"  data-ng-click="goto_activity(current_report.id+'/'+cr.href)" alt="Go to {{cr.title}}"  title="Go to {{cr.title}}">Open</md-button>
-                    <md-button data-ng-if="cr.multiple==false" class="md-secondary"  data-ng-click="goto_activity(current_report.id+'/'+cr.href)"  data-ng-click="open_file(cr.file)" alt="Open/Download {{cr.title}}"  title="Open/Download {{cr.title}}">Open</md-button>
-                </md-card-actions>
             </md-card>
         </div>
-        
-    </md-content>   
+        <div flex-xs flex="70" layout="row">
+            <md-card flex="33" data-ng-repeat="(k,cr) in current_report.content" name="{{cr.title}}" data-ng-if="k > 2 && k < 6">
+                <md-card-title>
+                    <md-card-title-media>
+                        <div class="md-media-sm card-media" layout layout-align="center center" style="background-color:#f7f7f7;" >
+                            <!-- md-svg-icon="person" -->
+                            <md-icon data-ng-show="cr.multiple==false" md-svg-src = '../images/icons/svg/document9.svg' style="color:grey"></md-icon>
+                            <md-icon data-ng-show="cr.multiple==true" md-svg-src = '../images/icons/svg/folder173.svg' style="color:grey"></md-icon>
+                            <md-icon data-ng-show="cr.media" md-svg-src = '../images/icons/svg/film57.svg' style="color:grey"></md-icon>
+                        </div>
+                    </md-card-title-media>
+                    <md-card-title-text>
+                        <span style="margin-left:8px;margin-top:17px">{{shorten(cr.title,40)}}</span>    
+                        <!-- <span class="md-subhead description">...</span> -->
+                    </md-card-title-text>
+                    <md-divider></md-divider>
+                    <md-card-actions layout-align="end center">
+                        <md-button data-ng-if="cr.multiple==true || cr.media" class="md-accent"  data-ng-click="goto_activity(current_report.id+'/'+cr.href)" alt="Go to {{cr.title}}"  title="Go to {{cr.title}}">Go to page</md-button>
+                        <md-button data-ng-if="cr.multiple==false" class="md-accent" data-ng-click="open_file(cr.file)" alt="Open/Download {{cr.title}}"  title="Open/Download {{cr.title}}">Open</md-button>
+                    </md-card-actions>
+                </md-card-title>
+            </md-card>
+        </div>
+        <div flex-xs flex="50" layout="row" layout-align="center center">
+            <md-card flex="33" data-ng-repeat="(k,cr) in current_report.content" name="{{cr.title}}" data-ng-if="k > 5 && k < 9">
+                <md-card-title>
+                    <md-card-title-media>
+                        <div class="md-media-sm card-media" layout layout-align="center center" style="background-color:#f7f7f7;" >
+                            <!-- md-svg-icon="person" -->
+                            <md-icon data-ng-show="cr.multiple==false" md-svg-src = '../images/icons/svg/document9.svg' style="color:grey"></md-icon>
+                            <md-icon data-ng-show="cr.multiple==true" md-svg-src = '../images/icons/svg/folder173.svg' style="color:grey"></md-icon>
+                            <md-icon data-ng-show="cr.media" md-svg-src = '../images/icons/svg/film57.svg' style="color:grey"></md-icon>
+                        </div>
+                    </md-card-title-media>
+                    <md-card-title-text>
+                        <span style="margin-left:8px;margin-top:17px">{{shorten(cr.title,40)}}</span>    
+                        <!-- <span class="md-subhead description">...</span> -->
+                    </md-card-title-text>
+                    <md-divider></md-divider>
+                    <md-card-actions layout-align="end center">
+                        <md-button data-ng-if="cr.multiple==true || cr.media" class="md-accent"  data-ng-click="goto_activity(current_report.id+'/'+cr.href)" alt="Go to {{cr.title}}"  title="Go to {{cr.title}}">Go to page</md-button>
+                        <md-button data-ng-if="cr.multiple==false" class="md-accent" data-ng-click="open_file(cr.file)" alt="Open/Download {{cr.title}}"  title="Open/Download {{cr.title}}">Open</md-button>                    
+                    </md-card-actions>
+                </md-card-title>
+            </md-card>
+        </div>
+    </md-content>
+
     <div class="ta-center" data-ng-show="!current_report.title">
         <p>Requested data not found.</p>
     </div> 
 </div>
+
+
+<!-- <md-content layout="column" data-ng-show="current_report.content" >
+    <div flex="33" data-ng-repeat="(k,cr) in current_report.content" title="{{cr.title}}">
+        <md-card>
+            <md-card-title>
+                <md-card-title-media>
+                    <div class="md-media-sm card-media" layout layout-align="center center" class="md-accent">
+                        <md-icon data-ng-show="cr.multiple==true" md-svg-icon="person" src="../images/icons/svg/folder173.svg"></md-icon>
+                        <md-icon data-ng-show="cr.multiple==true" md-svg-icon="person" src="../images/icons/svg/folder173.svg"></md-icon>
+                        <img data-ng-show="cr.multiple==false" ng-src="../images/icons/svg/document9.svg" class="md-avatar" width="24px" />
+                        <img data-ng-show="cr.multiple==true" ng-src="../images/icons/svg/folder173.svg" class="md-avatar" width="24px" />
+                        <img data-ng-show="cr.media" ng-src="../images/icons/svg/film57.svg" class="md-avatar" width="24px" />
+                    </div>
+                </md-card-title-media>
+                <md-card-title-text>
+                    <span class="md-headline">{{shorten(cr.title,40)}}</span>
+                    <span class="md-subhead description">This card is colored according the {{theme}} theme</span>
+                </md-card-title-text>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button data-ng-if="cr.multiple==true || cr.media" class="md-accent"  data-ng-click="goto_activity(current_report.id+'/'+cr.href)" alt="Go to {{cr.title}}"  title="Go to {{cr.title}}">Open</md-button>
+                    <md-button data-ng-if="cr.multiple==false" class="md-accent"  data-ng-click="goto_activity(current_report.id+'/'+cr.href)"  data-ng-click="open_file(cr.file)" alt="Open/Download {{cr.title}}"  title="Open/Download {{cr.title}}">Open</md-button>
+                </md-card-actions>
+            </md-card-title>                
+        </md-card>
+    </div>
+</md-content>   -->
+
+ <!-- <md-card>
+    <img data-ng-src="img/{{cr.card_img}}" class="md-card-image" alt="{{cr.title}}" width="100%" style="max-height: 270px !important; "/>
+    <img data-ng-show="cr.multiple==false" ng-src="../images/icons/svg/document9.svg" class="md-avatar" />
+    <img data-ng-show="cr.multiple==true" ng-src="../images/icons/svg/folder173.svg" class="md-avatar" />
+    <img data-ng-show="cr.media" ng-src="../images/icons/svg/film57.svg" class="md-avatar" />
+    <md-card-title>
+        <md-card-title-text>
+            <span class="md-headline">{{shorten(cr.title,40)}}</span>
+            <span class="md-subhead">{{cr.date}}</span>
+        </md-card-title-text>
+    </md-card-title>
+    <md-divider></md-divider>
+    <md-card-actions layout="row" layout-align="start center">
+        <md-button data-ng-if="cr.multiple==true || cr.media" class="md-secondary"  data-ng-click="goto_activity(current_report.id+'/'+cr.href)" alt="Go to {{cr.title}}"  title="Go to {{cr.title}}">Open</md-button>
+        <md-button data-ng-if="cr.multiple==false" class="md-secondary"  data-ng-click="goto_activity(current_report.id+'/'+cr.href)"  data-ng-click="open_file(cr.file)" alt="Open/Download {{cr.title}}"  title="Open/Download {{cr.title}}">Open</md-button>
+    </md-card-actions>
+</md-card> -->
 
 <!-- <div class="page-content" style="padding-bottom:50px;">
     <div id="subcontent" data-ng-show="current_report.title">
