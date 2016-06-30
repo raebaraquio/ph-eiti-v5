@@ -26,7 +26,7 @@
                         </md-select>
                     </md-input-container>
                     <md-input-container flex-gt-sm>
-                        <label>Search filter</label>
+                        <label>Keyword filter</label>
                         <input data-ng-model="filterAnnexTemplate"/>
                     </md-input-container>
                     <md-input-container flex-gt-sm>
@@ -37,11 +37,11 @@
         </div>       
         <md-content>
             <md-list>
-                <md-list-item  flex="45" class="md-2-line" data-ng-repeat="(k,cr) in completedTemplates | filter:filterAnnexTemplate" title="{{cr.company}}">
-                    <md-icon md-svg-src="../images/icons/svg/document9.svg"></md-icon>
+                <md-list-item  flex="70" class="md-2-line" data-ng-repeat="(k,cr) in completedTemplates | filter:filterAnnexTemplate" title="{{cr.company}}" id="listItem-reportingTemplate-{{k}}">
+                    <!-- <md-icon md-svg-src="../images/icons/svg/document9.svg"></md-icon> -->
                     <div class="md-list-item-text" layout="column">
                         <!-- <h3>{{shorten(cr.company,40)}}</h3> -->
-                        <h4>{{shorten(cr.company,40)}}</h4>
+                        <h4 title="{{cr.company}}">{{shorten(cr.company,90)}}</h4>
                         <!-- <p>{{ item.notes }}</p> -->
                     </div>
                     <!-- <md-divider></md-divider>              -->

@@ -16,14 +16,15 @@
     <link rel="stylesheet" href="../css/basic.css"> 
     <link rel="stylesheet" href="../css/main.css"> 
     <link rel="stylesheet" href="../css/nav.css"> 
+    <link rel="stylesheet" href="css/style.css"> 
 </head>	
 <body ng-cloak>
-    <div class="wd-100" id="logo-wrapper" style="display: none">
+    <div class="wd-100" id="logo-wrapper">
         <div class="mxw-80" id="logo-wrapper--inner">
             <a href="../"><img class="gutters" src="../images/logo-without-text.png" alt="PH-EITI" title="PH-EITI" width="165"/></a>
         </div>  
     </div>
-    <div class="wd-100" data-ng-controller="NavigationController" style="display: none">
+    <div class="wd-100" data-ng-controller="NavigationController">
         <md-nav-bar nav-bar-aria-label="navigation links" md-selected-nav-item="active.mnav">
             <md-nav-item data-ng-repeat="(kmnav,vmnav) in main_nav" md-nav-href="../{{vmnav.href}}" name="{{vmnav.id}}" class="mnav-item">{{vmnav.name}}
                 <ul class="snav" md-whiteframe="1" data-ng-if="vmnav.subnav.length > 0">

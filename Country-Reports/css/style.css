@@ -1,0 +1,8 @@
+[id^='listItem-reportingTemplate-'] {
+	border-bottom: 1px solid #f1f1f1;
+}
+[id^='listItem-reportingTemplate-']:hover {
+	background-color: #f7f7f7;
+	color: #fabc01;
+	border-bottom: 1px solid #fabc01;
+}
