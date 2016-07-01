@@ -1,10 +1,11 @@
-var aboutApp = angular.module('about',['ngRoute','ngSanitize','ngCookies','navMod','ngMaterial','utilsModule']);
+var aboutApp = angular.module('about',['ngRoute','ngSanitize','ngCookies','navMod','ngMaterial','utilsModule','angular-timeline']);
 
 aboutApp.config(function($routeProvider){
  	$routeProvider
 	 	.when('/History',
 	 	{
 	 		title: 'History | About PH-EITI',
+            controller: 'HistoryController',
 	 		templateUrl:'./template/history.html'
 	 	})
 

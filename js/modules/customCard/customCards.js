@@ -1,18 +1,6 @@
-var activitiesApp = angular.module('activities',['ngRoute','ngSanitize','ngCookies','navMod','ngMaterial','utilsModule']);
-
-activitiesApp.config(function($routeProvider){
-    $routeProvider
-    .when('/',
-    {
-        controller:'ActivitiesController',
-        templateUrl:'template/index.html'
-    })
-});
-
-activitiesApp.config(function($mdThemingProvider) {
-
-	/* Blue is primary; Yellow is accent; */
-	 var customPrimary = {
+angular.module('customCards', ['ngMaterial'])
+  .config(function ($mdThemingProvider, $mdIconProvider) {
+    var customPrimary = {
         '50': '#4c8cc7',
         '100': '#3b7fbe',
         '200': '#3572aa',
@@ -97,5 +85,32 @@ activitiesApp.config(function($mdThemingProvider) {
        .accentPalette('customAccent')
        .warnPalette('customWarn')
        .backgroundPalette('customBackground')
-	
-});
+
+    // $mdThemingProvider.theme('forest')
+    //   .primaryPalette('brown')
+    //   .accentPalette('green');
+    $mdIconProvider
+      .defaultIconSet('img/icons/sets/social-icons.svg', 24);
+  })
+  .directive('regularCard', function () {
+    return {
+      restrict: 'E',
+      templateUrl: 'regular-card.html',
+      scope: {
+        name: '@',
+      }
+    }
+  })
+  .directive('userCard', function () {
+    return {
+      restrict: 'E',
+      templateUrl: 'user-card.html',
+      scope: {
+        name: '@',
+        theme: '@'
+      },
+      controller: function ($scope) {
+        $scope.theme = $scope.theme || 'default';
+      }
+    }
+  });

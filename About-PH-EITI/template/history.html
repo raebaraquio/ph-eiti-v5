@@ -1,64 +1,25 @@
 <div>History</div>
- <!-- class="content-desc highlights-history-list" -->
-<ul>
-    <li>
-        <strong>2012 July 6</strong><br />
-        Executive Order No. 79 is issued. Section 14 of the EO contains the unequivocal public statement of the government's intention to implement EITI.
-    </li>
-    <li>
-        <strong>2012 July 20</strong><br />
-        Members of the EITI International Secretariat, specifically Mr. Jonas Moberg, Head of the International Secretariat and Ms. Dyveke Rogan, EITI Country Manager, meet with Secretary Florencio Abad of the Department of Budget and Management to discuss EITI and plans of its implementation in the Philippines.
-    </li>
-    <li>
-        <strong>2012 July 25</strong><br />
-        The Mining Industry Coordinating Council has its first meeting, and designates the Good Governance Cluster to oversee the implementation of EITI. It also appoints the Presidential Adviser on Climate Change, Secretary Elisea Gozun, to lead EITI in the Philippines.
-    </li>
-    <li>
-        <strong>2012 July 27</strong><br />
-        Mr. Matthieu Salomon, a Project Manager from Revenue Watch Indonesia, Mr. Tio Sulastio, Director of the Indonesian Parliamentary Center (IPC), and Gita Widya Soerjoatmodjo, also from the IPC, meet Secretary Florencio Abad to discuss the Philippines' participation in EITI.
-    </li>
-    <li>
-        <strong>2012 August 10 and 17</strong><br />
-        The Technical Working Group (TWG) on the Extractive Industries Transparency Initiative has its first and second meetings. The secretariat drafted and presented a work plan on EITI implementation, and circulated the same among the TWG members for comments.
-    </li>
-    <li>
-        <strong>2012 September 6 and 24 </strong><br />
-        Philippine EITI (PH-EITI) and the Multi-Stakeholder Group (MSG), which governs the implementation of EITI in the country, hold their first and second meetings.
-    </li>
-    <li>
-        <strong>2013 January 18 and 19 </strong><br />
-        Relevant government agencies, members of the mining, oil and gas sectors, and relevant civil society organizations attend the First PH-EITI National Conference.
-    </li>
-    <li>
-        <strong>2013 April </strong><br />
-        The Philippines submits its application for candidature to the EITI International Board
-    </li>
-    <li>
-        <strong>2013 May</strong><br />
-        The Philippines is admitted as a candidate country at the EITI Global Conference in Sydney, Australia.
-    </li>
-    <li>
-        <strong>2013 August 24</strong><br />
-        The MSG, the PH-EITI Secretariat, the TWG and other relevant government agencies attend a workshop on The Development of the EITI Reporting Template, the first in a series of capacity-building activities for stakeholders. 
-    </li>
-    <li>
-        <strong>2013 September 26 and 27</strong><br />
-        PH-EITI and the World Bank host a Conference on the Adoption of the 2013 EITI Standards. The conference results in the stakeholders’ increased understanding of the 2013 EITI Standard for reporting and its implications; and more importantly, produces a set of provisional objectives that will define the direction of the First PH-EITI Country Report.
-    </li>
-    <li>
-        <strong>2014 February 4</strong><br />
-        Asec. Ma. Teresa S. Habitan and Mr. Michael Stanley of the World Bank brief members of the Senate and House of Representatives on the EITI Reporting Standard and PH-EITI’s activities to date.
-    </li>
-    <li>
-        <strong>2014 February 11 and 12</strong><br />
-        PH-EITI’s Secretariat and MSG stage a briefing on PH-EITI’s activities, the EITI Reporting Standard, and the role of local government units (LGUs) in the EITI process to leaders and members of Philippine LGUs.
-    </li>
-    <li>
-        <strong>2014 May 14</strong><br />
-        PH-EITI Secretariat, the MSG, and the Independent Auditor (IA) stage a second LGU briefing, this time concentrating on the EITI Reporting Template.
-    </li>
-    <li>
-        <strong>2014 May 15 and 16</strong><br />
-        PH-EITI hold the Second PH-EITI National Conference.
-    </li>
-</ul>
+
+<timeline >
+    <!-- can also hard-code to side="left" or side="right" -->
+    <timeline-event ng-repeat="(k,event) in events" data-ng-init="useSide = (k%2)===0 ? 'right' : 'left'" side="{{useSide}}">
+        <!-- uses angular-scroll-animate to give it some pop -->
+        <timeline-badge class="{{event.badgeClass}} timeline-hidden" when-visible="animateElementIn" when-not-visible="animateElementOut">
+            <span class="glyphicon {{event.badgeIconClass}}" style="font-size:0.85em;">{{event.year}}</span>
+        </timeline-badge>
+        <!-- uses angular-scroll-animate to give it some pop -->
+        <timeline-panel class="{{event.badgeClass}} timeline-hidden" when-visible="animateElementIn" when-not-visible="animateElementOut">
+            <timeline-heading>
+                <h4>{{event.when}}</h4>
+                <!-- <p ng-if="event.when">
+                    <small class="text-muted"><i class="glyphicon glyphicon-time"></i>{{event.when}}</small>
+                </p> -->
+                <p ng-if="event.titleContentHtml" ng-bind-html="event.titleContentHtml"></p>
+            </timeline-heading>
+            <p ng-bind-html="event.contentHtml"></p>
+            <timeline-footer ng-if="event.footerContentHtml">
+                <span ng-bind-html="event.footerContentHtml"></span>
+            </timeline-footer>
+        </timeline-panel>
+    </timeline-event>
+</timeline>
