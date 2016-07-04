@@ -21,7 +21,16 @@
 <body ng-cloak>
     <div class="wd-100" id="logo-wrapper">
         <div class="mxw-80" id="logo-wrapper--inner">
-            <a href="./"><img class="gutters" src="images/logo-without-text.png" alt="PH-EITI" title="PH-EITI" width="165"/></a>
+            <md-content layout flex layout="row">
+                <md-content flex="50" id="logo-wrapper__main" >
+                    <a href="./"><img class="gutters" src="images/logo-without-text.png" alt="PH-EITI" title="PH-EITI" width="165"/></a>
+                </md-content>
+                <md-content flex="50" class="ta-right" id="logo-wrapper__social" style="padding-top:0.4em;">
+                    <img src="images/icons/facebook.png" class="va-mid" alt="" width="32px" /><!--
+                    --><img src="images/icons/twitter.png" class="va-mid" alt="" width="32px" /><!--
+                    --><img src="images/icons/youtube.png" class="va-mid" alt="" width="32px" />
+                </md-content>
+            </md-content>
         </div>  
     </div>
     <div class="wd-100" data-ng-controller="NavigationController">
@@ -39,11 +48,90 @@
         </md-nav-bar>
     </div>
     
-    <div class="wd-100" id="slider">   
+    <header class="wd-100" id="home-slider">   
         <div class="mxw-80">
-            <h1>Banner</h1>  
+            <h1></h1>  
+        </div>   
+    </header>
+
+    <div class="wd-100" id="home-infographic">  <!-- Infographic Feature --> 
+        <div class="mxw-80">
+            <md-content layout flex>
+            </md-content>
         </div>   
     </div>
+
+    <div class="wd-100" id="home-news"> <!-- News -->
+        <div class="mxw-80">
+            <md-content layout flex>
+                <md-content flex="50" layout="column">
+                    <h1>Insert news (pic+title) highlight here</h1>
+                </md-content>
+                <md-content flex="50" layout="column">
+                    <md-list>
+                        <md-list-item class="md-3-line">
+                            <!-- data-ng-repeat="(kiam,viam) in mem.alternate"> -->
+                            <div class="md-list-item-text">
+                                <h3>News title</h3>
+                                <h4 class="ww-breakword">Source | Date</h4>
+                                <p class="ww-breakword"></p>
+                            </div>
+                        </md-list-item>
+                        <md-list-item class="md-3-line">
+                            <!-- data-ng-repeat="(kiam,viam) in mem.alternate"> -->
+                            <div class="md-list-item-text">
+                                <h3>News title</h3>
+                                <h4 class="ww-breakword">Source | Date</h4>
+                                <p class="ww-breakword"></p>
+                            </div>
+                        </md-list-item>
+                        <md-list-item class="md-3-line">
+                            <!-- data-ng-repeat="(kiam,viam) in mem.alternate"> -->
+                            <div class="md-list-item-text">
+                                <h3>News title</h3>
+                                <h4 class="ww-breakword">Source | Date</h4>
+                                <p class="ww-breakword"></p>
+                            </div>
+                        </md-list-item>
+                    </md-list>
+                </md-content>
+            </md-content>
+        </div>   
+    </div>
+
+    <div class="wd-100" id="home-misc"> <!-- Related Links x Activities Grid -->
+        <div class="mxw-80">
+        </div>   
+    </div>
+
+    <div class="wd-100" id="home-videos">   
+        <div class="mxw-80">
+            <md-content layout flex>
+                <md-content flex="50" layout="column">
+                </md-content>
+                <md-content flex="50" layout="column">
+                </md-content>
+            </md-content>
+        </div>   
+    </div>
+
+    <div class="wd-100" id="home-statements">   
+        <div class="mxw-80">
+            <md-content layout flex>
+            </md-content>
+        </div>   
+    </div>
+
+    <footer class="wd-100">   
+        <div class="mxw-80">
+            <md-content layout flex>
+                <md-content flex="50" layout="column">
+                </md-content>
+                <md-content flex="50" layout="column">
+                </md-content>
+            </md-content>
+        </div>   
+    </footer>
 
 	<!-- Framework/Libraries -->
 	<script src="js/vendor/angular.js"></script>

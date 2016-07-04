@@ -12,6 +12,18 @@ html {
 
 }
 
+#logo-wrapper__main {
+
+}
+
+#logo-wrapper__social {
+	padding-top: 0.4em;
+}
+
+#logo-wrapper__social img {
+	margin-right: 0.4em;
+}
+
 header {
 	background-color:#fabc01; /*#f1f1f1*/
 	color: #fff;
@@ -19,4 +31,17 @@ header {
 	display: block;
 }
 
+footer {
+	background-color: #000;
+	color: #fff;
+	min-height:250px;
+	display: block;
+}
+
+#home-statements {
+	background-color:#234b70;
+	color: #fff;
+	min-height:250px;
+	display: block;
+}
 

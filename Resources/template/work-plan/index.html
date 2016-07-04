@@ -8,6 +8,29 @@
 
 <div class="w-100">
 	<div class="mxw-80">
-			
+		<div class="md-inline-form">
+	        <md-content layout-padding>
+	            <div layout-gt-sm="row">
+	                <md-input-container flex-gt-sm>
+	                    <label>Select Year</label>
+	                    <md-select data-ng-model="filterYear" data-ng-change="refresh()">
+	                    	<md-option data-ng-repeat="year in years" value="{{year}}">{{year}}</md-option>
+	                    </md-select>
+	                </md-input-container>
+	                <md-input-container flex-gt-sm data-ng-show="workPlans.length">
+	                    <label><strong>{{ (workPlans | filter:{title:filterYear}).length }} result<span data-ng-show="(workPlans | filter:{title:filterYear}).length > 1">s</span> found</strong></label>
+	                </md-input-container>            
+	                <!-- <label>Keyword filter</label><input data-ng-model="filterKeyword"/> -->
+	                 <md-input-container flex-gt-sm></md-input-container>        
+	                <md-input-container flex-gt-sm></md-input-container>
+	                <md-input-container flex-gt-sm></md-input-container>
+	                <md-input-container flex-gt-sm></md-input-container>
+	            </div>            
+	        </md-content>
+	    </div>
+	    <div data-ng-show="selected_workPlan">
+	    	<md-content>
+	    	</md-content>
+	    </div>
 	</div>
 </div>
