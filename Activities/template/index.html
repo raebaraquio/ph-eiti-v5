@@ -1,49 +1,131 @@
-<h1>Activities</h1>	
-
 <div class="wd-100">
-	<div class="mxw-80">
-		<div class="md-inline-form">
-            <md-content layout-padding>
-                <div layout-gt-sm="row">
-                    <md-input-container flex-gt-sm>
-                        <label>Select Year</label>
-                        <md-select data-ng-model="filterYear" data-ng-change="refreshActivites()">
-                        	<md-option data-ng-repeat="year in years" value="{{year}}">{{year}}</md-option>
-                        </md-select>
-                    </md-input-container>
-                    <md-input-container flex-gt-sm>
-                        <label>Keyword filter</label>
-                        <input data-ng-model="filterKeyword"/>
-                    </md-input-container>
-                    <md-input-container flex-gt-sm data-ng-show="activities.length">
-                        <label><strong>{{ (activities | filter:filterYear).length }} result<span data-ng-show="(activities | filter:activities).length > 1">s</span> found</strong></label>
-                    </md-input-container>                    
-                </div>            
-            </md-content>
-        </div>       
-	</div>
+	<div class="md-inline-form">
+        <md-content layout-padding>
+            <div layout-gt-sm="row">
+                <md-input-container flex-gt-sm>
+                    <label>Select Year</label>
+                    <md-select data-ng-model="filterYear" data-ng-change="refreshActivites()">
+                    	<md-option data-ng-repeat="year in years" value="{{year}}">{{year}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container flex-gt-sm data-ng-show="activities.length">
+                    <label><strong>{{ (activities | filter:{date:filterYear}).length }} result<span data-ng-show="(activities | filter:{date:filterYear}).length > 1">s</span> found</strong></label>
+                </md-input-container>            
+                <!-- <label>Keyword filter</label><input data-ng-model="filterKeyword"/> -->
+                 <md-input-container flex-gt-sm></md-input-container>        
+                <md-input-container flex-gt-sm></md-input-container>
+                <md-input-container flex-gt-sm></md-input-container>
+                <md-input-container flex-gt-sm></md-input-container>
+            </div>            
+        </md-content>
+    </div>
 </div>
 
 <div class="wd-100">
-	<div class="mxw-80">
-		<md-content class="md-padding" layout-xs="column" layout="row">
-    		<div flex-xs flex-gt-xs="50" layout="column">
-				<md-card>
-					<img data-ng-src="" class="md-card-image">
-					<md-card-title>
-						<md-card-title-text>
-							<span class="md-headline">Activitity Title</span>
-							<span class="md-subhead"><strong>November 12-13 2016</strong><br/>Encarnacion Hall, DOF Building, Roxas Blvd.</span>
-						</md-card-title-text>
-					</md-card-title>
-					<md-card-content>
-						<p>The titles of Washed Out's breakthrough song and the first single from Paracosm share the...</p>
-					</md-card-content>
-					<md-card-actions layout="row" layout-align="end center">
-						<md-button class="md-accent"><strong>Open</strong></md-button>
-					</md-card-actions>
-				</md-card>
-    		</div>
-    	</md-content>
-	</div>
+    <md-content class="md-padding" layout-xs="row" layout="column">
+        <div flex-xs flex="70" layout="row">
+            <md-card flex="25" data-ng-repeat="(k,activity) in activities | filter:{date:filterYear}" name="{{cr.title}}" data-ng-if="k < 4">
+            	<img data-ng-src="../{{activity.coverphoto}}" class="md-card-image" style="height:70px !important;" />
+            	<md-card-title>
+					<md-card-title-text class="ta-center">
+						<span class="md-headline" style="font-size:1.2em !important;line-height:1.05em;">{{activity.title}}</span>
+						<span class="md-subhead"><strong>{{activity.date}}</strong></span>
+					</md-card-title-text>
+				</md-card-title>
+				<md-card-content>
+					<!-- <p>The titles of Washed Out's breakthrough song and the first single from Paracosm share the...</p> -->
+				</md-card-content>
+				<md-card-actions layout="row" layout-align="end center">
+					<md-button class="md-accent" href="#/{{activity.id}}"><strong>Open</strong></md-button>
+				</md-card-actions>
+            </md-card>
+        </div>
+        <div flex-xs flex="70" layout="row" data-ng-show="activities.length > 4">
+            <md-card flex="25" data-ng-repeat="(k,activity) in activities | filter:{date:filterYear}" name="{{cr.title}}" data-ng-if="k > 3 && k < 8">
+            	<img data-ng-src="../{{activity.coverphoto}}" class="md-card-image" style="height:70px !important;" />
+                <md-card-title>
+					<md-card-title-text class="ta-center">
+						<span class="md-headline" style="font-size:1.2em !important;line-height:1.05em;">{{activity.title}}</span>
+						<span class="md-subhead"><strong>{{activity.date}}</strong></span>
+					</md-card-title-text>
+				</md-card-title>
+				<md-card-content>
+					<!-- <p>The titles of Washed Out's breakthrough song and the first single from Paracosm share the...</p> -->
+				</md-card-content>
+				<md-card-actions layout="row" layout-align="end center">
+					<md-button class="md-accent" href="#/{{activity.id}}"><strong>Open</strong></md-button>
+				</md-card-actions>
+            </md-card>
+        </div>
+        <div flex-xs flex="70" layout="row" data-ng-show="activities.length > 8">
+            <md-card flex="25" data-ng-repeat="(k,activity) in activities | filter:{date:filterYear}" name="{{cr.title}}" data-ng-if="k > 7 && k < 12">
+            	<img data-ng-src="../{{activity.coverphoto}}" class="md-card-image" style="height:70px !important;" />
+                <md-card-title>
+					<md-card-title-text class="ta-center">
+						<span class="md-headline" style="font-size:1.2em !important;line-height:1.05em;">{{activity.title}}</span>
+						<span class="md-subhead"><strong>{{activity.date}}</strong></span>
+					</md-card-title-text>
+				</md-card-title>
+				<md-card-content>
+					<!-- <p>The titles of Washed Out's breakthrough song and the first single from Paracosm share the...</p> -->
+				</md-card-content>
+				<md-card-actions layout="row" layout-align="end center">
+					<md-button class="md-accent" href="#/{{activity.id}}"><strong>Open</strong></md-button>
+				</md-card-actions>
+            </md-card>
+        </div>
+        <div flex-xs flex="70" layout="row" data-ng-show="activities.length > 12">
+            <md-card flex="25" data-ng-repeat="(k,activity) in activities | filter:{date:filterYear}" name="{{cr.title}}" data-ng-if="k > 11 && k < 16">
+            	<img data-ng-src="../{{activity.coverphoto}}" class="md-card-image" style="height:70px !important;" />
+                <md-card-title>
+					<md-card-title-text class="ta-center">
+						<span class="md-headline" style="font-size:1.2em !important;line-height:1.05em;">{{activity.title}}</span>
+						<span class="md-subhead"><strong>{{activity.date}}</strong></span>
+					</md-card-title-text>
+				</md-card-title>
+				<md-card-content>
+					<!-- <p>The titles of Washed Out's breakthrough song and the first single from Paracosm share the...</p> -->
+				</md-card-content>
+				<md-card-actions layout="row" layout-align="end center">
+					<md-button class="md-accent" href="#/{{activity.id}}"><strong>Open</strong></md-button>
+				</md-card-actions>
+            </md-card>
+        </div>
+        <div flex-xs flex="70" layout="row" data-ng-show="activities.length > 16">
+            <md-card flex="25" data-ng-repeat="(k,activity) in activities | filter:{date:filterYear}" name="{{cr.title}}" data-ng-if="k > 15 && k < 20">
+            	<img data-ng-src="../{{activity.coverphoto}}" class="md-card-image" style="height:70px !important;" />
+                <md-card-title>
+					<md-card-title-text class="ta-center">
+						<span class="md-headline" style="font-size:1.2em !important;line-height:1.05em;">{{activity.title}}</span>
+						<span class="md-subhead"><strong>{{activity.date}}</strong></span>
+					</md-card-title-text>
+				</md-card-title>
+				<md-card-content>
+					<!-- <p>The titles of Washed Out's breakthrough song and the first single from Paracosm share the...</p> -->
+				</md-card-content>
+				<md-card-actions layout="row" layout-align="end center">
+					<md-button class="md-accent" href="#/{{activity.id}}"><strong>Open</strong></md-button>
+				</md-card-actions>
+            </md-card>
+        </div>
+        <div flex-xs flex="70" layout="row" data-ng-show="activities.length > 20" layout-align="top center">
+            <md-card flex="25" data-ng-repeat="(k,activity) in activities | filter:{date:filterYear}" name="{{cr.title}}" data-ng-if="k > 19 && k < 24">
+            	<img data-ng-src="../{{activity.coverphoto}}" class="md-card-image" style="height:70px !important;" />
+                <md-card-title>
+					<md-card-title-text class="ta-center">
+						<span class="md-headline" style="font-size:1.2em !important;line-height:1.05em;">{{activity.title}}</span>
+						<span class="md-subhead"><strong>{{activity.date}}</strong></span>
+					</md-card-title-text>
+				</md-card-title>
+				<md-card-content>
+					<!-- <p>The titles of Washed Out's breakthrough song and the first single from Paracosm share the...</p> -->
+				</md-card-content>
+				<md-card-actions layout="row" layout-align="end center">
+					<md-button class="md-accent" href="#/{{activity.id}}"><strong>Open</strong></md-button>
+				</md-card-actions>
+            </md-card>
+        </div>
+    </md-content>
 </div>
+
+

@@ -12,12 +12,13 @@
 	<title>About PH-EITI | ph-eiti.org</title>
     <link rel="icon" type="image/gif" href="../images/eitifavicon.ico">
     <link rel="stylesheet" href="../css/angular-material.min.css?v1.1.0-rc2"> 
-    <link rel="stylesheet" href="../css/font-awesome.min.css"> 
+    <link rel="stylesheet" href="../css/font-awesome.min.css">     
+    <link rel="stylesheet" href="../css/md-data-table.css"> 
+    <link rel="stylesheet" href="../css/angular-timeline.css"> 
     <link rel="stylesheet" href="../css/basic.css"> 
     <link rel="stylesheet" href="../css/main.css"> 
     <link rel="stylesheet" href="../css/nav.css"> 
-
-    <link rel="stylesheet" href="../css/angular-timeline.css"> 
+    <link rel="stylesheet" href="../css/style-table.css"> 
 </head>	
 <body ng-cloak>
     <div class="wd-100" id="logo-wrapper">
@@ -40,16 +41,16 @@
         </md-nav-bar>
     </div>
     
-    <!-- <div class="wd-100" id="slider">   
-        <div class="mxw-80">
-            <h1>About PH-EITI</h1>  
+    <!-- <header class="wd-100">   
+        <div class="mxw-80 ta-left">
+            <h1 class="md-display-2">About PH-EITI</h1>  
         </div>   
-    </div> -->
+    </header> -->
 
     <div class="wd-100">   
-        <div class="mxw-80">
+        <!-- <div class="mxw-80"> -->
             <div data-ng-view></div>
-        </div>
+        <!-- </div> -->
     </div>
     
 	<script src="../js/vendor/angular.js?"></script>
@@ -65,6 +66,7 @@
 
     <script src="../js/vendor/angular-material.js"></script>
     <script src="../js/vendor/angular-timeline.js"></script>
+    <script src="../js/vendor/md-data-table.js"></script>
 
     <!--<script src="js/vendor/moment.min.js?v1.01"></script>-->
     <script src="../js/modules/utilsModule.js?v1.01"></script>

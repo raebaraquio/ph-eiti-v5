@@ -1,0 +1,17 @@
+table#msgMembers-table > thead > tr > th,
+table#msgMembers-table > tbody > tr > td {
+	max-width: 200px;
+	white-space: initial;
+	word-wrap: break-word;
+}
+
+table#msgMembers-table > tbody > tr > td {
+	vertical-align: top;
+}
+
+table#msgMembers-table .md-list-item-text > h3,
+table#msgMembers-table .md-list-item-text > h4,
+table#msgMembers-table .md-list-item-text > p {
+	white-space:initial;
+	text-overflow:initial;
+}

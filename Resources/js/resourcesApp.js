@@ -4,36 +4,48 @@ resourcesApp.config(function($routeProvider){
  	$routeProvider
 	 	.when('/',
 	 	{
-	 		templateUrl:'./template/work-plan/index.html'	
+	 		templateUrl:'./template/index.html'	
 	 	})
 
 	 	.when('/Work-Plan',
 	 	{
+            controller:'WorkPlanController',
+            title: 'Work Plan | PH-EITI',
 	 		templateUrl:'./template/work-plan/index.html'	
 	 	})
 
 	 	.when('/Laws-and-Legal-Issuances',
 	 	{
+            controller:'LawsController',
+            title: 'Laws and Legal Issuances | PH-EITI',
 	 		templateUrl:'./template/laws-and-legal-issuances/index.html'	
 	 	})
 
 	 	.when('/Organizational-Documents',
 	 	{
+            controller:'OrgDocsController',
+            title: 'Organizational Documents | PH-EITI',
 	 		templateUrl:'./template/organizational-documents/index.html'	
 	 	})
 
 	 	.when('/Studies',
 	 	{
+            controller:'StudiesController',
+            title: 'Studies | PH-EITI',
 	 		templateUrl:'./template/studies/index.html'	
 	 	})
 
 	 	.when('/Infographics',
 	 	{
+            controller:'InfographicsController',
+            title: 'Infographics | PH-EITI',
 	 		templateUrl:'./template/infographics/index.html'	
 	 	})
 
 	 	.when('/Activity-Reports',
 	 	{
+            controller:'ActivityReportsController',
+            title: 'Activity Reports | PH-EITI',
 	 		templateUrl:'./template/activity-reports/index.html'	
 	 	})
 

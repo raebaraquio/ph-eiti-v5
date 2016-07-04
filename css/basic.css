@@ -64,3 +64,5 @@
 
 .bord { border:  1px solid red; }
 .bord2 { border:  1px dashed #ccc; }
+
+.ww-breakword { word-wrap: break-word; }

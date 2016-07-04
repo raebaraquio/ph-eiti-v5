@@ -7,6 +7,14 @@ activitiesApp.config(function($routeProvider){
         controller:'ActivitiesController',
         templateUrl:'template/index.html'
     })
+    .when('/:id',
+    {
+        controller: 'ActivitiesController',
+        templateUrl: 'template/view.html'
+    })
+    .otherwise({
+        redirectTo:'/'
+    })
 });
 
 activitiesApp.config(function($mdThemingProvider) {

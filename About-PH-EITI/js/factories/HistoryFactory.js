@@ -62,7 +62,7 @@ aboutApp.factory('HistoryFactory',function(){
 				{
 					year: '',
 					date: 'April',
-					badgeClass: 'warning',
+					badgeClass: 'default',
 					when: 'April',
 					content: 'The Philippines submits its application for candidature to the EITI International Board',
 					contentHtml: 'The Philippines submits its application for candidature to the EITI International Board'

@@ -1,10 +1,11 @@
-var wieApp = angular.module('what-is',['ngRoute','ngSanitize','ngCookies','navMod','ngMaterial','utilsModule']);
+var wieApp = angular.module('what-is',['ngRoute','ngSanitize','ngCookies','navMod','ngMaterial','utilsModule','angular-timeline']);
 
 wieApp.config(function($routeProvider){
  	$routeProvider
 	 	.when('/History',
 	 	{
 	 		title: 'History',
+            controller:'HistoryController',
 	 		templateUrl:'./template/history.html'
 	 	})
 	 	.when('/',

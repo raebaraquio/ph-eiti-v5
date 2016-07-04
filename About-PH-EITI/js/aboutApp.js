@@ -1,4 +1,4 @@
-var aboutApp = angular.module('about',['ngRoute','ngSanitize','ngCookies','navMod','ngMaterial','utilsModule','angular-timeline']);
+var aboutApp = angular.module('about',['ngRoute','ngSanitize','ngCookies','navMod','ngMaterial','utilsModule','angular-timeline','md.data.table']);
 
 aboutApp.config(function($routeProvider){
  	$routeProvider
@@ -12,19 +12,22 @@ aboutApp.config(function($routeProvider){
 	 	.when('/MSG-Members/Government',
 	 	{
 	 		title: 'Government - MSG Member | About PH-EITI',
-	 		templateUrl:'./template/msg/govt.html'
+            controller:'MSGController', 
+	 		templateUrl:'./template/msg/default.html'
 	 	})
 
 	 	.when('/MSG-Members/CSO',
 	 	{
 	 		title: 'CSO - MSG Member | About PH-EITI',
-	 		templateUrl:'./template/msg/cso.html'
+            controller:'MSGController', 
+	 		templateUrl:'./template/msg/default.html'
 	 	})
 
 	 	.when('/MSG-Members/Industry',
 	 	{
 	 		title: 'Industry - MSG Member | About PH-EITI',
-	 		templateUrl:'./template/msg/industry.html'
+            controller:'MSGController', 
+	 		templateUrl:'./template/msg/default.html'
 	 	})
 
 	 	.when('/MSG-Members',

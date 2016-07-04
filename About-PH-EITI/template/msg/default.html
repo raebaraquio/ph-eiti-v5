@@ -1,0 +1,84 @@
+<header class="wd-100">   
+    <div class="mxw-80 ta-left">
+        <h5 style="padding-bottom:0;margin-bottom:0;">ABOUT PH-EITI</h5>
+        <h1 class="md-display-2" style="margin-top:0;padding-top:0;">Multi-Stakeholder Group (MSG)</h1>  
+        <p>MSG is the governing body for EITI implementation in the country.</p>
+    </div>   
+</header>
+
+<div class="w-100">
+    <div class="mxw-80">
+		<md-content>
+			<md-tabs md-dynamic-height md-border-bottom md-selected="selected_idx">
+				<md-tab data-ng-repeat="(k,msgtab) in msg" label="{{msgtab.group}}">
+					<md-content class="md-padding">
+						<h1 class="md-display-2">{{msgtab.group}}</h1>
+						<p>
+							<h4>Roles of {{msgtab.group}} representatives:</h4>
+							<md-list>
+								<md-list-item data-ng-repeat="role in msgtab.roles">* {{ role }}</md-list-item>
+							</md-list>
+							<!-- <md-content flex> -->
+								<md-table-container>
+									<table md-table id="msgMembers-table">
+										<thead md-head>
+											<tr md-row>
+												<th width="50%" md-column class="ta-left"><span>Full Members</span></th>
+												<th width="50%" md-column class="ta-left"><span>Alternate Members</span></th>
+											</tr>
+										</thead>
+										<tbody md-body>
+											<tr md-row ng-repeat="mem in msgtab.members">
+												<td md-cell class="te-left">
+													<md-list-item class="md-3-line" data-ng-repeat="(kipm,vipm) in mem.primary">
+														<div class="md-list-item-text">
+															<h3>{{vipm.name}}</h3>
+															<h4 class="ww-breakword">{{vipm.office}}</h4>
+															<p class="ww-breakword">{{vipm.position}}</p>
+														</div>
+													</md-list-item>
+												</td>
+												<td md-cell class="te-left">
+													<md-list-item class="md-3-line" data-ng-repeat="(kiam,viam) in mem.alternate">
+														<div class="md-list-item-text">
+															<h3>{{viam.name}}</h3>
+															<h4 class="ww-breakword">{{viam.office}}</h4>
+															<p class="ww-breakword">{{viam.position}}</p>
+														</div>
+													</md-list-item>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</md-table-container>
+							<!-- </md-content> -->
+							
+							<!-- <md-content flex>
+								<md-list flex="50">
+									<md-list-item data-ng-repeat="mem in msgtab.members"  class="md-3-line" >
+										<div class="md-list-item-text">
+											<h3>{{mem.primary.name}}</h3>
+											<h4>{{mem.primary.office}}</h4>
+											<p>{{mem.primary.position}}</p>
+										</div>										
+										<md-divider ng-if="!$last"></md-divider>
+									</md-list-item>
+								</md-list>
+								<md-list flex="50">
+									<md-list-item data-ng-repeat="mem in msgtab.members"  class="md-3-line" >
+										<div class="md-list-item-text">
+											<h3>{{mem.alternate.name}}</h3>
+											<h4>{{mem.alternate.office}}</h4>
+											<p>{{mem.alternate.position}}</p>
+										</div>
+										<md-divider ng-if="!$last"></md-divider>
+									</md-list-item>
+								</md-list>
+							</md-content> -->
+						</p>
+					</md-content>
+				</md-tab>
+			</md-tabs>
+		</md-content>
+	</div>
+</div>

@@ -5,6 +5,276 @@ aboutApp.factory('MSGFactory',['$http',
 			dateLastUpdated : function() {
 				return  'March 24, 2016 04:48 PM'
 			},	
+			updated: function(){
+				return [
+					{
+						group: 'Government',
+						roles: ["Provide political leadership and support, such as creating a unit which will provide secretariat and technical support to PH-EITI’s activities.",
+								"Ensure the full participation of the national government agencies and local government units in the implementation of EITI standards, and create an enabling policy environment for the same.",
+								"Ensure the full participation of extractive companies.",
+								"Encourage the full participation of civil society.",
+								"Provide a legal basis for implementation of EITI standards, as well as identify and address legal barriers and regulations that block the proper implementation of EITI.",
+								"Disclose government revenues and relevant data in an accurate and timely manner, and adhering to a level of detail that has been agreed upon by the MSG."],
+						members: [
+							{
+								primary: [
+									{
+									    "id":"g-0",
+						                "name": "Ma. Lourdes B. Recente",
+						                "position": "OIC - Domestic Finance Group",
+						                "office": "Department of Finance (DOF)",
+						                "avatar": "default.png"						            
+									}
+								],
+								alternate: [
+									{
+										"id":"ga-1",
+						                "name": "Hon. Ma. Teresa S. Habitan",
+						                "position": "Assistant Secretary",
+						                "office": "Department of Finance (DOF)",
+						                "avatar":"Asec-Teresa-Habitan.png"
+						            },
+						            {
+										"id":"ga-1-3",
+						                "name": "Gil S. Beltran",
+						                "position": "USEC and Chief Economist / PH-EITI OIC Focal Person and Chair",
+						                "office": "Department of Finance (DOF)",
+						                "avatar":"default.png"
+						            }
+								]
+					                
+							},
+							{
+								primary: [{
+									"id":"g-2",
+									"name": "Hon. Austere A. Panadero",
+									"position": "Undersecretary",
+									"office": "Department of the Interior and Local Government (DILG)",
+									"avatar":"Austere-Panadero.png"
+					            }],
+								alternate: [{
+					                "id":"ga-0",
+					                "name" : "Hon. Anna Liza F. Bonagua",
+					                "position" :"OIC - Director",
+					                "office" : "Department of the Interior and Local Government-Bureau of Local Government Development (DILG-BLGD)",
+					                "avatar" : "default.png"
+					            }]
+							},
+							{
+								primary: [{
+					                "id":"g-4",
+					                "name": "Engr. Leo L. Jasareno",
+					                "position": "Acting Director",
+					                "office": "Mines and Geosciences Bureau - Department of Environment and Natural Resources (MGB- DENR)",
+					                "avatar":"Leo-Jasareno.png"
+					            }],
+								alternate: [{
+					            	"id":"ga-2",
+					                "name" : "Engr. Romualdo Aguilos",
+					                "position" :"OIC-Chief, Mineral Economics, Information and Publication",
+					                "office" : "MGB- DENR",
+					                "avatar" : "Romy-Aguilos.png"
+					            }]
+							},
+							{
+								primary: [{
+					                "id":"g-6",
+					                "name": "Mr. Rino E. Abad",
+					                "position": "Director IV",
+					                "office": "Department of Energy (DOE)",
+					                "avatar":"default.png"
+					            }],
+								alternate: [{
+					            	"id":"ga-3",
+					                "name" : "Ms. Araceli Soluta",
+					                "position" :"Director III",
+					                "office" : "Department of Energy (DOE)",
+					                "avatar" : "default.png"
+					            }]
+							},
+							{
+								primary: [{
+					                "id":"g-5",
+					                "name": "Gov. Alfonso Umali Jr.",
+					                "position": "President",
+					                "office": "Union of Local Authorities of the Philippines (ULAP)",
+					                "avatar":"Gov-Alfonso-Umali.png"
+					            }],
+								alternate: [{
+					            	"id":"ga-4",
+					                "name" : "Maria Czarina Medina-Guce",
+					                "position" :"Executive Director",
+					                "office" : "ULAP",
+					                "avatar" : "default.png"
+					            }]
+							},
+							{
+								primary: [{
+					                "id":"g-7",
+					                "name": "Mr. Nestor Valeroso",
+					                "position": "Assistant Commissioner",
+					                "office": "Bureau of Internal Revenue (BIR)",
+					                "avatar":"default.png"
+					            }],
+								alternate: [{
+					            	"id":"ga-5",
+					                "name" : "Atty. Teresita Angeles",
+					                "position" :"-",
+					                "office" : "Bureau of Internal Revenue (BIR)",
+					                "avatar" : "default.png"
+					            }]
+							}
+						]
+					},
+					{
+						group: 'Civil Soceity Organizations',
+						roles:  ["Communicate and consult widely with a diverse set of stakeholders, including those outside the Steering group, and build capacities for understanding EITI standards.","Ensure full participation of relevant CSOs.","Monitor the disclosures done by the government and extractive companies."],
+						members: [
+							{
+								primary: [{
+					            	"id":"cso-0",
+					                "name" : "Dr. Cielo D. Magno",
+					                "position" : "National Coordinator",
+					                "office" : "Bantay Kita (BK)",
+					                "avatar" : "default.png"
+					            }],
+								alternate: [{
+									"id":"csa-0",
+					                "name" : "Mr. Filomeno Sta. Ana III",
+					                "position" :"President",
+					                "office" : "Bantay Kita/Action for Economic Reforms (AER)",
+					                "avatar" : "Filomeno-Sta-Ana.png"
+								}]
+							},
+							{
+								primary: [ {
+					            	"id":"cso-1",
+					                "name" : "Prof. Jay L. Batongbacal",
+					                "position" : "Assistant Professor",
+					                "office" : "UP College of Law/Bantay Kita",
+					                "avatar" : "default.png"
+					            }],
+								alternate: [{
+					            	"id":"csa-2",
+					                "name" : "Mr. Chadwick Go Llanos",
+					                "position" :"Focal Person",
+					                "office" : "Cebu Alliance for Safe and Sustainable Environment (CASSE)",
+					                "avatar" : "default.png"
+					            }]
+							},
+							{
+								primary: [{
+									id:'',
+									name: 'Jose Melvin A. Lamanilao',
+									office: '',
+									position: 'Independent Consultant'
+								}],
+								alternate: [{
+									"id":"csa-3",
+					                "name" : "Dr. Merian C. Mani",
+					                "position" :"Research Coordinator",
+					                "office" : "Romblon Ecumenical Forum Against Mining (REFAM)",
+					                "avatar" :  "default.png"
+								}]
+							},
+							{
+								primary: [{
+									name: 'Engr. Maria Rosario Aynon A. Gonzales',
+									office: 'Palawan State University',
+									position: 'Director, Center for Strategic Policy and Governance'
+								}],
+								alternate: [{
+
+								}]
+							},
+							{
+								primary: [{
+									name: 'Atty. Golda S. Benjamin',
+									office:'Siliman University, Dumaguete City, Negros Oriental',
+									position: 'Lecturer'
+								}],
+								alternate: []
+							},
+							{
+								primary: [{
+									name: 'Buenaventura M. Maata Jr.',
+									office: 'Philippine Grassroots Engagement in Rural Development Foundation, Inc. (PhilGrassroots-ERDF), Dinagat Islands',
+									position: 'Executive Director'
+								}],
+								alternate: []
+							},
+							{
+								primary: [],
+								alternate: []
+							}
+						]
+					},
+					{
+						group: 'Industry',
+						roles: ["Help ensure the full participation of extractive companies","Disclose payments and relevant data to government, indigenous peoples, and other stakeholders, in an accurate and timely manner, and at a level of detail that has been agreed upon by the MSG.","Communicate EITI developments with industry stakeholders."],
+						members: [
+							{
+								primary:[{
+					            	"id":"b-0",
+					                "name" : "Engr. Artemio F. Disini",
+					                "position" : "Chairman",
+					                "office" : "Chamber of Mines of the Philippines (CoMP)",
+					                "avatar" : "Artemio-Disini.png"
+					            }],
+								alternate:[{
+					            	"id":"ba-0",
+					                "name" : "Ms. Nelia C. Halcon",
+					                "position" :"Executive Vice President",
+					                "office" : "Chamber of Mines of the Philippines (CoMP)",
+					                "avatar" : "Nelia-Halcon.png"
+					            }]
+							},
+							{
+								primary:[{
+					            	"id":"b-1",
+					                "name" : "Mr. Gerard H. Brimo",
+					                "position" : "President and CEO",
+					                "office" : "Nickel Asia Corporation",
+					                "avatar" : "default.png"
+					            }],
+								alternate:[{
+					            	"id":"ba-1",
+					                "name" : "Mr. Emmanuel L. Samson",
+					                "position" :"Senior Vice President- Chief Financial Officer",
+					                "office" : "Nickel Asia Corporation",
+					                "avatar" : "default.png"
+					            }]
+							},
+							{
+								primary:[ {
+					            	"id":"b-2",
+					                "name" : "Anthony P. Ferrer",
+					                "position" : "",
+					                "office" : "Galoc Production Company",
+					                "avatar" : "default.png"
+					            }],
+								alternate:[{
+					            	"id":"ba-2",
+					                "name" : "Mr. Sabino Santos",
+					                "position" :"Asset Manager",
+					                "office" : "Chevron - Malampaya LLC",
+					                "avatar" : "default.png"
+					            }]
+							},
+							{
+								primary:[],
+								alternate:[{
+					            	"id":"ba-3",
+					                "name" : "Mr. James Ong",
+					                "position" :"President",
+					                "office" : "Ore Asia Mining and Development Corporation",
+					                "avatar" : "default.png"
+					            }]
+							}
+						]
+					}
+				]
+			},
 			members : function() {
 				return {
 				    "Government" : {
@@ -110,7 +380,7 @@ aboutApp.factory('MSGFactory',['$http',
 				            }
 				        ]
 				    },
-				    "Civil Society Organizations" : {
+				    "CSO" : {
 				        "members" : [
 				            {
 				            	"id":"cso-0",
@@ -282,7 +552,7 @@ aboutApp.factory('MSGFactory',['$http',
 				            "profile" : "<p class=\"paragraph-content\">Profile not found</p>"
 				        }
 				    },
-				    "Civil Society Organizations" : {
+				    "CSO" : {
 				        "cso-0" : {
 				            "pic" : "default.png",
 				            "profile" : "<p class=\"paragraph-content\"><strong>CIELO MAGNO</strong> is currently the National Coordinator of Bantay Kita, a coalition of civil society organizations advocating transparency and accountability in the extractive industry in the Philippines.  She is a member of the Global Steering Committee of Publish What You Pay (PWYP), representing Asia and the Pacific. She is also a fellow of Action for Economic Reforms and Social Watch Philippines.</p><p class=\"paragraph-content\">Cielo started her career as the Executive Director of the National Movement of Young Legislators, a league of young local legislators which aims to promote good and innovative governance at the subnational level.  She eventually joined the legislative staff of then Congressman Del De Guzman in the House of Representatives.  She worked as a consultant of the USAID, the Asia Foundation, the World Bank, and the Philippine government in the areas of tax administration reform, good governance, local economic development, peace building, public finance, social accountability and reforms in technical education.</p><p class=\"paragraph-content\">In the United States, Cielo worked as a senior policy analyst for the Work Flexibility 2010 campaign, a doctoral research fellow in the Institute on Urban Health Research and an intern in Public Health Advocacy Institute and Community Catalyst. She taught Economics in the Philippines and the United States. Her publications and research studies include local governance, regulation of the pharmaceutical industry, tax administration reform, intergovernmental fiscal transfers and public finance. </p><p class=\"paragraph-content\">Cielo Magno has a degree in Business Economics and a Masters degree in Economics from the University of the Philippines (UP) in Diliman.  While pursuing her undergraduate and graduate studies, she served as a councilor, vice-chairperson and eventually, the third woman Chairperson of the University Student Council of the University of the Philippines in Diliman. She was elected President of the Student Council Alliance of the Philippines.</p><p class=\"paragraph-content\">She is a Fulbright fellow completing a doctoral degree in Law and Public Policy at Northeastern University in Boston, Massachusetts.  Her fields of interests include microeconomic policy analysis, public finance and government regulation.</p>"

@@ -1,0 +1,78 @@
+<h1>{{activity.title}}</h1>
+<h3>{{activity.date}} <br/ > {{activity.venue}}</h3>
+
+<div class="w-100">
+	<md-content>
+		<md-tabs md-dynamic-height md-border-bottom data-ng-show="no_content_elem===false">
+			<md-tab label="About" data-ng-if="activity.writeup!==null">
+				<md-content class="md-padding">
+					<h1 class="md-display-2">About</h1>
+					<p><div data-ng-bind-html="activity.writeup.content"></div></p>
+				</md-content>
+			</md-tab>
+			<md-tab label="Program" data-ng-if="activity.program!==null">
+				<md-content class="md-padding">
+					<h1 class="md-display-2">Program</h1>
+					<p>
+						<!-- <iframe data-ng-if="activity.program != null" src="{{activity.program}}" style="min-width:850px;min-height:600px;" frameborder="0"></iframe> -->
+					</p>
+				</md-content>
+			</md-tab>
+			<md-tab label="Documentation" data-ng-if="activity.documentation!==null">
+				<md-content class="md-padding">
+					<h1 class="md-display-2">Documentation</h1>
+					<p>
+						<md-button data-ng-if="activity.workshop_output && activity.workshop_output!==undefined" class="md-raised md-accent" data-ng-click="download_documentation(activity.workshop_output)" title="Download Workshop Output - Accomplished Reporting Templates">Download</md-button>
+						<iframe data-ng-if="type_of_doc(activity.documentation)=='string'" src="{{activity.documentation}}" style="min-width:850px;min-height:600px;" frameborder="0"></iframe>
+		                <iframe data-ng-if="type_of_doc(activity.documentation)!='string'" src="{{activity.documentation[0]}}" style="min-width:850px;min-height:600px;" frameborder="0"></iframe>
+		                <iframe data-ng-if="type_of_doc(activity.documentation)!='string'" src="{{activity.documentation[1]}}" style="min-width:850px;min-height:600px; margin-top:50px;" frameborder="0"></iframe>
+					</p>
+				</md-content>
+			</md-tab>
+			<md-tab label="Presentations" data-ng-if="activity.presentations!==null">
+				<md-content class="md-padding">
+					<h1 class="md-display-2">Presentations</h1>
+					<p>
+						<md-content>
+							<md-list flex>
+								<md-list-item class="md-2-line" data-ng-repeat="(idx,presentation) in activity.presentations" data-ng-if="presentation.eventDay" >
+									<div class="md-list-item-text" layout="column">
+										<h3>{{presentation.eventDay}}</h3>
+										<md-list data-ng-show="presentation.presentations.length > 0">
+											<md-list-item data-ng-repeat="(pidx,pval) in presentation.presentations" data-ng-click="download_documentation(pval.src)" >
+												<img src="../images/file-icon/pdf-icon.png" class="md-avatar"/>
+												<div class="md-list-item-text" layout="column">
+													<h3>{{pval.title}}</h3>
+													<h4>{{pval.author}}</h4>
+												</div>
+											</md-list-item>
+										</md-list>									
+									</div>
+								</md-list-item>
+							</md-list>
+							<md-list flex>
+								<md-list-item class="md-2-line" data-ng-repeat="(idx,presentation) in activity.presentations" title="{{presentation.title}}" data-ng-if="!presentation.eventDay" data-ng-click="download_documentation(presentation.src)">									
+									<img src="../images/file-icon/pdf-icon.png"  class="md-avatar"/>
+									<div class="md-list-item-text" layout="column">
+										<h3>{{presentation.title}}</h3>
+										<h4>{{presentation.author}}</h4>
+									</div>
+								</md-list-item>
+							</md-list>
+						</md-content>
+					
+					</p>
+				</md-content>
+			</md-tab>
+			<!-- <md-tab label="Gallery" data-ng-if="activity.gallery!==null">
+				<md-content class="md-padding">
+					<h1 class="md-display-2">Gallery</h1>
+					<p></p>
+				</md-content>
+			</md-tab> -->
+		</md-tabs>
+		<div class="ta-left" data-ng-show="no_content_elem==true">
+			
+		</div>
+	</md-content>	
+</div>
