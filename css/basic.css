@@ -66,3 +66,15 @@
 .bord2 { border:  1px dashed #ccc; }
 
 .ww-breakword { word-wrap: break-word; }
+
+.mrgn-0 { margin: 0px auto; }
+.mrgn-bt-0 { margin-bottom: 0px; }
+.mrgn-tp-0 { margin-top: 0px; }
+
+.padd-0 { padding: 0px auto; }
+.padd-bt-0 { padding-bottom: 0px }
+.padd-tp-0 { padding-top: 0px }
+
+.txt-trans-title { text-transform: capitalize; }
+.txt-trans-upper { text-transform: uppercase; }
+.txt-trans-lower { text-transform: lowercase; }

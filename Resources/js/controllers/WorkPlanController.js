@@ -24,4 +24,8 @@ resourcesApp.controller('WorkPlanController',['$scope','ResourcesFactory',
 
 	$scope.refresh();
 
+	$scope.preview = function(src) {
+		window.open(src)
+	}
+
 }]);

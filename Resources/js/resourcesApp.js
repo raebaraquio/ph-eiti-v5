@@ -21,6 +21,13 @@ resourcesApp.config(function($routeProvider){
 	 		templateUrl:'./template/laws-and-legal-issuances/index.html'	
 	 	})
 
+        .when('/Organizational-Documents/:folderName',
+        {
+            controller:'OrgDocsController',
+            title: 'Organizational Documents | PH-EITI',
+            templateUrl:'./template/organizational-documents/folder-view.html'
+        })
+
 	 	.when('/Organizational-Documents',
 	 	{
             controller:'OrgDocsController',
@@ -48,6 +55,20 @@ resourcesApp.config(function($routeProvider){
             title: 'Activity Reports | PH-EITI',
 	 		templateUrl:'./template/activity-reports/index.html'	
 	 	})
+
+        .when('/GIS/:folderName',
+        {
+            controller:'GISController',
+            title: 'General Information Sheet | PH-EITI',
+            templateUrl:'./template/gis/folder-view.html'   
+        })
+
+        .when('/GIS',
+        {
+            controller:'GISController',
+            title: 'General Information Sheet | PH-EITI',
+            templateUrl:'./template/gis/index.html'   
+        })
 
 	 	.otherwise({
 	 		redirectTo: '/'

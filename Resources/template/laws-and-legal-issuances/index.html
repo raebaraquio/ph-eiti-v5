@@ -7,6 +7,92 @@
 </header>
 
 <div class="w-100">
-	<div class="mxw-80">			
+	<div class="mxw-80">
+		<md-content>
+			<md-tabs md-dynamic-height md-border-bottom >
+				<!-- md-selected="selected_idx" -->
+				<md-tab data-ng-repeat="(kidx,vlaw) in lawsContent" label="{{vlaw.category}}">
+					<!-- <md-content class="md-padding"> -->
+						<h1 class="md-display-2">{{vlaw.category}}</h1>	
+						<md-content>
+				            <div layout-gt-sm="row">
+				                <md-input-container flex-gt-sm data-ng-show="vlaw.category==='Local Tax Codes'">
+				                    <label>Select</label>
+				                    <md-select data-ng-model="filterMuniProv" data-ng-change="refresh()">
+				                    	<md-option value="Provinces">Provinces</md-option>
+				                    	<md-option value="Municipalities">Municipalities</md-option>
+				                    </md-select>
+				                </md-input-container>
+				                <md-input-container flex-gt-sm >
+				                	<label>Keyword filter</label><input data-ng-model="filterKeyword"/>
+				                </md-input-container>
+				                <md-input-container flex-gt-sm>
+					                <label data-ng-show="vlaw.category!=='Local Tax Codes'"><strong>{{ (vlaw.files | filter:{title:filterKeyword}).length }} result<span data-ng-show="(vlaw.files | filter:{title:filterKeyword}).length > 1">s</span> found</strong></label>
+					                <label data-ng-show="vlaw.category==='Local Tax Codes'"><strong>{{ (vlaw.files | filter:{title:filterKeyword,level:filterMuniProv}).length }} result<span data-ng-show="(vlaw.files | filter:{title:filterKeyword,level:filterMuniProv}).length > 1">s</span> found</strong></label>
+				            	</md-input-container>        
+				                <md-input-container flex-gt-sm></md-input-container>
+				                <md-input-container flex-gt-sm></md-input-container>
+				                <md-input-container flex-gt-sm></md-input-container>
+				            </div>            
+				        </md-content>
+						<md-content>
+							<md-list flex  class="resources-list">
+								<md-list-item data-ng-if="vlaw.category!=='Local Tax Codes'"  data-ng-repeat="(kfile,vfile) in vlaw.files | filter:filterKeyword"  class="md-2-line"> 
+									<!--  > -->
+									<!-- <img src="../images/file-icon/pdf-icon.png" class="md-avatar"/> -->
+									<div class="md-list-item-text">
+										<h3 title="{{vfile.title}}">{{vfile.title}}</h3>
+										<p title="{{vfile.desc}}" class="txt-trans-title">{{vfile.desc}}</p>
+									</div>
+									<md-button class="md-secondary md-raised" data-ng-show="vfile.link!==''" data-ng-click="goto_link(vfile.link)">Open</md-button>
+									<h5 data-ng-show="vfile.link==''" class="md-warn" aria-label="unavailable">Link Unavailable</h5>
+								</md-list-item>
+								<md-list-item data-ng-if="vlaw.category==='Local Tax Codes'" data-ng-repeat="(kfile,vfile) in vlaw.files | filter:{title:filterKeyword,level:filterMuniProv}"  class="md-2-line"> 
+									<!--  > -->
+									<!-- <img src="../images/file-icon/pdf-icon.png" class="md-avatar"/> -->
+									<div class="md-list-item-text">
+										<h3 title="{{vfile.title}}">{{vfile.title}}</h3>
+										<p title="{{vfile.desc}}" class="txt-trans-title">{{vfile.desc}}</p>
+									</div>
+									<md-button class="md-secondary md-raised" data-ng-click="goto_file(vfile.title)">Open</md-button>
+								</md-list-item>
+							</md-list>
+						</md-content>
+					<!-- </md-content> -->
+				</md-tab>
+			</md-tabs>
+		</md-content>
+		<!-- <div class="md-inline-form">
+	        <md-content>
+	            <div layout-gt-sm="row">
+	                <md-input-container flex-gt-sm>
+	                    <label>Select Year</label>
+	                    <md-select data-ng-model="filterYear" data-ng-change="refresh()">
+	                    	<md-option data-ng-repeat="year in years" value="{{year}}">{{year}}</md-option>
+	                    </md-select>
+	                </md-input-container>
+	                <md-input-container flex-gt-sm data-ng-show="workPlans.length">
+	                    <label><strong>{{ (workPlans | filter:{title:filterYear}).length }} result<span data-ng-show="(workPlans | filter:{title:filterYear}).length > 1">s</span> found</strong></label>
+	                </md-input-container>            
+	                <label>Keyword filter</label><input data-ng-model="filterKeyword"/>
+	                 <md-input-container flex-gt-sm></md-input-container>        
+	                <md-input-container flex-gt-sm></md-input-container>
+	                <md-input-container flex-gt-sm></md-input-container>
+	                <md-input-container flex-gt-sm></md-input-container>
+	            </div>            
+	        </md-content>
+	    </div>
+	    <div data-ng-show="selected_workPlan">
+	    	<h1 class="md-display-2 mrgn-bt-0 padd-bt-0">{{selected_workPlan.title}}</h1>
+	    	<p>{{selected_workPlan.lastUpdated}}</p>
+	    	<div class="ta-right wd-65">
+	    		<md-button class="md-raised md-accent" data-ng-click="preview(selected_workPlan.src)" title="Download {{selected_workPlan.title}}">Download</md-button>	
+	    	</div>
+	    	<md-content id="work-plan__iframe">	    		
+	    		<div class="ta-left">
+	    			<iframe src="{{selected_workPlan.src}}" style="min-width:700px;height:550px;" frameborder="0"></iframe>
+	    		</div>
+	    	</md-content>
+	    </div> -->
 	</div>
 </div>

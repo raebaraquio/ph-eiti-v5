@@ -1,0 +1,16 @@
+#work-plan__iframe {
+	margin-top: 1em;
+}
+
+.resources-list md-list-item.md-2-line{
+	border-bottom: 1px solid #f1f1f1;
+}
+
+.resources-list md-list-item.md-2-line:hover > .md-list-item-text h3 {
+	color: #fabc01;
+}	
+
+.infographic-card-icon {
+	height:135px;
+	width:123px;
+}

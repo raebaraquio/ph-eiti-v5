@@ -98,6 +98,11 @@ angular.module('navMod',['ngRoute','utilsModule'])
 								id:"infographics",
 								name: "Infographics",
 								href: "Infographics"
+							},
+							{
+								id:"gis",
+								name: "General Information Sheet",
+								href: "GIS"
 							}
 						]
 					},

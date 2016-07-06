@@ -5,24 +5,28 @@ newsApp.config(function($routeProvider){
         .when('/Media-Releases',
         {
             title: 'Media Releases | News',
+            controller: 'NewsController',
             templateUrl:'./template/media-releases.html'
         })
 
         .when('/In-the-News',
         {
             title: 'In the News | News',
+            controller: 'NewsController',
             templateUrl:'./template/in-the-news.html'
         })
 
         .when('/Newsletter',
         {
             title: 'Newsletter | News',
+            controller: 'NewsController',
             templateUrl:'./template/newsletter.html'
         })
 
         .when('/Archive',
         {
             title: 'Archive | News',
+            controller: 'NewsController',
             templateUrl:'./template/archive.html'
         })
 

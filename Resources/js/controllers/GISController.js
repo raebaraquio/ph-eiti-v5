@@ -1,7 +1,7 @@
-resourcesApp.controller('OrgDocsController',['$scope','ResourcesFactory','$location',
+resourcesApp.controller('GISController',['$scope','ResourcesFactory','$location',
 	function($scope,ResourcesFactory,$location){
 
-	$scope.orgdocs = ResourcesFactory.orgdocs();
+	$scope.gis = ResourcesFactory.gis();
 	$scope.selected_folder = {}
 
 	$scope.goto_file = function(link) {
@@ -18,20 +18,19 @@ resourcesApp.controller('OrgDocsController',['$scope','ResourcesFactory','$locat
 	}
 
 	$scope.openFolder=function(folder){
-		$location.path('/Organizational-Documents/'+folder)
+		$location.path('/GIS/'+folder)
 	}
 
 	$scope.$on('$routeChangeSuccess', function(){
 		var loc = $location.path().split('/')
 		var currloc = $location.path();
-		if ($scope.orgdocs) {
-			for (var idx=0;idx<$scope.orgdocs.subfolders.length;idx++){
-				if ($scope.orgdocs.subfolders[idx].folder_id===loc[loc.length-1]) {
-					$scope.selected_folder = $scope.orgdocs.subfolders[idx]
+		if ($scope.gis) {
+			for (var idx=0;idx<$scope.gis.subfolders.length;idx++){
+				if ($scope.gis.subfolders[idx].folder_id===loc[loc.length-1]) {
+					$scope.selected_folder = $scope.gis.subfolders[idx]
 				}
 			}
 		}
     })
-
 
 }]);

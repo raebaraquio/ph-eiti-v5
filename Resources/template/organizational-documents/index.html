@@ -8,6 +8,24 @@
 
 <div class="w-100">
 	<div class="mxw-80">
-			
+		<div flex layout-fill layout="column" layout-wrap>
+			<md-list flex class="resources-list">
+				<md-list-item  data-ng-repeat="(kfolder,folder) in orgdocs.subfolders"  class="md-2-line">
+					<md-icon md-svg-icon="../images/icons/svg/file7.svg" class="md-avatar" ></md-icon>
+					<div class="md-list-item-text">
+						<h3 title="{{folder.folder_name}}">{{folder.folder_name}}</h3>
+					</div>
+					<md-button class="md-secondary md-raised" data-ng-show="folder.files.length > 0" data-ng-click="openFolder(folder.folder_id)" >Open</md-button>
+				</md-list-item>
+				<md-list-item  data-ng-repeat="(kfolder,folderFile) in orgdocs.files" class="md-2-line">
+					<md-icon md-svg-icon="../images/icons/svg/document9.svg" class="md-avatar" ></md-icon>
+					<div class="md-list-item-text">
+						<h3 title="{{folderFile.title}}">{{folderFile.title}}</h3>
+					</div>
+					<md-button class="md-secondary md-raised" data-ng-show="folderFile.src!==''" data-ng-click="openFile(folderFile.src)" >Preview</md-button>
+				</md-list-item>
+			</md-list>
+		</div>
 	</div>
 </div>
+

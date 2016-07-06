@@ -1,0 +1,36 @@
+<header class="wd-100">   
+    <div class="mxw-80 ta-left">
+    	<h5 style="padding-bottom:0;margin-bottom:0;">NEWS</h5>
+        <h1 class="md-display-2" style="margin-top:0;padding-top:0;">In the News</h1>  
+        <p></p>
+    </div>   
+</header>
+<!-- <div>
+	<pre>{{newsandevents | json}}</pre>
+</div> -->
+<div class="w-100">
+	<div class="mxw-80">
+		<div flex layout-fill layout="column" layout-wrap>
+			<md-list flex>
+				<!-- <md-list-item  data-ng-repeat="(kfolder,folder) in activityReports.subfolders"  class="md-2-line">
+					<md-icon md-svg-icon="../images/icons/svg/file7.svg" class="md-avatar" ></md-icon>
+					<div class="md-list-item-text">
+						<h3 title="{{folder.folder_name}}">{{folder.folder_name}}</h3>
+					</div>
+					<md-button class="md-secondary md-raised" data-ng-show="folder.files.length > 0" data-ng-click="openFolder(folder.folder_id)" >Open</md-button>
+				</md-list-item> -->
+				<md-list-item layout="column" data-ng-repeat="(kfolder,ne) in newsandevents" class="md-2-line">
+					<div class="md-list-item-text">
+						<h3 class="md-heading" title="{{folderFile.title}}">{{ne.title}}</h3>
+						<h5 data-ng-if="ne.subhead!=null">{{ne.subhead}}</h5>
+						<p><span data-ng-ng-show="ne.author">{{ne.author}}</span> <span data-ng-show="ne.readmore_source"><a href="{{ne.readmore_source}}">{{ne.readmore_sourcewebsite}}</a></span> {{ne.dateposted}}</p>
+					</div>
+					<md-content>
+						<div data-ng-bind-html="ne.brief"></p>
+					</md-content>
+					<md-button class="md-accent" data-ng-show="ne.id" href="#/In-the-News/{{ne.id}}" >{{ne.readmore_label}}</md-button>
+				</md-list-item>
+			</md-list>
+		</div>
+	</div>
+</div>
