@@ -1,13 +1,33 @@
 <h1>{{current_report.title}}</h1>
 
 <div class="wd-100">
-    <md-content class="md-padding" layout-xs="row" layout="column" data-ng-show="current_report.content">
+    <div class="mxw-80">
+        <div flex="100" layout-fill layout="row" layout-wrap>   
+            <md-card flex="45" layout="row" data-ng-repeat="(k,cr) in current_report.content" class="card-container">
+                <div flex="25" layout="left left" class="infographic-card-icon"> 
+                    <!-- style="background:url('../{{infomaterial.cardIcon}}')" -->
+                </div>              
+                <md-card-title flex="50">
+                    <md-card-title-text class="ta-left">
+                        <!-- <span class="md-headline" style="font-size:1.25em;line-height:1em;">{{infomaterial.title}}</span> -->
+                        <span class="md-subhead">{{shorten(cr.title,40)}}</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-actions flex="25" layout="row" layout-align="end center">
+                    <md-button data-ng-if="cr.multiple==true || cr.media" class="md-accent"  data-ng-click="goto_activity(current_report.id+'/'+cr.href)" alt="Go to {{cr.title}}"  title="Go to {{cr.title}}">Go to page</md-button>
+                    <md-button data-ng-if="cr.multiple==false" class="md-accent" data-ng-click="open_file(cr.file)" alt="Open/Download {{cr.title}}"  title="Open/Download {{cr.title}}">Open</md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+    </div>
+
+    <!-- <md-content class="md-padding" layout-xs="row" layout="column" data-ng-show="current_report.content">
         <div flex-xs flex="70" layout="row">
             <md-card flex="33" data-ng-repeat="(k,cr) in current_report.content" name="{{cr.title}}" data-ng-if="k < 3">
                 <md-card-title>
                     <md-card-title-media>
                         <div class="md-media-sm card-media" layout layout-align="center center" style="background-color:#f7f7f7;" >
-                            <!-- md-svg-icon="person" -->
+                            md-svg-icon="person"
                             <md-icon data-ng-show="cr.multiple==false" md-svg-src = '../images/icons/svg/document9.svg' style="color:grey"></md-icon>
                             <md-icon data-ng-show="cr.multiple==true" md-svg-src = '../images/icons/svg/folder173.svg' style="color:grey"></md-icon>
                             <md-icon data-ng-show="cr.media" md-svg-src = '../images/icons/svg/film57.svg' style="color:grey"></md-icon>
@@ -15,7 +35,7 @@
                     </md-card-title-media>
                     <md-card-title-text>
                         <span style="margin-left:8px;margin-top:17px">{{shorten(cr.title,40)}}</span>    
-                        <!-- <span class="md-subhead description">...</span> -->
+                        <span class="md-subhead description">...</span>
                     </md-card-title-text>
                     <md-divider></md-divider>
                     <md-card-actions layout-align="end center">                     
@@ -30,7 +50,7 @@
                 <md-card-title>
                     <md-card-title-media>
                         <div class="md-media-sm card-media" layout layout-align="center center" style="background-color:#f7f7f7;" >
-                            <!-- md-svg-icon="person" -->
+                            md-svg-icon="person"
                             <md-icon data-ng-show="cr.multiple==false" md-svg-src = '../images/icons/svg/document9.svg' style="color:grey"></md-icon>
                             <md-icon data-ng-show="cr.multiple==true" md-svg-src = '../images/icons/svg/folder173.svg' style="color:grey"></md-icon>
                             <md-icon data-ng-show="cr.media" md-svg-src = '../images/icons/svg/film57.svg' style="color:grey"></md-icon>
@@ -38,7 +58,7 @@
                     </md-card-title-media>
                     <md-card-title-text>
                         <span style="margin-left:8px;margin-top:17px">{{shorten(cr.title,40)}}</span>    
-                        <!-- <span class="md-subhead description">...</span> -->
+                        <span class="md-subhead description">...</span>
                     </md-card-title-text>
                     <md-divider></md-divider>
                     <md-card-actions layout-align="end center">
@@ -53,7 +73,7 @@
                 <md-card-title>
                     <md-card-title-media>
                         <div class="md-media-sm card-media" layout layout-align="center center" style="background-color:#f7f7f7;" >
-                            <!-- md-svg-icon="person" -->
+                            md-svg-icon="person"
                             <md-icon data-ng-show="cr.multiple==false" md-svg-src = '../images/icons/svg/document9.svg' style="color:grey"></md-icon>
                             <md-icon data-ng-show="cr.multiple==true" md-svg-src = '../images/icons/svg/folder173.svg' style="color:grey"></md-icon>
                             <md-icon data-ng-show="cr.media" md-svg-src = '../images/icons/svg/film57.svg' style="color:grey"></md-icon>
@@ -61,7 +81,7 @@
                     </md-card-title-media>
                     <md-card-title-text>
                         <span style="margin-left:8px;margin-top:17px">{{shorten(cr.title,40)}}</span>    
-                        <!-- <span class="md-subhead description">...</span> -->
+                        <span class="md-subhead description">...</span>
                     </md-card-title-text>
                     <md-divider></md-divider>
                     <md-card-actions layout-align="end center">
@@ -71,7 +91,7 @@
                 </md-card-title>
             </md-card>
         </div>
-    </md-content>
+    </md-content> -->
 
     <div class="ta-center" data-ng-show="!current_report.title">
         <p>Requested data not found.</p>

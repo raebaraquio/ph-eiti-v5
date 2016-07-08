@@ -37,9 +37,42 @@
             </md-nav-item>
         </md-nav-bar
     </div>
+    
+    <!-- Example: Navigation using menus with sub-items/menus -->
+    <!--md-toolbar class="md-menu-toolbar" style="display:none;">
+        <div layout="row">
+           <div>
+              <h2 class="md-toolbar-tools">Heading</h2>
+              <md-menu-bar>
+                 <md-menu>
+                    <button ng-click="$mdOpenMenu()" ng-mouseover="$mdOpenMenu()">Menu Item 1</button>
+                    <md-menu-content>
+                       <md-menu-item>
+                          <md-button ng-click="ctrl.sampleAction('share', $event)">Menu 1 - Sub Item</md-button>
+                       </md-menu-item>
+                       <md-menu-divider></md-menu-divider>
+                       <md-menu-item>
+                          <md-menu>
+                             <md-button ng-click="$mdOpenMenu()">Learn</md-button>
+                             <md-menu-content>
+                                <md-menu-item><md-button ng-click="ctrl.sampleAction('HTML5', $event)">Item 1</md-button></md-menu-item>
+                                <md-menu-item><md-button ng-click="ctrl.sampleAction('jQuery', $event)">Item 2</md-button></md-menu-item>
+                                <md-menu-item><md-button ng-click="ctrl.sampleAction('AngularJS', $event)">Item 3</md-button></md-menu-item>
+                                <md-menu-item><md-button disabled="disabled" ng-click="ctrl.sampleAction('AngularJS 2.0', $event)">Item 4</md-button></md-menu-item>
+                                <md-menu-divider></md-menu-divider>
+                                <md-menu-item><md-button ng-click="ctrl.sampleAction('CSS', $event)">Item 5</md-button></md-menu-item></md-menu-content>
+                          </md-menu>
+                       </md-menu-item>
+                    </md-menu-content>
+                 </md-menu>
+              </md-menu-bar>
+           </div>
+        </div>
+     </md-toolbar-->
+
 
     <div class="wd-100">   
-        <div data-ng-view></div>
+        <!-- <div data-ng-view></div> -->
     </div>
 
     <script src="../js/vendor/angular.js?v=1.4"></script>

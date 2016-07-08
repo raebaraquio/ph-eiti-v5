@@ -26,5 +26,16 @@ resourcesApp.controller('LawsController',['$scope','LawsFactory',
     $scope.refresh_taxcodes = function() {
     	$scope.taxcodes = $scope.alltaxcodes[$scope.selected_tax_code]
     }
+        
+    $scope.shorten=function(text, maxLength) {
+        var ret = text;
+        if (!ret){
+            return null
+        }
+        if (ret.length > maxLength) {
+            ret = ret.substr(0,maxLength-3) + "...";
+        }
+        return ret;
+    }
 
 }]);

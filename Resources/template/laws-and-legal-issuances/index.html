@@ -9,56 +9,97 @@
 <div class="w-100">
 	<div class="mxw-80">
 		<md-content>
-			<md-tabs md-dynamic-height md-border-bottom >
-				<!-- md-selected="selected_idx" -->
+			<md-tabs md-dynamic-height md-border-bottom>
 				<md-tab data-ng-repeat="(kidx,vlaw) in lawsContent" label="{{vlaw.category}}">
-					<!-- <md-content class="md-padding"> -->
-						<h1 class="md-display-2">{{vlaw.category}}</h1>	
-						<md-content>
-				            <div layout-gt-sm="row">
-				                <md-input-container flex-gt-sm data-ng-show="vlaw.category==='Local Tax Codes'">
-				                    <label>Select</label>
-				                    <md-select data-ng-model="filterMuniProv" data-ng-change="refresh()">
-				                    	<md-option value="Provinces">Provinces</md-option>
-				                    	<md-option value="Municipalities">Municipalities</md-option>
-				                    </md-select>
-				                </md-input-container>
-				                <md-input-container flex-gt-sm >
-				                	<label>Keyword filter</label><input data-ng-model="filterKeyword"/>
-				                </md-input-container>
-				                <md-input-container flex-gt-sm>
-					                <label data-ng-show="vlaw.category!=='Local Tax Codes'"><strong>{{ (vlaw.files | filter:{title:filterKeyword}).length }} result<span data-ng-show="(vlaw.files | filter:{title:filterKeyword}).length > 1">s</span> found</strong></label>
-					                <label data-ng-show="vlaw.category==='Local Tax Codes'"><strong>{{ (vlaw.files | filter:{title:filterKeyword,level:filterMuniProv}).length }} result<span data-ng-show="(vlaw.files | filter:{title:filterKeyword,level:filterMuniProv}).length > 1">s</span> found</strong></label>
-				            	</md-input-container>        
-				                <md-input-container flex-gt-sm></md-input-container>
-				                <md-input-container flex-gt-sm></md-input-container>
-				                <md-input-container flex-gt-sm></md-input-container>
-				            </div>            
-				        </md-content>
-						<md-content>
-							<md-list flex  class="resources-list">
-								<md-list-item data-ng-if="vlaw.category!=='Local Tax Codes'"  data-ng-repeat="(kfile,vfile) in vlaw.files | filter:filterKeyword"  class="md-2-line"> 
-									<!--  > -->
-									<!-- <img src="../images/file-icon/pdf-icon.png" class="md-avatar"/> -->
-									<div class="md-list-item-text">
-										<h3 title="{{vfile.title}}">{{vfile.title}}</h3>
-										<p title="{{vfile.desc}}" class="txt-trans-title">{{vfile.desc}}</p>
-									</div>
-									<md-button class="md-secondary md-raised" data-ng-show="vfile.link!==''" data-ng-click="goto_link(vfile.link)">Open</md-button>
+					<h1 class="md-display-2">{{vlaw.category}}</h1>	
+					<md-content>
+			            <div layout-gt-sm="row">
+			                <md-input-container flex-gt-sm data-ng-show="vlaw.category==='Local Tax Codes'">
+			                    <label>Select</label>
+			                    <md-select data-ng-model="filterMuniProv" data-ng-change="refresh()">
+			                    	<md-option value="Provinces">Provinces</md-option>
+			                    	<md-option value="Municipalities">Municipalities</md-option>
+			                    </md-select>
+			                </md-input-container>
+			                <md-input-container flex-gt-sm >
+			                	<label>Keyword filter</label><input data-ng-model="filterKeyword"/>
+			                </md-input-container>
+			                <md-input-container flex-gt-sm>
+				                <label data-ng-show="vlaw.category!=='Local Tax Codes'"><strong>{{ (vlaw.files | filter:{title:filterKeyword}).length }} result<span data-ng-show="(vlaw.files | filter:{title:filterKeyword}).length > 1">s</span> found</strong></label>
+				                <label data-ng-show="vlaw.category==='Local Tax Codes'"><strong>{{ (vlaw.files | filter:{title:filterKeyword,level:filterMuniProv}).length }} result<span data-ng-show="(vlaw.files | filter:{title:filterKeyword,level:filterMuniProv}).length > 1">s</span> found</strong></label>
+			            	</md-input-container>        
+			                <md-input-container flex-gt-sm></md-input-container>
+			                <md-input-container flex-gt-sm></md-input-container>
+			                <md-input-container flex-gt-sm></md-input-container>
+			            </div>            
+			        </md-content>
+					<md-content>
+						<div flex="100" layout-fill layout="row" layout-wrap>	
+							<md-card flex="30" layout="row" data-ng-if="vlaw.category!=='Local Tax Codes'"  data-ng-repeat="(kfile,vfile) in vlaw.files | filter:filterKeyword" class="card-container">
+				            	<md-card-title flex="70">
+									<md-card-title-text class="ta-left">
+										<span class="md-headline" style="font-size:1.25em;line-height:1em;"title="{{vfile.title}}">{{vfile.title}}</span>
+										<span class="md-subhead" data-ng-show="vfile.desc" title="{{vfile.desc}}">{{shorten(vfile.desc,50)}}</span>
+									</md-card-title-text>
+								</md-card-title>
+								<md-card-actions flex="30" layout="row" layout-align="end center">
 									<h5 data-ng-show="vfile.link==''" class="md-warn" aria-label="unavailable">Link Unavailable</h5>
-								</md-list-item>
-								<md-list-item data-ng-if="vlaw.category==='Local Tax Codes'" data-ng-repeat="(kfile,vfile) in vlaw.files | filter:{title:filterKeyword,level:filterMuniProv}"  class="md-2-line"> 
-									<!--  > -->
-									<!-- <img src="../images/file-icon/pdf-icon.png" class="md-avatar"/> -->
-									<div class="md-list-item-text">
-										<h3 title="{{vfile.title}}">{{vfile.title}}</h3>
-										<p title="{{vfile.desc}}" class="txt-trans-title">{{vfile.desc}}</p>
-									</div>
-									<md-button class="md-secondary md-raised" data-ng-click="goto_file(vfile.title)">Open</md-button>
-								</md-list-item>
-							</md-list>
-						</md-content>
-					<!-- </md-content> -->
+									<md-button class="md-secondary md-accent" data-ng-show="vfile.link!==''" data-ng-click="goto_link(vfile.link)">Open</md-button>
+								</md-card-actions>
+							</md-card>
+							<md-card flex="30" layout="row" data-ng-if="vlaw.category==='Local Tax Codes'"  data-ng-repeat="(kfile,vfile) in vlaw.files | filter:{title:filterKeyword,level:filterMuniProv}"    class="card-container">
+				            	<md-card-title flex="70">
+									<md-card-title-text class="ta-left">
+										<span class="md-headline" style="font-size:1.25em;line-height:1em;"title="{{vfile.title}}">{{vfile.title}}</span>
+										<span class="md-subhead" data-ng-show="infomaterial.otherInfo" title="{{vfile.desc}}">{{shorten(vfile.desc,50)}}</span>
+									</md-card-title-text>
+								</md-card-title>
+								<md-card-actions flex="30" layout="row" layout-align="end center">
+									<md-button class="md-secondary md-accent" data-ng-click="goto_file(vfile.title)">Open</md-button>
+								</md-card-actions>
+							</md-card>
+						</div>	
+					</md-content>
+					<!-- <md-content>
+			            <div layout-gt-sm="row">
+			                <md-input-container flex-gt-sm data-ng-show="vlaw.category==='Local Tax Codes'">
+			                    <label>Select</label>
+			                    <md-select data-ng-model="filterMuniProv" data-ng-change="refresh()">
+			                    	<md-option value="Provinces">Provinces</md-option>
+			                    	<md-option value="Municipalities">Municipalities</md-option>
+			                    </md-select>
+			                </md-input-container>
+			                <md-input-container flex-gt-sm >
+			                	<label>Keyword filter</label><input data-ng-model="filterKeyword"/>
+			                </md-input-container>
+			                <md-input-container flex-gt-sm>
+				                <label data-ng-show="vlaw.category!=='Local Tax Codes'"><strong>{{ (vlaw.files | filter:{title:filterKeyword}).length }} result<span data-ng-show="(vlaw.files | filter:{title:filterKeyword}).length > 1">s</span> found</strong></label>
+				                <label data-ng-show="vlaw.category==='Local Tax Codes'"><strong>{{ (vlaw.files | filter:{title:filterKeyword,level:filterMuniProv}).length }} result<span data-ng-show="(vlaw.files | filter:{title:filterKeyword,level:filterMuniProv}).length > 1">s</span> found</strong></label>
+			            	</md-input-container>        
+			                <md-input-container flex-gt-sm></md-input-container>
+			                <md-input-container flex-gt-sm></md-input-container>
+			                <md-input-container flex-gt-sm></md-input-container>
+			            </div>            
+			        </md-content>
+					<md-content>
+						<md-list flex  class="resources-list">
+							<md-list-item data-ng-if="vlaw.category!=='Local Tax Codes'"  data-ng-repeat="(kfile,vfile) in vlaw.files | filter:filterKeyword"  class="md-2-line"> 
+								<div class="md-list-item-text">
+									<h3 title="{{vfile.title}}">{{vfile.title}}</h3>
+									<p title="{{vfile.desc}}" class="txt-trans-title">{{vfile.desc}}</p>
+								</div>
+								<md-button class="md-secondary md-raised" data-ng-show="vfile.link!==''" data-ng-click="goto_link(vfile.link)">Open</md-button>
+								<h5 data-ng-show="vfile.link==''" class="md-warn" aria-label="unavailable">Link Unavailable</h5>
+							</md-list-item>
+							<md-list-item data-ng-if="vlaw.category==='Local Tax Codes'" data-ng-repeat="(kfile,vfile) in vlaw.files | filter:{title:filterKeyword,level:filterMuniProv}"  class="md-2-line"> 
+								<div class="md-list-item-text">
+									<h3 title="{{vfile.title}}">{{vfile.title}}</h3>
+									<p title="{{vfile.desc}}" class="txt-trans-title">{{vfile.desc}}</p>
+								</div>
+								<md-button class="md-secondary md-raised" data-ng-click="goto_file(vfile.title)">Open</md-button>
+							</md-list-item>
+						</md-list>
+					</md-content> -->
 				</md-tab>
 			</md-tabs>
 		</md-content>
