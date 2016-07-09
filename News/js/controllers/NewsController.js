@@ -34,9 +34,6 @@ newsApp.controller('NewsController',['$scope','NewsFactory','$sce','$rootScope',
 					}
 				}
 			})
-			// .then(function(){
-			// 	// get.news()
-			// })
 		},
 		news : function() {
 			$scope.nearticle = {}
@@ -52,29 +49,25 @@ newsApp.controller('NewsController',['$scope','NewsFactory','$sce','$rootScope',
 			}
 			$scope.newspromise = NewsFactory.getpagednews(obj);
 			$scope.newspromise.then(function(data){
-				console.log(data.data)
 				if (typeof(data.data) == 'string') {
 				}
-				else {
-					alert($location.path().split('/')[1])
-					// if ($location.path().split('/')[1]=="") {
-						$scope.newsandevents = data.data
-						for (var i in $scope.newsandevents) { 
-							if ($scope.newsandevents[i].brief != null && $scope.newsandevents[i].brief != '') {
-								$scope.newsandevents[i].brief = $sce.trustAsHtml('<div style="font-size:13px;">'+shorten($scope.newsandevents[i].brief,145)+'</div>');
-							}
-							if (i==0) {
-								$scope.lastUpdated = $scope.newsandevents[i].dateposted
-							}
-						}	
-					// }
+				else {	
+					$scope.newsandevents = data.data
+					for (var i in $scope.newsandevents) { 
+						if ($scope.newsandevents[i].brief != null && $scope.newsandevents[i].brief != '') {
+							$scope.newsandevents[i].brief = $sce.trustAsHtml('<div style="font-size:13px;">'+shorten($scope.newsandevents[i].brief,300)+'</div>');
+						}
+						if (i==0) {
+							$scope.lastUpdated = $scope.newsandevents[i].dateposted
+						}
+					}
 				}
 			})
 		}
 	}
 
 	$rootScope.$on('$routeChangeSuccess', function(next, current) { 
-		try {} catch(err){}
+		try {}catch(err){}
 	});
 	
 	get.newsCount();
@@ -111,4 +104,7 @@ newsApp.controller('NewsController',['$scope','NewsFactory','$sce','$rootScope',
 	    return ret;
 	}
 
+	$scope.openNews=function(article){
+		$location.path('/'+$scope.selected_type+'/'+article.id)
+	}
 }])

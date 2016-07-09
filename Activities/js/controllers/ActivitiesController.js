@@ -49,17 +49,17 @@ activitiesApp.controller('ActivitiesController',['$scope','ActivitiesFactory','$
 							$scope.no_content_elem = true;
 						}
 						if ($scope.activity.program) {
-							$scope.activity.program = '../../'+$scope.activity.program
+							$scope.activity.program = '../'+$scope.activity.program; // '../../'
 						}
 						
 						if ($scope.activity.documentation) {
-							$scope.activity.documentation = '../../'+$scope.activity.documentation	
+							$scope.activity.documentation = '../'+$scope.activity.documentation	; // '../../'
 							if ($scope.activity.documentation.length) {
 								if ($scope.activity.documentation[0]) {
-									$scope.activity.documentation[0] = '../../'+$scope.activity.documentation[0]	
+									$scope.activity.documentation[0] = '../'+$scope.activity.documentation[0]; // '../../'
 								}
 								if ($scope.activity.documentation[1]) {
-									$scope.activity.documentation[1] = '../../'+$scope.activity.documentation[1]	
+									$scope.activity.documentation[1] = '../'+$scope.activity.documentation[1]; // '../../'
 								}
 							}
 						}
@@ -112,7 +112,8 @@ activitiesApp.controller('ActivitiesController',['$scope','ActivitiesFactory','$
 	$scope.get.activities();
 
 	$scope.download_documentation =  function(src) {
-		window.open('../../'+src);
+		// window.open('../../'+src);
+		window.open('../'+src)
 	}
 
 	$scope.type_of_doc = function(d) {

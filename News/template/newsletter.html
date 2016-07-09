@@ -5,3 +5,46 @@
         <p></p>
     </div>   
 </header>
+
+<div class="wd-100">
+	<div class="mxw-80">
+		<div class="md-inline-form">
+	        <md-content layout-padding>
+	            <div layout-gt-sm="row">
+	                <md-input-container flex-gt-sm>
+	                    <label>Select Year</label>
+	                    <md-select data-ng-model="filterYear">
+	                    	<md-option data-ng-repeat="year in years" value="{{year}}">{{year}}</md-option>
+	                    </md-select>
+	                </md-input-container>
+	                <md-input-container flex-gt-sm data-ng-show="newsletter.length">
+	                    <label><strong>{{ (newsletter | filter:{year:filterYear}).length }} result<span data-ng-show="(newsletter | filter:{year:filterYear}).length > 1">s</span> found</strong></label>
+	                </md-input-container>            
+	                 <md-input-container flex-gt-sm></md-input-container>        
+	                <md-input-container flex-gt-sm></md-input-container>
+	                <md-input-container flex-gt-sm></md-input-container>
+	                <md-input-container flex-gt-sm></md-input-container>
+	            </div>            
+	        </md-content>
+	    </div>
+    </div>
+</div>
+
+<div class="w-100">
+	<div class="mxw-80">
+		 <md-content>
+            <div flex="100" layout-fill layout="row" layout-wrap>   
+                <md-card flex="45" layout="row" data-ng-repeat="(k,issue) in newsletter | filter:{year:filterYear}" class="card-container">
+                    <md-card-title flex="70">
+                        <md-card-title-text class="ta-left">
+                            <span class="md-headline" title="{{issue.title}}" style="font-size:1.25em;line-height:1em;">{{issue.title}}</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-actions flex="30" layout="row" layout-align="end center">
+                        <md-button class="md-accent" data-ng-if="issue.link" data-ng-click="open(issue.link)" alt="View PH-EITI {{issue.title}} Newsletter"  title="View PH-EITI {{issue.title}} Newsletter"><strong>View</strong></md-button>
+                    </md-card-actions>
+                </md-card>
+            </div>  
+        </md-content>
+	</div>
+</div>

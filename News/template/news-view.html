@@ -1,0 +1,21 @@
+<header class="wd-100">   
+    <div class="mxw-80 ta-left">
+    	<h5 style="padding-bottom:0;margin-bottom:0;">NEWS</h5>
+        <h1 class="md-display-2" style="margin-top:0;padding-top:0;">{{newsType}}</h1>  
+        <p></p>
+    </div>   
+</header>
+
+<div class="w-100">
+	<div class="mxw-80">
+		<md-content class="md-padding">
+			<h1>{{article.title}}</h1>	
+			<div id="newsarticle-info">
+				<h2 data-ng-if="article.subhead">{{article.subhead}}</h2>
+	    		<small data-ng-if="article.author!='' && article.title">Author: {{article.author}} | </small><small data-ng-show="article.readmore_source">Source website: <a href="{{article.readmore_source}}">{{article.readmore_sourcewebsite}}</a> |</small><small data-ng-if="article.dateposted!=''"> {{article.dateposted}}</small>
+			</div>
+			<div data-ng-bind-html="article.content"></div>
+		</md-content>
+		<div class="ta-center" cg-busy="{promise:newspromise}"></div>
+	</div>
+</div>

@@ -1,0 +1,7 @@
+.newsTitle:hover {
+	cursor: pointer;
+}
+
+#newsarticle-info {
+	margin-bottom: 2em;
+}

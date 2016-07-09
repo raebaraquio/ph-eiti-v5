@@ -1,0 +1,80 @@
+<header class="wd-100">   
+    <div class="mxw-80 ta-left">
+        <h5 style="padding-bottom:0;margin-bottom:0;">ABOUT PH-EITI</h5>
+        <h1 class="md-display-2" style="margin-top:0;padding-top:0;">MSG Meetings</h1>  
+    </div>   
+</header>
+
+<div class="w-100">
+    <div class="mxw-80 ta-right">
+    	<md-button class="md-primary md-raised fnt--white" data-ng-href="#/MSG-Members">MSG Members</md-button>  
+	</div>
+</div>
+
+<div class="wd-100">
+	<div class="mxw-80">
+		<div class="md-inline-form">
+	        <md-content layout-padding>
+	            <div layout-gt-sm="row">
+	                <md-input-container flex="40">
+	                    <label>Select Meeting</label>
+	                    <md-select data-ng-model="filterTitle" data-ng-change="load_meeting(filterTitle)">
+	                    	<md-option data-ng-repeat="mtg in meetings" value="{{mtg.title}}">{{mtg.title}} Meeting</md-option>
+	                    </md-select>
+	                </md-input-container>
+	                <!-- <md-input-container flex="30" >
+	                	<label>Keyword filter</label><input data-ng-model="filterKeyword"/>
+	                </md-input-container> -->
+	                <md-input-container flex="60" data-ng-show="meetings.length">
+	                    <label><strong>{{ (meetings | filter:filterKeyword | filter:{title:filterTitle}).length }} result<span data-ng-show="(meetings | filter:{title:filterTitle}).length > 1">s</span> found</strong></label>
+	                </md-input-container>            
+	            </div>            
+	        </md-content>
+	    </div>
+    </div>
+</div>
+
+<div class="wd-100" data-ng-show="!meeting_selected.title" >
+	<div class="mxw-80 ta-left">
+		<h2>No meeting selected. </h2>
+    </div>
+</div>
+
+<div class="wd-100" data-ng-show="meeting_selected.title" >
+	<div class="mxw-80 md-padding">
+        <md-contentlayout="column">    
+        	<h1 class="mrgin-0 padd-0" style="padding:0px;margin:0px;">{{meeting_selected.title}} MSG Meeting</h1>
+            <p class="mrgin-0 padd-0" style="padding:0px;margin:0px;">{{meeting_selected.venue}}</p>
+            <small class="mrgin-0 padd-0" style="padding:0px;margin:0px;margin-top:0.5em;">{{meeting_selected.updated}}</small>
+
+            <h3 data-ng-show="meeting_selected.agenda">Agenda</h3>         
+			<md-list>
+				<md-list-item data-ng-repeat="(idx,agenda) in meeting_selected.agenda" style="height:auto;min-height:1.5em;">
+					<div class="md-list-item-text" style="padding:0px;margin:0px;">
+						<p class="ww-breakword" style="padding:0px;margin:0px;">{{idx+1}}. {{agenda}}</p>
+					</div>
+				</md-list-item>
+			</md-list>		
+
+            <div layout="row">
+            	<md-button class="md-raised md-accent" data-ng-click="download_minutes(meeting_selected.minutes)" title="Download Minutes of {{meeting_selected.title}} MSG Meeting">Download Minutes</md-button>			
+            </div>            
+
+            <h3 data-ng-show="meeting_selected.annexes && meeting_selected.annexes.length > 0">Annex</h3>  
+            <md-content data-ng-show="meeting_selected.annexes && meeting_selected.annexes.length > 0">
+	            <div flex="100" layout-fill layout="row" layout-wrap>   
+	                <md-card flex="45" layout="row" data-ng-repeat="(idx,annex) in meeting_selected.annexes" title="{{annex.title}}" class="card-container">
+	                    <md-card-title flex="70">
+	                        <md-card-title-text class="ta-left">
+	                            <span class="md-headline" title="{{annex.title}}" style="font-size:1.25em;line-height:1em;">{{annex.title}}</span>
+	                        </md-card-title-text>
+	                    </md-card-title>
+	                    <md-card-actions flex="30" layout="row" layout-align="end center">
+	                        <md-button class="md-accent" data-ng-if="annex.file" title="{{annex.title}}" data-ng-click="download_minutes(annex.file)"><strong>Download</strong></md-button>
+	                    </md-card-actions>
+	                </md-card>
+	            </div>
+            </md-content>
+        </md-content>    
+    </div>
+</div>

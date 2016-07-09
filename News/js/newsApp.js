@@ -1,7 +1,29 @@
-var newsApp = angular.module('news',['ngRoute','ngSanitize','ngCookies','navMod','ngMaterial','utilsModule']);
+var newsApp = angular.module('news',['ngRoute','ngSanitize','ngCookies','navMod','ngMaterial','utilsModule','cgBusy']);
 
 newsApp.config(function($routeProvider){
     $routeProvider
+
+        .when('/Media-Releases/:id',
+        {
+            title: 'Media Releases | News',
+            controller: 'NewsViewController',
+            templateUrl:'./template/news-view.html'
+        })
+        
+        .when('/In-the-News/:id',
+        {
+            title: 'In the News | News',
+            controller: 'NewsViewController',
+            templateUrl:'./template/news-view.html'
+        })
+
+        .when('/Archive/:id',
+        {
+            title: 'Archive | News',
+            controller: 'NewsViewController',
+            templateUrl:'./template/news-view.html'
+        })
+
         .when('/Media-Releases',
         {
             title: 'Media Releases | News',
@@ -19,7 +41,7 @@ newsApp.config(function($routeProvider){
         .when('/Newsletter',
         {
             title: 'Newsletter | News',
-            controller: 'NewsController',
+            controller: 'NewsletterController',
             templateUrl:'./template/newsletter.html'
         })
 

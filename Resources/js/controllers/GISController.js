@@ -4,33 +4,27 @@ resourcesApp.controller('GISController',['$scope','ResourcesFactory','$location'
 	$scope.gis = ResourcesFactory.gis();
 	$scope.selected_folder = {}
 
-	$scope.goto_file = function(link) {
-		if (link!=''){
-			window.open('../'+link); //window.open('../../'+link)
-		}
-		else {
-			alert('Document not yet available.')
-		}
+	$scope.years = []	
+	var start = 2012, current = parseInt( (new Date()).getFullYear(), 10);
+	for (var idx=current;idx>=start;idx--){
+		$scope.years.push(idx);
 	}
+	$scope.filterYear = $scope.years[0]-1;
+	$scope.filterKeyword = ''
+
+	$scope.refreshList=function(){
+		$scope.selected_folder = {}
+		for (var idx=0;idx<$scope.gis.subfolders.length;idx++){
+			if ($scope.gis.subfolders[idx].year===parseInt($scope.filterYear,10)) {
+				$scope.selected_folder = $scope.gis.subfolders[idx]
+			}
+		}		
+	}
+
+	$scope.refreshList();
 
 	$scope.openFile=function(link){
-		window.open(link)
+		window.open('../'+link)
 	}
-
-	$scope.openFolder=function(folder){
-		$location.path('/GIS/'+folder)
-	}
-
-	$scope.$on('$routeChangeSuccess', function(){
-		var loc = $location.path().split('/')
-		var currloc = $location.path();
-		if ($scope.gis) {
-			for (var idx=0;idx<$scope.gis.subfolders.length;idx++){
-				if ($scope.gis.subfolders[idx].folder_id===loc[loc.length-1]) {
-					$scope.selected_folder = $scope.gis.subfolders[idx]
-				}
-			}
-		}
-    })
 
 }]);

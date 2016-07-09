@@ -1,0 +1,50 @@
+<header class="wd-100">   
+    <div class="mxw-80 ta-left">
+        <h5 style="padding-bottom:0;margin-bottom:0;">COUNTRY REPORTS</h5>
+        <h1 class="md-display-2"  style="margin-top:0;padding-top:0;">Reporting Templates</h1>
+        <p></p>
+    </div>   
+</header>
+
+<div class="wd-100">
+    <div class="mxw-80">
+        <div class="md-inline-form">
+            <md-content layout-padding>
+                <div layout-gt-sm="row">
+                    <md-input-container flex-gt-sm>
+                        <label>Select Sector</label>
+                        <md-select data-ng-model="filterSector" data-ng-change="refreshTemplates()">
+                            <md-option data-ng-repeat="sector in sectors" value="{{sector}}">{{sector}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <!-- <md-input-container flex-gt-sm data-ng-show="activities.length">
+                        <label><strong>{{ (activities | filter:{date:filterYear}).length }} result<span data-ng-show="(activities | filter:{date:filterYear}).length > 1">s</span> found</strong></label>
+                    </md-input-container>             -->
+                     <md-input-container flex-gt-sm></md-input-container>        
+                    <md-input-container flex-gt-sm></md-input-container>
+                    <md-input-container flex-gt-sm></md-input-container>
+                    <md-input-container flex-gt-sm></md-input-container>
+                </div>            
+            </md-content>
+        </div>
+    </div>
+</div>
+
+<div class="wd-100">
+    <div class="mxw-80">
+        <div flex="100" layout-fill layout="row" layout-wrap>   
+            <md-card flex="45" layout="row" data-ng-repeat="(k,template) in sectorTemplates | filter:filterAnnexTemplate" class="card-container">
+                <md-card-title flex="70">
+                    <md-card-title-text class="ta-left">
+                        <span class="md-headline" title="{{template.title}}" style="font-size:1em;line-height:1em;">{{template.title}}</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-actions flex="30" layout="row" layout-align="end center">
+                    <md-button class="md-accent" data-ng-if="template.source" data-ng-click="open_file(template.source)" alt="Download {{template.title}} Reporting Template"  title="Download {{template.title}} Reporting Template"><strong>Download</strong></md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+    </div>
+</div>
+
+

@@ -8,21 +8,50 @@
 
 <div class="w-100">
 	<div class="mxw-80">
+		<!-- <div flex="100" layout-fill layout="row" layout-wrap>   
+            <md-card flex="45" layout="row"  data-ng-repeat="(kfolder,folder) in orgdocs.subfolders"  class="card-container">
+                <div flex="25" layout="left left" class="infographic-card-icon" >
+                	<md-icon md-svg-icon="../images/icons/svg/file7.svg" class="md-avatar" ></md-icon>
+                </div>              
+                <md-card-title flex="50">
+                    <md-card-title-text class="ta-left">
+                        <span class="md-headline" style="font-size:1.25em;line-height:1em;" title="{{folder.folder_name}}">{{folder.folder_name}}</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-actions flex="25" layout="row" layout-align="end center">
+                    <md-button class="md-accent"  data-ng-show="folder.files.length > 0" data-ng-click="openFolder(folder.folder_id)" alt="" title="{{folder.folder_name}}"><strong>View Files</strong></md-button>
+                </md-card-actions>
+            </md-card>
+            <md-card flex="45" layout="row"  data-ng-repeat="(kfolder,folderFile) in orgdocs.files"  class="card-container">
+                <div flex="25" layout="left left" class="infographic-card-icon" >
+                	<md-icon md-svg-icon="../images/icons/svg/document9.svg" class="md-avatar" ></md-icon>
+                </div>              
+                <md-card-title flex="50">
+                    <md-card-title-text class="ta-left">
+                        <span class="md-headline" style="font-size:1.25em;line-height:1em;" title="{{folderFile.title}}">{{folderFile.title}}</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-actions flex="25" layout="row" layout-align="end center">
+                    <md-button class="md-accent" data-ng-show="folderFile.src!==''" data-ng-click="openFile(folderFile.src)"><strong>Preview</strong></md-button>
+                </md-card-actions>
+            </md-card>
+        </div>   -->
 		<div flex layout-fill layout="column" layout-wrap>
 			<md-list flex class="resources-list">
 				<md-list-item  data-ng-repeat="(kfolder,folder) in orgdocs.subfolders"  class="md-2-line">
 					<md-icon md-svg-icon="../images/icons/svg/file7.svg" class="md-avatar" ></md-icon>
 					<div class="md-list-item-text">
 						<h3 title="{{folder.folder_name}}">{{folder.folder_name}}</h3>
+						<p>Found {{folder.files.length}} file<span data-ng-show="folder.files.length > 1">s</span></p>
 					</div>
-					<md-button class="md-secondary md-raised" data-ng-show="folder.files.length > 0" data-ng-click="openFolder(folder.folder_id)" >Open</md-button>
+					<md-button class="md-accent" data-ng-show="folder.files.length > 0" data-ng-click="openFolder(folder.folder_id)"><strong>View Files</strong></md-button>
 				</md-list-item>
 				<md-list-item  data-ng-repeat="(kfolder,folderFile) in orgdocs.files" class="md-2-line">
 					<md-icon md-svg-icon="../images/icons/svg/document9.svg" class="md-avatar" ></md-icon>
 					<div class="md-list-item-text">
 						<h3 title="{{folderFile.title}}">{{folderFile.title}}</h3>
 					</div>
-					<md-button class="md-secondary md-raised" data-ng-show="folderFile.src!==''" data-ng-click="openFile(folderFile.src)" >Preview</md-button>
+					<md-button class="md-accent" data-ng-show="folderFile.src!==''" data-ng-click="openFile(folderFile.src)"><strong>open</strong></md-button>
 				</md-list-item>
 			</md-list>
 		</div>

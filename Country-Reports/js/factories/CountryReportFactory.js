@@ -9,42 +9,48 @@ countryReportApp.factory('CountryReportFactory', function($http,$location){
 					title:"First Country Report",
 					date:'December 2014',
 					lastupdated: 'September 08, 2015 10:13 PM',
-					card_img:'card_thumb_1stReport.png',
+					card_img:'../document/EITI-Report/First-Country-Report/card-icon.png',
 					content: [
 						{
 							title:"Volume 1 - Contextual Information",
 							href:"Volume-1-Contextual-Information",
 							id:'contextual-information',
 							multiple:false,
-							file:'../document/EITI-Report/First-Country-Report/PH-EITI_Report_Volume_1_Contextual_Info_final.pdf'
+							file:'../document/EITI-Report/First-Country-Report/PH-EITI_Report_Volume_1_Contextual_Info_final.pdf',
+							cardIcon:'../document/EITI-Report/First-Country-Report/card-icon-vol1.png'
 						},
 						{
 							title:"Volume 2 - Reconciliation Report",
 							href:"Volume-2-Reconciliation",
 							id:'reconciliation-report',
 							multiple:false,
-							file:'../document/EITI-Report/First-Country-Report/PH-EITI_Report_Volume_II_Reconciliation_Report_final.pdf'
+							file:'../document/EITI-Report/First-Country-Report/PH-EITI_Report_Volume_II_Reconciliation_Report_final.pdf',
+							cardIcon:'../document/EITI-Report/First-Country-Report/card-icon-vol2.png'
 						},
 						{
 							title:"Annex Volume 1 - Contextual Information",
 							href:"Annexes-Volume-1",
 							id:'annex-vol-1',
 							multiple:false,
-							file:'../document/EITI-Report/First-Country-Report/Annexes_Volume_I_Contextual_Information.pdf'
+							file:'../document/EITI-Report/First-Country-Report/Annexes_Volume_I_Contextual_Information.pdf',
+							cardIcon:'../document/EITI-Report/First-Country-Report/card-icon-annexes.png'
 						},
 						{
 							title:"Data Summary Template",
 							href:"Data-Summary-Template",
 							id:'data-summary-template',
 							multiple:false,
-							file:'../document/EITI-Report/First-Country-Report/PH-EITI_Data-Summary-Template_final.xlsx'
+							file:'../document/EITI-Report/First-Country-Report/PH-EITI_Data-Summary-Template_final.xlsx',
+							cardIcon:'../document/EITI-Report/First-Country-Report/card-icon-xlsx.png',
+							mso:true
 						},
 						{
 							title:"Production Data (2012 and 2013)",
 							href:"Production-Data-2012-and-2013",
 							id:'production-data-2012-and-2013',
 							multiple:false,
-							file:'../document/EITI-Report/First-Country-Report/Metallic-Production-2013-vs-2012.pdf'
+							file:'../document/EITI-Report/First-Country-Report/Metallic-Production-2013-vs-2012.pdf',
+							cardIcon:'../document/EITI-Report/First-Country-Report/card-icon-metallic.png'
 						},
 						{
 							title:"Completed Reporting Templates",
@@ -52,6 +58,7 @@ countryReportApp.factory('CountryReportFactory', function($http,$location){
 							id:'completed-reporting-templates',
 							multiple:true,
 							file:'',
+							cardIcon:'../document/EITI-Report/First-Country-Report/card-icon-none.png',
 							templates: {
 								"Companies" : [
 									{
@@ -234,55 +241,62 @@ countryReportApp.factory('CountryReportFactory', function($http,$location){
 					title:"Second Country Report",
 					date:'December 2015',
 					lastupdated:'January 11, 2016 06:21 AM',
-					card_img:'card_thumb_1stReport.png',
+					card_img:'../document/EITI-Report/Second-Country-Report/card-icon.png',
 					content: [
 						{
 							title:"Volume I of the 2nd PH-EITI Country Report",
 							href:"Volume-I",
 							id:'volume-ii',
 							multiple:false,
-							file:'../document/EITI-Report/Second-Country-Report/Volume-I_of_the_PH-EITI_Country-Report_2015.pdf'
+							file:'../document/EITI-Report/Second-Country-Report/Volume-I_of_the_PH-EITI_Country-Report_2015.pdf',
+							cardIcon:'../document/EITI-Report/Second-Country-Report/card-icon-vol1.png'
 						},
 						{
 							title:"Volume II of the 2nd PH-EITI Country Report",
 							href:"Volume-II",
 							id:'volume-ii',
 							multiple:false,
-							file:'../document/EITI-Report/Second-Country-Report/Volume-II_of_the_PH-EITI_Country-Report_2015.pdf'
+							file:'../document/EITI-Report/Second-Country-Report/Volume-II_of_the_PH-EITI_Country-Report_2015.pdf',
+							cardIcon:'../document/EITI-Report/Second-Country-Report/card-icon-vol2.png'
 						},
 						{
 							title:"Executive Summary 2015",
 							href:"Executive-Summary-2015",
 							id:'executive-summary-2015',
 							multiple:false,
-							file:'../document/EITI-Report/Second-Country-Report/Executive Summary_2015.pdf'
+							file:'../document/EITI-Report/Second-Country-Report/Executive Summary_2015.pdf',
+							cardIcon:'../document/EITI-Report/Second-Country-Report/card-icon-exec-summary.png'
 						},
 						{
 							title:"Key findings (Inner Page)",
 							href:"Key-findings-Inner",
 							id:'key-finding-inner',
 							multiple:false,
-							file:'../document/EITI-Report/Second-Country-Report/Key findings_Inner_Page.pdf'
+							file:'../document/EITI-Report/Second-Country-Report/Key findings_Inner_Page.pdf',
+							cardIcon:'../document/EITI-Report/Second-Country-Report/card-icon-keyfindings-inner.png'
 						},
 						{
 							title:"Impact Story (Booklet)",
 							href:"Impact-Story-Booklet",
 							id:'impact-story-booklet',
 							multiple:false,
-							file:''
+							file:'',
+							cardIcon:'../document/EITI-Report/Second-Country-Report/card-icon-none.png'
 						},
 						{
 							title:"Key findings (Outer Page)",
 							href:"Key-findings-Outer",
 							id:'key-finding-outer',
 							multiple:false,
-							file:'../document/EITI-Report/Second-Country-Report/Key findings_Outer_page.pdf'
+							file:'../document/EITI-Report/Second-Country-Report/Key findings_Outer_page.pdf',
+							cardIcon:'../document/EITI-Report/Second-Country-Report/card-icon-keyfindings-outer.png'
 						},
 						{
 							title:"Impact Story (Video)",
 							href:"Impact-Story-Video",
 							id:'impact-story-video',
-							media:true
+							media:true,
+							cardIcon:'../document/EITI-Report/Second-Country-Report/card-icon-none.png'
 						},
 						{
 							title:"Completed Reporting Templates",
@@ -290,6 +304,7 @@ countryReportApp.factory('CountryReportFactory', function($http,$location){
 							id:'completed-reporting-templates',
 							multiple:true,
 							file:'',
+							cardIcon:'../document/EITI-Report/Second-Country-Report/card-icon-none.png',
 							templates: {
 								"Companies" : [
 									{company:'AAM-Phil Natural Resources Exploration and Development Corporation Parcel 1',author:'',file:'../document/EITI-Report/Second-Country-Report/Completed-Reporting-Templates/Companies/AAM-Phil Natural Resources Exploration and Development Corporation Parcel 1.xlsx'},
@@ -330,6 +345,88 @@ countryReportApp.factory('CountryReportFactory', function($http,$location){
 					]
 				}
 			];
+		},
+		reportingTemplates: function() {
+			return {
+				folder_id:'Reporting-Templates',
+				folder_name:'Reporting Templates',
+				date: {
+					'lastUpdated': 'August 30, 2015 11:18 PM',
+					'created':''
+				},
+				subfolders: [
+					{
+						folder_id:'Government-Agencies',
+						folder_name:'Government Agencies',
+						subfolders: [],
+						files: [
+							{
+								id:"Bureau-of-Internal-Revenue-(BIR)",
+								title:"Bureau of Internal Revenue (BIR)",
+								author:'',
+								source:"../document/reporting-template/government-agencies/Reporting-templates-and-schedules-(BIR-FINAL).pdf"
+							},
+							{
+								id:"Bureau-of-Customs-(BOC)",
+								title:"Bureau of Customs (BOC)",
+								author:'',
+								source:"../document/reporting-template/government-agencies/Reporting-templates-and-schedules-(BOC-FINAL).pdf"
+							},
+							{
+								id:"Department-of-Energy-(DOE)",
+								title:"Department of Energy (DOE)",
+								author:'',
+								source:"../document/reporting-template/government-agencies/Reporting-templates-and-schedules-(DOE-FINAL).pdf"
+							},
+							{
+								id:"Local-Government-Units-(LGUs)",
+								title:"Local Government Units (LGUs)",
+								author:'',
+								source:"../document/reporting-template/government-agencies/Reporting-templates-and-schedules-(LGU-FINAL).pdf"
+							},
+							{
+								id:"Mines-and-Geosciences-Bureau---Department-of-Environment-and-Natural-Resources-(MGB-DENR)",
+								title:"Mines and Geosciences Bureau - Department of Environment and Natural Resources (MGB-DENR)",
+								author:'',
+								source:"../document/reporting-template/government-agencies/Reporting-templates-and-schedules-(MGB-FINAL).pdf"
+							},
+							{
+								id:"National-Commission-on-Indigenous-People-(NCIP)",
+								title:"National Commission on Indigenous People (NCIP)",
+								author:'',
+								source:"../document/reporting-template/government-agencies/Reporting-templates-and-schedules-(NCIP-FINAL).pdf"
+							},
+							{
+								id:"Philippine-Ports-Authority-(PPA)",
+								title:"Philippine Ports Authority (PPA)",
+								author:'',
+								source:"../document/reporting-template/government-agencies/Reporting-templates-and-schedules-(PPA-FINAL).pdf"
+							}
+						]
+					},
+					{
+						folder_id:'Industry',
+						folder_name:'Industry',
+						subfolders: [],
+						files: [
+							{
+								id:'Mining-Companies',
+								title:'Mining Companies',
+								author:'',
+								source:'../document/reporting-template/mining-companies/Reporting-templates-and-schedules-(participating-entity-FINAL).pdf'
+							},
+							{
+								id:'Oil-and-Gas-Companies',
+								title:'Oil and Gas Companies',
+								author:'',
+								source:'../document/reporting-template/oil-and-gas-companies/Reporting-templates-and-schedules-(OG-FINAL).pdf'
+							}
+						]
+					}
+				],
+				files: [
+				]
+			}		
 		}
 	};
 	return CountryReportFactory;

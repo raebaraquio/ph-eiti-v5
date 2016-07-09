@@ -9,6 +9,20 @@ aboutApp.config(function($routeProvider){
 	 		templateUrl:'./template/history.html'
 	 	})
 
+        .when('/Secretariat',
+        {
+            title: 'Secretariat | About PH-EITI',
+            controller: 'SecretariatController',
+            templateUrl:'./template/secretariat.html'
+        })
+
+        .when('/MSG-Meetings',
+        {
+            title: 'MSG Meetings | About PH-EITI',
+            controller:'MSGMeetingsController', 
+            templateUrl:'./template/msg/meetings.html'
+        })
+
 	 	.when('/MSG-Members/Government',
 	 	{
 	 		title: 'Government - MSG Member | About PH-EITI',

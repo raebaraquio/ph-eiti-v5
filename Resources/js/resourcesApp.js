@@ -4,7 +4,7 @@ resourcesApp.config(function($routeProvider){
  	$routeProvider
 	 	.when('/',
 	 	{
-	 		templateUrl:'./template/index.html'	
+            redirectTo: '/Work-Plan'
 	 	})
 
 	 	.when('/Work-Plan',

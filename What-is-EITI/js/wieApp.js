@@ -1,4 +1,4 @@
-var wieApp = angular.module('what-is',['ngRoute','ngSanitize','ngCookies','navMod','ngMaterial','utilsModule','angular-timeline']);
+var wieApp = angular.module('what-is',['ngRoute','ngSanitize','ngCookies','navMod','ngMaterial','utilsModule','angular-timeline','md.data.table']);
 
 wieApp.config(function($routeProvider){
  	$routeProvider

@@ -6,54 +6,28 @@
     </div>   
 </header>
 
-<div class="w-100">
+<div class="wd-100">
 	<div class="mxw-80">
-		<div flex="100" layout-fill layout="row" layout-wrap>	
-			<md-card flex="45" layout="row" data-ng-repeat="(kfolder,folderFile) in activityReports.files"  class="card-container">			
-				<md-card-title flex="70">
-                    <md-card-title-text>
-                        <span class="md-headline" title="{{folderFile.title}}">{{folderFile.title}}</span>
-                        <span class="md-subhead" data-ng-if="folderFile.coverage">{{folderFile.coverage}}</span>
-                    </md-card-title-text>
-                    <md-card-title-media>
-                        <div class="md-media-md card-media">
-                            <!-- <img data-ng-src="img/{{cr.card_img}}" class="md-card-image" alt="{{cr.title}}"/> -->
-                        </div>
-                    </md-card-title-media>
-                </md-card-title>
-                <md-card-actions flex="30" layout="row" layout-align="end center">
-                    <md-button class="md-accent" data-ng-show="folderFile.src!==''" data-ng-click="openFile(folderFile.src)">Open</md-button>
-                </md-card-actions>
-            	<!-- <md-card-title flex="50">
-					<md-card-title-text class="ta-left">
-						<span class="md-headline" style="font-size:1.25em;line-height:1em;">{{infomaterial.title}}</span>
-						<span class="md-subhead" data-ng-show="infomaterial.otherInfo">{{infomaterial.otherInfo}}</span>
-					</md-card-title-text>
-				</md-card-title>
-				<md-card-actions flex="25" layout="row" layout-align="end center">
-					<md-button class="md-accent" data-ng-click="goto_file(infomaterial.file)"><strong>Open</strong></md-button>
-				</md-card-actions> -->
-			</md-card>
-		</div>	
-		<!-- <div flex layout-fill layout="column" layout-wrap>
-			<md-list flex class="resources-list">
-				<md-list-item  data-ng-repeat="(kfolder,folder) in activityReports.subfolders"  class="md-2-line">
-					<md-icon md-svg-icon="../images/icons/svg/file7.svg" class="md-avatar" ></md-icon>
-					<div class="md-list-item-text">
-						<h3 title="{{folder.folder_name}}">{{folder.folder_name}}</h3>
-					</div>
-					<md-button class="md-secondary md-raised" data-ng-show="folder.files.length > 0" data-ng-click="openFolder(folder.folder_id)" >Open</md-button>
-				</md-list-item>
-				<md-list-item  data-ng-repeat="(kfolder,folderFile) in activityReports.files" class="md-2-line">
-					<md-icon md-svg-icon="../images/icons/svg/document9.svg" class="md-avatar" ></md-icon>
-					<div class="md-list-item-text">
-						<h3 title="{{folderFile.title}}">{{folderFile.title}}</h3>
-						<p data-ng-if="folderFile.coverage">{{folderFile.coverage}}</p>
-					</div>
-					<md-button class="md-secondary md-raised" data-ng-show="folderFile.src!==''" data-ng-click="openFile(folderFile.src)" >Preview</md-button>
-				</md-list-item>
-			</md-list>
-		</div> -->
-	</div>
+		<md-content flex="100" layout-fill layout="row" layout-wrap>
+	        <div flex="33" data-ng-repeat="(kfolder,folderFile) in activityReports.files" class="card-container">
+	            <md-card>
+	                <md-card-title>
+	                    <md-card-title-text>
+	                        <span class="md-headline" title="{{folderFile.title}}">{{folderFile.title}}</span>
+	                        <span class="md-subhead" data-ng-if="folderFile.coverage">{{folderFile.coverage}}</span>
+	                    </md-card-title-text>
+	                    <md-card-title-media>
+	                        <div class="md-media-md card-media">
+	                            <img data-ng-src="{{folderFile.cardIcon}}" class="md-card-image" alt="{{folderFile.title}}"/>
+	                        </div>
+	                    </md-card-title-media>
+	                </md-card-title>
+	                <md-card-actions layout="row" layout-align="end center">
+	                    <md-button class="md-accent" data-ng-show="folderFile.src!==''" data-ng-click="openFile(folderFile.src)"><strong>Open</strong></md-button>
+	                </md-card-actions>
+	            </md-card>            
+	        </div>
+	    </md-content>    
+	</div>    
 </div>
 

@@ -1,14 +1,18 @@
 <header class="wd-100">   
     <div class="mxw-80 ta-left">
-        <h5>ACTIVITIES</h5>
+        <!-- <h5>ACTIVITIES</h5>
         <h1 class="md-display-2">{{activity.title}}</h1>  
-        <h6>{{activity.venue}}</h6>
+        <h6>{{activity.venue}}</h6> -->
+        <h1 class="md-display-2">Activities</h1>  
     </div>   
 </header>
 
 <div class="w-100">
 	<div class="mxw-80">
 		<md-content>
+			<h1 class="md-display-2">{{activity.title}}</h1>  
+        	<h4>{{activity.venue}}</h4>
+        	
 			<md-tabs md-dynamic-height md-border-bottom data-ng-show="no_content_elem===false">
 				<md-tab label="About" data-ng-if="activity.writeup!==null">
 					<md-content class="md-padding">
@@ -25,13 +29,13 @@
 					</md-content>
 				</md-tab>
 				<md-tab label="Documentation" data-ng-if="activity.documentation!==null">
-					<md-content class="md-padding">
+					<md-content>
 						<h1 class="md-display-2">Documentation</h1>
 						<p>
 							<md-button data-ng-if="activity.workshop_output && activity.workshop_output!==undefined" class="md-raised md-accent" data-ng-click="download_documentation(activity.workshop_output)" title="Download Workshop Output - Accomplished Reporting Templates">Download</md-button>
-							<iframe data-ng-if="type_of_doc(activity.documentation)=='string'" src="{{activity.documentation}}" style="min-width:850px;min-height:600px;" frameborder="0"></iframe>
-			                <iframe data-ng-if="type_of_doc(activity.documentation)!='string'" src="{{activity.documentation[0]}}" style="min-width:850px;min-height:600px;" frameborder="0"></iframe>
-			                <iframe data-ng-if="type_of_doc(activity.documentation)!='string'" src="{{activity.documentation[1]}}" style="min-width:850px;min-height:600px; margin-top:50px;" frameborder="0"></iframe>
+							<iframe data-ng-if="type_of_doc(activity.documentation)=='string'" src="{{activity.documentation}}" style="width:900px; height:600px;" frameborder="0"></iframe>
+			                <iframe data-ng-if="type_of_doc(activity.documentation)!='string'" src="{{activity.documentation[0]}}" style="width:900px; height:600px;" frameborder="0"></iframe>
+			                <iframe data-ng-if="type_of_doc(activity.documentation)!='string'" src="{{activity.documentation[1]}}" style="width:900px;height:600px; margin-top:50px;" frameborder="0"></iframe>
 						</p>
 					</md-content>
 				</md-tab>
@@ -39,34 +43,45 @@
 					<md-content class="md-padding">
 						<h1 class="md-display-2">Presentations</h1>
 						<p>
-							<md-content>
-								<md-list flex>
-									<md-list-item class="md-2-line" data-ng-repeat="(idx,presentation) in activity.presentations" data-ng-if="presentation.eventDay" >
-										<div class="md-list-item-text" layout="column">
-											<h3>{{presentation.eventDay}}</h3>
-											<md-list data-ng-show="presentation.presentations.length > 0">
-												<md-list-item data-ng-repeat="(pidx,pval) in presentation.presentations" data-ng-click="download_documentation(pval.src)" >
-													<img src="../images/file-icon/pdf-icon.png" class="md-avatar"/>
-													<div class="md-list-item-text" layout="column">
-														<h3>{{pval.title}}</h3>
-														<h4>{{pval.author}}</h4>
-													</div>
-												</md-list-item>
-											</md-list>									
-										</div>
-									</md-list-item>
-								</md-list>
-								<md-list flex>
-									<md-list-item class="md-2-line" data-ng-repeat="(idx,presentation) in activity.presentations" title="{{presentation.title}}" data-ng-if="!presentation.eventDay" data-ng-click="download_documentation(presentation.src)">									
-										<img src="../images/file-icon/pdf-icon.png"  class="md-avatar"/>
-										<div class="md-list-item-text" layout="column">
-											<h3>{{presentation.title}}</h3>
-											<h4>{{presentation.author}}</h4>
-										</div>
-									</md-list-item>
-								</md-list>
-							</md-content>
-						
+							<div flex="100" layout-fill layout="row" layout-wrap>	
+								<md-content layout-fill layout="column" layout-wrap data-ng-repeat="(idx,presentation) in activity.presentations" data-ng-if="presentation.eventDay">
+									<h2>{{presentation.eventDay}}</h2> 
+									<div flex="100" layout-fill layout="row" layout-wrap>
+										<md-card flex="45" layout="row" data-ng-repeat="(pidx,pval) in presentation.presentations" class="card-container">
+											<div flex="10" layout="center center" title="File type: PDF" class="infographic-card-icon infographic-card-icon--pdf"><!-- <img src="../images/file-icon/pdf-icon.png" class="md-avatar" style="width:100%;height:auto;"/> --><!--
+											-->.pdf<!--
+											--></div>		
+											<div flex="90" layout="column">
+												<md-card-title>
+													<md-card-title-text class="ta-left">
+														<span class="md-headline" style="font-size:1.25em;line-height:1em;">{{pval.title}}</span>
+														<span class="md-subhead" title="{{pval.author}}" style="line-height:1em;">{{pval.author}}</span>
+													</md-card-title-text>
+												</md-card-title>
+												<md-card-actions layout="row" layout-align="end center">
+													<md-button class="md-accent" data-ng-click="download_documentation(pval.src)"><strong>Open</strong></md-button>
+												</md-card-actions>	
+											</div>							            	
+										</md-card>
+									</div>
+								</md-content>
+								<md-card flex="45" layout="row" data-ng-repeat="(idx,presentation) in activity.presentations" data-ng-if="!presentation.eventDay"  class="card-container">
+									<div flex="10" layout="center center" title="File type: PDF" class="infographic-card-icon infographic-card-icon--pdf"><!-- <img src="../images/file-icon/pdf-icon.png" class="md-avatar" style="width:100%;height:auto;"/> --><!--
+									-->.pdf<!--
+									--></div>		
+									<div flex="90" layout="column">
+										<md-card-title>
+											<md-card-title-text class="ta-left">
+												<span class="md-headline" style="font-size:1.25em;line-height:1em;" title="{{presentation.title}}">{{presentation.title}}</span>
+												<span class="md-subhead" title="{{presentation.author}}" style="line-height:1em;">{{presentation.author}}</span>
+											</md-card-title-text>
+										</md-card-title>
+										<md-card-actions layout="row" layout-align="end center">
+											<md-button class="md-accent" data-ng-click="download_documentation(pval.src)"><strong>Open</strong></md-button>
+										</md-card-actions>	
+									</div>		
+								</md-card>
+							</div>	
 						</p>
 					</md-content>
 				</md-tab>
@@ -78,7 +93,6 @@
 				</md-tab> -->
 			</md-tabs>
 			<div class="ta-left" data-ng-show="no_content_elem==true">
-				
 			</div>
 		</md-content>	
 	</div>

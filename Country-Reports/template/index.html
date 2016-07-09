@@ -1,55 +1,36 @@
+<header class="wd-100">   
+    <div class="mxw-80 ta-left">
+        <h1 class="md-display-2">Country Reports</h1>  
+    </div>   
+</header>
 
 <div class="wd-100">
-    <md-content layout="row">
-        <div flex="33" data-ng-repeat="(k,cr) in countryreports" title="{{cr.title}}">
-            <md-card>
-                <!-- <img data-ng-src="img/{{cr.card_img}}" class="md-card-image" alt="{{cr.title}}" width="100%" style="max-height: 270px !important; "/>
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">{{cr.title}}</span>
-                        <span class="md-subhead">{{cr.date}}</span>
-                    </md-card-title-text>
-                </md-card-title>
-                <md-divider></md-divider>
-                <md-card-actions layout="row" layout-align="start center">
-                    <md-button class="md-raised md-accent" data-ng-click="goto_activity(cr.id)">Open</md-button>
-                    <md-button class="md-accent" data-ng-click="goto_activity(cr.id)">Open</md-button>
-                </md-card-actions> -->
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">{{cr.title}}</span>
-                        <span class="md-subhead">{{cr.date}}</span>
-                    </md-card-title-text>
-                    <md-card-title-media>
-                        <div class="md-media-md card-media">
-                            <img data-ng-src="img/{{cr.card_img}}" class="md-card-image" alt="{{cr.title}}"/>
-                        </div>
-                    </md-card-title-media>
-                </md-card-title>
-                <md-card-actions layout="row" layout-align="end center">
-                    <md-button class="md-accent" data-ng-click="goto_activity(cr.id)">Open</md-button>
-                </md-card-actions>
-            </md-card>            
-        </div>
-    </md-content>    
+    <div class="mxw-80 ta-right">
+        <md-button class="md-primary md-raised fnt--white" href="#/Reporting-Templates">Reporting Templates</md-button>  
+    </div>
 </div>
 
-<!-- <div class="page-content" style="padding-bottom:50px;">
-    <div id="subcontent">
-        <h1 style="padding-bottom:0px;margin-bottom:0px;">EITI Report</h1>
-        <small class="lastupdated-mark">Updated on {{lastUpdated}}</small>
-        <div style="margin-top:25px;" data-ng-if="countryreports.length > 0" data-ng-show="countryreports.length > 0"> 
-            <div class="fl-left chips w25" data-ng-repeat="(k,cr) in countryreports" title="{{cr.title}}">
-                <div class="fl-left chips-excerpt--noico ta-left">
-                    <span data-ng-click="goto_activity(cr.id)" style='font-weight:600;'>{{cr.title}}</span><br/>
-                    <small>{{cr.date}}</small>    
-                </div>
-                <div class="fl-right thumb ta-center chips-thumb--open"  title="{{cr.title}}" data-ng-click="goto_activity(cr.id)">
-                    <img class="va-mid" src="../../images/icons/svg/right154--white.svg" alt="{{cr.title}}"  title="{{cr.title}}" width="16px" style="margin:9px auto;"/>
-                </div>
+<div class="wd-100">
+    <div class="mxw-80">
+        <md-content layout="row">
+            <div flex="33" data-ng-repeat="(k,cr) in countryreports" title="{{cr.title}}">
+                <md-card>
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">{{cr.title}}</span>
+                            <span class="md-subhead">{{cr.date}}</span>
+                        </md-card-title-text>
+                        <md-card-title-media>
+                            <div class="md-media-md card-media">
+                                <img data-ng-src="{{cr.card_img}}" class="md-card-image" alt="{{cr.title}}"/>
+                            </div>
+                        </md-card-title-media>
+                    </md-card-title>
+                    <md-card-actions layout="row" layout-align="end center">
+                        <md-button class="md-accent" data-ng-click="goto_activity(cr.id)"><strong>Open</strong></md-button>
+                    </md-card-actions>
+                </md-card>            
             </div>
-            <div class="clearfix"></div>
-        </div>
-        <p data-ng-if="countryreports.length == 0">No country report found</p>
-    </div>
-</div> -->
+        </md-content>        
+    </div>    
+</div>

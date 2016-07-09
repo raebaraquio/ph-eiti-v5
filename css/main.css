@@ -54,3 +54,27 @@ footer {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#234b70', endColorstr='#112537', GradientType=1 );
 }
 
+a {
+	color: rgba(35,75,112,1);
+}
+
+.navLink {
+	color: rgba(35,75,112,1);	
+	font-size: 0.8em;
+}
+
+.navLink:hover {
+	cursor: pointer;
+}
+
+.fnt--bluepalette {
+	color: rgba(35,75,112,1);
+}
+
+.fnt--white span {
+	color: #fff;
+}
+
+#principles-list li {
+	padding:5px;
+}

@@ -8,19 +8,19 @@
 
 <div class="w-100">
 	<div class="mxw-80">
-		<div flex layout-fill layout="column" layout-wrap>
-			<md-list flex class="resources-list">
-				<md-list-item  data-ng-repeat="(kfile,study) in studies"  class="md-2-line" >
-					<!-- <md-icon md-svg-icon="{{phone.options.icon}}" ng-if="phone.options.icon" ng-class="{'md-avatar-icon': phone.options.avatarIcon}"></md-icon>
-					<img ng-src="{{phone.options.face}}?25" class="md-avatar" alt="{{phone.options.face}}" ng-if="phone.options.face"/> -->
-					<div class="md-list-item-text">
-						<h3 title="{{study.title}}">{{study.title}}</h3>
-					</div>
-					<md-button class="md-secondary md-raised" data-ng-show="study.file!==''" data-ng-click="goto_file(study.file)" >Open</md-button>
-					<h5 data-ng-show="study.file===''" class="md-warn" aria-label="unavailable">Unavailable</h5>
-				</md-list-item>
-			</md-list>
-		</div>
+		<div flex="100" layout-fill layout="row" layout-wrap>   
+	        <md-card flex="45" layout="row" data-ng-repeat="(kfile,study) in studies" class="card-container">
+	            <md-card-title flex="70">
+	                <md-card-title-text class="ta-left">
+	                    <span class="md-headline" style="font-size:1.25em;line-height:1em;" title="{{study.title}}">{{study.title}}</span>
+	                </md-card-title-text>
+	            </md-card-title>
+	            <md-card-actions flex="30" layout="row" layout-align="end center">
+	                <md-button class="md-accent" data-ng-show="study.file!==''" data-ng-click="goto_file(study.file)" alt="Open/Download {{study.title}}"  title="Open/Download {{study.title}}"><strong>Open</strong></md-button>
+	                <md-button class="md-secondary" data-ng-show="study.file===''" title="{{study.title}} is unavailable"><strong>Unavailable</strong></md-button>
+	            </md-card-actions>
+	        </md-card>
+	    </div>  
 	</div>
 </div>
 

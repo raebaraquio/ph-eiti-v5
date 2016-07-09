@@ -56,12 +56,12 @@ angular.module('navMod',['ngRoute','utilsModule'])
 										href: "Industry"
 									}
 								]
-							}
-							/*,{
+							},
+							{
 								id:"secretariat",
 								name: "Secretariat",
 								href: "Secretariat"
-							}*/
+							}
 						]
 					},
 					{
