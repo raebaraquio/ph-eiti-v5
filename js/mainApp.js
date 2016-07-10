@@ -186,13 +186,63 @@ pheiti.config(function($mdThemingProvider) {
 	
 });
 
-/* ph.config(function($routeProvider){
- 	$routeProvider
- 	.when()
-}); */
+pheiti.factory('homeNewsFactory',['$http',
+    function($http){
+    var homeNewsFactory = null;
+    homeNewsFactory = {
+        getnews : function(data) {
+            var p = $http({
+                url:'./rest/functions/news-get-pagination.php',
+                method: 'POST',
+                data:data
+            });
+            return p;
+        }
+    }
+    return homeNewsFactory;
+}]);
 
-// pheiti.config(function($mdThemingProvider) {
-//   $mdThemingProvider.theme('default')
-    // .primaryPalette('pink')
-    // .accentPalette('orange');
-// });
+pheiti.controller('homeNewsController',['$scope','homeNewsFactory','$sce',
+    function($scope,homeNewsFactory,$sce){
+
+    function getNews() {
+        $scope.homenews = []
+        $scope.lastUpdated = ""
+        var obj = {
+            id:'',
+            section:'PH-EITI in the News',
+            published:true,
+            page:'index',
+            pageLimit:6,
+            pageNum:1
+        }
+        $scope.newspromise = homeNewsFactory.getnews(obj);
+        $scope.newspromise.then(function(data){
+            console.log(data)
+            if (typeof(data.data) == 'string') {
+            }
+            else {  
+                $scope.homenews = data.data
+                for (var i in $scope.homenews) { 
+                    if ($scope.homenews[i].brief != null && $scope.homenews[i].brief != '') {
+                        $scope.homenews[i].brief = $sce.trustAsHtml('<div style="font-size:13px;">'+shorten($scope.homenews[i].brief,300)+'</div>');
+                    }
+                    if (i==0) {
+                        $scope.lastUpdated = $scope.homenews[i].dateposted
+                    }
+                }
+            }
+        })
+    }
+
+    function shorten(text, maxLength) {
+        var ret = text;
+        if (ret.length > maxLength) {
+            ret = ret.substr(0,maxLength-3) + "...";
+        }
+        return ret;
+    }
+
+    getNews();
+
+}]);

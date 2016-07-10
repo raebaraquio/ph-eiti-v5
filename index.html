@@ -26,13 +26,13 @@
                     <a href="./"><img class="gutters" src="images/logo-without-text.png" alt="PH-EITI" title="PH-EITI" width="165"/></a>
                 </md-content>
                 <md-content flex="50" class="ta-right" id="logo-wrapper__social" style="padding-top:0.4em;">
-                    <img src="images/icons/facebook.png" class="va-mid" alt="" width="32px" /><!--
-                    --><img src="images/icons/twitter.png" class="va-mid" alt="" width="32px" /><!--
-                    --><img src="images/icons/youtube.png" class="va-mid" alt="" width="32px" />
+                    <a href="javascript:window.open('https://www.facebook.com/PhilippineEITI/')" title="Philippine EITI"><img src="images/icons/facebook.png" class="va-mid" alt="" width="32px" /></a>&nbsp;&nbsp;<!--
+                            --><a href="javascript:window.opent('https://twitter.com/ph_eiti')" title="@PH_EITI"><img src="images/icons/twitter.png" class="va-mid" alt="" width="32px" /></a>
                 </md-content>
             </md-content>
         </div>  
     </div>
+
     <div class="wd-100" data-ng-controller="NavigationController">
         <md-nav-bar nav-bar-aria-label="navigation links" md-selected-nav-item="active.mnav">
             <md-nav-item data-ng-repeat="(kmnav,vmnav) in main_nav" md-nav-href="{{vmnav.href}}" name="{{vmnav.id}}" class="mnav-item">{{vmnav.name}}
@@ -54,64 +54,130 @@
         </div>   
     </header>
 
+    <div class="wd-100">   
+        <div class="mxw-80"><br/><br/></div>   
+    </div>
+
     <div class="wd-100" id="home-infographic">  <!-- Infographic Feature --> 
         <div class="mxw-80">
-            <md-content layout flex>
-            </md-content>
+            <!-- <md-content layout flex>
+            </md-content> -->
         </div>   
     </div>
 
-    <div class="wd-100" id="home-news"> <!-- News -->
+    <div class="wd-100" id="home-news" data-ng-controller="homeNewsController"> <!-- News -->
         <div class="mxw-80">
-            <md-content layout flex>
-                <md-content flex="50" layout="column">
-                    <h1>Insert news (pic+title) highlight here</h1>
+            <md-card style="padding-bottom:0px;">
+                <md-content layout="row" flex>
+                    <md-content flex="40" layout="column">
+                        <div id="home-newsfeature-photo">
+                            <h1 class="fnt--white" title="PH bags 2016 EITI International Chair Award in Lima, Peru">PH bags 2016 EITI International Chair Award in Lima, Peru</h1>
+                            <div layout="row" class="md-padding">
+                                <div flex="70" layout="column">
+                                    <span class="fnt--white">IN THE NEWS</span>
+                                    <span class="fnt--white fnt--sm">March 07, 2016 10:12 PM </span>
+                                </div>
+                                <div flex="30" layout="row" layout-align="end center">
+                                    <a class="fnt--white sref" href="./News/#/In-the-News/PH-bags-2016-EITI-International-Chair-Award-in-Lima-Peru"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_white_18px.svg"></md-icon> <span class="fnt--white fnt--md">Read Story</span> </a>
+                                </div>
+                            </div>
+                        </div>
+                    </md-content>
+                    <md-content flex="60" layout="column">
+                        <div class="md-padding">
+                            <h3 style="padding:0;margin:0;line-height:1em;">IN THE NEWS</h3>
+                        </div>
+                        <md-list>
+                            <md-list-item class="md-2-line" data-ng-repeat="(kn,news) in homenews" data-ng-if="kn < 5" style="min-height:4.2em">
+                                <div class="md-list-item-text">
+                                    <h2 class="fnt--bluepalette" title="{{news.title}}" style="font-size:1.3em;line-height:1em;padding:0px;margin:0px;"><a class="sref fnt--bluepalette__link" href="./News/#/In-the-News/{{news.id}}">{{news.title}}</a></h2>
+                                    <span class="ww-breakword"><a data-ng-show="news.readmore_source" class="sref" href="{{news.readmore_source}}">{{news.readmore_sourcewebsite}} |</a> {{news.dateposted}}</span>
+                                </div>
+                            </md-list-item>
+                            <md-list-item class="md-2-line" data-ng-repeat="(kn,news) in homenews" data-ng-if="kn==5 && homenews.length > 6" style="min-height:3em;">
+                                <div class="md-list-item-text ta-right">
+                                    <a class="sref" href="./News/#/"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_black_24px.svg"></md-icon> <span class="fnt--md">Click here for more news</span> </a>
+                                </div>
+                            </md-list-item>
+                        </md-list>
+                    </md-content>
                 </md-content>
-                <md-content flex="50" layout="column">
-                    <md-list>
-                        <md-list-item class="md-3-line">
-                            <!-- data-ng-repeat="(kiam,viam) in mem.alternate"> -->
-                            <div class="md-list-item-text">
-                                <h3>News title</h3>
-                                <h4 class="ww-breakword">Source | Date</h4>
-                                <p class="ww-breakword"></p>
-                            </div>
-                        </md-list-item>
-                        <md-list-item class="md-3-line">
-                            <!-- data-ng-repeat="(kiam,viam) in mem.alternate"> -->
-                            <div class="md-list-item-text">
-                                <h3>News title</h3>
-                                <h4 class="ww-breakword">Source | Date</h4>
-                                <p class="ww-breakword"></p>
-                            </div>
-                        </md-list-item>
-                        <md-list-item class="md-3-line">
-                            <!-- data-ng-repeat="(kiam,viam) in mem.alternate"> -->
-                            <div class="md-list-item-text">
-                                <h3>News title</h3>
-                                <h4 class="ww-breakword">Source | Date</h4>
-                                <p class="ww-breakword"></p>
-                            </div>
-                        </md-list-item>
-                    </md-list>
-                </md-content>
-            </md-content>
+            </md-card>
         </div>   
     </div>
 
     <div class="wd-100" id="home-misc"> <!-- Related Links x Activities Grid -->
         <div class="mxw-80">
+            <md-card>
+                 <md-grid-list md-cols="3" md-row-height="1:0.75" md-gutter="4px">
+                    <md-grid-tile class="sitepalette-yellow" md-colspan="2">
+                        <div layout="column" class="md-padding">
+                            <span class="md-headline fnt--white">CONTRACTS PORTAL</span>
+                            <h1 class="fnt--white">An Open Database of Mining, Oil and Gas contracts in the Philippines</h1>
+                            <div layout="row" class="ta-left">
+                                <a class="sref" href="http://contracts.ph-eiti.org"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_white_24px.svg"></md-icon> <span class="fnt--md fnt--white">Click here</span> </a>
+                            </div>    
+                        </div>                        
+                        <!-- <md-grid-tile-footer>
+                            <h3 class="fnt--white">Mining, Oil and Gas contracts in the Philippines</h3>
+                            <h3></h3>
+                        </md-grid-tile-footer> -->
+                    </md-grid-tile>
+                    <md-grid-tile class="red" md-rowspan="2" id="home-activitiesfeature-photo">
+                        <div layout="column" class="md-padding">
+                            <h1 class="fnt--white">4th National Conference</h1>
+                            <div layout="row" flex>
+                                <div flex="60" layout="column">
+                                    <span class="fnt--white">ACTIVITIES</span>
+                                    <span class="fnt--white fnt--sm">March 2016</span>
+                                </div>
+                                <div flex="40" layout="row" layout-align="end center">
+                                    <a class="fnt--white sref" href="javascript:window.open('http://progrep.eiti.org/2016/glance')"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_white_18px.svg"></md-icon> <span class="fnt--white fnt--md">Read Story</span> </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <md-grid-tile-footer>
+                            <h3>#2: (1r x 1c)</h3>
+                        </md-grid-tile-footer> -->
+                    </md-grid-tile>
+                    <md-grid-tile class="sitepalette-blue" layout="column">
+                        <div layout="column" class="md-padding">
+                            <h1 class="fnt--white">EITI Progress Report 2016</h1>
+                            <div layout="row" class="ta-left">
+                                <a class="fnt--white sref" href="javascript:window.open('http://progrep.eiti.org/2016/glance')"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_white_18px.svg"></md-icon> <span class="fnt--white fnt--md">Read Story</span> </a>
+                            </div>
+                        </div>                        
+                        <!-- <md-grid-tile-footer>
+                            <h3 class="fnt--white">EITI Progress Report 2016</h3>
+                        </md-grid-tile-footer> -->
+                    </md-grid-tile>
+                    <md-grid-tile class="sitepalette-brown">
+                        <div layout="column" class="md-padding">
+                            <h1 class="fnt--white">Mineral Industry Statistics</h1>
+                            <a class="fnt--white sref" href="javascript:window.open('http://mgb.gov.ph/2015-05-13-01-44-56/2015-05-13-01-47-51')"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_white_18px.svg"></md-icon> <span class="fnt--white fnt--md">Click here</span></a>
+                        </div>
+                        <!-- <md-grid-tile-footer>
+                            <h3 class="fnt--white">Mineral Industry Statistics</h3>
+                        </md-grid-tile-footer> -->
+                    </md-grid-tile>
+                </md-grid-list>
+            </md-card>           
         </div>   
     </div>
 
     <div class="wd-100" id="home-videos">   
         <div class="mxw-80">
-            <md-content layout flex>
-                <md-content flex="50" layout="column">
+            <md-card class="md-padding">
+                <h3 style="padding:0;margin:0;line-height:2em;">VIDEOS</h3>
+                <md-content layout="row">
+                    <md-content flex="50" layout="column" class="ta-center" layout-align="center center">
+                        <iframe width="420" height="280" src="//www.youtube.com/embed/5TTq5W9rklw?rel=0" frameborder="0" allowfullscreen></iframe>
+                    </md-content>
+                    <md-content flex="50" layout="column" class="ta-center" layout-align="center center">
+                        <iframe width="420" height="280" src="https://www.youtube.com/embed/PbZgbhnlrpM" frameborder="0" allowfullscreen></iframe>
+                    </md-content>
                 </md-content>
-                <md-content flex="50" layout="column">
-                </md-content>
-            </md-content>
+            </md-card>
         </div>   
     </div>
 
@@ -123,11 +189,39 @@
     </div>
 
     <footer class="wd-100">   
-        <div class="mxw-80">
-            <md-content layout flex>
-                <md-content flex="50" layout="column">
+        <div class="mxw-80" class="md-padding">
+            <md-content layout="row">
+                <md-content flex="30" layout="column">
+                    <div>
+                        <a tabindex="-1" href="./"><img src="images/white-logo-no-desc.png" alt="PH-EITI" title="PH-EITI" style="width:30%"/></a>
+                    </div>
+                    <div>    
+                        <ul class="footer-nav-list">
+                            <li><a href="./What-is-EITI">What is EITI</a></li>
+                            <li><a href="./About-PH-EITI">About PH-EITI</a></li>
+                            <li><a href="./Resources">Resources</a></li>
+                            <li><a href="./Activities">Activities</a></li>
+                            <li><a href="./News">News</a></li>
+                            <li><a href="./Contry-Reports">Country Reports</a></li>
+                        </ul>
+                    </div>
                 </md-content>
-                <md-content flex="50" layout="column">
+                <md-content flex="70" layout="column">
+                    <div class="ta-right" layout="column">
+                        <div>
+                            <input type="email" placeholder="Email Address" title="Get updates by subscribing to our newsletter." id="subscribe-email"/><md-button class="md-accent md-raised"><strong>Subscribe</strong></md-button>
+                            <a href="javascript:window.open('https://www.facebook.com/PhilippineEITI/')" title="Philippine EITI"><img src="images/icons/facebook.png" class="va-mid" alt="" width="32px" /></a>&nbsp;&nbsp;<!--
+                            --><a href="javascript:window.opent('https://twitter.com/ph_eiti')" title="@PH_EITI"><img src="images/icons/twitter.png" class="va-mid" alt="" width="32px" /></a>
+                        </div>
+                    </div>
+                    <div class="ta-right footer-secretariat-contact">
+                        <strong>PH-EITI Secretariat</strong>
+                        <p>
+                            5/F DOF building, Roxas Blvd. Corner<br/>Pablo Ocampo St., Manila 1004, Philippines<br/>
+                            <md-icon md-svg-icon="./images/icons/svg/ic_email_white_18px.svg"></md-icon> info@ph-eiti.com
+                            <md-icon md-svg-icon="./images/icons/svg/ic_phone_white_18px.svg"></md-icon> +632-400-6882
+                        </p>
+                    </div>
                 </md-content>
             </md-content>
         </div>   

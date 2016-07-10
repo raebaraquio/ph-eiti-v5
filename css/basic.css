@@ -78,3 +78,10 @@
 .txt-trans-title { text-transform: capitalize; }
 .txt-trans-upper { text-transform: uppercase; }
 .txt-trans-lower { text-transform: lowercase; }
+
+
+.fnt--sm { font-size: 0.75em; }
+.fnt--md { font-size: 0.85em; }
+
+.sref { text-decoration: none; }
+.sref:hover { cursor: pointer; }

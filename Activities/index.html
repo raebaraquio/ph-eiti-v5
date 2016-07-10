@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" data-ng-app="activities">
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="description" content="PH-EITI Activities">
     <meta name="keywords" content="PH-EITI Actvities, Activity Documentation">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="-1">
     <meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Activities | ph-eiti.org</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Activities | ph-eiti.org</title>
     <link rel="icon" type="image/gif" href="../images/eitifavicon.ico">
     <link rel="stylesheet" href="../css/angular-material.min.css?v1.1.0-rc2"> 
     <link rel="stylesheet" href="../css/font-awesome.min.css"> 
@@ -21,7 +21,15 @@
 <body ng-cloak>
     <div class="wd-100" id="logo-wrapper">
         <div class="mxw-80" id="logo-wrapper--inner">
-            <img class="gutters" src="../images/logo-without-text.png" alt="PH-EITI" title="PH-EITI" width="165"/> 
+            <md-content layout flex layout="row">
+                <md-content flex="50" id="logo-wrapper__main" >
+                    <a href="../"><img class="gutters" src="../images/logo-without-text.png" alt="PH-EITI" title="PH-EITI" width="165"/></a>
+                </md-content>
+                <md-content flex="50" class="ta-right" id="logo-wrapper__social" style="padding-top:0.4em;">
+                    <a href="javascript:window.open('https://www.facebook.com/PhilippineEITI/')" title="Philippine EITI"><img src="../images/icons/facebook.png" class="va-mid" alt="" width="30px" /></a> <!--
+                            --><a href="javascript:window.opent('https://twitter.com/ph_eiti')" title="@PH_EITI"><img src="../images/icons/twitter.png" class="va-mid" alt="" width="30px" /></a>
+                </md-content>
+            </md-content>
         </div>  
     </div>
     <div class="wd-100" data-ng-controller="NavigationController"> 
@@ -38,43 +46,53 @@
             </md-nav-item>
         </md-nav-bar
     </div>
-    
-    <!-- Example: Navigation using menus with sub-items/menus -->
-    <!--md-toolbar class="md-menu-toolbar" style="display:none;">
-        <div layout="row">
-           <div>
-              <h2 class="md-toolbar-tools">Heading</h2>
-              <md-menu-bar>
-                 <md-menu>
-                    <button ng-click="$mdOpenMenu()" ng-mouseover="$mdOpenMenu()">Menu Item 1</button>
-                    <md-menu-content>
-                       <md-menu-item>
-                          <md-button ng-click="ctrl.sampleAction('share', $event)">Menu 1 - Sub Item</md-button>
-                       </md-menu-item>
-                       <md-menu-divider></md-menu-divider>
-                       <md-menu-item>
-                          <md-menu>
-                             <md-button ng-click="$mdOpenMenu()">Learn</md-button>
-                             <md-menu-content>
-                                <md-menu-item><md-button ng-click="ctrl.sampleAction('HTML5', $event)">Item 1</md-button></md-menu-item>
-                                <md-menu-item><md-button ng-click="ctrl.sampleAction('jQuery', $event)">Item 2</md-button></md-menu-item>
-                                <md-menu-item><md-button ng-click="ctrl.sampleAction('AngularJS', $event)">Item 3</md-button></md-menu-item>
-                                <md-menu-item><md-button disabled="disabled" ng-click="ctrl.sampleAction('AngularJS 2.0', $event)">Item 4</md-button></md-menu-item>
-                                <md-menu-divider></md-menu-divider>
-                                <md-menu-item><md-button ng-click="ctrl.sampleAction('CSS', $event)">Item 5</md-button></md-menu-item></md-menu-content>
-                          </md-menu>
-                       </md-menu-item>
-                    </md-menu-content>
-                 </md-menu>
-              </md-menu-bar>
-           </div>
-        </div>
-     </md-toolbar-->
-
 
     <div class="wd-100">   
         <div data-ng-view></div>
     </div>
+
+    <div class="wd-100">
+        <div class="mxw-80"><br/><br/></div>
+    </div>
+
+    <footer class="wd-100">   
+        <div class="mxw-80" class="md-padding">
+            <md-content layout="row">
+                <md-content flex="30" layout="column">
+                    <div>
+                        <a tabindex="-1" href="../"><img src="../images/white-logo-no-desc.png" alt="PH-EITI" title="PH-EITI" style="width:30%"/></a>
+                    </div>
+                    <div>    
+                        <ul class="footer-nav-list">
+                            <li><a href="../What-is-EITI">What is EITI</a></li>
+                            <li><a href="../About-PH-EITI">About PH-EITI</a></li>
+                            <li><a href="../Resources">Resources</a></li>
+                            <li><a href="../Activities">Activities</a></li>
+                            <li><a href="../News">News</a></li>
+                            <li><a href="../Contry-Reports">Country Reports</a></li>
+                        </ul>
+                    </div>
+                </md-content>
+                <md-content flex="70" layout="column">
+                    <div class="ta-right" layout="column">
+                        <div>
+                            <input type="email" placeholder="Email Address" title="Get updates by subscribing to our newsletter." id="subscribe-email"/><md-button class="md-accent md-raised"><strong>Subscribe</strong></md-button>
+                            <a href="javascript:window.open('https://www.facebook.com/PhilippineEITI/')" title="Philippine EITI"><img src="../images/icons/facebook.png" class="va-mid" alt="" width="32px" /></a>&nbsp;&nbsp;<!--
+                            --><a href="javascript:window.opent('https://twitter.com/ph_eiti')" title="@PH_EITI"><img src="../images/icons/twitter.png" class="va-mid" alt="" width="32px" /></a>
+                        </div>
+                    </div>
+                    <div class="ta-right footer-secretariat-contact">
+                        <strong>PH-EITI Secretariat</strong>
+                        <p>
+                            5/F DOF building, Roxas Blvd. Corner<br/>Pablo Ocampo St., Manila 1004, Philippines<br/>
+                            <md-icon md-svg-icon="../images/icons/svg/ic_email_white_18px.svg"></md-icon> info@ph-eiti.com
+                            <md-icon md-svg-icon="../images/icons/svg/ic_phone_white_18px.svg"></md-icon> +632-400-6882
+                        </p>
+                    </div>
+                </md-content>
+            </md-content>
+        </div>   
+    </footer>
 
     <script src="../js/vendor/angular.js?v=1.4"></script>
     <script src="../js/vendor/angular-animate.js?v=1.01"></script>
@@ -92,7 +110,7 @@
     <!--<script src="js/vendor/moment.min.js?v1.01"></script>-->
     <script src="../js/modules/utilsModule.js?v=1.01"></script>
     <script src="../js/modules/navigation.js"></script>
-	<script src="js/activitiesApp.js"></script>
+    <script src="js/activitiesApp.js"></script>
 
     <script src="js/factories/ActivitiesFactory.js?v=1.0"></script>
     <script src="js/controllers/ActivitiesController.js?v=1.0"></script>
