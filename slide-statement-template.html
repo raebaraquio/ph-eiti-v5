@@ -1,0 +1,11 @@
+<div class="md-padding" laypout="column" data-ng-controller="statementCarouselController">
+	<div class="ta-center" style="padding-top:1em;">
+		<em class="md-headline" style="font-size:1.2em;">{{slideItem.statedBy}}</em>
+	</div>
+	<div class="mxw-90 ta-center md-padding">
+		<h2 class="fnt--white">"{{slideItem.pullquote}}"</h2>	
+	</div>
+	<div class="ta-center">
+		<a class="sref" data-ng-click="openStatement(slideItem.link)" title="{{slideItem.statedBy}}"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_white_24px.svg"></md-icon> <span class="fnt--md fnt--white">Read full statement</span></a>
+	</div>	
+</div>

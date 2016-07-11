@@ -85,3 +85,10 @@
 
 .sref { text-decoration: none; }
 .sref:hover { cursor: pointer; }
+
+.fnt--white,
+.fnt--white span { color: #fff; }
+.fnt--black { color: #000; }
+.fnt--gray { color: gray; }
+.fnt--red { color:#c0392b; }
+.fnt--emerald { color: #2ecc71; }

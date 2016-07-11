@@ -1,10 +1,17 @@
 <header class="wd-100">   
-    <div class="mxw-80 ta-left">
-    	<h5 style="padding-bottom:0;margin-bottom:0;">NEWS</h5>
-        <h1 class="md-display-2" style="margin-top:0;padding-top:0;">In the News</h1>  
-        <p></p>
+    <div class="mxw-80 ta-left" id="header-wrapper">
+        <p>NEWS</p>
+        <h1 class="md-display-2">In the News</h1>
     </div>   
 </header>
+
+<div class="w-100" id="breadcrumb-wrapper">
+    <div class="mxw-80">
+        <md-button data-ng-href="../" class="md-fab md-mini md-primary" aria-label="Go to Homepage" title="Go to Homepage">
+            <md-icon md-svg-src="../images/icons/svg/ic_home_white_24px.svg"></md-icon>
+        </md-button>
+    </div>
+</div>
 
 <div class="w-100">
 	<div class="mxw-80" data-ng-show="newsandevents.length > 0">
@@ -48,13 +55,17 @@
 					<h3 tabindex="-1" class="md-heading padd-bt-0 mrgn-bt-0 fnt--bluepalette newsTitle" title="{{ne.title}}" data-ng-click="openNews(ne)">{{ne.title}}</h3>
 					<h4 class="padd-0 mrgn-0" data-ng-show="ne.subhead!=null">{{ne.subhead}}</h4>
 					<div layout="row" style="font-size:0.85em;">
-						{{ne.dateposted}}<span data-ng-ng-show="ne.author">&nbsp;|&nbsp;{{ne.author}} <span data-ng-show="ne.readmore_source">, </span><a data-ng-show="ne.readmore_source" href="{{ne.readmore_source}}">{{ne.readmore_sourcewebsite}}</a></span>
+						<span data-ng-ng-show="ne.author">{{ne.author}} <span data-ng-show="ne.readmore_source">, </span><a data-ng-show="ne.readmore_source" href="{{ne.readmore_source}}">{{ne.readmore_sourcewebsite}}</a> &nbsp;</span><!--  {{ne.dateposted}} -->
+					</div>
+					<div>
+						<span class="fnt--sm fnt--gray">{{ne.dateposted}}</span>
 					</div>
 					<div style="margin-top:0.5em;">
 						<div data-ng-bind-html="ne.brief"></div>	
 					</div>					
 					<div layout="row" layout="end center">
-						<md-button class="md-accent" data-ng-href="#/In-the-News/{{ne.id}}" aria-label="{{ne.readmore_label}}"><strong>{{ne.readmore_label}}</strong></md-button>	
+						<!-- <md-button class="md-accent" data-ng-href="#/In-the-News/{{ne.id}}" aria-label="{{ne.readmore_label}}"><strong>{{ne.readmore_label}}</strong></md-button> -->
+						 <md-button class="md-accent" data-ng-href="#/In-the-News/{{ne.id}}" aria-label="{{ne.readmore_label}}">{{ne.readmore_label}}</md-button> 
 					</div>
 					<md-divider data-ng-if="!$last"></md-divider>
 				</md-list-item>				
@@ -64,3 +75,6 @@
 	</div>
 </div>
 
+<div class="w-100">
+	<div class="mxw-80"><br /><br /></div>
+</div>

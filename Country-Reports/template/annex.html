@@ -1,10 +1,17 @@
 <header class="wd-100">   
-    <div class="mxw-80 ta-left">
-        <h5 style="padding-bottom:0;margin-bottom:0;">COUNTRY REPORTS</h5>
-        <h1 class="md-display-2"  style="margin-top:0;padding-top:0;">{{current_annex.title}}</h1>
-        <p></p>
+    <div class="mxw-80 ta-left" id="header-wrapper">
+        <p>COUNTRY REPORTS - {{active_country_report}}</p>
+        <h1 class="md-display-2">{{current_annex.title}}</h1>
     </div>   
 </header>
+
+<div class="w-100" id="breadcrumb-wrapper">
+    <div class="mxw-80">
+        <md-button data-ng-href="#/{{active_country_report_link}}" class="md-fab md-mini md-primary" aria-label="Back to {{active_country_report}}" title="Back to {{active_country_report}}">
+            <md-icon md-svg-src="../images/icons/svg/ic_navigate_before_white_24px.svg"></md-icon>
+        </md-button>
+    </div>
+</div>
 
 <div class="wd-100">
     <div class="mxw-80 ta-left" data-ng-show="current_annex.file">

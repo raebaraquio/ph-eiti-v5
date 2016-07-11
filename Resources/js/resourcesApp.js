@@ -1,4 +1,4 @@
-var resourcesApp = angular.module('resources',['ngRoute','ngSanitize','ngCookies','navMod','ngMaterial','utilsModule']);
+var resourcesApp = angular.module('resources',['ngRoute','ngSanitize','ngCookies','navMod','ngMaterial','utilsModule','ngDialog','cgBusy']);
 
 resourcesApp.config(function($routeProvider){
  	$routeProvider
@@ -258,3 +258,131 @@ resourcesApp.config(function($mdThemingProvider) {
        .backgroundPalette('customBackground')
 	
 });
+
+resourcesApp.service('anchorSmoothScroll', function(){
+    this.scrollTo = function(eID) {
+
+        // This scrolling function 
+        // is from http://www.itnewb.com/tutorial/Creating-the-Smooth-Scroll-Effect-with-JavaScript
+        
+        var startY = currentYPosition();
+        var stopY = elmYPosition(eID);
+        var distance = stopY > startY ? stopY - startY : startY - stopY;
+        if (distance < 100) {
+            scrollTo(0, stopY); return;
+        }
+        var speed = Math.round(distance / 100);
+        if (speed >= 20) speed = 20;
+        var step = Math.round(distance / 25);
+        var leapY = stopY > startY ? startY + step : startY - step;
+        var timer = 0;
+        if (stopY > startY) {
+            for ( var i=startY; i<stopY; i+=step ) {
+                setTimeout("window.scrollTo(0, "+leapY+")", timer * speed);
+                leapY += step; if (leapY > stopY) leapY = stopY; timer++;
+            } return;
+        }
+        for ( var i=startY; i>stopY; i-=step ) {
+            setTimeout("window.scrollTo(0, "+leapY+")", timer * speed);
+            leapY -= step; if (leapY < stopY) leapY = stopY; timer++;
+        }
+        
+        function currentYPosition() {
+            // Firefox, Chrome, Opera, Safari
+            if (self.pageYOffset) return self.pageYOffset;
+            // Internet Explorer 6 - standards mode
+            if (document.documentElement && document.documentElement.scrollTop)
+                return document.documentElement.scrollTop;
+            // Internet Explorer 6, 7 and 8
+            if (document.body.scrollTop) return document.body.scrollTop;
+            return 0;
+        }
+        
+        function elmYPosition(eID) {
+            var elm = document.getElementById(eID);
+            var y = elm.offsetTop;
+            var node = elm;
+            while (node.offsetParent && node.offsetParent != document.body) {
+                node = node.offsetParent;
+                y += node.offsetTop;
+            } return y;
+        }
+
+    };
+});
+
+resourcesApp.controller('returnToTopController',['$scope','$location', 'anchorSmoothScroll',
+    function($scope,$location,anchorSmoothScroll){
+
+    $scope.scrollTo=function(eID){
+        // $location.hash('logo-wrapper');
+        anchorSmoothScroll.scrollTo(eID);
+    }
+
+}]);
+
+resourcesApp.factory('homeNewsFactory',['$http',
+    function($http){
+    var homeNewsFactory = null;
+    homeNewsFactory = {
+        subscribe : function(data) {
+            var promise = $http({
+                url:'../rest/functions/newsletter-subscribe.php',
+                method: 'POST',
+                data:data
+            })
+            return promise;
+        }
+    }
+    return homeNewsFactory;
+}]);
+
+resourcesApp.controller('footerController',['$scope','ngDialog','homeNewsFactory',
+    function($scope,ngDialog,homeNewsFactory){
+
+    $scope.userfeedback = { message : '',  type: '' }
+    $scope.user = {name : '', email: ''}
+
+    $scope.resetForm=function(){
+        $scope.user.name = ''
+        $scope.user.email = ''
+        $scope.userfeedback.message = '';
+        $scope.userfeedback.type = ''; 
+    }
+
+    $scope.triggerSubscribe=function(){
+        $scope.resetForm();
+        ngDialog.open({ 
+            template: '../template/subscribe-innerpage.html', 
+            className: 'ngdialog-theme-default', 
+            scope:$scope,
+            closeByDocument: true,
+            closeByEscape: true,
+            showClose: true
+        });
+    }
+
+    $scope.subscribe = function() {
+        $scope.subscribePromise = homeNewsFactory.subscribe($scope.user);
+        $scope.subscribePromise.then(function(data){
+            if (data.status==200) {
+                $scope.userfeedback.message = 'Confirmation email sent. Kindly check your inbox please, to confirm your subscription.';
+                $scope.userfeedback.type = 'success';
+                $scope.resetForm();
+                // ngDialog.closeAll();
+            }
+        })
+        .then(null,function(response){
+            switch(response.status) {
+                case 409:
+                    $scope.userfeedback.message = 'Conflict: Email address is already taken.';
+                    $scope.userfeedback.type = 'error';     
+                    break;
+                case 400:
+                    $scope.userfeedback.message = 'Unable to process your request. Please try again.';
+                    $scope.userfeedback.type = 'error';     
+                    break;
+            }
+        })
+    }
+}]);

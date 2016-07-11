@@ -68,12 +68,12 @@ wieApp.factory('HistoryFactory',function(){
 					contentHtml: 'The new EITI standards are adopted during the International Conference in Sydney, Australia. The Philippines is admitted as a candidate country.'
 				},
 				{
-					year:'',
-					date: 'To date',
+					year:2016,
+					date: 'April',
 					badgeClass: 'warning',
-					when: 'To date',
-					content: 'There are 46 countries that are implementing EITI: 29 compliant countries, 17 candidate countries',
-					contentHtml: 'There are 46 countries that are implementing EITI: 29 compliant countries, 17 candidate countries'
+					when: 'As of April 2016',
+					content: 'There are 51 countries that are implementing EITI: 31 compliant countries, 20 candidate countries',
+					contentHtml: 'There are 51 countries that are implementing EITI: 31 compliant countries, 20 candidate countries'
 				}
 			]
 		}

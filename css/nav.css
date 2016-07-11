@@ -11,6 +11,7 @@
 
 .md-nav-bar {
 	background-color: #f7f7f7 !important;
+	z-index: 999;
 }
 
 ._md-nav-bar-list {

@@ -13,6 +13,8 @@
     <link rel="icon" type="image/gif" href="../images/eitifavicon.ico">
     <link rel="stylesheet" href="../css/angular-material.min.css?v1.1.0-rc2"> 
     <link rel="stylesheet" href="../css/font-awesome.min.css"> 
+    <link rel="stylesheet" href="../css/ngDialog-theme-default.css" />
+    <link rel="stylesheet" href="../css/ngDialog.css" />
     <link rel="stylesheet" href="../css/angular-busy.css"/>
     <link rel="stylesheet" href="../css/basic.css"> 
     <link rel="stylesheet" href="../css/main.css"> 
@@ -56,6 +58,14 @@
         <div class="mxw-80"><br/><br/></div>
     </div>
 
+    <div class="w-100" id="backToTop-wrapper" data-ng-controller="returnToTopController">
+        <div class="mxw-80 ta-right">
+            <md-button data-ng-click="scrollTo('logo-wrapper')" class="md-fab md-mini md-secondary" aria-label="Return to top" title="Return to top">
+                <md-icon md-svg-src="../images/icons/svg/ic_keyboard_arrow_up_black_24px.svg"></md-icon>
+            </md-button>
+        </div>
+    </div>
+
     <footer class="wd-100">   
         <div class="mxw-80" class="md-padding">
             <md-content layout="row">
@@ -75,9 +85,9 @@
                     </div>
                 </md-content>
                 <md-content flex="70" layout="column">
-                    <div class="ta-right" layout="column">
+                    <div class="ta-right" layout="column" data-ng-controller="footerController">
                         <div>
-                            <input type="email" placeholder="Email Address" title="Get updates by subscribing to our newsletter." id="subscribe-email"/><md-button class="md-accent md-raised"><strong>Subscribe</strong></md-button>
+                            <!-- <input type="email" placeholder="Email Address" title="Get updates by subscribing to our newsletter." id="subscribe-email"/> --><md-button class="md-accent md-raised" data-ng-click="triggerSubscribe()"><strong>Subscribe</strong></md-button>
                             <a href="javascript:window.open('https://www.facebook.com/PhilippineEITI/')" title="Philippine EITI"><img src="../images/icons/facebook.png" class="va-mid" alt="" width="32px" /></a>&nbsp;&nbsp;<!--
                             --><a href="javascript:window.opent('https://twitter.com/ph_eiti')" title="@PH_EITI"><img src="../images/icons/twitter.png" class="va-mid" alt="" width="32px" /></a>
                         </div>
@@ -104,8 +114,8 @@
     <script src="../js/vendor/angular-resource.js?v1.01"></script>
     <script src="../js/vendor/angular-sanitize.js?v1.01"></script>
     <script src="../js/vendor/angular-cookies.js?v1.01"></script>    
-    <script src="../js/vendor/angular-busy.js?v1.01"></script>
-
+    <script src="../js/vendor/angular-busy.js?v=1.01"></script>
+    <script src="../js/vendor/ngDialog.js"></script>
     <script src="../js/vendor/angular-material.js"></script>
 
     <script src="../js/vendor/moment.min.js?v1.01"></script>

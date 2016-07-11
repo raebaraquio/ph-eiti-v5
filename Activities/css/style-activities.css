@@ -9,3 +9,8 @@
 	line-height: 3em;
 	padding-left: 0.5em;
 }
+
+#header-wrapper {
+	background:url('../../images/page-headers/activities-2.png') center no-repeat;
+	height: 251px;
+}

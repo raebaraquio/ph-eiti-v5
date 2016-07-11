@@ -127,7 +127,7 @@ aboutApp.factory('MSGFactory',['$http',
 						]
 					},
 					{
-						group: 'Civil Soceity Organizations',
+						group: 'Civil Society Organizations',
 						roles:  ["Communicate and consult widely with a diverse set of stakeholders, including those outside the Steering group, and build capacities for understanding EITI standards.","Ensure full participation of relevant CSOs.","Monitor the disclosures done by the government and extractive companies."],
 						members: [
 							{

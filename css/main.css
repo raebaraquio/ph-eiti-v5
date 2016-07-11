@@ -1,3 +1,15 @@
+@font-face{
+    font-family: 'Roboto';
+    src:url('../fonts/Roboto-Regular.ttf');
+}
+
+@font-face{
+    font-family: 'Helvetica Neue';
+    src:url('../fonts/HelveticaNeue.otf');
+}
+
+@import 'https://fonts.googleapis.com/css?family=Roboto';
+
 html {
     color: #222;
     font-size: 100%; /*1em=14px*/
@@ -29,6 +41,51 @@ header {
 	color: #fff;
 	min-height:250px;
 	display: block;
+	margin-top:0.75em;
+}
+
+#header-wrapper {
+	border:1px solid #fabc01;
+}
+
+#header-wrapper p {
+	padding:0px;
+	margin:0px;
+	line-height:1.15em;
+	margin-top:4em;
+}
+
+#header-wrapper h1.md-display-2 {
+	padding:0px;
+	margin:0px;
+	line-height:1.3em;
+}
+
+#header-wrapper h1.md-display-2.header-title {
+	margin-top:1.85em;
+}
+
+#header-wrapper span {
+	padding:0px;
+	margin:0px;
+	line-height:1em;	
+}
+
+#breadcrumb-wrapper {
+	margin-top: -1.65em;
+}
+
+#backToTop-wrapper {
+	/*margin-bottom: -1.65em;	*/
+}
+
+.jk-carousel {
+	width: 100% !important;
+	z-index: 1;
+}
+
+.jk-carousel .radio-buttons-container {
+	display: none;
 }
 
 footer {
@@ -86,9 +143,8 @@ footer md-content {
 #home-statements {
 	/*background-color:#234b70;*/
 	color: #fff;
-	min-height:250px;
+	min-height:350px;
 	display: block;
-
 	background: rgba(35,75,112,1);
 	background: -moz-linear-gradient(left, rgba(35,75,112,1) 0%, rgba(35,75,112,1) 50%, rgba(35,75,112,1) 51%, rgba(35,75,112,1) 71%, rgba(17,37,55,1) 100%);
 	background: -webkit-gradient(left top, right top, color-stop(0%, rgba(35,75,112,1)), color-stop(50%, rgba(35,75,112,1)), color-stop(51%, rgba(35,75,112,1)), color-stop(71%, rgba(35,75,112,1)), color-stop(100%, rgba(17,37,55,1)));
@@ -97,6 +153,12 @@ footer md-content {
 	background: -ms-linear-gradient(left, rgba(35,75,112,1) 0%, rgba(35,75,112,1) 50%, rgba(35,75,112,1) 51%, rgba(35,75,112,1) 71%, rgba(17,37,55,1) 100%);
 	background: linear-gradient(to right, rgba(35,75,112,1) 0%, rgba(35,75,112,1) 50%, rgba(35,75,112,1) 51%, rgba(35,75,112,1) 71%, rgba(17,37,55,1) 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#234b70', endColorstr='#112537', GradientType=1 );
+}
+
+#home-statements .jk-carousel {
+	background: url('../images/statement-pullquote-icon.png') no-repeat;
+	background-position: top left;
+	background-size: 200px;
 }
 
 a {
@@ -112,19 +174,9 @@ a {
 	cursor: pointer;
 }
 
-.fnt--bluepalette,
-.fnt--bluepalette__link {
-	color: rgba(35,75,112,1);
-}
-
-.fnt--bluepalette__link:hover {
-	color: #1d5aa2;
-}
-
-.fnt--white,
-.fnt--white span {
-	color: #fff;
-}
+.fnt--bluepalette { color: rgba(35,75,112,1); }
+.fnt--bluepalette__linkHover { color:#000; }
+.fnt--bluepalette__linkHover:hover { color: #1d5aa2; }
 
 #principles-list li {
 	padding:5px;
@@ -189,11 +241,6 @@ a {
 	/*text-decoration: underline;*/
 }
 
-.gray { background-color: gray; }
-.red { background-color: red; }
-.blue { background-color: blue; }
-.yellow { background-color: yellow; }
-
 .sitepalette-yellow { background-color: #fabc01; }
 .sitepalette-blue { background-color: #1e4161; }
 .sitepalette-brown { background-color: #443d28 }
@@ -221,4 +268,37 @@ a {
 
 #home-activitiesfeature-photo h1 {
 	margin-top: 11em;
+}
+
+#grid-progress-report {
+	background: rgba(255,255,255,0.5), url('../images/home-activities-feature/2016/07/10/eiti-prog-report-2016.png');
+	background: -moz-linear-gradient(-45deg, rgba(255,255,255,0.5) 0%, rgba(30,65,97,0.61) 22%, rgba(30,65,97,0.74) 48%, rgba(30,65,97,1) 100%), url('../images/home-activities-feature/2016/07/10/eiti-prog-report-2016.png');
+	background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(255,255,255,0.5)), color-stop(22%, rgba(30,65,97,0.61)), color-stop(48%, rgba(30,65,97,0.74)), color-stop(100%, rgba(30,65,97,1))), url('../images/home-activities-feature/2016/07/10/eiti-prog-report-2016.png');
+	background: -webkit-linear-gradient(-45deg, rgba(255,255,255,0.5) 0%, rgba(30,65,97,0.61) 22%, rgba(30,65,97,0.74) 48%, rgba(30,65,97,1) 100%), url('../images/home-activities-feature/2016/07/10/eiti-prog-report-2016.png');
+	background: -o-linear-gradient(-45deg, rgba(255,255,255,0.5) 0%, rgba(30,65,97,0.61) 22%, rgba(30,65,97,0.74) 48%, rgba(30,65,97,1) 100%), url('../images/home-activities-feature/2016/07/10/eiti-prog-report-2016.png');
+	background: -ms-linear-gradient(-45deg, rgba(255,255,255,0.5) 0%, rgba(30,65,97,0.61) 22%, rgba(30,65,97,0.74) 48%, rgba(30,65,97,1) 100%), url('../images/home-activities-feature/2016/07/10/eiti-prog-report-2016.png');
+	background: linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(30,65,97,0.61) 22%, rgba(30,65,97,0.74) 48%, rgba(30,65,97,1) 100%), url('../images/home-activities-feature/2016/07/10/eiti-prog-report-2016.png');
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#1e4161', GradientType=1 );
+}
+
+#grid-mgb {
+	background: rgba(255,255,255,0.59), url('../images/home-activities-feature/2016/07/10/mgb-industry-stats.png');
+	background: -moz-linear-gradient(-45deg, rgba(255,255,255,0.59) 0%, rgba(68,61,40,0.68) 22%, rgba(68,61,40,0.79) 48%, rgba(68,61,40,1) 100%), url('../images/home-activities-feature/2016/07/10/mgb-industry-stats.png');
+	background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(255,255,255,0.59)), color-stop(22%, rgba(68,61,40,0.68)), color-stop(48%, rgba(68,61,40,0.79)), color-stop(100%, rgba(68,61,40,1))), url('../images/home-activities-feature/2016/07/10/mgb-industry-stats.png');
+	background: -webkit-linear-gradient(-45deg, rgba(255,255,255,0.59) 0%, rgba(68,61,40,0.68) 22%, rgba(68,61,40,0.79) 48%, rgba(68,61,40,1) 100%), url('../images/home-activities-feature/2016/07/10/mgb-industry-stats.png');
+	background: -o-linear-gradient(-45deg, rgba(255,255,255,0.59) 0%, rgba(68,61,40,0.68) 22%, rgba(68,61,40,0.79) 48%, rgba(68,61,40,1) 100%), url('../images/home-activities-feature/2016/07/10/mgb-industry-stats.png');
+	background: -ms-linear-gradient(-45deg, rgba(255,255,255,0.59) 0%, rgba(68,61,40,0.68) 22%, rgba(68,61,40,0.79) 48%, rgba(68,61,40,1) 100%), url('../images/home-activities-feature/2016/07/10/mgb-industry-stats.png');
+	background: linear-gradient(135deg, rgba(255,255,255,0.59) 0%, rgba(68,61,40,0.68) 22%, rgba(68,61,40,0.79) 48%, rgba(68,61,40,1) 100%), url('../images/home-activities-feature/2016/07/10/mgb-industry-stats.png');
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#443d28', GradientType=1 );	
+}
+
+#grid-contracts {
+	background: rgba(255,255,255,0.59);
+	background: -moz-linear-gradient(-45deg, rgba(255,255,255,0.59) 0%, rgba(250,188,1,0.68) 22%, rgba(250,188,1,0.79) 48%, rgba(250,188,1,1) 100%), url('../images/home-activities-feature/2016/07/10/contracts-link.png');
+	background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(255,255,255,0.59)), color-stop(22%, rgba(250,188,1,0.68)), color-stop(48%, rgba(250,188,1,0.79)), color-stop(100%, rgba(250,188,1,1))), url('../images/home-activities-feature/2016/07/10/contracts-link.png');
+	background: -webkit-linear-gradient(-45deg, rgba(255,255,255,0.59) 0%, rgba(250,188,1,0.68) 22%, rgba(250,188,1,0.79) 48%, rgba(250,188,1,1) 100%), url('../images/home-activities-feature/2016/07/10/contracts-link.png');
+	background: -o-linear-gradient(-45deg, rgba(255,255,255,0.59) 0%, rgba(250,188,1,0.68) 22%, rgba(250,188,1,0.79) 48%, rgba(250,188,1,1) 100%), url('../images/home-activities-feature/2016/07/10/contracts-link.png');
+	background: -ms-linear-gradient(-45deg, rgba(255,255,255,0.59) 0%, rgba(250,188,1,0.68) 22%, rgba(250,188,1,0.79) 48%, rgba(250,188,1,1) 100%), url('../images/home-activities-feature/2016/07/10/contracts-link.png');
+	background: linear-gradient(135deg, rgba(255,255,255,0.59) 0%, rgba(250,188,1,0.68) 22%, rgba(250,188,1,0.79) 48%, rgba(250,188,1,1) 100%), url('../images/home-activities-feature/2016/07/10/contracts-link.png');
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#fabc01', GradientType=1 );
 }

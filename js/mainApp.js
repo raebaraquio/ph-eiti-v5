@@ -1,4 +1,4 @@
-var pheiti = angular.module('pheiti',['ngMaterial','navMod']);
+var pheiti = angular.module('pheiti',['ngMaterial','navMod','jkAngularCarousel','ngDialog','cgBusy']);
 
 pheiti.config(function($mdThemingProvider) {
 	/* Yellow is primary ; Blue is accent 
@@ -197,6 +197,14 @@ pheiti.factory('homeNewsFactory',['$http',
                 data:data
             });
             return p;
+        },
+        subscribe : function(data) {
+            var promise = $http({
+                url:'./rest/functions/newsletter-subscribe.php',
+                method: 'POST',
+                data:data
+            })
+            return promise;
         }
     }
     return homeNewsFactory;
@@ -218,7 +226,6 @@ pheiti.controller('homeNewsController',['$scope','homeNewsFactory','$sce',
         }
         $scope.newspromise = homeNewsFactory.getnews(obj);
         $scope.newspromise.then(function(data){
-            console.log(data)
             if (typeof(data.data) == 'string') {
             }
             else {  
@@ -245,4 +252,171 @@ pheiti.controller('homeNewsController',['$scope','homeNewsFactory','$sce',
 
     getNews();
 
+}]);
+
+pheiti.controller('headerCarouselController',['$scope',
+    function($scope){
+    $scope.headersArr = [
+        {
+            title: '',
+            image: 'images/home-main-carousel/man.png'
+        },
+        {
+            title: 'How EITI works',
+            image: 'images/home-main-carousel/eiti-steps.png'
+        }
+    ]
+}]);
+
+pheiti.controller('statementCarouselController',['$scope',
+    function($scope){
+    $scope.openStatement=function(link){
+        window.open('./'+link)
+    }
+    $scope.statements = [
+        {
+            statedBy: 'Statement of Benigno S. Aquino III, Former President of the Republic of the Philippines',
+            pullquote: 'We will implement the Extractive Industries Transparency Initiative (EITI) in order to improve transparency in the collection and payment of government taxes and other revenues from extractive industries.',
+            link: 'document/Statement/Statement-of-the-President.pdf'
+        },
+        {
+            statedBy: 'Message from Cesar V. Purisima, Former Secretary, Department of Finance',
+            pullquote: 'Our work does not stop with the release and publication of the first PH-EITI country report. From here, the PH-EITI MSG will begin the challenging task of formulating policies for reforming governance of the extractive sector and enhancing government systems to promote transparency and improve EITI implementation in the country.',
+            link: 'document/Statement/Message-from-the-Secretary-of-Finance.pdf'
+        }
+    ];
+}]);
+
+
+pheiti.controller('homeInfographicController',['$scope','ngDialog',
+    function($scope,ngDialog){
+
+    $("#chart-container").highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie',
+            marginLeft: 300
+        },
+        title: {
+            text: ''
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: false
+                },
+                showInLegend: true
+            }
+        },
+        legend : {
+            layout: 'vertical',
+            align: 'left',
+            verticalAlign: 'top',
+            floating: false,
+            itemWidth: 100,
+            lineHeight: 48,
+            itemMarginTop: 13,
+            itemMarginBottom: 13
+        },
+        series: [{
+            name: 'Total Collection',
+            colorByPoint: true,
+            data: [
+                { name: 'Departent of Energy (DOE)', y: 55, sliced: true, selected: true },
+                { name: 'Bureau of Internal Revenue (BIR)', y: 40 },
+                { name: 'National Commission on Indigenous Peoples (NCIP)', y: 1 },
+                { name: 'Mines and Geosciences Bureau (MGB)', y: 2 },
+                { name: 'Bureau of Customs (BOC)', y: 1 },
+                { name: 'Local Government Unit (LGU)', y: 1 },                
+                { name: 'Philippine Ports Authority (PPA)', y: 0 }                
+            ]
+        }]
+    });
+    
+    $scope.variances = [
+        {
+            icon:'./images/icons/svg/ic_swap_horiz_black_24px.svg',
+            variance:'Difference in accounting frameworks'
+        },
+        {
+            icon:'./images/icons/svg/ic_folder_black_24px.svg',
+            variance:'No centralized database'
+        },
+        {
+            icon:'./images/icons/svg/ic_data_usage_black_24px.svg',
+            variance:'Disaggregated data'
+        },
+        {
+            icon:'./images/icons/svg/ic_access_time_black_24px.svg',
+            variance:'Delayed submission of required schedules and documents to support disclosures made in the templates'
+        }
+    ]
+
+    $scope.openVariance=function(){
+        ngDialog.open({ 
+            template: './template/variance.html', 
+            className: 'ngdialog-theme-default', 
+            scope:$scope,
+            closeByDocument: true,
+            closeByEscape: true,
+            showClose: true
+        });
+    }    
+}]);
+
+pheiti.controller('footerController',['$scope','ngDialog','homeNewsFactory',
+    function($scope,ngDialog,homeNewsFactory){
+
+    $scope.userfeedback = { message : '',  type: '' }
+    $scope.user = {name : '', email: ''}
+
+    $scope.resetForm=function(){
+        $scope.user.name = ''
+        $scope.user.email = ''
+        $scope.userfeedback.message = '';
+        $scope.userfeedback.type = ''; 
+    }
+
+    $scope.triggerSubscribe=function(){
+        $scope.resetForm();
+        ngDialog.open({ 
+            template: './template/subscribe.html', 
+            className: 'ngdialog-theme-default', 
+            scope:$scope,
+            closeByDocument: true,
+            closeByEscape: true,
+            showClose: true
+        });
+    }
+
+    $scope.subscribe = function() {
+        $scope.subscribePromise = homeNewsFactory.subscribe($scope.user);
+        $scope.subscribePromise.then(function(data){
+            if (data.status==200) {
+                $scope.userfeedback.message = 'Confirmation email sent. Kindly check your inbox please, to confirm your subscription.';
+                $scope.userfeedback.type = 'success';
+                $scope.resetForm();
+                // ngDialog.closeAll();
+            }
+        })
+        .then(null,function(response){
+            switch(response.status) {
+                case 409:
+                    $scope.userfeedback.message = 'Conflict: Email address is already taken.';
+                    $scope.userfeedback.type = 'error';     
+                    break;
+                case 400:
+                    $scope.userfeedback.message = 'Unable to process your request. Please try again.';
+                    $scope.userfeedback.type = 'error';     
+                    break;
+            }
+        })
+    }
 }]);

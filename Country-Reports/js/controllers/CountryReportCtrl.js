@@ -35,6 +35,8 @@ countryReportApp.controller('CountryReportCtrl',['$scope','CountryReportFactory'
 		}
 	}
 
+	$scope.active_country_report = ''
+	$scope.active_country_report_link = ''
 	$scope.$on('$routeChangeSuccess', function(){
 		$scope.current_report = { title: '', annexes: ''}
 		var loc = $location.path().split('/')
@@ -49,6 +51,9 @@ countryReportApp.controller('CountryReportCtrl',['$scope','CountryReportFactory'
         		}
         		break;
             case 3:
+            	var ar = loc[loc.length-2].split('-');
+            	$scope.active_country_report_link = loc[loc.length-2];
+            	$scope.active_country_report = ar.join(' ');
             	get.annex(loc[loc.length-2],loc[loc.length-1]);
             	break;
         }

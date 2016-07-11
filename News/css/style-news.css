@@ -5,3 +5,8 @@
 #newsarticle-info {
 	margin-bottom: 2em;
 }
+
+#header-wrapper {
+	background:url('../../images/page-headers/news.png') right no-repeat;
+	height: 251px;
+}

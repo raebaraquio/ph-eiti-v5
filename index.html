@@ -12,8 +12,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ph-eiti.org | Philippine Extracive Industries Transparency Initiative (PH-EITI)</title>
     <link rel="icon" type="image/gif" href="images/eitifavicon.ico">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="css/angular-material.min.css?v1.1.0-rc2"> 
     <link rel="stylesheet" href="css/font-awesome.min.css"> 
+    <link rel="stylesheet" href="css/jk-carousel.min.css" />
+    <link rel="stylesheet" href="css/ngDialog.css" />
+    <link rel="stylesheet" href="css/ngDialog-theme-default.css" />
+    <link rel="stylesheet" href="css/angular-busy.css"/>
     <link rel="stylesheet" href="css/basic.css"> 
     <link rel="stylesheet" href="css/main.css"> 
     <link rel="stylesheet" href="css/nav.css"> 
@@ -38,7 +44,7 @@
             <md-nav-item data-ng-repeat="(kmnav,vmnav) in main_nav" md-nav-href="{{vmnav.href}}" name="{{vmnav.id}}" class="mnav-item">{{vmnav.name}}
                 <ul class="snav" md-whiteframe="1" data-ng-if="vmnav.subnav.length > 0">
                     <li data-ng-repeat="(ksnav,vsnav) in vmnav.subnav" data-ng-class="{'toDefaultColor':active.mnav===vmnav.id && active.subnav!==vsnav.href}"><md-button href="{{vmnav.href}}/#/{{vsnav.href}}" name="{{vsnav.id}}">{{vsnav.name}}</md-button>
-                        <md-divider data-ng-if="vsnav.subnav.length > 0"></md-divider>
+                        <!-- <md-divider data-ng-if="vsnav.subnav.length > 0"></md-divider> -->
                         <ul class="sub-snav" data-ng-if="vsnav.subnav.length > 0">
                             <li data-ng-repeat="(ksunav,vsunav) in vsnav.subnav" data-ng-class="{'toDefaultColor':active.mnav===vmnav.id}"><md-button href="{{vmnav.href}}/#/{{vsnav.href}}/{{vsunav.href}}" name="{{vsunav.id}}">{{vsunav.name}}</md-button></li>
                         </ul>
@@ -48,21 +54,75 @@
         </md-nav-bar>
     </div>
     
-    <header class="wd-100" id="home-slider">   
-        <div class="mxw-80">
-            <h1></h1>  
+    <div class="wd-100">   
+        <div class="mxw-80"><br/></div>   
+    </div>
+
+    <header class="wd-100" id="home-slider" data-ng-controller="headerCarouselController">   
+        <div class="mxw-80" layout-align="center center" >
+            <jk-carousel
+                data="headersArr"
+                item-template-url="'slide-item-template.html'"
+                max-width="900" 
+                max-height="250"
+                auto-slide="true"
+                auto-slide-time="12000" >
+            </jk-carousel>
         </div>   
     </header>
 
     <div class="wd-100">   
-        <div class="mxw-80"><br/><br/></div>   
+        <div class="mxw-80"><br/></div>   
     </div>
 
-    <div class="wd-100" id="home-infographic">  <!-- Infographic Feature --> 
-        <div class="mxw-80">
-            <!-- <md-content layout flex>
-            </md-content> -->
+    <div class="wd-100" id="home-infographic" data-ng-controller="homeInfographicController">  <!-- Infographic Feature --> 
+        <div class="mxw-80" >
+            <md-card layout="column" class="md-padding">
+                <h1>What payments do the National Government Agencies collect from mining, oil and gas sector?</h1>
+                <div layout="row">
+                    <div flex="60" layout="column" class="ta-left">
+                        <div id="chart-container" style="min-width:400px;height:400px;max-width:100%;margin-top:0px;padding:0px;"></div>
+                    </div>
+                    <div flex="40" layout="column">
+                        <md-list class="md-padding" style="margin-left:1.5em;">
+                            <md-list-item class="md-2-line">
+                                <div class="md-list-item-text">
+                                    <p>TOTAL COLLECTIONS</p>
+                                    <h1 style="padding:0;margin:0;line-height:1em;">Php 52.7 Bn</h1>
+                                </div>
+                            </md-list-item>
+                            <md-list-item class="md-2-line">
+                                <div class="md-list-item-text">
+                                    <p>TOTAL COLLECTIONS FROM MINING</p>     
+                                    <h1 style="padding:0;margin:0;line-height:1em;">Php 6.2 Bn</h1>
+                                </div>
+                            </md-list-item>
+                            <md-list-item class="md-2-line">
+                                <div class="md-list-item-text">
+                                    <p>TOTAL COLLECTIONS FROM OIL AND GAS</p>   
+                                    <h1 style="padding:0;margin:0;line-height:1em;">Php 43.5 Bn</h1>  
+                                </div>
+                            </md-list-item>
+                            <md-list-item class="md-2-line">
+                                <div class="md-list-item-text">
+                                    <p>TOTAL VARIANCE</p>     
+                                    <h1 style="padding:0;margin:0;line-height:1em;">Php 58.2 Mn</h1>
+                                </div>
+                            </md-list-item>
+                            <md-list-item class="md-2-line">
+                                <div class="md-list-item-text ta-left">
+                                    <a class="sref" data-ng-click="openVariance()"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_black_24px.svg"></md-icon> <span class="fnt--md fnt--black">See more</span> </a>
+                                </div>
+                            </md-list-item>
+                        </md-list>
+                    </div>
+                </div>
+            </md-card>
         </div>   
+    </div>
+
+    <div class="wd-100">   
+        <div class="mxw-80"><br/></div>   
     </div>
 
     <div class="wd-100" id="home-news" data-ng-controller="homeNewsController"> <!-- News -->
@@ -90,13 +150,13 @@
                         <md-list>
                             <md-list-item class="md-2-line" data-ng-repeat="(kn,news) in homenews" data-ng-if="kn < 5" style="min-height:4.2em">
                                 <div class="md-list-item-text">
-                                    <h2 class="fnt--bluepalette" title="{{news.title}}" style="font-size:1.3em;line-height:1em;padding:0px;margin:0px;"><a class="sref fnt--bluepalette__link" href="./News/#/In-the-News/{{news.id}}">{{news.title}}</a></h2>
+                                    <h2 title="{{news.title}}" style="font-size:1.3em;line-height:1em;padding:0px;margin:0px;"><a class="sref fnt--bluepalette__linkHover" href="./News/#/In-the-News/{{news.id}}">{{news.title}}</a></h2>
                                     <span class="ww-breakword"><a data-ng-show="news.readmore_source" class="sref" href="{{news.readmore_source}}">{{news.readmore_sourcewebsite}} |</a> {{news.dateposted}}</span>
                                 </div>
                             </md-list-item>
                             <md-list-item class="md-2-line" data-ng-repeat="(kn,news) in homenews" data-ng-if="kn==5 && homenews.length > 6" style="min-height:3em;">
                                 <div class="md-list-item-text ta-right">
-                                    <a class="sref" href="./News/#/"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_black_24px.svg"></md-icon> <span class="fnt--md">Click here for more news</span> </a>
+                                    <a class="sref" href="./News/#/"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_black_24px.svg"></md-icon> <span class="fnt--md fnt--black">Click here for more news</span> </a>
                                 </div>
                             </md-list-item>
                         </md-list>
@@ -105,23 +165,23 @@
             </md-card>
         </div>   
     </div>
+    
+    <div class="wd-100">   
+        <div class="mxw-80"><br/></div>   
+    </div>
 
     <div class="wd-100" id="home-misc"> <!-- Related Links x Activities Grid -->
         <div class="mxw-80">
             <md-card>
                  <md-grid-list md-cols="3" md-row-height="1:0.75" md-gutter="4px">
-                    <md-grid-tile class="sitepalette-yellow" md-colspan="2">
+                    <md-grid-tile class="sitepalette-yellow" md-colspan="2" id="grid-contracts">
                         <div layout="column" class="md-padding">
                             <span class="md-headline fnt--white">CONTRACTS PORTAL</span>
                             <h1 class="fnt--white">An Open Database of Mining, Oil and Gas contracts in the Philippines</h1>
                             <div layout="row" class="ta-left">
-                                <a class="sref" href="http://contracts.ph-eiti.org"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_white_24px.svg"></md-icon> <span class="fnt--md fnt--white">Click here</span> </a>
+                                <a class="sref" href="javascript:window.open('http://contracts.ph-eiti.org')"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_white_24px.svg"></md-icon> <span class="fnt--md fnt--white">Click here</span> </a>
                             </div>    
-                        </div>                        
-                        <!-- <md-grid-tile-footer>
-                            <h3 class="fnt--white">Mining, Oil and Gas contracts in the Philippines</h3>
-                            <h3></h3>
-                        </md-grid-tile-footer> -->
+                        </div>
                     </md-grid-tile>
                     <md-grid-tile class="red" md-rowspan="2" id="home-activitiesfeature-photo">
                         <div layout="column" class="md-padding">
@@ -136,33 +196,28 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <md-grid-tile-footer>
-                            <h3>#2: (1r x 1c)</h3>
-                        </md-grid-tile-footer> -->
                     </md-grid-tile>
-                    <md-grid-tile class="sitepalette-blue" layout="column">
+                    <md-grid-tile class="sitepalette-blue" layout="column" id="grid-progress-report">
                         <div layout="column" class="md-padding">
                             <h1 class="fnt--white">EITI Progress Report 2016</h1>
                             <div layout="row" class="ta-left">
                                 <a class="fnt--white sref" href="javascript:window.open('http://progrep.eiti.org/2016/glance')"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_white_18px.svg"></md-icon> <span class="fnt--white fnt--md">Read Story</span> </a>
                             </div>
-                        </div>                        
-                        <!-- <md-grid-tile-footer>
-                            <h3 class="fnt--white">EITI Progress Report 2016</h3>
-                        </md-grid-tile-footer> -->
+                        </div>
                     </md-grid-tile>
-                    <md-grid-tile class="sitepalette-brown">
+                    <md-grid-tile class="sitepalette-brown" id="grid-mgb">
                         <div layout="column" class="md-padding">
                             <h1 class="fnt--white">Mineral Industry Statistics</h1>
                             <a class="fnt--white sref" href="javascript:window.open('http://mgb.gov.ph/2015-05-13-01-44-56/2015-05-13-01-47-51')"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_white_18px.svg"></md-icon> <span class="fnt--white fnt--md">Click here</span></a>
                         </div>
-                        <!-- <md-grid-tile-footer>
-                            <h3 class="fnt--white">Mineral Industry Statistics</h3>
-                        </md-grid-tile-footer> -->
                     </md-grid-tile>
                 </md-grid-list>
             </md-card>           
         </div>   
+    </div>
+    
+    <div class="wd-100">   
+        <div class="mxw-80"><br/></div>   
     </div>
 
     <div class="wd-100" id="home-videos">   
@@ -181,11 +236,21 @@
         </div>   
     </div>
 
-    <div class="wd-100" id="home-statements">   
-        <div class="mxw-80">
-            <md-content layout flex>
-            </md-content>
-        </div>   
+    <div class="wd-100">   
+        <div class="mxw-80"><br/></div>   
+    </div>
+
+    <div class="wd-100" id="home-statements" data-ng-controller="statementCarouselController">
+        <div class="mxw-80" layout-align="center center" >
+            <jk-carousel
+                data="statements"
+                item-template-url="'slide-statement-template.html'"
+                max-width="900" 
+                max-height="350"
+                auto-slide="true"
+                auto-slide-time="20000" >
+            </jk-carousel>
+        </div>
     </div>
 
     <footer class="wd-100">   
@@ -207,9 +272,9 @@
                     </div>
                 </md-content>
                 <md-content flex="70" layout="column">
-                    <div class="ta-right" layout="column">
+                    <div class="ta-right" layout="column" data-ng-controller="footerController">
                         <div>
-                            <input type="email" placeholder="Email Address" title="Get updates by subscribing to our newsletter." id="subscribe-email"/><md-button class="md-accent md-raised"><strong>Subscribe</strong></md-button>
+                            <!-- <input type="email" placeholder="Email Address" title="Get updates by subscribing to our newsletter." id="subscribe-email"/> --><md-button class="md-accent md-raised" data-ng-click="triggerSubscribe()"><strong>Subscribe</strong></md-button>
                             <a href="javascript:window.open('https://www.facebook.com/PhilippineEITI/')" title="Philippine EITI"><img src="images/icons/facebook.png" class="va-mid" alt="" width="32px" /></a>&nbsp;&nbsp;<!--
                             --><a href="javascript:window.opent('https://twitter.com/ph_eiti')" title="@PH_EITI"><img src="images/icons/twitter.png" class="va-mid" alt="" width="32px" /></a>
                         </div>
@@ -228,23 +293,27 @@
     </footer>
 
 	<!-- Framework/Libraries -->
+    <script src="js/vendor/jquery-3.1.0.js"></script> <!-- jQuery for High Charts -->
+    <script src="js/vendor/highcharts.js"></script>
 	<script src="js/vendor/angular.js"></script>
     
-    <script src="js/vendor/angular-animate.js?v1.01"></script>
-    <script src="js/vendor/angular-route.js?v1.01"></script>
+    <script src="js/vendor/angular-animate.js?v=1.01"></script>
+    <script src="js/vendor/angular-route.js?v=1.01"></script>
     <script src="js/vendor/angular-aria.js"></script>
     <script src="js/vendor/angular-messages.js"></script>
 
-    <script src="js/vendor/angular-resource.js?v1.01"></script>
-    <script src="js/vendor/angular-sanitize.js?v1.01"></script>
-    <script src="js/vendor/angular-cookies.js?v1.01"></script>    
-    <script src="js/vendor/angular-busy.js?v1.01"></script>
+    <script src="js/vendor/angular-resource.js?v=1.01"></script>
+    <script src="js/vendor/angular-sanitize.js?v=1.01"></script>
+    <script src="js/vendor/angular-cookies.js?v=1.01"></script>    
+    <script src="js/vendor/angular-busy.js?v=1.01"></script>
 
     <script src="js/vendor/angular-material.js"></script>
+    <script src="js/vendor/jk-carousel.min.js"></script>
+    <script src="js/vendor/ngDialog.js"></script>
 
     <!-- Utilities -->
     <!--<script src="js/vendor/moment.min.js?v1.01"></script>-->
-    <script src="js/modules/utilsModule.js?v1.01"></script>
+    <script src="js/modules/utilsModule.js?v=1.01"></script>
 
     <!-- Application -->
     <script src="js/modules/navigation.js"></script>

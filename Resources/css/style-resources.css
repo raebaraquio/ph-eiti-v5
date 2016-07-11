@@ -14,3 +14,8 @@
 	height:135px;
 	width:123px;
 }
+
+#header-wrapper {
+	background:url('../../images/page-headers/resources.png') center no-repeat;
+	height: 251px;
+}
