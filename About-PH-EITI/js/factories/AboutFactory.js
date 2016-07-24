@@ -5,36 +5,8 @@ aboutApp.factory('AboutFactory',['$http',
 		secretariat : function(){
 			return [
 				{
-					name:"Rhea Mae Bagacay",
-					position:"Procurement Assistant",
-					picture:"",
-					profile:"",
-					prevprofile:null
-				},
-				{
-					name:"Ryan Justin Dael",
-					position:"Data Visualization Specialist",
-					picture:"images/secretariat/Ryan-Dael.png",	
-					profile:"<p>Before joining the PH-EITI Secretariat, Ryan worked as web designer of a BPO company focusing on user interface and web collaterals. He then moved on to be a graphic designer for the marketing department of the same company, designing marketing materials for the web and social media as well as collaterals for events.</p><p>He received his Bachelor's Degree in Multimedia Arts and Sciences from the Mapua Institute of Technology.</p><p>During his free time, Ryan takes part in events organization and logistics of various gaming conventions in the metro.</p>",
-					prevprofile:"<p></p>"
-				},
-				{
-					name:"Katherine Dennise Domingo",
-					position:"Project Development Officer III",
-					picture:"",
-					profile:"",
-					prevprofile:null
-				},
-				{
 					name:"Maria Karla Espinosa",
 					position:"National Coordinator",
-					picture:null,
-					profile:null,
-					prevprof:null
-				},
-				{
-					name:"Angelita Galano",
-					position:"Office Manager",
 					picture:null,
 					profile:null,
 					prevprof:null
@@ -68,10 +40,38 @@ aboutApp.factory('AboutFactory',['$http',
 					prevprofile:"<p></p>"
 				},
 				{
+					name:"Angelita Galano",
+					position:"Office Manager",
+					picture:null,
+					profile:null,
+					prevprof:null
+				},
+				{
 					name:"Marikit Soliman",
 					position:"Technical Specialist",
 					picture:null,
 					profile:null,
+					prevprofile:null
+				},
+				{
+					name:"Ryan Justin Dael",
+					position:"Data Visualization Specialist",
+					picture:"images/secretariat/Ryan-Dael.png",	
+					profile:"<p>Before joining the PH-EITI Secretariat, Ryan worked as web designer of a BPO company focusing on user interface and web collaterals. He then moved on to be a graphic designer for the marketing department of the same company, designing marketing materials for the web and social media as well as collaterals for events.</p><p>He received his Bachelor's Degree in Multimedia Arts and Sciences from the Mapua Institute of Technology.</p><p>During his free time, Ryan takes part in events organization and logistics of various gaming conventions in the metro.</p>",
+					prevprofile:"<p></p>"
+				},
+				{
+					name:"Katherine Dennise Domingo",
+					position:"Project Development Officer III",
+					picture:"",
+					profile:"",
+					prevprofile:null
+				},
+				{
+					name:"Rhea Mae Bagacay",
+					position:"Procurement Assistant",
+					picture:"",
+					profile:"",
 					prevprofile:null
 				}
 			];

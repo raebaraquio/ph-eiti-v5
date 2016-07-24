@@ -54,7 +54,7 @@
 			<md-list>
 				<md-list-item class="md-3-line" data-ng-repeat="(kfolder,ne) in newsandevents" layout="column" layout-align="left left">
 					<h3 tabindex="-1" class="md-heading padd-bt-0 mrgn-bt-0 fnt--bluepalette newsTitle" title="{{ne.title}}" data-ng-click="openNews(ne)">{{ne.title}}</h3>
-					<h4 class="padd-0 mrgn-0" data-ng-show="ne.subhead!=null">{{ne.subhead}}</h4>
+					<em style="padding:0px;margin:0px;" align="left" data-ng-show="ne.subhead!=null">{{ne.subhead}}</em>
 					<div layout="row" style="font-size:0.85em;">
 						<span data-ng-ng-show="ne.author">{{ne.author}} <span data-ng-show="ne.readmore_source">, </span><a data-ng-show="ne.readmore_source" href="{{ne.readmore_source}}">{{ne.readmore_sourcewebsite}}</a> &nbsp;</span><!--  {{ne.dateposted}} -->
 					</div>

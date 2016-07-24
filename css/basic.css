@@ -83,6 +83,9 @@
 .fnt--sm { font-size: 0.75em; }
 .fnt--md { font-size: 0.85em; }
 
+.fnt--upper { text-transform: uppercase; }
+.fnt--lower { text-transform: lowercase; }
+
 .sref { text-decoration: none; }
 .sref:hover { cursor: pointer; }
 

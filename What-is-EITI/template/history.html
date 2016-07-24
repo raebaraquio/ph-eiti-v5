@@ -20,12 +20,15 @@
             <timeline-event ng-repeat="(k,event) in events" data-ng-init="useSide = (k%2)===0 ? 'right' : 'left'" side="{{useSide}}">
                 <!-- uses angular-scroll-animate to give it some pop -->
                 <timeline-badge class="{{event.badgeClass}} timeline-hidden" when-visible="animateElementIn" when-not-visible="animateElementOut">
-                    <span class="glyphicon {{event.badgeIconClass}}" style="font-size:0.85em;">{{event.year}}</span>
+                    <span class="glyphicon {{event.badgeIconClass}}" style="font-size:0.85em;"><span data-ng-show="event.start===true">{{event.year}}</span></span>
                 </timeline-badge>
                 <!-- uses angular-scroll-animate to give it some pop -->
                 <timeline-panel class="{{event.badgeClass}} timeline-hidden" when-visible="animateElementIn" when-not-visible="animateElementOut">
                     <timeline-heading>
-                        <h4 align="{{(useSide==='right' ? 'left' : 'right')}}">{{event.when}}</h4>
+                        <h4 class="mrgn-0 padd-0" align="{{(useSide==='right' ? 'left' : 'right')}}">{{event.when}}</h4>
+                        <div data-ng-class="{'ta-left': useSide==='right', 'ta-right': useSide==='left'}" class="mrgn-0 padd-0">
+                            <small class="fnt--md fnt--gray">{{event.year}}</small>    
+                        </div>
                         <!-- <p ng-if="event.when">
                             <small class="text-muted"><i class="glyphicon glyphicon-time"></i>{{event.when}}</small>
                         </p> -->

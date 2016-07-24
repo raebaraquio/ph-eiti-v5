@@ -9,7 +9,7 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					id:"4th-PH-EITI-National-Conference",
 					href:"4th-PH-EITI-National-Conference",
 					title:"4th PH-EITI National Conference",
-					date:"16 February 2015",
+					date:"16 February 2016",
 					venue:"Manila Hotel",
 					coverphoto:"images/_activities/cp/2016/03/24/4th-PH-EITI-National-Conference.png",
 					writeup: {

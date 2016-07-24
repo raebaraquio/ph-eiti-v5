@@ -9,7 +9,7 @@ activitiesApp.controller('ActivitiesController',['$scope','ActivitiesFactory','$
 		$scope.years.push(idx);
 	}
 
-	$scope.filterYear = $scope.years[0]-1
+	$scope.filterYear = $scope.years[0];
 	$scope.filterKeyword = ''
 
 	$scope.activity = {}

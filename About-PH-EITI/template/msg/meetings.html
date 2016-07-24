@@ -53,18 +53,18 @@
         <md-contentlayout="column">    
         	<h1 class="mrgin-0 padd-0" style="padding:0px;margin:0px;">{{meeting_selected.title}} MSG Meeting</h1>
             <p class="mrgin-0 padd-0" style="padding:0px;margin:0px;">{{meeting_selected.venue}}</p>
-            <small class="mrgin-0 padd-0" style="padding:0px;margin:0px;margin-top:0.5em;">{{meeting_selected.updated}}</small>
+            <small class="mrgin-0 padd-0 fnt--gray" style="padding:0px;margin:0px;margin-top:0.5em;">{{meeting_selected.updated}}</small>
 
-            <h3 data-ng-show="meeting_selected.agenda">Agenda</h3>         
+            <!-- <h3 data-ng-show="meeting_selected.agenda">Agenda</h3>         
 			<md-list>
 				<md-list-item data-ng-repeat="(idx,agenda) in meeting_selected.agenda" style="height:auto;min-height:1.5em;">
 					<div class="md-list-item-text" style="padding:0px;margin:0px;">
 						<p class="ww-breakword" style="padding:0px;margin:0px;">{{idx+1}}. {{agenda}}</p>
 					</div>
 				</md-list-item>
-			</md-list>		
+			</md-list> -->		
 
-            <div layout="row">
+            <div layout="row" style="margin-top:10px;">
             	<md-button class="md-raised md-accent" data-ng-click="download_minutes(meeting_selected.minutes)" title="Download Minutes of {{meeting_selected.title}} MSG Meeting">Download Minutes</md-button>			
             </div>            
 

@@ -1,0 +1,27 @@
+<div class="md-padding" data-ng-controller="compareReportsController">
+	<h2 align="center" style="line-height:1.2em;">Quick Overview of Causes of Variance in Reports</h2>
+	<md-table-container>
+		<table md-table id="msgMembers-table">
+			<thead md-head>
+				<tr md-row>
+					<th md-column class="ta-left"><span>Period Covered</span></th>
+					<th md-column class="ta-left"><span>Publication Date</span></th>
+					<th md-column class="ta-left"><span>Sectors Covered</span></th>
+					<th md-column class="ta-left"><span>Government Revenues (USD Millions)</span></th>
+					<th md-column class="ta-left"><span>Company Payments (USD Millions)</span></th>
+					<th md-column class="ta-left"><span>Number of Companies Reporting</span></th>
+				</tr>
+			</thead>
+			<tbody md-body>
+				<tr md-row data-ng-repeat="report in reportsData">
+					<td md-cell class="ta-left">{{report.periodCovered}}</td>
+					<td md-cell class="ta-left">{{report.publicationDate}}</td>
+					<td md-cell class="ta-left">{{report.sectorsCovered}}</td>
+					<td md-cell class="ta-left">{{report.govtRevenues}}</td>
+					<td md-cell class="ta-left">{{report.companyPayments}}</td>
+					<td md-cell class="ta-left">{{report.numCompaniesReporting}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</md-table-container>
+</div>

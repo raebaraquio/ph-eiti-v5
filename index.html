@@ -78,7 +78,7 @@
     <div class="wd-100" id="home-infographic" data-ng-controller="homeInfographicController">  <!-- Infographic Feature --> 
         <div class="mxw-80" >
             <md-card layout="column" class="md-padding">
-                <h1>What payments do the National Government Agencies collect from mining, oil and gas sector?</h1>
+                <h1>How much do the National Government Agencies collect from mining, oil and gas sector?</h1>
                 <div layout="row">
                     <div flex="60" layout="column" class="ta-left">
                         <div id="chart-container" style="min-width:400px;height:400px;max-width:100%;margin-top:0px;padding:0px;"></div>
@@ -87,25 +87,25 @@
                         <md-list class="md-padding" style="margin-left:1.5em;">
                             <md-list-item class="md-2-line">
                                 <div class="md-list-item-text">
-                                    <p>TOTAL COLLECTIONS</p>
-                                    <h1 style="padding:0;margin:0;line-height:1em;">Php 52.7 Bn</h1>
+                                    <p>TOTAL COLLECTIONS FOR 2013</p>
+                                    <h1 style="padding:0;margin:0;line-height:1em;">Php 40.7 or 40.699 Bn</h1>
                                 </div>
                             </md-list-item>
                             <md-list-item class="md-2-line">
                                 <div class="md-list-item-text">
                                     <p>TOTAL COLLECTIONS FROM MINING</p>     
-                                    <h1 style="padding:0;margin:0;line-height:1em;">Php 6.2 Bn</h1>
+                                    <h1 style="padding:0;margin:0;line-height:1em;">Php 5.4 or 5.37 Bn</h1>
                                 </div>
                             </md-list-item>
                             <md-list-item class="md-2-line">
                                 <div class="md-list-item-text">
                                     <p>TOTAL COLLECTIONS FROM OIL AND GAS</p>   
-                                    <h1 style="padding:0;margin:0;line-height:1em;">Php 43.5 Bn</h1>  
+                                    <h1 style="padding:0;margin:0;line-height:1em;">Php 35.2 Bn</h1>  
                                 </div>
                             </md-list-item>
                             <md-list-item class="md-2-line">
                                 <div class="md-list-item-text">
-                                    <p>TOTAL VARIANCE</p>     
+                                    <p class="sref" tabindex="-1">TOTAL VARIANCE POST-RECONCILIATION</p>     
                                     <h1 style="padding:0;margin:0;line-height:1em;">Php 58.2 Mn</h1>
                                 </div>
                             </md-list-item>
@@ -150,8 +150,8 @@
                         <md-list>
                             <md-list-item class="md-2-line" data-ng-repeat="(kn,news) in homenews" data-ng-if="kn < 5" style="min-height:4.2em">
                                 <div class="md-list-item-text">
-                                    <h2 title="{{news.title}}" style="font-size:1.3em;line-height:1em;padding:0px;margin:0px;"><a class="sref fnt--bluepalette__linkHover" href="./News/#/In-the-News/{{news.id}}">{{news.title}}</a></h2>
-                                    <span class="ww-breakword"><a data-ng-show="news.readmore_source" class="sref" href="{{news.readmore_source}}">{{news.readmore_sourcewebsite}} |</a> {{news.dateposted}}</span>
+                                    <h2 title="{{news.title}}" style="font-size:1.3em;line-height:1em;padding:0px;margin:0px;margin-bottom:3px;"><a class="sref fnt--bluepalette__linkHover" href="./News/#/In-the-News/{{news.id}}">{{news.title}}</a></h2>
+                                    <span class="ww-breakword fnt--sm"><a data-ng-show="news.readmore_source" class="sref" href="{{news.readmore_source}}">{{news.readmore_sourcewebsite}} |</a> {{news.dateposted}}</span>
                                 </div>
                             </md-list-item>
                             <md-list-item class="md-2-line" data-ng-repeat="(kn,news) in homenews" data-ng-if="kn==5 && homenews.length > 6" style="min-height:3em;">
@@ -174,7 +174,7 @@
         <div class="mxw-80">
             <md-card>
                  <md-grid-list md-cols="3" md-row-height="1:0.75" md-gutter="4px">
-                    <md-grid-tile class="sitepalette-yellow" md-colspan="2" id="grid-contracts">
+                    <md-grid-tile class="sitepalette-yellow tileZoom" md-colspan="2" id="grid-contracts">
                         <div layout="column" class="md-padding">
                             <span class="md-headline fnt--white">CONTRACTS PORTAL</span>
                             <h1 class="fnt--white">An Open Database of Mining, Oil and Gas contracts in the Philippines</h1>
@@ -183,7 +183,7 @@
                             </div>    
                         </div>
                     </md-grid-tile>
-                    <md-grid-tile class="red" md-rowspan="2" id="home-activitiesfeature-photo">
+                    <md-grid-tile class="red tileZoom" md-rowspan="2" id="home-activitiesfeature-photo">
                         <div layout="column" class="md-padding">
                             <h1 class="fnt--white">4th National Conference</h1>
                             <div layout="row" flex>
@@ -192,16 +192,16 @@
                                     <span class="fnt--white fnt--sm">March 2016</span>
                                 </div>
                                 <div flex="40" layout="row" layout-align="end center">
-                                    <a class="fnt--white sref" href="javascript:window.open('http://progrep.eiti.org/2016/glance')"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_white_18px.svg"></md-icon> <span class="fnt--white fnt--md">Read Story</span> </a>
+                                    <a class="fnt--white sref" href="javascript:window.open('http://progrep.eiti.org/2016/glance')"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_white_18px.svg"></md-icon> <span class="fnt--white fnt--md">More Info</span> </a>
                                 </div>
                             </div>
                         </div>
                     </md-grid-tile>
-                    <md-grid-tile class="sitepalette-blue" layout="column" id="grid-progress-report">
+                    <md-grid-tile class="sitepalette-blue tileZoom" layout="column" id="grid-progress-report">
                         <div layout="column" class="md-padding">
                             <h1 class="fnt--white">EITI Progress Report 2016</h1>
                             <div layout="row" class="ta-left">
-                                <a class="fnt--white sref" href="javascript:window.open('http://progrep.eiti.org/2016/glance')"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_white_18px.svg"></md-icon> <span class="fnt--white fnt--md">Read Story</span> </a>
+                                <a class="fnt--white sref" href="javascript:window.open('http://progrep.eiti.org/2016/glance')"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_white_18px.svg"></md-icon> <span class="fnt--white fnt--md">Click here</span> </a>
                             </div>
                         </div>
                     </md-grid-tile>

@@ -71,7 +71,7 @@ angular.module('navMod',['ngRoute','utilsModule'])
 						subnav: [
 							{
 								id:"work-plan",
-								name: "2016 Work Plan",
+								name: "Work Plan",
 								href: "Work-Plan"
 							},
 							{

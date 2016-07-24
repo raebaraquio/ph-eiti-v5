@@ -291,8 +291,9 @@ pheiti.controller('statementCarouselController',['$scope',
 pheiti.controller('homeInfographicController',['$scope','ngDialog',
     function($scope,ngDialog){
 
-    $("#chart-container").highcharts({
+    var chart = new Highcharts.Chart({
         chart: {
+            renderTo: 'chart-container',
             plotBackgroundColor: null,
             plotBorderWidth: null,
             plotShadow: false,
@@ -313,32 +314,72 @@ pheiti.controller('homeInfographicController',['$scope','ngDialog',
                     enabled: false
                 },
                 showInLegend: true
+            },
+            series: {
+                point: {
+                    events: {
+                        legendItemClick: function () {
+                            return false; // <== returning false will cancel the default action
+                        }
+                    }
+                }
             }
         },
         legend : {
+            // labelFormat: '{name} ({percentage:.1f}%)',
             layout: 'vertical',
             align: 'left',
             verticalAlign: 'top',
             floating: false,
             itemWidth: 100,
-            lineHeight: 48,
-            itemMarginTop: 13,
-            itemMarginBottom: 13
+            itemMarginTop: 0,
+            itemMarginBottom: 55,
+            useHTML: true,
+            itemStyle: { "display": "block", "line-height": "1em", "height": "75px !important", "vertical-align":"text-top" },
+            labelFormatter: function() {
+                return '<span class="agencyName" style="text-align: left;margin-top:0em;display:block;font-size:0.9em;font-family:Roboto,sans-serif;">' + this.name + ' ('+ this.y +'%)</span> <span class="totalCollection" style="font-size:2em;line-height:1.15em;display:block;font-family:Roboto,sans-serif;">'+ this.yData +'</span>';
+            }
         },
         series: [{
             name: 'Total Collection',
             colorByPoint: true,
             data: [
-                { name: 'Departent of Energy (DOE)', y: 55, sliced: true, selected: true },
-                { name: 'Bureau of Internal Revenue (BIR)', y: 40 },
-                { name: 'National Commission on Indigenous Peoples (NCIP)', y: 1 },
-                { name: 'Mines and Geosciences Bureau (MGB)', y: 2 },
-                { name: 'Bureau of Customs (BOC)', y: 1 },
-                { name: 'Local Government Unit (LGU)', y: 1 },                
-                { name: 'Philippine Ports Authority (PPA)', y: 0 }                
+                { name: 'Departent of Energy', y: 54.66, yData: '22,247,984,129'},
+                { name: 'Bureau of Internal Revenue', y: 40.01, yData: '16,284,928,889' },
+                { name: 'National Commission on Indigenous Peoples', y: 0.60, yData: '242,124,305' },
+                { name: 'Mines and Geosciences Bureau', y: 1.97, yData: '802,798,044' },
+                { name: 'Bureau of Customs', y:2.02, yData: '820,365,739' },
+                { name: 'Local Government Unit', y: 0.74, yData: '301,525,311' }
             ]
         }]
     });
+
+    // Apply events to text elements (SVG) and spans within the legend (VML + modern browsers with useHTML option).
+    $('.highcharts-legend .agencyName , .highcharts-legend .totalCollection').each(function(index, element) {
+        $(element).hover(function() {
+            var useIdx = null;
+            switch(index) {
+                case 0 : useIdx = 0; break;
+                case 1 : useIdx = 0; break;
+                case 2 : useIdx = 1; break;
+                case 3 : useIdx = 1; break;
+                case 4 : useIdx = 2; break;
+                case 5 : useIdx = 2; break;
+                case 6 : useIdx = 3; break;
+                case 7 : useIdx = 3; break;
+                case 8 : useIdx = 4; break;
+                case 9 : useIdx = 4; break;
+                case 10 : useIdx = 5; break;
+                case 11 : useIdx = 5; break;
+            }
+            // console.log(index)
+            // console.log(chart.series[0].data)
+            chart.tooltip.refresh(chart.series[0].data[useIdx]);
+        },function() {
+            chart.tooltip.hide();
+        })
+    });
+
     
     $scope.variances = [
         {
@@ -360,14 +401,14 @@ pheiti.controller('homeInfographicController',['$scope','ngDialog',
     ]
 
     $scope.openVariance=function(){
-        ngDialog.open({ 
-            template: './template/variance.html', 
-            className: 'ngdialog-theme-default', 
-            scope:$scope,
-            closeByDocument: true,
-            closeByEscape: true,
-            showClose: true
-        });
+        // ngDialog.open({ 
+        //     template: './template/see-reports.html', 
+        //     className: 'ngdialog-theme-default', 
+        //     scope:$scope,
+        //     closeByDocument: true,
+        //     closeByEscape: true,
+        //     showClose: true
+        // });
     }    
 }]);
 
@@ -419,4 +460,27 @@ pheiti.controller('footerController',['$scope','ngDialog','homeNewsFactory',
             }
         })
     }
+}]);
+
+
+pheiti.controller('compareReportsController',['$scope',
+    function($scope){
+    $scope.reportsData = [
+        {
+            periodCovered : 2012,
+            publicationDate: "December 2012",
+            sectorsCovered: "Oil, Gas, Mining",
+            govtRevenues: 1203,
+            companyPayments:1270,
+            numCompaniesReporting:36
+        },
+        {
+            periodCovered : 2013,
+            publicationDate: "December 2015",
+            sectorsCovered: "Oil, Gas, Mining, Coal",
+            govtRevenues: 982,
+            companyPayments:990,
+            numCompaniesReporting:36
+        }
+    ]
 }]);
