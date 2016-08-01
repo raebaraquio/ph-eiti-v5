@@ -1,16 +1,15 @@
-var activitiesApp = angular.module('activities',['ngRoute','ngSanitize','ngCookies','navMod','ngMaterial','utilsModule','ngDialog','cgBusy']);
-
+var activitiesApp = angular.module('activities',['ngRoute','ngSanitize','ngCookies','navMod','ngMaterial','utilsModule','secretariatContactMod']);
 activitiesApp.config(function($routeProvider){
     $routeProvider
     .when('/',
     {
         controller:'ActivitiesController',
-        templateUrl:'template/index.html'
+        templateUrl:'template/index.html?v=1.02'
     })
     .when('/:id',
     {
         controller: 'ActivitiesController',
-        templateUrl: 'template/view.html'
+        templateUrl: 'template/view.html?v=1.02'
     })
     .otherwise({
         redirectTo:'/'
@@ -186,45 +185,72 @@ activitiesApp.factory('homeNewsFactory',['$http',
     return homeNewsFactory;
 }]);
 
-activitiesApp.controller('footerController',['$scope','ngDialog','homeNewsFactory',
-    function($scope,ngDialog,homeNewsFactory){
-
+activitiesApp.controller('footerController',['$scope','homeNewsFactory','$mdDialog','$mdMedia','secretariatContactDetails',
+    function($scope,homeNewsFactory,$mdDialog,$mdMedia,secretariatContactDetails){
+        
+    $scope.contactDetails = secretariatContactDetails.get();
     $scope.userfeedback = { message : '',  type: '' }
     $scope.user = {name : '', email: ''}
-
-    $scope.resetForm=function(){
-        $scope.user.name = ''
-        $scope.user.email = ''
+    
+    $scope.resetFeedback=function(){
         $scope.userfeedback.message = '';
         $scope.userfeedback.type = ''; 
     }
 
-    $scope.triggerSubscribe=function(){
-        $scope.resetForm();
-        ngDialog.open({ 
-            template: '../template/subscribe-innerpage.html', 
-            className: 'ngdialog-theme-default', 
-            scope:$scope,
-            closeByDocument: true,
-            closeByEscape: true,
-            showClose: true
-        });
+    $scope.resetForm=function(mode){
+        $scope.user.name = '';
+        $scope.user.email = '';
+        if (mode===true){
+            $scope.userfeedback.message = '';
+            $scope.userfeedback.type = '';
+        }
+    }
+
+    $scope.closeDialog = function() {
+        $mdDialog.hide();
+    };
+
+    $scope.triggerSubscribe=function(ev){
+        $scope.resetForm(true);
+        // var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+        $mdDialog.show({
+            templateUrl: '../template/subscribe-innerpage.html?v=1.02', 
+            parent: angular.element(document.getElementById('logo-wrapper')),
+            targetEvent: ev,
+            clickOutsideToClose:true,
+            fullscreen: true,
+            controller:'footerController'
+        })
     }
 
     $scope.subscribe = function() {
+        $scope.resetFeedback();
+        if ($scope.signupForm.$invalid){
+            $scope.userfeedback.message = 'Unable to proceed. Please check the required field.';
+            $scope.userfeedback.type = 'error';     
+            return false
+        }
+
+        if (!$scope.user.email) {
+            $scope.userfeedback.message = 'Unable to proceed. Email Address is required.';
+            $scope.userfeedback.type = 'error';     
+            return false
+        }
+
         $scope.subscribePromise = homeNewsFactory.subscribe($scope.user);
         $scope.subscribePromise.then(function(data){
             if (data.status==200) {
-                $scope.userfeedback.message = 'Confirmation email sent. Kindly check your inbox please, to confirm your subscription.';
+                delete $scope.subscribePromise
+                $scope.userfeedback.message = 'Confirmation email sent. Kindly check your inbox and confirm your subscription please.';
                 $scope.userfeedback.type = 'success';
                 $scope.resetForm();
-                // ngDialog.closeAll();
             }
         })
         .then(null,function(response){
+            delete $scope.subscribePromise
             switch(response.status) {
                 case 409:
-                    $scope.userfeedback.message = 'Conflict: Email address is already taken.';
+                    $scope.userfeedback.message = 'Error: Email address is already taken.';
                     $scope.userfeedback.type = 'error';     
                     break;
                 case 400:

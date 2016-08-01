@@ -1,7 +1,8 @@
 <header class="wd-100">   
     <div class="mxw-80 ta-left" id="header-wrapper">
-        <p>NEWS</p>
-        <h1 class="md-display-2">Archive</h1>
+    	<!-- <p>NEWS</p-->
+        <h1 class="md-display-2 header-title">News</h1>
+        <!--<h1 class="md-display-2">Archive</h1> -->       
     </div>   
 </header>
 
@@ -14,70 +15,251 @@
 </div>
 
 <div class="w-100">
-	<div class="mxw-80" data-ng-show="newsandevents.length > 0">
-		<md-content	flex="100" layout-fill layout="row" layout-wrap>
-			<div flex="33" style="padding-top:0.5em;">
-				<md-input-container flex>
-                    <label>Showing</label>
-                    <md-select data-ng-model="page.limit" data-ng-change="determineOffset()">
-                        <md-option value="5">5</md-option>
-                        <md-option value="10">10</md-option>
-                        <md-option value="15">15</md-option>
-                    </md-select> 
-                </md-input-container>
-                <md-input-container flex style="padding-top:0.75em;">
-                	of <strong>{{totalNum}} results</strong>
-            	</md-input-container>  
-			</div>
-			<div flex="33" layout="row">				
-			</div>
-			<div flex="33" layout="row" layout-align="end end">
-				<md-input-container flex="20" layout="row" layout-align="start end">
-	            	<label>Page</label>
-                    <md-select data-ng-model="page.num" data-ng-change="determineOffset()"><!-- data-ng-options="npage as npage for npage in newspages"> -->
-                    	<md-option data-ng-repeat="npage in newspages" value="{{npage}}">{{npage}}</md-option>
-                    </md-select>
-            	</md-input-container>				
-            	<md-input-container flex="60" layout="row" layout-align="center end">
-					<md-button class="md-raised md-secondary" style="top:0.5em" data-ng-disabled="page.num == 1" data-ng-click="determineOffset('p')">Prev</md-button>		            
-					<md-button class="md-raised md-secondary" style="top:0.5em" data-ng-disabled="page.num == newspages.length" data-ng-click="determineOffset('n')">Next</md-button>	
-		    	</md-input-container>	
-			</div>
-		</md-content>     
-	</div>
-</div>
-
-<div class="w-100">
 	<div class="mxw-80">
-		<div class="ta-center" cg-busy="{promise:newspromise}"></div>
+<md-content>
+			<div class="ta-center">
+				<md-progress-circular data-ng-if="newspromise" class="md-secondary" md-mode="indeterminate"></md-progress-circular>
+			</div>
+		</md-content>
 		<md-content>
-			<md-list>
-				<md-list-item class="md-3-line" data-ng-repeat="(kfolder,ne) in newsandevents" layout="column" layout-align="left left">
-					<h3 tabindex="-1" class="md-heading padd-bt-0 mrgn-bt-0 fnt--bluepalette newsTitle" title="{{ne.title}}" data-ng-click="openNews(ne)">{{ne.title}}</h3>
-					<em style="padding:0px;margin:0px;" align="left" data-ng-show="ne.subhead!=null">{{ne.subhead}}</em>
-					<div layout="row" style="font-size:0.85em;">
-						<span data-ng-ng-show="ne.author">{{ne.author}} <span data-ng-show="ne.readmore_source">, </span><a data-ng-show="ne.readmore_source" href="{{ne.readmore_source}}">{{ne.readmore_sourcewebsite}}</a> &nbsp;</span><!--  {{ne.dateposted}} -->
-					</div>
-					<div>
-						<span class="fnt--sm fnt--gray">{{ne.dateposted}}</span>
-					</div>
-					<div style="margin-top:0.5em;">
-						<div data-ng-bind-html="ne.brief"></div>	
-					</div>					
-					<div layout="row" layout="end center">
-						<!-- <md-button class="md-accent" data-ng-href="#/Archive/{{ne.id}}" aria-label="{{ne.readmore_label}}"><strong>{{ne.readmore_label}}</strong></md-button> -->
-						<md-button class="md-accent" data-ng-href="#/Archive/{{ne.id}}" aria-label="{{ne.readmore_label}}">{{ne.readmore_label}}</md-button>
-					</div>
-					<md-divider data-ng-if="!$last"></md-divider>
-				</md-list-item>				
-			</md-list>
-		</md-content>		
-	</div>
-</div>
-
-<div class="w-100" style="margin-top:2em;">
-	<div class="mxw-80">
-		<div class="ta-center" data-ng-show="newsandevents.length===0">No data available.</div>
+			<md-tabs md-dynamic-height md-border-bottom md-selected="selected_idx">
+				<md-tab label="PH-EITI Newsroom">
+					<h1 class="md-display-2">PH-EITI Newsroom</h1>	
+					<md-content	flex="100" layout-fill layout="row" layout-wrap  data-ng-show="newsandevents.length > 0">
+						<div flex="33" style="padding-top:0.5em;">
+							<md-input-container flex>
+			                    <label>Showing</label>
+			                    <md-select data-ng-model="page.limit" data-ng-change="determineOffset()">
+			                        <md-option value="5">5</md-option>
+			                        <md-option value="10">10</md-option>
+			                        <md-option value="15">15</md-option>
+			                    </md-select> 
+			                </md-input-container>
+			                <md-input-container flex style="padding-top:0.75em;">
+			                	of <strong>{{totalNum}} results</strong>
+			            	</md-input-container>  
+						</div>
+						<div flex="33" layout="row">				
+						</div>
+						<div flex="33" layout="row" layout-align="end end">
+							<md-input-container flex="20" layout="row" layout-align="start end">
+				            	<label>Page</label>
+			                    <md-select data-ng-model="page.num" data-ng-change="determineOffset()"><!-- data-ng-options="npage as npage for npage in newspages"> -->
+			                    	<md-option data-ng-repeat="npage in newspages" value="{{npage}}">{{npage}}</md-option>
+			                    </md-select>
+			            	</md-input-container>				
+			            	<md-input-container flex="60" layout="row" layout-align="center end">
+								<md-button class="md-raised md-secondary" style="top:0.5em" data-ng-disabled="page.num == 1" data-ng-click="determineOffset('p')">Prev</md-button>		            
+								<md-button class="md-raised md-secondary" style="top:0.5em" data-ng-disabled="page.num == newspages.length" data-ng-click="determineOffset('n')">Next</md-button>	
+					    	</md-input-container>	
+						</div>
+					</md-content>     
+					<md-content>
+						<md-content data-ng-show="newsandevents.length > 0" >
+							<md-list>
+								<md-list-item class="md-3-line" data-ng-repeat="(kfolder,ne) in newsandevents" layout="column" layout-align="left left">
+									<h3 tabindex="-1" class="md-heading padd-bt-0 mrgn-bt-0 fnt--bluepalette newsTitle" title="{{ne.title}}" data-ng-click="openNews(ne)">{{ne.title}}</h3>
+									<em style="padding:0px;margin:0px;" align="left" data-ng-show="ne.subhead!=null">{{ne.subhead}}</em>
+									<div layout="row" style="font-size:0.85em;">
+										<span data-ng-ng-show="ne.author">{{ne.author}} <span data-ng-show="ne.readmore_source">, </span><a data-ng-show="ne.readmore_source" href="{{ne.readmore_source}}">{{ne.readmore_sourcewebsite}}</a> &nbsp;</span><!--  {{ne.dateposted}} -->
+									</div>
+									<div>
+										<span class="fnt--sm fnt--gray">{{ne.dateposted}}</span>
+									</div>
+									<div style="margin-top:0.5em;">
+										<div data-ng-bind-html="ne.brief"></div>	
+									</div>					
+									<div layout="row" layout="end center">
+										<!-- <md-button class="md-accent" data-ng-href="#/In-the-News/{{ne.id}}" aria-label="{{ne.readmore_label}}"><strong>{{ne.readmore_label}}</strong></md-button> -->
+										 <md-button class="md-accent" data-ng-href="#/PH-EITI-Newsroom/{{ne.id}}" aria-label="{{ne.readmore_label}}">{{ne.readmore_label}}</md-button> 
+									</div>
+									<md-divider data-ng-if="!$last"></md-divider>
+								</md-list-item>				
+							</md-list>
+						</md-content>
+						<div data-ng-show="newsandevents.length==0" class="ta-left">
+							No data available.
+						</div>
+					</md-content>
+				</md-tab>
+				<md-tab label="PH-EITI in the News">
+					<h1 class="md-display-2">PH-EITI in the News</h1>	
+					<md-content	flex="100" layout-fill layout="row" layout-wrap data-ng-show="newsandevents.length > 0">
+						<div flex="33" style="padding-top:0.5em;">
+							<md-input-container flex>
+			                    <label>Showing</label>
+			                    <md-select data-ng-model="page.limit" data-ng-change="determineOffset()">
+			                        <md-option value="5">5</md-option>
+			                        <md-option value="10">10</md-option>
+			                        <md-option value="15">15</md-option>
+			                    </md-select> 
+			                </md-input-container>
+			                <md-input-container flex style="padding-top:0.75em;">
+			                	of <strong>{{totalNum}} results</strong>
+			            	</md-input-container>  
+						</div>
+						<div flex="33" layout="row">				
+						</div>
+						<div flex="33" layout="row" layout-align="end end">
+							<md-input-container flex="20" layout="row" layout-align="start end">
+				            	<label>Page</label>
+			                    <md-select data-ng-model="page.num" data-ng-change="determineOffset()"><!-- data-ng-options="npage as npage for npage in newspages"> -->
+			                    	<md-option data-ng-repeat="npage in newspages" value="{{npage}}">{{npage}}</md-option>
+			                    </md-select>
+			            	</md-input-container>				
+			            	<md-input-container flex="60" layout="row" layout-align="center end">
+								<md-button class="md-raised md-secondary" style="top:0.5em" data-ng-disabled="page.num == 1" data-ng-click="determineOffset('p')">Prev</md-button>		            
+								<md-button class="md-raised md-secondary" style="top:0.5em" data-ng-disabled="page.num == newspages.length" data-ng-click="determineOffset('n')">Next</md-button>	
+					    	</md-input-container>	
+						</div>
+					</md-content>     
+					<md-content>
+						<md-content data-ng-show="newsandevents.length > 0">
+							<md-list>
+								<md-list-item class="md-3-line" data-ng-repeat="(kfolder,ne) in newsandevents" layout="column" layout-align="left left">
+									<h3 tabindex="-1" class="md-heading padd-bt-0 mrgn-bt-0 fnt--bluepalette newsTitle" title="{{ne.title}}" data-ng-click="openNews(ne)">{{ne.title}}</h3>
+									<em style="padding:0px;margin:0px;" align="left" data-ng-show="ne.subhead!=null">{{ne.subhead}}</em>
+									<div layout="row" style="font-size:0.85em;">
+										<span data-ng-ng-show="ne.author">{{ne.author}} <span data-ng-show="ne.readmore_source">, </span><a data-ng-show="ne.readmore_source" href="{{ne.readmore_source}}">{{ne.readmore_sourcewebsite}}</a> &nbsp;</span><!--  {{ne.dateposted}} -->
+									</div>
+									<div>
+										<span class="fnt--sm fnt--gray">{{ne.dateposted}}</span>
+									</div>
+									<div style="margin-top:0.5em;">
+										<div data-ng-bind-html="ne.brief"></div>	
+									</div>					
+									<div layout="row" layout="end center">
+										<!-- <md-button class="md-accent" data-ng-href="#/In-the-News/{{ne.id}}" aria-label="{{ne.readmore_label}}"><strong>{{ne.readmore_label}}</strong></md-button> -->
+										 <md-button class="md-accent" data-ng-href="#/PH-EITI-In-the-News/{{ne.id}}" aria-label="{{ne.readmore_label}}">{{ne.readmore_label}}</md-button> 
+									</div>
+									<md-divider data-ng-if="!$last"></md-divider>
+								</md-list-item>				
+							</md-list>
+						</md-content>
+						<div data-ng-show="newsandevents.length==0" class="ta-left">
+							No data available.
+						</div>
+					</md-content>
+				</md-tab>
+				<md-tab label="Media Releases">
+					<h1 class="md-display-2">Media releases</h1>	
+					<md-content	flex="100" layout-fill layout="row" layout-wrap data-ng-show="newsandevents.length > 0">
+						<div flex="33" style="padding-top:0.5em;">
+							<md-input-container flex>
+			                    <label>Showing</label>
+			                    <md-select data-ng-model="page.limit" data-ng-change="determineOffset()">
+			                        <md-option value="5">5</md-option>
+			                        <md-option value="10">10</md-option>
+			                        <md-option value="15">15</md-option>
+			                    </md-select> 
+			                </md-input-container>
+			                <md-input-container flex style="padding-top:0.75em;">
+			                	of <strong>{{totalNum}} results</strong>
+			            	</md-input-container>  
+						</div>
+						<div flex="33" layout="row">				
+						</div>
+						<div flex="33" layout="row" layout-align="end end">
+							<md-input-container flex="20" layout="row" layout-align="start end">
+				            	<label>Page</label>
+			                    <md-select data-ng-model="page.num" data-ng-change="determineOffset()"><!-- data-ng-options="npage as npage for npage in newspages"> -->
+			                    	<md-option data-ng-repeat="npage in newspages" value="{{npage}}">{{npage}}</md-option>
+			                    </md-select>
+			            	</md-input-container>				
+			            	<md-input-container flex="60" layout="row" layout-align="center end">
+								<md-button class="md-raised md-secondary" style="top:0.5em" data-ng-disabled="page.num == 1" data-ng-click="determineOffset('p')">Prev</md-button>		            
+								<md-button class="md-raised md-secondary" style="top:0.5em" data-ng-disabled="page.num == newspages.length" data-ng-click="determineOffset('n')">Next</md-button>	
+					    	</md-input-container>	
+						</div>
+					</md-content>     
+					<md-content>
+						<md-content data-ng-show="newsandevents.length==0">
+							<md-list>
+								<md-list-item class="md-3-line" data-ng-repeat="(kfolder,ne) in newsandevents" layout="column" layout-align="left left">
+									<h3 tabindex="-1" class="md-heading padd-bt-0 mrgn-bt-0 fnt--bluepalette newsTitle" title="{{ne.title}}" data-ng-click="openNews(ne)">{{ne.title}}</h3>
+									<em style="padding:0px;margin:0px;" align="left" data-ng-show="ne.subhead!=null">{{ne.subhead}}</em>
+									<div layout="row" style="font-size:0.85em;">
+										<span data-ng-ng-show="ne.author">{{ne.author}} <span data-ng-show="ne.readmore_source">, </span><a data-ng-show="ne.readmore_source" href="{{ne.readmore_source}}">{{ne.readmore_sourcewebsite}}</a> &nbsp;</span><!--  {{ne.dateposted}} -->
+									</div>
+									<div>
+										<span class="fnt--sm fnt--gray">{{ne.dateposted}}</span>
+									</div>
+									<div style="margin-top:0.5em;">
+										<div data-ng-bind-html="ne.brief"></div>	
+									</div>					
+									<div layout="row" layout="end center">
+										<!-- <md-button class="md-accent" data-ng-href="#/In-the-News/{{ne.id}}" aria-label="{{ne.readmore_label}}"><strong>{{ne.readmore_label}}</strong></md-button> -->
+										 <md-button class="md-accent" data-ng-href="#/Media-Releases/{{ne.id}}" aria-label="{{ne.readmore_label}}">{{ne.readmore_label}}</md-button> 
+									</div>
+									<md-divider data-ng-if="!$last"></md-divider>
+								</md-list-item>				
+							</md-list>
+						</md-content>
+						<div data-ng-show="newsandevents.length==0" class="ta-left">
+							No data available.
+						</div>
+					</md-content>
+				</md-tab>
+				<md-tab label="Archive">
+					<h1 class="md-display-2">Archive</h1>	
+					<md-content	flex="100" layout-fill layout="row" layout-wrap data-ng-show="newsandevents.length > 0">
+						<div flex="33" style="padding-top:0.5em;">
+							<md-input-container flex>
+			                    <label>Showing</label>
+			                    <md-select data-ng-model="page.limit" data-ng-change="determineOffset()">
+			                        <md-option value="5">5</md-option>
+			                        <md-option value="10">10</md-option>
+			                        <md-option value="15">15</md-option>
+			                    </md-select> 
+			                </md-input-container>
+			                <md-input-container flex style="padding-top:0.75em;">
+			                	of <strong>{{totalNum}} results</strong>
+			            	</md-input-container>  
+						</div>
+						<div flex="33" layout="row">				
+						</div>
+						<div flex="33" layout="row" layout-align="end end">
+							<md-input-container flex="20" layout="row" layout-align="start end">
+				            	<label>Page</label>
+			                    <md-select data-ng-model="page.num" data-ng-change="determineOffset()"><!-- data-ng-options="npage as npage for npage in newspages"> -->
+			                    	<md-option data-ng-repeat="npage in newspages" value="{{npage}}">{{npage}}</md-option>
+			                    </md-select>
+			            	</md-input-container>				
+			            	<md-input-container flex="60" layout="row" layout-align="center end">
+								<md-button class="md-raised md-secondary" style="top:0.5em" data-ng-disabled="page.num == 1" data-ng-click="determineOffset('p')">Prev</md-button>		            
+								<md-button class="md-raised md-secondary" style="top:0.5em" data-ng-disabled="page.num == newspages.length" data-ng-click="determineOffset('n')">Next</md-button>	
+					    	</md-input-container>	
+						</div>
+					</md-content>     
+					<md-content>
+						<md-content data-ng-show="newsandevents.length==0">
+							<md-list>
+								<md-list-item class="md-3-line" data-ng-repeat="(kfolder,ne) in newsandevents" layout="column" layout-align="left left">
+									<h3 tabindex="-1" class="md-heading padd-bt-0 mrgn-bt-0 fnt--bluepalette newsTitle" title="{{ne.title}}" data-ng-click="openNews(ne)">{{ne.title}}</h3>
+									<em style="padding:0px;margin:0px;" align="left" data-ng-show="ne.subhead!=null">{{ne.subhead}}</em>
+									<div layout="row" style="font-size:0.85em;">
+										<span data-ng-ng-show="ne.author">{{ne.author}} <span data-ng-show="ne.readmore_source">, </span><a data-ng-show="ne.readmore_source" href="{{ne.readmore_source}}">{{ne.readmore_sourcewebsite}}</a> &nbsp;</span>
+									</div>
+									<div>
+										<span class="fnt--sm fnt--gray">{{ne.dateposted}}</span>
+									</div>
+									<div style="margin-top:0.5em;">
+										<div data-ng-bind-html="ne.brief"></div>	
+									</div>					
+									<div layout="row" layout="end center">
+										 <md-button class="md-accent" data-ng-href="#/Archive/{{ne.id}}" aria-label="{{ne.readmore_label}}">{{ne.readmore_label}}</md-button> 
+									</div>
+									<md-divider data-ng-if="!$last"></md-divider>
+								</md-list-item>				
+							</md-list>
+						</md-content>
+						<div data-ng-show="newsandevents.length==0" class="ta-left">
+							No data available.
+						</div>
+					</md-content>
+				</md-tab>
+			</md-tabs>
+		</md-content>
 	</div>
 </div>
 

@@ -120,14 +120,19 @@ angular.module('navMod',['ngRoute','utilsModule'])
 						href: "News",
 						subnav: [
 							{
+								id:"ph-eiti-newsroom",
+								name: "PH-EITI Newsroom",
+								href:"PH-EITI-Newsroom"
+							},
+							{
+								id:"ph-eiti-in-the-news",
+								name: "PH-EITI In the News",
+								href:"PH-EITI-In-the-News"
+							},
+							{
 								id:"media-releases",
 								name: "Media Releases",
 								href: "Media-Releases"
-							},
-							{
-								id:"in-the-news",
-								name: "In the News",
-								href:"In-the-News"
 							},
 							{
 								id:"newsletter",

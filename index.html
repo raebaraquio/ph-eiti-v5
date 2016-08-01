@@ -17,12 +17,9 @@
     <link rel="stylesheet" href="css/angular-material.min.css?v1.1.0-rc2"> 
     <link rel="stylesheet" href="css/font-awesome.min.css"> 
     <link rel="stylesheet" href="css/jk-carousel.min.css" />
-    <link rel="stylesheet" href="css/ngDialog.css" />
-    <link rel="stylesheet" href="css/ngDialog-theme-default.css" />
-    <link rel="stylesheet" href="css/angular-busy.css"/>
-    <link rel="stylesheet" href="css/basic.css"> 
-    <link rel="stylesheet" href="css/main.css"> 
-    <link rel="stylesheet" href="css/nav.css"> 
+    <link rel="stylesheet" href="css/basic.css?v=1.02"> 
+    <link rel="stylesheet" href="css/main.css?v=1.02"> 
+    <link rel="stylesheet" href="css/nav.css?v=1.02"> 
 </head>	
 <body ng-cloak>
     <div class="wd-100" id="logo-wrapper">
@@ -85,33 +82,33 @@
                     </div>
                     <div flex="40" layout="column">
                         <md-list class="md-padding" style="margin-left:1.5em;">
-                            <md-list-item class="md-2-line">
+                            <md-list-item class="md-2-line" style="border:1px solid #fabc01;border-left:10px solid #fabc01;" title="TOTAL COLLECTIONS FOR 2013 - Php 40,699,726,417">
                                 <div class="md-list-item-text">
-                                    <p>TOTAL COLLECTIONS FOR 2013</p>
-                                    <h1 style="padding:0;margin:0;line-height:1em;">Php 40.7 or 40.699 Bn</h1>
+                                    <h3>TOTAL COLLECTIONS FOR 2013</h3>
+                                    <h1 style="padding:0;margin:0;line-height:1em;">Php 40,699,726,417</h1>
                                 </div>
                             </md-list-item>
-                            <md-list-item class="md-2-line">
+                            <md-list-item class="md-2-line" title="TOTAL COLLECTIONS FROM MINING - Php 5,376,239,684">
                                 <div class="md-list-item-text">
                                     <p>TOTAL COLLECTIONS FROM MINING</p>     
-                                    <h1 style="padding:0;margin:0;line-height:1em;">Php 5.4 or 5.37 Bn</h1>
+                                    <h2 style="padding:0;margin:0;line-height:1em;">Php 5,376,239,684</h2>
                                 </div>
                             </md-list-item>
-                            <md-list-item class="md-2-line">
+                            <md-list-item class="md-2-line" title="TOTAL COLLECTIONS FROM OIL AND GAS - Php 35,323,486,733">
                                 <div class="md-list-item-text">
                                     <p>TOTAL COLLECTIONS FROM OIL AND GAS</p>   
-                                    <h1 style="padding:0;margin:0;line-height:1em;">Php 35.2 Bn</h1>  
+                                    <h2 style="padding:0;margin:0;line-height:1em;">Php 35,323,486,733</h2>  
                                 </div>
                             </md-list-item>
-                            <md-list-item class="md-2-line">
+                            <md-list-item class="md-2-line" title="TOTAL VARIANCE POST-RECONCILIATION - Php 2,659,478">
                                 <div class="md-list-item-text">
-                                    <p class="sref" tabindex="-1">TOTAL VARIANCE POST-RECONCILIATION</p>     
-                                    <h1 style="padding:0;margin:0;line-height:1em;">Php 58.2 Mn</h1>
+                                    <p tabindex="-1">TOTAL VARIANCE POST-RECONCILIATION</p>     
+                                    <h2 style="padding:0;margin:0;line-height:1em;">Php 2,659,478</h2>
                                 </div>
                             </md-list-item>
                             <md-list-item class="md-2-line">
                                 <div class="md-list-item-text ta-left">
-                                    <a class="sref" data-ng-click="openVariance()"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_black_24px.svg"></md-icon> <span class="fnt--md fnt--black">See more</span> </a>
+                                    <a class="sref" data-ng-click="openComparison($event)"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_black_24px.svg"></md-icon> <span class="fnt--md fnt--black" title="See Comparative table of Revenue/Payment from First and Second PH-EITI Country Reports">See Comparative Table of Revenue/Payment</span> </a>
                                 </div>
                             </md-list-item>
                         </md-list>
@@ -134,18 +131,21 @@
                             <h1 class="fnt--white" title="PH bags 2016 EITI International Chair Award in Lima, Peru">PH bags 2016 EITI International Chair Award in Lima, Peru</h1>
                             <div layout="row" class="md-padding">
                                 <div flex="70" layout="column">
-                                    <span class="fnt--white">IN THE NEWS</span>
+                                    <span class="fnt--white">PH-EITI NEWSROOM</span>
                                     <span class="fnt--white fnt--sm">March 07, 2016 10:12 PM </span>
                                 </div>
                                 <div flex="30" layout="row" layout-align="end center">
-                                    <a class="fnt--white sref" href="./News/#/In-the-News/PH-bags-2016-EITI-International-Chair-Award-in-Lima-Peru"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_white_18px.svg"></md-icon> <span class="fnt--white fnt--md">Read Story</span> </a>
+                                    <a class="fnt--white sref" href="./News/#/PH-EITI-In-the-News/PH-bags-2016-EITI-International-Chair-Award-in-Lima-Peru"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_white_18px.svg"></md-icon> <span class="fnt--white fnt--md">Read Story</span> </a>
                                 </div>
                             </div>
                         </div>
                     </md-content>
                     <md-content flex="60" layout="column">
+                        <md-progress-linear data-ng-if="newspromise" class="md-primary" md-mode="indeterminate"></md-progress-linear>
                         <div class="md-padding">
-                            <h3 style="padding:0;margin:0;line-height:1em;">IN THE NEWS</h3>
+                            <h3 style="padding:0;margin:0;line-height:1em;">PH-EITI IN THE NEWS</h3>    
+                        </div>
+                        <div class="ta-center">
                         </div>
                         <md-list>
                             <md-list-item class="md-2-line" data-ng-repeat="(kn,news) in homenews" data-ng-if="kn < 5" style="min-height:4.2em">
@@ -156,7 +156,7 @@
                             </md-list-item>
                             <md-list-item class="md-2-line" data-ng-repeat="(kn,news) in homenews" data-ng-if="kn==5 && homenews.length > 6" style="min-height:3em;">
                                 <div class="md-list-item-text ta-right">
-                                    <a class="sref" href="./News/#/"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_black_24px.svg"></md-icon> <span class="fnt--md fnt--black">Click here for more news</span> </a>
+                                    <a class="sref" href="./News/#/"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_black_24px.svg"></md-icon> <span class="fnt--md fnt--black">More News</span> </a>
                                 </div>
                             </md-list-item>
                         </md-list>
@@ -192,7 +192,7 @@
                                     <span class="fnt--white fnt--sm">March 2016</span>
                                 </div>
                                 <div flex="40" layout="row" layout-align="end center">
-                                    <a class="fnt--white sref" href="javascript:window.open('http://progrep.eiti.org/2016/glance')"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_white_18px.svg"></md-icon> <span class="fnt--white fnt--md">More Info</span> </a>
+                                    <a class="fnt--white sref" href="Activities/#/4th-PH-EITI-National-Conference"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_white_18px.svg"></md-icon> <span class="fnt--white fnt--md">More Info</span> </a>
                                 </div>
                             </div>
                         </div>
@@ -271,10 +271,10 @@
                         </ul>
                     </div>
                 </md-content>
-                <md-content flex="70" layout="column">
-                    <div class="ta-right" layout="column" data-ng-controller="footerController">
+                <md-content flex="70" layout="column" data-ng-controller="footerController">
+                    <div class="ta-right" layout="column">
                         <div>
-                            <!-- <input type="email" placeholder="Email Address" title="Get updates by subscribing to our newsletter." id="subscribe-email"/> --><md-button class="md-accent md-raised" data-ng-click="triggerSubscribe()"><strong>Subscribe</strong></md-button>
+                            <md-button class="md-accent md-raised" data-ng-click="triggerSubscribe($event)"><strong>Subscribe</strong></md-button>
                             <a href="javascript:window.open('https://www.facebook.com/PhilippineEITI/')" title="Philippine EITI"><img src="images/icons/facebook.png" class="va-mid" alt="" width="32px" /></a>&nbsp;&nbsp;<!--
                             --><a href="javascript:window.opent('https://twitter.com/ph_eiti')" title="@PH_EITI"><img src="images/icons/twitter.png" class="va-mid" alt="" width="32px" /></a>
                         </div>
@@ -282,9 +282,9 @@
                     <div class="ta-right footer-secretariat-contact">
                         <strong>PH-EITI Secretariat</strong>
                         <p>
-                            5/F DOF building, Roxas Blvd. Corner<br/>Pablo Ocampo St., Manila 1004, Philippines<br/>
-                            <md-icon md-svg-icon="./images/icons/svg/ic_email_white_18px.svg"></md-icon> info@ph-eiti.com
-                            <md-icon md-svg-icon="./images/icons/svg/ic_phone_white_18px.svg"></md-icon> +632-400-6882
+                            {{contactDetails.add_line1}}<br/>{{contactDetails.add_line2}}<br/>
+                            <md-icon md-svg-icon="./images/icons/svg/ic_email_white_18px.svg"></md-icon> {{contactDetails.email}}
+                            <md-icon md-svg-icon="./images/icons/svg/ic_phone_white_18px.svg"></md-icon> {{contactDetails.phone}}
                         </p>
                     </div>
                 </md-content>
@@ -305,19 +305,19 @@
     <script src="js/vendor/angular-resource.js?v=1.01"></script>
     <script src="js/vendor/angular-sanitize.js?v=1.01"></script>
     <script src="js/vendor/angular-cookies.js?v=1.01"></script>    
-    <script src="js/vendor/angular-busy.js?v=1.01"></script>
+    <!--script src="js/vendor/angular-busy.js?v=1.01"></script-->
 
     <script src="js/vendor/angular-material.js"></script>
     <script src="js/vendor/jk-carousel.min.js"></script>
-    <script src="js/vendor/ngDialog.js"></script>
 
     <!-- Utilities -->
     <!--<script src="js/vendor/moment.min.js?v1.01"></script>-->
     <script src="js/modules/utilsModule.js?v=1.01"></script>
+    <script src="js/modules/secretariatContact.js?v=1.01"></script>
 
     <!-- Application -->
-    <script src="js/modules/navigation.js"></script>
-    <script src="js/mainApp.js"></script>
+    <script src="js/modules/navigation.js?v=1.02"></script>
+    <script src="js/mainApp.js?v=1.02"></script>
 
 </body>
 </html>

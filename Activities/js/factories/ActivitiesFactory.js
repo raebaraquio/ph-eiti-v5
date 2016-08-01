@@ -19,105 +19,108 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					program: null,
 					documentation:null,
 					presentations:null,
+					withOfflineGallery: true,
+					fbPhotoAlbum:'https://www.facebook.com/PhilippineEITI/photos/?tab=album&album_id=802979043140321',
+					embedGallery:null,
 					gallery:[
 						{
-							"src":"../../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image001.JPG",
+							"src":"../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image001.JPG",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image002.JPG",
+							"src":"../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image002.JPG",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image003.JPG",
+							"src":"../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image003.JPG",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image004.JPG",
+							"src":"../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image004.JPG",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image005.JPG",
+							"src":"../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image005.JPG",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image006.JPG",
+							"src":"../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image006.JPG",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image007.JPG",
+							"src":"../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image007.JPG",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image008.JPG",
+							"src":"../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image008.JPG",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image009.JPG",
+							"src":"../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image009.JPG",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image010.JPG",
+							"src":"../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image010.JPG",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image011.JPG",
+							"src":"../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image011.JPG",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image012.JPG",
+							"src":"../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image012.JPG",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image013.JPG",
+							"src":"../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image013.JPG",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image014.JPG",
+							"src":"../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image014.JPG",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image015.JPG",
+							"src":"../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image015.JPG",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image016.JPG",
+							"src":"../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image016.JPG",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image017.JPG",
+							"src":"../images/gallery/2016/03/24/4th-PH-EITI-National-Conference/image017.JPG",
 							"title":"",
 							"frame": "",
 							"description":""
@@ -138,39 +141,42 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					program: null,
 					documentation:null,
 					presentations:null,
+					withOfflineGallery: true,
+					fbPhotoAlbum:'https://www.facebook.com/PhilippineEITI/photos/?tab=album&album_id=762637600507799',
+					embedGallery:null,
 					gallery:[
 						{
-							"src":"../../images/gallery/2016/03/24/Roll-out-ENRDMT/image001.JPG",
+							"src":"../images/gallery/2016/03/24/Roll-out-ENRDMT/image001.JPG",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2016/03/24/Roll-out-ENRDMT/image002.JPG",
+							"src":"../images/gallery/2016/03/24/Roll-out-ENRDMT/image002.JPG",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2016/03/24/Roll-out-ENRDMT/image003.JPG",
+							"src":"../images/gallery/2016/03/24/Roll-out-ENRDMT/image003.JPG",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2016/03/24/Roll-out-ENRDMT/image004.JPG",
+							"src":"../images/gallery/2016/03/24/Roll-out-ENRDMT/image004.JPG",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2016/03/24/Roll-out-ENRDMT/image005.JPG",
+							"src":"../images/gallery/2016/03/24/Roll-out-ENRDMT/image005.JPG",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2016/03/24/Roll-out-ENRDMT/image006.JPG",
+							"src":"../images/gallery/2016/03/24/Roll-out-ENRDMT/image006.JPG",
 							"title":"",
 							"frame": "",
 							"description":""
@@ -191,33 +197,36 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					program: null,
 					documentation:null,
 					presentations:null,
+					withOfflineGallery:true,
+					fbPhotoAlbum:null,
+					embedGallery:null,
 					gallery:[
 						{
-							"src":"../../images/gallery/2016/03/24/Making-the-best-use-of-EITI-report/image001.JPG",
+							"src":"../images/gallery/2016/03/24/Making-the-best-use-of-EITI-report/image001.JPG",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2016/03/24/Making-the-best-use-of-EITI-report/image002.JPG",
+							"src":"../images/gallery/2016/03/24/Making-the-best-use-of-EITI-report/image002.JPG",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2016/03/24/Making-the-best-use-of-EITI-report/image003.jpg",
+							"src":"../images/gallery/2016/03/24/Making-the-best-use-of-EITI-report/image003.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2016/03/24/Making-the-best-use-of-EITI-report/image004.jpg",
+							"src":"../images/gallery/2016/03/24/Making-the-best-use-of-EITI-report/image004.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2016/03/24/Making-the-best-use-of-EITI-report/image005.JPG",
+							"src":"../images/gallery/2016/03/24/Making-the-best-use-of-EITI-report/image005.JPG",
 							"title":"",
 							"frame": "",
 							"description":""
@@ -238,27 +247,30 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					program: null,
 					documentation:null,
 					presentations:null,
+					withOfflineGallery:true,
+					fbPhotoAlbum:'https://www.facebook.com/PhilippineEITI/photos/?tab=album&album_id=757187177719508',
+					embedGallery:null,
 					gallery:[
 						{
-							"src":"../../images/gallery/2016/03/24/eSRE-Pilot-Testing/image001.jpg",
+							"src":"../images/gallery/2016/03/24/eSRE-Pilot-Testing/image001.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2016/03/24/eSRE-Pilot-Testing/image002.jpg",
+							"src":"../images/gallery/2016/03/24/eSRE-Pilot-Testing/image002.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2016/03/24/eSRE-Pilot-Testing/image003.jpg",
+							"src":"../images/gallery/2016/03/24/eSRE-Pilot-Testing/image003.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2016/03/24/eSRE-Pilot-Testing/image004.jpg",
+							"src":"../images/gallery/2016/03/24/eSRE-Pilot-Testing/image004.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
@@ -266,9 +278,9 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					]
 				},
 				{
-					id:"FGD-on-Mining-Oil-and-Gas-Contracts",
-					href:"FGD-on-Mining-Oil-and-Gas-Contracts",
-					title:"FGD on Mining, Oil and Gas Contracts",
+					id:"FGD-on-Mining-Oil-and-Gas-Contracts-Portal",
+					href:"FGD-on-Mining-Oil-and-Gas-Contracts-Portal",
+					title:"FGD on Mining, Oil and Gas Contracts Portal",
 					date:"09 October 2015",
 					venue:"AIM Conference Center",
 					coverphoto:"images/_activities/cp/cp_fgd-contracts-portal.jpg",				
@@ -279,6 +291,8 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					program: null,
 					documentation:null,
 					presentations:null,
+					withOfflineGallery:false,
+					fbPhotoAlbum:'https://www.facebook.com/PhilippineEITI/photos/?tab=album&album_id=741602875944605',
 					gallery:[
 						{
 							"src":"https://fbcdn-photos-d-a.akamaihd.net/hphotos-ak-xtp1/v/t1.0-0/p480x480/12108162_741602972611262_7365066720159809932_n.jpg?oh=30bbd0d8ea36c349bab4564b4c832c2c&oe=56D1C97D&__gda__=1451997930_95d84b66bdae7b74bf807dd9a49a7764",
@@ -326,6 +340,8 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					program: null,
 					documentation:null,
 					presentations:null,
+					withOfflineGallery:false,
+					fbPhotoAlbum:'https://www.facebook.com/PhilippineEITI/photos/?tab=album&album_id=740349886069904',
 					gallery:[
 						{
 							"src":"https://fbcdn-photos-b-a.akamaihd.net/hphotos-ak-xpt1/v/t1.0-0/p480x480/12079496_740350836069809_6553723004490334840_n.jpg?oh=263a9f9955c971863f84dc1f59a6bf50&oe=56C37228&__gda__=1456085774_a8a2f7156fc6bdf080c20ad8f54cbffe",
@@ -373,6 +389,8 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					program: null,
 					documentation:null,
 					presentations:null,
+					withOfflineGallery:false,
+					fbPhotoAlbum:'https://www.facebook.com/PhilippineEITI/photos/?tab=album&album_id=739993866105506',
 					gallery:[
 						{
 							"src":"https://fbcdn-photos-f-a.akamaihd.net/hphotos-ak-xpt1/v/t1.0-0/p480x480/12115559_739995222772037_3625515125568123318_n.jpg?oh=dbce963f9ea663a864eaa35423a04a75&oe=56BB77A7&__gda__=1451712385_8b55017c82c46084a938b4e5fe650005",
@@ -420,6 +438,8 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					program: null,
 					documentation:null,
 					presentations:null,
+					withOfflineGallery:false,
+					fbPhotoAlbum:'https://www.facebook.com/PhilippineEITI/photos/?tab=album&album_id=728976957207197',
 					gallery:[
 						{
 							"src":"https://fbcdn-photos-b-a.akamaihd.net/hphotos-ak-xpf1/v/t1.0-0/p480x480/11988633_728980580540168_8263055771183954989_n.jpg?oh=157955937ed74f010d08856ffad4c96b&oe=56B8E216&__gda__=1456048555_08f006862b71864ff5a383a48f5a47a6",
@@ -467,6 +487,8 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					program: null,
 					documentation:null,
 					presentations:null,
+					withOfflineGallery:false,
+					fbPhotoAlbum:'https://www.facebook.com/PhilippineEITI/photos/?tab=album&album_id=721874167917476',
 					gallery:[
 						{
 							"src":"https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-xfp1/v/t1.0-9/s720x720/11933452_721875447917348_3745914423718866147_n.jpg?oh=bfafbef91b96d18476f31aed77530371&oe=56672A28&__gda__=1450062616_bd2c67cc17a1152ab18fe5526a829920",
@@ -514,6 +536,8 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					program: null,
 					documentation:null,
 					presentations:null,
+					withOfflineGallery:false,
+					fbPhotoAlbum:'https://www.facebook.com/PhilippineEITI/photos/?tab=album&album_id=705448722893354',
 					gallery:  [
 						{
 							"src":"https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xpt1/v/t1.0-9/p480x480/10520749_705457476225812_7394616669301768335_n.jpg?oh=2944a190c2a21cba21990625e6cfa722&oe=5662F919",
@@ -561,6 +585,8 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					program: null,
 					documentation:"document/2015/07/21/Regional-MSG-Meeting/documentation_ASEAN-MSG-&-NC-Mtg_June2015.pdf",
 					presentations:null,
+					withOfflineGallery:false,
+					fbPhotoAlbum:'https://www.facebook.com/PhilippineEITI/photos/?tab=album&album_id=692054057566154',
 					gallery:  [
 						{
 							"src":"https://scontent-lax1-1.xx.fbcdn.net/hphotos-xpt1/v/t1.0-9/p480x480/11109446_692055174232709_446071738957676725_n.jpg?oh=4d1feaf66feab7861bf94c6a3f93c67f&oe=56146E04",
@@ -608,6 +634,8 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					program:"document/2015/07/21/Asia-Regional-Data-Visualization-Bootcamp/program_Data-Visualization-Bootcamp_8-9June2015_updated_6.4.2015.pdf",
 					documentation:"document/2015/07/21/Asia-Regional-Data-Visualization-Bootcamp/documentation_Data-Visualization-Bootcamp_8-9June2015.pdf",
 					presentations:null,
+					withOfflineGallery:false,
+					fbPhotoAlbum:'https://www.facebook.com/PhilippineEITI/photos/?tab=album&album_id=692058374232389',
 					gallery:  [
 						{
 							"src":"https://scontent-lax1-1.xx.fbcdn.net/hphotos-xfp1/v/t1.0-9/p480x480/10478182_692047647566795_2167173402048107028_n.jpg?oh=feb45fb9fbb9e1390a7860d96fe043d9&oe=56190015",
@@ -673,6 +701,8 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					program: null,
 					documentation:null,
 					presentations:null,
+					withOfflineGallery:false,
+					fbPhotoAlbum:'https://www.facebook.com/PhilippineEITI/photos/?tab=album&album_id=688928617878698',
 					gallery:  [
 						{
 							"src":"https://scontent-lax1-1.xx.fbcdn.net/hphotos-xpt1/v/t1.0-9/p480x480/11401175_688928711212022_3795849609236847459_n.jpg?oh=794e5932d293d5c09d89d3c9fbf54834&oe=560E4E50",
@@ -720,6 +750,8 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					program:"document/2015/07/21/Strengthening-Natural-Resource-Governance-The-Role-of-Legislators-and-EITI/program_Legislators-Forum_June2.pdf",
 					documentation:null,
 					presentations:null,
+					withOfflineGallery:false,
+					fbPhotoAlbum:'https://www.facebook.com/390207294417500/photos/?tab=album&album_id=688400981264795',
 					gallery:  [
 						{
 							"src":"https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-xta1/v/t1.0-9/p480x480/11206936_688400994598127_5562275627161560260_n.jpg?oh=143ce4969bd2e8878023fe83c556c0f1&oe=564DD3F3&__gda__=1444593286_d38e3c1da21e028d56cae75bbc7aba5e",
@@ -767,6 +799,8 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					program: null,
 					documentation:null,
 					presentations:null,
+					withOfflineGallery:false,
+					fbPhotoAlbum:'https://www.facebook.com/PhilippineEITI/photos/?tab=album&album_id=688336414604585',
 					gallery:  [
 						{
 							"src":"https://scontent-lax1-1.xx.fbcdn.net/hphotos-xfp1/v/t1.0-9/p480x480/11218944_688338141271079_1263119938183984162_n.jpg?oh=7fbf12b857c3aaa33c2359fef0dfb06f&oe=5654D81C",
@@ -814,6 +848,8 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					program: null,
 					documentation:null,
 					presentations:null,
+					withOfflineGallery:false,
+					fbPhotoAlbum:'https://www.facebook.com/PhilippineEITI/photos/?tab=album&album_id=679436382161255',
 					gallery:  [
 						{
 							"src":"https://scontent-lax1-1.xx.fbcdn.net/hphotos-xpf1/v/t1.0-9/p480x480/11010549_679436425494584_8717738570470736708_n.jpg?oh=a31fdc1b7392530f2fb4e24b23e0417d&oe=5620CF93",
@@ -874,51 +910,53 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 							src:"document/2015/02/1st-PH-EITI-Country-Report-Launch/EITI-Contribution-to-the-Philippines-Current-OGP-Commitments.pdf"
 						}
 					],
+					withOfflineGallery:true,
+					fbPhotoAlbum:'https://www.facebook.com/PhilippineEITI/photos/?tab=album&album_id=638320779606149',
 					gallery:  [
 						{
-							"src":"../../images/gallery/2015/02/1st-PH-EITI-Country-Report-Launch/1.jpg",
+							"src":"../images/gallery/2015/02/1st-PH-EITI-Country-Report-Launch/1.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2015/02/1st-PH-EITI-Country-Report-Launch/2.jpg",
+							"src":"../images/gallery/2015/02/1st-PH-EITI-Country-Report-Launch/2.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2015/02/1st-PH-EITI-Country-Report-Launch/3.jpg",
+							"src":"../images/gallery/2015/02/1st-PH-EITI-Country-Report-Launch/3.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2015/02/1st-PH-EITI-Country-Report-Launch/4.jpg",
+							"src":"../images/gallery/2015/02/1st-PH-EITI-Country-Report-Launch/4.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2015/02/1st-PH-EITI-Country-Report-Launch/5.jpg",
+							"src":"../images/gallery/2015/02/1st-PH-EITI-Country-Report-Launch/5.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2015/02/1st-PH-EITI-Country-Report-Launch/6.jpg",
+							"src":"../images/gallery/2015/02/1st-PH-EITI-Country-Report-Launch/6.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2015/02/1st-PH-EITI-Country-Report-Launch/7.jpg",
+							"src":"../images/gallery/2015/02/1st-PH-EITI-Country-Report-Launch/7.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2015/02/1st-PH-EITI-Country-Report-Launch/8.jpg",
+							"src":"../images/gallery/2015/02/1st-PH-EITI-Country-Report-Launch/8.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
@@ -936,7 +974,6 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					program: null,
 					documentation:null,
 					presentations:[
-
 						{
 							title:"Overview of the 1st PH EITI Country Report",
 							author: "Atty. Marie Gay Alessandra V. Ordenes, National Coordinator, PH-EITI",
@@ -968,45 +1005,47 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 							src:"document/2015/02/Analyzing-EITI-Data-Communicating-PH-EITI-Report/Communicating-EITI-in-the-Philippine-Context.pdf"
 						}
 					],
+					withOfflineGallery:true,
+					fbPhotoAlbum:'https://www.facebook.com/PhilippineEITI/photos/?tab=album&album_id=638310036273890',
 					gallery:  [
 						{
-							"src":"../../images/gallery/2015/02/Analyzing-EITI-Data-Communicating-PH-EITI-Report/1.jpg",
+							"src":"../images/gallery/2015/02/Analyzing-EITI-Data-Communicating-PH-EITI-Report/1.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2015/02/Analyzing-EITI-Data-Communicating-PH-EITI-Report/2.jpg",
+							"src":"../images/gallery/2015/02/Analyzing-EITI-Data-Communicating-PH-EITI-Report/2.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2015/02/Analyzing-EITI-Data-Communicating-PH-EITI-Report/3.jpg",
+							"src":"../images/gallery/2015/02/Analyzing-EITI-Data-Communicating-PH-EITI-Report/3.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2015/02/Analyzing-EITI-Data-Communicating-PH-EITI-Report/4.jpg",
+							"src":"../images/gallery/2015/02/Analyzing-EITI-Data-Communicating-PH-EITI-Report/4.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2015/02/Analyzing-EITI-Data-Communicating-PH-EITI-Report/5.jpg",
+							"src":"../images/gallery/2015/02/Analyzing-EITI-Data-Communicating-PH-EITI-Report/5.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2015/02/Analyzing-EITI-Data-Communicating-PH-EITI-Report/6.jpg",
+							"src":"../images/gallery/2015/02/Analyzing-EITI-Data-Communicating-PH-EITI-Report/6.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2015/02/Analyzing-EITI-Data-Communicating-PH-EITI-Report/7.jpg",
+							"src":"../images/gallery/2015/02/Analyzing-EITI-Data-Communicating-PH-EITI-Report/7.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
@@ -1024,51 +1063,53 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					program: null,
 					documentation:"document/2014/08/LGU-Roadshow-Documentation_Edited.pdf",
 					presentations: null,
+					withOfflineGallery:true,
+					fbPhotoAlbum:'https://www.facebook.com/PhilippineEITI/photos/?tab=album&album_id=559562937481934',
 					gallery:  [
 						{
-							"src":"../../images/gallery/2014/09/LGU-Roadshow/1.jpg",
+							"src":"../images/gallery/2014/09/LGU-Roadshow/1.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/09/LGU-Roadshow/2.jpg",
+							"src":"../images/gallery/2014/09/LGU-Roadshow/2.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/09/LGU-Roadshow/3.jpg",
+							"src":"../images/gallery/2014/09/LGU-Roadshow/3.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/09/LGU-Roadshow/4.jpg",
+							"src":"../images/gallery/2014/09/LGU-Roadshow/4.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/09/LGU-Roadshow/5.jpg",
+							"src":"../images/gallery/2014/09/LGU-Roadshow/5.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/09/LGU-Roadshow/6.jpg",
+							"src":"../images/gallery/2014/09/LGU-Roadshow/6.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/09/LGU-Roadshow/7.jpg",
+							"src":"../images/gallery/2014/09/LGU-Roadshow/7.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/09/LGU-Roadshow/8.jpg",
+							"src":"../images/gallery/2014/09/LGU-Roadshow/8.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
@@ -1117,45 +1158,47 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 							src:"document/Follow-the-Money-A-Forum-on-Revenue-Management-in-the-Extractive-Sector-and-the-Role-of-EITI/How-to-Make-Sovereign-Wealth-Funds-Work-for-Citizens.pdf"
 						}
 					],
+					withOfflineGallery:true,
+					fbPhotoAlbum:'https://www.facebook.com/PhilippineEITI/photos/?tab=album&album_id=566378240133737',
 					gallery:  [
 						{
-							"src":"../../images/gallery/2014/09/Follow-the-Money/1.jpg",
+							"src":"../images/gallery/2014/09/Follow-the-Money/1.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/09/Follow-the-Money/2.jpg",
+							"src":"../images/gallery/2014/09/Follow-the-Money/2.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/09/Follow-the-Money/3.jpg",
+							"src":"../images/gallery/2014/09/Follow-the-Money/3.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/09/Follow-the-Money/4.jpg",
+							"src":"../images/gallery/2014/09/Follow-the-Money/4.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/09/Follow-the-Money/5.jpg",
+							"src":"../images/gallery/2014/09/Follow-the-Money/5.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/09/Follow-the-Money/6.jpg",
+							"src":"../images/gallery/2014/09/Follow-the-Money/6.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/09/Follow-the-Money/7.jpg",
+							"src":"../images/gallery/2014/09/Follow-the-Money/7.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
@@ -1189,33 +1232,35 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 							src:"document/Media-Briefing/Data-driven-Journalism.pdf"
 						}
 					],
+					withOfflineGallery:true,
+					fbPhotoAlbum:'https://www.facebook.com/PhilippineEITI/photos/?tab=album&album_id=566274533477441',
 					gallery:[
 						{
-							"src":"../../images/gallery/2014/09/Media-Briefing/1.jpg",
+							"src":"../images/gallery/2014/09/Media-Briefing/1.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/09/Media-Briefing/2.jpg",
+							"src":"../images/gallery/2014/09/Media-Briefing/2.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/09/Media-Briefing/3.jpg",
+							"src":"../images/gallery/2014/09/Media-Briefing/3.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/09/Media-Briefing/4.jpg",
+							"src":"../images/gallery/2014/09/Media-Briefing/4.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/09/Media-Briefing/5.jpg",
+							"src":"../images/gallery/2014/09/Media-Briefing/5.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
@@ -1250,33 +1295,35 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 							src:"document/CSO-Briefing-Updates-on-EITI-Implementation-and-Understanding-the-EITI-Report/Challenges-in-EITI-Implementation-in-the-Philippines.pdf"
 						}
 					],
+					withOfflineGallery:true,
+					fbPhotoAlbum:'https://www.facebook.com/PhilippineEITI/photos/?tab=album&album_id=566195553485339',
 					gallery:   [
 						{
-							"src":"../../images/gallery/2014/09/CSO-Briefing/1.jpg",
+							"src":"../images/gallery/2014/09/CSO-Briefing/1.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/09/CSO-Briefing/2.jpg",
+							"src":"../images/gallery/2014/09/CSO-Briefing/2.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/09/CSO-Briefing/4.jpg",
+							"src":"../images/gallery/2014/09/CSO-Briefing/4.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/09/CSO-Briefing/5.jpg",
+							"src":"../images/gallery/2014/09/CSO-Briefing/5.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/09/CSO-Briefing/6.jpg",
+							"src":"../images/gallery/2014/09/CSO-Briefing/6.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
@@ -1364,81 +1411,83 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 							]
 						}
 					],
+					withOfflineGallery:true,
+					fbPhotoAlbum:'https://www.facebook.com/390207294417500/photos/?tab=album&album_id=522942644477297',
 					gallery:  [
 						{
-							"src":"../../images/gallery/2014/05/2nd-National-Conference/1.jpg",
+							"src":"../images/gallery/2014/05/2nd-National-Conference/1.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/05/2nd-National-Conference/2.jpg",
+							"src":"../images/gallery/2014/05/2nd-National-Conference/2.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/05/2nd-National-Conference/3.jpg",
+							"src":"../images/gallery/2014/05/2nd-National-Conference/3.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/05/2nd-National-Conference/4.jpg",
+							"src":"../images/gallery/2014/05/2nd-National-Conference/4.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/05/2nd-National-Conference/5.jpg",
+							"src":"../images/gallery/2014/05/2nd-National-Conference/5.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/05/2nd-National-Conference/6.jpg",
+							"src":"../images/gallery/2014/05/2nd-National-Conference/6.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/05/2nd-National-Conference/7.jpg",
+							"src":"../images/gallery/2014/05/2nd-National-Conference/7.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/05/2nd-National-Conference/8.jpg",
+							"src":"../images/gallery/2014/05/2nd-National-Conference/8.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/05/2nd-National-Conference/9.jpg",
+							"src":"../images/gallery/2014/05/2nd-National-Conference/9.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/05/2nd-National-Conference/10.jpg",
+							"src":"../images/gallery/2014/05/2nd-National-Conference/10.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/05/2nd-National-Conference/11.jpg",
+							"src":"../images/gallery/2014/05/2nd-National-Conference/11.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/05/2nd-National-Conference/12.jpg",
+							"src":"../images/gallery/2014/05/2nd-National-Conference/12.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/05/2nd-National-Conference/13.jpg",
+							"src":"../images/gallery/2014/05/2nd-National-Conference/13.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
@@ -1496,63 +1545,65 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 							src:"document/2nd-LGU-Briefing/Next-Steps.pdf"
 						}
 					],
+					withOfflineGallery:true,
+					fbPhotoAlbum:'https://www.facebook.com/PhilippineEITI/photos/?tab=album&album_id=521692694602292',
 					gallery: [
 						{
-							"src":"../../images/gallery/2014/05/2nd-LGU-Briefing/1.jpg",
+							"src":"../images/gallery/2014/05/2nd-LGU-Briefing/1.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/05/2nd-LGU-Briefing/2.jpg",
+							"src":"../images/gallery/2014/05/2nd-LGU-Briefing/2.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/05/2nd-LGU-Briefing/3.jpg",
+							"src":"../images/gallery/2014/05/2nd-LGU-Briefing/3.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/05/2nd-LGU-Briefing/4.jpg",
+							"src":"../images/gallery/2014/05/2nd-LGU-Briefing/4.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/05/2nd-LGU-Briefing/5.jpg",
+							"src":"../images/gallery/2014/05/2nd-LGU-Briefing/5.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/05/2nd-LGU-Briefing/6.jpg",
+							"src":"../images/gallery/2014/05/2nd-LGU-Briefing/6.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/05/2nd-LGU-Briefing/7.jpg",
+							"src":"../images/gallery/2014/05/2nd-LGU-Briefing/7.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/05/2nd-LGU-Briefing/8.jpg",
+							"src":"../images/gallery/2014/05/2nd-LGU-Briefing/8.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/05/2nd-LGU-Briefing/9.jpg",
+							"src":"../images/gallery/2014/05/2nd-LGU-Briefing/9.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/05/2nd-LGU-Briefing/10.jpg",
+							"src":"../images/gallery/2014/05/2nd-LGU-Briefing/10.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
@@ -1601,69 +1652,71 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 							src:"document/NGA-Briefing/Workshop-Objectives.pdf"
 						}
 					],
+					withOfflineGallery:true,
+					fbPhotoAlbum:'https://www.facebook.com/390207294417500/photos/?tab=album&album_id=492900457481516',
 					gallery: [
 						{
-							"src":"../../images/gallery/2014/03/NGA-Briefing/1.jpg",
+							"src":"../images/gallery/2014/03/NGA-Briefing/1.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/03/NGA-Briefing/2.jpg",
+							"src":"../images/gallery/2014/03/NGA-Briefing/2.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/03/NGA-Briefing/3.jpg",
+							"src":"../images/gallery/2014/03/NGA-Briefing/3.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/03/NGA-Briefing/4.jpg",
+							"src":"../images/gallery/2014/03/NGA-Briefing/4.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/03/NGA-Briefing/5.jpg",
+							"src":"../images/gallery/2014/03/NGA-Briefing/5.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/03/NGA-Briefing/6.jpg",
+							"src":"../images/gallery/2014/03/NGA-Briefing/6.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/03/NGA-Briefing/7.jpg",
+							"src":"../images/gallery/2014/03/NGA-Briefing/7.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/03/NGA-Briefing/8.jpg",
+							"src":"../images/gallery/2014/03/NGA-Briefing/8.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/03/NGA-Briefing/9.jpg",
+							"src":"../images/gallery/2014/03/NGA-Briefing/9.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/03/NGA-Briefing/10.jpg",
+							"src":"../images/gallery/2014/03/NGA-Briefing/10.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/03/NGA-Briefing/11.jpg",
+							"src":"../images/gallery/2014/03/NGA-Briefing/11.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
@@ -1766,75 +1819,77 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 							]
 						}
 					],
+					withOfflineGallery:true,
+					fbPhotoAlbum:'https://www.facebook.com/390207294417500/photos/?tab=album&album_id=476890795749149',
 					gallery:  [
 						{
-							"src":"../../images/gallery/2014/02/1st-LGU-briefing/1.jpg",
+							"src":"../images/gallery/2014/02/1st-LGU-briefing/1.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/02/1st-LGU-briefing/2.jpg",
+							"src":"../images/gallery/2014/02/1st-LGU-briefing/2.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/02/1st-LGU-briefing/3.jpg",
+							"src":"../images/gallery/2014/02/1st-LGU-briefing/3.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/02/1st-LGU-briefing/4.jpg",
+							"src":"../images/gallery/2014/02/1st-LGU-briefing/4.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/02/1st-LGU-briefing/5.jpg",
+							"src":"../images/gallery/2014/02/1st-LGU-briefing/5.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/02/1st-LGU-briefing/6.jpg",
+							"src":"../images/gallery/2014/02/1st-LGU-briefing/6.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/02/1st-LGU-briefing/7.jpg",
+							"src":"../images/gallery/2014/02/1st-LGU-briefing/7.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/02/1st-LGU-briefing/8.jpg",
+							"src":"../images/gallery/2014/02/1st-LGU-briefing/8.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/02/1st-LGU-briefing/9.jpg",
+							"src":"../images/gallery/2014/02/1st-LGU-briefing/9.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/02/1st-LGU-briefing/10.jpg",
+							"src":"../images/gallery/2014/02/1st-LGU-briefing/10.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/02/1st-LGU-briefing/11.jpg",
+							"src":"../images/gallery/2014/02/1st-LGU-briefing/11.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/02/1st-LGU-briefing/12.jpg",
+							"src":"../images/gallery/2014/02/1st-LGU-briefing/12.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
@@ -1854,10 +1909,7 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 						content__:"<p>As the first step towards engaging the Philippine Senate and the House of Representatives, the PH-EITI alongside representatives from World Bank-Washington, in coordination with the Senate Economic Planning Office (SEPO) and the Congressional Policy and Budget Research Department (CPBRD), organized half-day presentations and dialogue with selected members of the Philippine Senate and the Lower House to discuss current efforts being undertaken by the PH-EITI MSG as it prepares for the country\'s first EITI report.</p><p>The briefings were an opportunity for the members of Senate and House of Representatives to dialogue with the PH-EITI MSG and Secretariat on possible areas for convergence and support.</p><p>The House of Representatives Briefing was held last February 4, 2014 at the Andaya Hall, House of Representatives, Quezon City. The Senate Briefing on the other hand was held last February 5, 2014 at the Philippine Senate, Pasay City.</p>"
 					},
 					program: null,
-					documentation: [
-						"document/Congress-and-Senate-Briefing/HOR-Understanding-EITI-Documentation.pdf",
-						"document/Congress-and-Senate-Briefing/Senate-Understanding-EITI-Documentation.pdf"
-					],
+					documentation: ["document/Congress-and-Senate-Briefing/HOR-Understanding-EITI-Documentation.pdf","document/Congress-and-Senate-Briefing/Senate-Understanding-EITI-Documentation.pdf"],
 					presentations: [
 						{
 							title:"Overview of the Extractive Industry Transparency Process",
@@ -1870,99 +1922,101 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 							src:"document/Congress-and-Senate-Briefing/PH-EITI-Work-Plan-and-Objectives.pdf"
 						}
 					],
+					withOfflineGallery:true,
+					fbPhotoAlbum:'https://www.facebook.com/PhilippineEITI/photos/?tab=album&album_id=450730118365217',
 					gallery: [
 						{
-							"src":"../../images/gallery/2014/02/Senate-and-Congress-Briefing/1.jpg",
+							"src":"../images/gallery/2014/02/Senate-and-Congress-Briefing/1.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/02/Senate-and-Congress-Briefing/2.jpg",
+							"src":"../images/gallery/2014/02/Senate-and-Congress-Briefing/2.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/02/Senate-and-Congress-Briefing/3.jpg",
+							"src":"../images/gallery/2014/02/Senate-and-Congress-Briefing/3.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/02/Senate-and-Congress-Briefing/4.jpg",
+							"src":"../images/gallery/2014/02/Senate-and-Congress-Briefing/4.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/02/Senate-and-Congress-Briefing/5.jpg",
+							"src":"../images/gallery/2014/02/Senate-and-Congress-Briefing/5.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/02/Senate-and-Congress-Briefing/6.jpg",
+							"src":"../images/gallery/2014/02/Senate-and-Congress-Briefing/6.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/02/Senate-and-Congress-Briefing/7.jpg",
+							"src":"../images/gallery/2014/02/Senate-and-Congress-Briefing/7.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/02/Senate-and-Congress-Briefing/8.jpg",
+							"src":"../images/gallery/2014/02/Senate-and-Congress-Briefing/8.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/02/Senate-and-Congress-Briefing/9.jpg",
+							"src":"../images/gallery/2014/02/Senate-and-Congress-Briefing/9.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/02/Senate-and-Congress-Briefing/10.jpg",
+							"src":"../images/gallery/2014/02/Senate-and-Congress-Briefing/10.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/02/Senate-and-Congress-Briefing/11.jpg",
+							"src":"../images/gallery/2014/02/Senate-and-Congress-Briefing/11.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/02/Senate-and-Congress-Briefing/12.jpg",
+							"src":"../images/gallery/2014/02/Senate-and-Congress-Briefing/12.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/02/Senate-and-Congress-Briefing/13.jpg",
+							"src":"../images/gallery/2014/02/Senate-and-Congress-Briefing/13.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/02/Senate-and-Congress-Briefing/14.jpg",
+							"src":"../images/gallery/2014/02/Senate-and-Congress-Briefing/14.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/02/Senate-and-Congress-Briefing/15.jpg",
+							"src":"../images/gallery/2014/02/Senate-and-Congress-Briefing/15.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2014/02/Senate-and-Congress-Briefing/16.jpg",
+							"src":"../images/gallery/2014/02/Senate-and-Congress-Briefing/16.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
@@ -2040,147 +2094,149 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 							src:"document/conference-on-the-adoption-of-the-2013-eiti-standards/Consolidated-Objectives.pdf"
 						}
 					],
+					withOfflineGallery:true,
+					fbPhotoAlbum:'https://www.facebook.com/390207294417500/photos/?tab=album&album_id=420685068036389',
 					gallery: [
 						{
-							"src":"../../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/1.jpg",
+							"src":"../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/1.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/2.jpg",
+							"src":"../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/2.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/3.jpg",
+							"src":"../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/3.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/4.jpg",
+							"src":"../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/4.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/6.jpg",
+							"src":"../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/6.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/7.jpg",
+							"src":"../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/7.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/8.jpg",
+							"src":"../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/8.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/9.jpg",
+							"src":"../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/9.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/10.jpg",
+							"src":"../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/10.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/11.jpg",
+							"src":"../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/11.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/12.jpg",
+							"src":"../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/12.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/13.jpg",
+							"src":"../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/13.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/14.jpg",
+							"src":"../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/14.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/15.jpg",
+							"src":"../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/15.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/16.jpg",
+							"src":"../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/16.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/17.jpg",
+							"src":"../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/17.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/18.jpg",
+							"src":"../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/18.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/19.jpg",
+							"src":"../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/19.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/20.jpg",
+							"src":"../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/20.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/21.jpg",
+							"src":"../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/21.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/22.jpg",
+							"src":"../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/22.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/23.jpg",
+							"src":"../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/23.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/24.jpg",
+							"src":"../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/24.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/25.jpg",
+							"src":"../images/gallery/2013/09/Conference-on-the-Adoption-of-the-2013-EITI-Standards/25.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
@@ -2218,99 +2274,100 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 							src:"document/training-on-the-development-of-eiti-report-template/EITI-Process-in-Indonesia-Roslita-Arsyad.pdf"
 						}
 					],
+					withOfflineGallery:true,
+					fbPhotoAlbum:null,
 					gallery:  [
 						{
-							"src":"../../images/gallery/2013/08/development-eiti-reporting-template/1.jpg",
+							"src":"../images/gallery/2013/08/development-eiti-reporting-template/1.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/08/development-eiti-reporting-template/2.jpg",
+							"src":"../images/gallery/2013/08/development-eiti-reporting-template/2.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/08/development-eiti-reporting-template/3.jpg",
+							"src":"../images/gallery/2013/08/development-eiti-reporting-template/3.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/08/development-eiti-reporting-template/4.jpg",
+							"src":"../images/gallery/2013/08/development-eiti-reporting-template/4.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/08/development-eiti-reporting-template/5.jpg",
+							"src":"../images/gallery/2013/08/development-eiti-reporting-template/5.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/08/development-eiti-reporting-template/6.jpg",
+							"src":"../images/gallery/2013/08/development-eiti-reporting-template/6.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/08/development-eiti-reporting-template/7.jpg",
+							"src":"../images/gallery/2013/08/development-eiti-reporting-template/7.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/08/development-eiti-reporting-template/8.jpg",
+							"src":"../images/gallery/2013/08/development-eiti-reporting-template/8.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/08/development-eiti-reporting-template/9.jpg",
+							"src":"../images/gallery/2013/08/development-eiti-reporting-template/9.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/08/development-eiti-reporting-template/10.jpg",
+							"src":"../images/gallery/2013/08/development-eiti-reporting-template/10.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/08/development-eiti-reporting-template/11.jpg",
+							"src":"../images/gallery/2013/08/development-eiti-reporting-template/11.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/08/development-eiti-reporting-template/12.jpg",
+							"src":"../images/gallery/2013/08/development-eiti-reporting-template/12.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/08/development-eiti-reporting-template/13.jpg",
+							"src":"../images/gallery/2013/08/development-eiti-reporting-template/13.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/08/development-eiti-reporting-template/14.jpg",
+							"src":"../images/gallery/2013/08/development-eiti-reporting-template/14.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/08/development-eiti-reporting-template/15.jpg",
+							"src":"../images/gallery/2013/08/development-eiti-reporting-template/15.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						}
 					]
-
 				},
 				{
 					id:"eiti-global-conference",
@@ -2327,33 +2384,35 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					program: null,
 					documentation: null,
 					presentations: null,
+					withOfflineGallery:true,
+					fbPhotoAlbum:null,
 					gallery: [
 						{
-							"src":"../../images/gallery/2013/05/EITI-Global-Conference/1.jpg",
+							"src":"../images/gallery/2013/05/EITI-Global-Conference/1.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/05/EITI-Global-Conference/2.jpg",
+							"src":"../images/gallery/2013/05/EITI-Global-Conference/2.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/05/EITI-Global-Conference/3.jpg",
+							"src":"../images/gallery/2013/05/EITI-Global-Conference/3.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/05/EITI-Global-Conference/4.jpg",
+							"src":"../images/gallery/2013/05/EITI-Global-Conference/4.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/05/EITI-Global-Conference/5.jpg",
+							"src":"../images/gallery/2013/05/EITI-Global-Conference/5.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
@@ -2375,21 +2434,23 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					program: null,
 					documentation: "document/Outreach-with-PENRO/Outreach-to-PENRO-documentation.pdf",
 					presentations: null,
+					withOfflineGallery:true,
+					fbPhotoAlbum:null,
 					gallery: [
 						{
-							"src":"../../images/gallery/2013/02/Outreach-to-PENRO/1.jpg",
+							"src":"../images/gallery/2013/02/Outreach-to-PENRO/1.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/02/Outreach-to-PENRO/2.jpg",
+							"src":"../images/gallery/2013/02/Outreach-to-PENRO/2.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/02/Outreach-to-PENRO/3.jpg",
+							"src":"../images/gallery/2013/02/Outreach-to-PENRO/3.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
@@ -2411,27 +2472,29 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					program: null,
 					documentation: "document/Outreach-with-Academe/Outreach-to-Academe-Documentation.pdf",
 					presentations: null,
+					withOfflineGallery:true,
+					fbPhotoAlbum:null,
 					gallery: [
 						{
-							"src":"../../images/gallery/2013/02/Outreach-to-academe/1.jpg",
+							"src":"../images/gallery/2013/02/Outreach-to-academe/1.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/02/Outreach-to-academe/2.jpg",
+							"src":"../images/gallery/2013/02/Outreach-to-academe/2.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/02/Outreach-to-academe/3.jpg",
+							"src":"../images/gallery/2013/02/Outreach-to-academe/3.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/02/Outreach-to-academe/4.jpg",
+							"src":"../images/gallery/2013/02/Outreach-to-academe/4.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
@@ -2453,57 +2516,59 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					program: null,
 					documentation: "document/Outreach-with-IPs/Outreach-to-IPs-documentation.pdf",
 					presentations: null,
+					withOfflineGallery:true,
+					fbPhotoAlbum:null,
 					gallery: [
 						{
-							"src":"../../images/gallery/2013/02/Outreach-to-IPs/1.jpg",
+							"src":"../images/gallery/2013/02/Outreach-to-IPs/1.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/02/Outreach-to-IPs/2.jpg",
+							"src":"../images/gallery/2013/02/Outreach-to-IPs/2.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/02/Outreach-to-IPs/3.jpg",
+							"src":"../images/gallery/2013/02/Outreach-to-IPs/3.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/02/Outreach-to-IPs/4.jpg",
+							"src":"../images/gallery/2013/02/Outreach-to-IPs/4.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/02/Outreach-to-IPs/5.jpg",
+							"src":"../images/gallery/2013/02/Outreach-to-IPs/5.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/02/Outreach-to-IPs/6.jpg",
+							"src":"../images/gallery/2013/02/Outreach-to-IPs/6.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/02/Outreach-to-IPs/7.jpg",
+							"src":"../images/gallery/2013/02/Outreach-to-IPs/7.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/02/Outreach-to-IPs/8.jpg",
+							"src":"../images/gallery/2013/02/Outreach-to-IPs/8.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/02/Outreach-to-IPs/9.jpg",
+							"src":"../images/gallery/2013/02/Outreach-to-IPs/9.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
@@ -2577,99 +2642,101 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 							]
 						}
 					],
+					withOfflineGallery:true,
+					fbPhotoAlbum:null,
 					gallery: [
 						{
-							"src":"../../images/gallery/2013/01/national-workshop/DSC_7310.jpg",
+							"src":"../images/gallery/2013/01/national-workshop/DSC_7310.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/01/national-workshop/DSC_7362.jpg",
+							"src":"../images/gallery/2013/01/national-workshop/DSC_7362.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/01/national-workshop/DSC_7371.jpg",
+							"src":"../images/gallery/2013/01/national-workshop/DSC_7371.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/01/national-workshop/DSC_7372.jpg",
+							"src":"../images/gallery/2013/01/national-workshop/DSC_7372.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/01/national-workshop/DSC_7406.jpg",
+							"src":"../images/gallery/2013/01/national-workshop/DSC_7406.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/01/national-workshop/DSC_7791.jpg",
+							"src":"../images/gallery/2013/01/national-workshop/DSC_7791.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/01/national-workshop/DSC_7959.jpg",
+							"src":"../images/gallery/2013/01/national-workshop/DSC_7959.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/01/national-workshop/DSC_7968.jpg",
+							"src":"../images/gallery/2013/01/national-workshop/DSC_7968.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/01/national-workshop/DSC_8054.jpg",
+							"src":"../images/gallery/2013/01/national-workshop/DSC_8054.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/01/national-workshop/DSC_8065.jpg",
+							"src":"../images/gallery/2013/01/national-workshop/DSC_8065.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/01/national-workshop/DSC_8068.jpg",
+							"src":"../images/gallery/2013/01/national-workshop/DSC_8068.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/01/national-workshop/DSC_8079.jpg",
+							"src":"../images/gallery/2013/01/national-workshop/DSC_8079.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/01/national-workshop/DSC_8083.jpg",
+							"src":"../images/gallery/2013/01/national-workshop/DSC_8083.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/01/national-workshop/DSC_8085.jpg",
+							"src":"../images/gallery/2013/01/national-workshop/DSC_8085.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/01/national-workshop/DSC_8089.jpg",
+							"src":"../images/gallery/2013/01/national-workshop/DSC_8089.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/01/national-workshop/DSC_8172.jpg",
+							"src":"../images/gallery/2013/01/national-workshop/DSC_8172.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
@@ -2692,15 +2759,17 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					program: null,
 					documentation: "document/Outreach-with-LGUs/Outreach-to-LGUs-Documentation.pdf",
 					presentations: null,
+					withOfflineGallery:true,
+					fbPhotoAlbum:null,
 					gallery: [
 						{
-							"src":"../../images/gallery/2013/01/Outreach-to-LGUs/1.jpg",
+							"src":"../images/gallery/2013/01/Outreach-to-LGUs/1.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/01/Outreach-to-LGUs/2.jpg",
+							"src":"../images/gallery/2013/01/Outreach-to-LGUs/2.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
@@ -2722,45 +2791,47 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					program: null,
 					documentation: "document/CSO-national-congress-report_documentation.pdf",
 					presentations: null,
+					withOfflineGallery:true,
+					fbPhotoAlbum:null,
 					gallery: [
 						{
-							"src":"../../images/gallery/2013/01/CSO-National-Congress/1.jpg",
+							"src":"../images/gallery/2013/01/CSO-National-Congress/1.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/01/CSO-National-Congress/2.jpg",
+							"src":"../images/gallery/2013/01/CSO-National-Congress/2.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/01/CSO-National-Congress/3.jpg",
+							"src":"../images/gallery/2013/01/CSO-National-Congress/3.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/01/CSO-National-Congress/4.jpg",
+							"src":"../images/gallery/2013/01/CSO-National-Congress/4.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/01/CSO-National-Congress/5.jpg",
+							"src":"../images/gallery/2013/01/CSO-National-Congress/5.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/01/CSO-National-Congress/6.jpg",
+							"src":"../images/gallery/2013/01/CSO-National-Congress/6.jpg",
 							"title":"",
 							"frame": "",
 							"description":""
 						},
 						{
-							"src":"../../images/gallery/2013/01/CSO-National-Congress/7.jpg",
+							"src":"../images/gallery/2013/01/CSO-National-Congress/7.jpg",
 							"title":"",
 							"frame": "",
 							"description":""

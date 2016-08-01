@@ -167,7 +167,7 @@ resourcesApp.factory('ResourcesFactory',['$http',
 				folder_id:'Activity-Report',
 				folder_name:'Activity Report',
 				date: {
-					'lastUpdated': 'August 30, 2015 11:18 PM',
+					'lastUpdated': 'July 18, 2016 06:30 PM',
 					'created':''
 				},
 				subfolders: [],
@@ -186,6 +186,13 @@ resourcesApp.factory('ResourcesFactory',['$http',
 						coverage:"June 2014 - June 2015",
 						src:"../document/2015/07/06/2nd-PH-EITI-Annual-Activity-Report.pdf",
 						cardIcon:"../document/2015/07/06/card-icon.png"
+					},
+					{
+						id: "APR-June-2014-June-2015",
+						title: "Annual Progress Report",
+						coverage:"June 2014 - June 2015",
+						src:"../document/2016/07/18/Annual-Progress-Report-July-2015-to-June-2016.pdf",
+						cardIcon:"../document/2016/07/18/card-icon.png"
 					}
 				]
 			}

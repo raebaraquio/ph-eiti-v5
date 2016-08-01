@@ -1,30 +1,43 @@
 <div>
-	<h1 align="center" style="line-height:1.2em;">Newsletter Sign Up</h1>
-	<div data-ng-show="userfeedback.message" class="ta-center" data-ng-class="{'fnt--red':userfeedback.type=='error','fnt--emerald':userfeedback.type=='success'}">		
-		{{userfeedback.message}}
-	</div>
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<div layout="column" style="padding-top:0.7em;">
+				<h2 class="fnt--white mrgn-bt-0 padd-bt-0">Subscibe to our Newsletter</h2>
+				<p class="fnt--sm fnt--white mrgn-tp-0 padd-tp-0">Key in your name and email and we'll keep you in the loop.</p>	
+			</div>			
+			<span flex></span>
+			<md-button class="md-icon-button" data-ng-click="closeDialog()">
+				<md-icon md-svg-src="../images/icons/svg/ic_close_silver_24px.svg" aria-label="Close dialog" title="Close dialog"></md-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<md-progress-linear  data-ng-if="subscribePromise"  class="md-secondary" md-mode="indeterminate"></md-progress-linear>
+	<div><br/></div>
 	<md-content class="mxw-90">
-		<form name="signupForm" cg-busy="{promise:subscribePromise}">
+		<form name="signupForm">
+			<md-input-container data-ng-show="userfeedback.message" class="md-block">
+				<div class="ta-center pd-lf-12 fnt--md" data-ng-class="{'fnt--red':userfeedback.type=='error','fnt--emerald':userfeedback.type=='success'}">		
+					{{userfeedback.message}}
+				</div>
+			</md-input-container>
 			<md-input-container class="md-icon-float md-block">
 				<label>Name</label>
 				<md-icon md-svg-src="../images/icons/svg/ic_person_black_24px.svg" class="name"></md-icon>
 				<input data-ng-model="user.name" type="text">
-			</md-input-container>
-			
+			</md-input-container>			
 			<md-input-container class="md-block">
 				<md-icon md-svg-src="../images/icons/svg/ic_email_black_24px.svg" class="email"></md-icon>
 				<input data-ng-model="user.email" type="email" placeholder="Email (required)" ng-required="true" 
 					minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
 				<div ng-messages="signupForm.email.$error" role="alert">
 					<div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
-						Your email must be between 10 and 100 characters long and look like an e-mail address.
+						Your email must be atleast 10 characters or more and should look like an e-mail address.
 					</div>
 				</div>
 			</md-input-container>
-
 			<md-input-container class="md-block ta-center" layout="row" >
-				<md-button class="md-raised md-secondary" data-ng-click="resetForm()">Reset</md-button>
-				<md-button class="md-raised md-primary fnt--white" data-ng-click="subscribe()">Submit</md-button>
+				<md-button class="md-raised md-secondary" data-ng-click="resetForm(true)">Reset</md-button>
+				<md-button class="md-raised md-accent fnt--black" data-ng-click="subscribe()">Submit</md-button>
 			</md-input-container>
 		</form>
 	</md-content>

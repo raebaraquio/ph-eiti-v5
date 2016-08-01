@@ -1,27 +1,123 @@
-<div class="md-padding" data-ng-controller="compareReportsController">
-	<h2 align="center" style="line-height:1.2em;">Quick Overview of Causes of Variance in Reports</h2>
-	<md-table-container>
-		<table md-table id="msgMembers-table">
-			<thead md-head>
-				<tr md-row>
-					<th md-column class="ta-left"><span>Period Covered</span></th>
-					<th md-column class="ta-left"><span>Publication Date</span></th>
-					<th md-column class="ta-left"><span>Sectors Covered</span></th>
-					<th md-column class="ta-left"><span>Government Revenues (USD Millions)</span></th>
-					<th md-column class="ta-left"><span>Company Payments (USD Millions)</span></th>
-					<th md-column class="ta-left"><span>Number of Companies Reporting</span></th>
-				</tr>
-			</thead>
-			<tbody md-body>
-				<tr md-row data-ng-repeat="report in reportsData">
-					<td md-cell class="ta-left">{{report.periodCovered}}</td>
-					<td md-cell class="ta-left">{{report.publicationDate}}</td>
-					<td md-cell class="ta-left">{{report.sectorsCovered}}</td>
-					<td md-cell class="ta-left">{{report.govtRevenues}}</td>
-					<td md-cell class="ta-left">{{report.companyPayments}}</td>
-					<td md-cell class="ta-left">{{report.numCompaniesReporting}}</td>
-				</tr>
-			</tbody>
-		</table>
-	</md-table-container>
+<div style="padding-bottom:2em;">
+	<md-toolbar class="md-accent">
+		<div class="md-toolbar-tools">
+			<h2 class="fnt--white">Comparative table of Revenue/Payment from First and Second PH-EITI Country Reports</h2>
+			<span flex></span>
+			<md-button class="md-icon-button" data-ng-click="closeDialog()">
+				<md-icon md-svg-src="./images/icons/svg/ic_close_white_24px.svg" aria-label="Close dialog" title="Close dialog"></md-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<md-content layout="column">
+		<md-list flex="100">
+			<md-list-item class="md-2-line">
+				<div flex="100" layout="column" style="margin-top:2em;">
+					<div class="ta-center">
+						<div>
+							<h4 class="padd-0 mrgn-0 fnt--eitiblue">PERIOD COVERED</h4>
+							<!-- <hr  style="border:0px;border-top:1px dotted #ccc;width:20%;" />	 -->
+						</div>
+					</div>
+					<div layout="row" flex="100">
+						<div flex="50" class="md-list-item-text ta-right">
+							<h2 class="padd-0 mrgn-0 pd-rt-05e fnt--gray">{{reportsData[0].periodCovered}}</h2>
+						</div>
+						<div flex="50" class="md-list-item-text ta-left" style="border:0px;border-left:1px solid #ccc;">
+							<h2 class="padd-0 mrgn-0 pd-lf-05e fnt--eitiyellow">{{reportsData[1].periodCovered}}</h2>
+						</div>
+					</div>
+				</div>
+			</md-list-item>
+			<md-list-item class="md-2-line">
+				<div flex="100" layout="column" style="margin-top:2em;">
+					<div class="ta-center">
+						<div>
+							<h4 class="padd-0 mrgn-0 fnt--eitiblue">PUBLICATION DATE</h4>
+							<!-- <hr  style="border:0px;border-top:1px dotted #ccc;width:45%;" />	 -->
+						</div>
+					</div>
+					<div layout="row" flex="100">
+						<div flex="50" class="md-list-item-text ta-right">
+							<h2 class="padd-0 mrgn-0 pd-rt-05e fnt--gray">{{reportsData[0].publicationDate}}</h2>
+						</div>
+						<div flex="50" class="md-list-item-text ta-left" style="border:0px;border-left:1px solid #ccc;">
+							<h2 class="padd-0 mrgn-0 pd-lf-05e fnt--eitiyellow">{{reportsData[1].publicationDate}}</h2>
+						</div>
+					</div>
+				</div>
+			</md-list-item>
+			<md-list-item class="md-2-line">
+				<div flex="100" layout="column" style="margin-top:2em;">
+					<div class="ta-center">
+						<div>
+							<h4 class="padd-0 mrgn-0 fnt--eitiblue">SECTORS COVERED</h4>
+							<!-- <hr  style="border:0px;border-top:1px dotted #ccc;width:65%;" />	 -->
+						</div>
+					</div>
+					<div layout="row" flex="100">
+						<div flex="50" class="md-list-item-text ta-right">
+							<h2 class="padd-0 mrgn-0 pd-rt-05e fnt--gray">{{reportsData[0].sectorsCovered}}</h2>
+						</div>
+						<div flex="50" class="md-list-item-text ta-left" style="border:0px;border-left:1px solid #ccc;">
+							<h2 class="padd-0 mrgn-0 pd-lf-05e fnt--eitiyellow">{{reportsData[1].sectorsCovered}}</h2>
+						</div>
+					</div>					
+				</div>
+			</md-list-item>
+			<md-list-item class="md-2-line">
+				<div flex="100" layout="column" style="margin-top:2em;">
+					<div class="ta-center">
+						<div>
+							<h4 class="padd-0 mrgn-0 fnt--eitiblue">GOV'T REVENUES (USD MILLIONS)</h4>
+							<!-- <hr  style="border:0px;border-top:1px dotted #ccc;width:65%;" />	 -->
+						</div>
+					</div>
+					<div layout="row" flex="100">
+						<div flex="50" class="md-list-item-text ta-right">
+							<h2 class="padd-0 mrgn-0 pd-rt-05e fnt--gray">{{reportsData[0].govtRevenues}}</h2>
+						</div>
+						<div flex="50" class="md-list-item-text ta-left" style="border:0px;border-left:1px solid #ccc;">
+							<h2 class="padd-0 mrgn-0 pd-lf-05e fnt--eitiyellow">{{reportsData[1].govtRevenues}}</h2>
+						</div>
+					</div>					
+				</div>
+			</md-list-item>
+			<md-list-item class="md-2-line">
+				<div flex="100" layout="column" style="margin-top:2em;">
+					<div class="ta-center">
+						<div>
+							<h4 class="padd-0 mrgn-0 fnt--eitiblue">COMPANY PAYMENTS (USD MILLIONS)</h4>
+							<!-- <hr  style="border:0px;border-top:1px dotted #ccc;width:65%;" />	 -->
+						</div>
+					</div>
+					<div layout="row" flex="100">
+						<div flex="50" class="md-list-item-text ta-right">
+							<h2 class="padd-0 mrgn-0 pd-rt-05e fnt--gray">{{reportsData[0].companyPayments}}</h2>
+						</div>
+						<div flex="50" class="md-list-item-text ta-left" style="border:0px;border-left:1px solid #ccc;">
+							<h2 class="padd-0 mrgn-0 pd-lf-05e fnt--eitiyellow">{{reportsData[1].companyPayments}}</h2>
+						</div>
+					</div>					
+				</div>
+			</md-list-item>
+			<md-list-item class="md-2-line">
+				<div flex="100" layout="column" style="margin-top:2em;">
+					<div class="ta-center">
+						<div>
+							<h4 class="padd-0 mrgn-0 fnt--eitiblue">NO. OF COMPANIES REPORTING</h4>
+							<!-- <hr  style="border:0px;border-top:1px dotted #ccc;width:65%;" />	 -->
+						</div>
+					</div>
+					<div layout="row" flex="100">
+						<div flex="50" class="md-list-item-text ta-right">
+							<h2 class="padd-0 mrgn-0 pd-rt-05e fnt--gray">{{reportsData[0].numCompaniesReporting}}</h2>
+						</div>
+						<div flex="50" class="md-list-item-text ta-left" style="border:0px;border-left:1px solid #ccc;">
+							<h2 class="padd-0 mrgn-0 pd-lf-05e fnt--eitiyellow">{{reportsData[1].numCompaniesReporting}}</h2>
+						</div>
+					</div>					
+				</div>
+			</md-list-item>
+		</md-list>		
+	</md-content>
 </div>

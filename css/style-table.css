@@ -15,3 +15,8 @@ table#msgMembers-table .md-list-item-text > p {
 	white-space:initial;
 	text-overflow:initial;
 }
+
+
+table#report-comparison-table {
+	margin-bottom: 2em;
+}

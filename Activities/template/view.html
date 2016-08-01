@@ -28,20 +28,39 @@
 				<md-tab label="Program" data-ng-if="activity.program!==null">
 					<md-content class="md-padding">
 						<h1 class="md-display-2">Program</h1>
-						<p>
-							<!-- <iframe data-ng-if="activity.program != null" src="{{activity.program}}" style="min-width:850px;min-height:600px;" frameborder="0"></iframe> -->
-						</p>
+						<div layout="column">
+							<iframe data-ng-if="activity.program != null" src="{{activity.program}}" style="min-width:850px;min-height:600px;" frameborder="0"></iframe>
+						</div>
 					</md-content>
 				</md-tab>
 				<md-tab label="Documentation" data-ng-if="activity.documentation!==null">
 					<md-content>
 						<h1 class="md-display-2">Documentation</h1>
-						<p>
-							<md-button data-ng-if="activity.workshop_output && activity.workshop_output!==undefined" class="md-raised md-accent" data-ng-click="download_documentation(activity.workshop_output)" title="Download Workshop Output - Accomplished Reporting Templates">Download</md-button>
-							<iframe data-ng-if="type_of_doc(activity.documentation)=='string'" src="{{activity.documentation}}" style="width:900px; height:600px;" frameborder="0"></iframe>
-			                <iframe data-ng-if="type_of_doc(activity.documentation)!='string'" src="{{activity.documentation[0]}}" style="width:900px; height:600px;" frameborder="0"></iframe>
-			                <iframe data-ng-if="type_of_doc(activity.documentation)!='string'" src="{{activity.documentation[1]}}" style="width:900px;height:600px; margin-top:50px;" frameborder="0"></iframe>
-						</p>
+						<div layout="column">
+							<div layout="column">
+								<div layout="row">
+									<md-button class="md-fab md-mini md-accent" data-ng-if="activity.workshop_output && activity.workshop_output!==undefined" data-ng-click="download_documentation(activity.workshop_output)" title="Download Workshop Output - Accomplished Reporting Templates" aria-label="Download Workshop Output - Accomplished Reporting Templates">
+										<md-icon md-svg-src="../images/icons/svg/ic_file_download_black_24px.svg"></md-icon>
+									</md-button>
+									<md-button class="md-fab md-mini md-primary" data-ng-if="type_of_doc(activity.documentation)==='string'" data-ng-click="download_documentation(activity.documentation)" title="Open in new window" aria-label="Open in new window">
+										<md-icon md-svg-src="../images/icons/svg/ic_open_in_new_white_24px.svg"></md-icon>
+									</md-button>
+								</div>
+								<iframe data-ng-if="type_of_doc(activity.documentation)==='string'" src="{{activity.documentation}}" style="width:900px; height:600px;" frameborder="0"></iframe>
+							</div>
+							<div layout="column" data-ng-if="type_of_doc(activity.documentation)!='string' && activity.documentation[0]">
+								<md-button class="md-fab md-mini md-primary" data-ng-if="type_of_doc(activity.documentation)!=='string' && activity.documentation[0]" data-ng-click="download_documentation(activity.documentation[0])" title="Open in new window"  aria-label="Open in new window">
+									<md-icon md-svg-src="../images/icons/svg/ic_open_in_new_white_24px.svg"></md-icon>
+								</md-button>
+								<iframe data-ng-if="type_of_doc(activity.documentation)!='string'" src="{{activity.documentation[0]}}" style="width:900px; height:600px;" frameborder="0"></iframe>
+							</div>			                
+			                <div layout="column" data-ng-if="type_of_doc(activity.documentation)!='string' && activity.documentation[1]" style="margin-top:1.5em;">
+								<md-button class="md-fab md-mini md-primary" data-ng-if="type_of_doc(activity.documentation)!=='string' && activity.documentation[1]" data-ng-click="download_documentation(activity.documentation[1])" title="Open in new window"  aria-label="Open in new window">
+									<md-icon md-svg-src="../images/icons/svg/ic_open_in_new_white_24px.svg"></md-icon>
+								</md-button>				                	
+								<iframe data-ng-if="type_of_doc(activity.documentation)!='string'" src="{{activity.documentation[1]}}" style="width:900px;height:600px;" frameborder="0"></iframe>
+			                </div>
+						</div>
 					</md-content>
 				</md-tab>
 				<md-tab label="Presentations" data-ng-if="activity.presentations!==null">
@@ -82,7 +101,7 @@
 											</md-card-title-text>
 										</md-card-title>
 										<md-card-actions layout="row" layout-align="end center">
-											<md-button class="md-accent" data-ng-click="download_documentation(pval.src)"><strong>Open</strong></md-button>
+											<md-button class="md-accent" data-ng-click="download_documentation(presentation.src)"><strong>Open</strong></md-button>
 										</md-card-actions>	
 									</div>		
 								</md-card>
@@ -90,12 +109,22 @@
 						</p>
 					</md-content>
 				</md-tab>
-				<!-- <md-tab label="Gallery" data-ng-if="activity.gallery!==null">
+				<md-tab label="Gallery" data-ng-if="activity.gallery!==null">
 					<md-content class="md-padding">
 						<h1 class="md-display-2">Gallery</h1>
-						<p></p>
+						<div data-ng-show="activity.withOfflineGallery===true" flex="100" layout-fill layout="row" layout-wrap>	
+							<md-card flex="30"  data-ng-repeat="(i,tile) in activity.gallery">
+								<img ng-src="{{tile.src}}" class="md-card-image" alt="{{tile.src}}" title="{{tile.src}}">
+							</md-card>
+						</div>
+						<div data-ng-show="activity.fbPhotoAlbum!==null" class="ta-left">
+							<div data-ng-show="activity.withOfflineGallery===false" class="ta-left" layout="row">
+								<p style="margin-top:0.75em;">No offline photos found.</p> <md-button data-ng-show="activity.withOfflineGallery===false" class="md-primary" data-ng-href="{{activity.fbPhotoAlbum}}" title="" target="_blank">Click here to view photo album on Facebook.</md-button>
+							</div>
+							<md-button data-ng-show="activity.withOfflineGallery===true" class="md-primary" data-ng-href="{{activity.fbPhotoAlbum}}" title="" target="_blank">Click here for more photos</md-button>
+						</div>
 					</md-content>
-				</md-tab> -->
+				</md-tab>
 			</md-tabs>
 			<div class="ta-left" data-ng-show="no_content_elem==true">
 			</div>

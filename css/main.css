@@ -1,19 +1,9 @@
-@font-face{
-    font-family: 'Roboto';
-    src:url('../fonts/Roboto-Regular.ttf');
-}
-
-@font-face{
-    font-family: 'Helvetica Neue';
-    src:url('../fonts/HelveticaNeue.otf');
-}
-
 @import 'https://fonts.googleapis.com/css?family=Roboto';
 
 html {
     color: #222;
     font-size: 100%; /*1em=14px*/
-    font-family: sans-serif;    
+    font-family: 'Roboto','Helvetic Neue', sans-serif;    
 }
 
 #logo-wrapper {
@@ -38,7 +28,7 @@ html {
 
 header {
 	background-color:#fabc01; /*#f1f1f1*/
-	color: #4a4a4a; /*#fff;*/
+	color: #272727; /*#4a4a4a;#fff;*/
 	min-height:250px;
 	display: block;
 	margin-top:0.75em;
@@ -253,13 +243,21 @@ a {
 }
 
 #grid-progress-report {
-	background: rgba(35,75,112,1), url('../images/home-activities-feature/2016/07/10/eiti-prog-report-2016.png');
+	/*background: rgba(35,75,112,1), url('../images/home-activities-feature/2016/07/10/eiti-prog-report-2016.png');
 	background: -moz-linear-gradient(45deg, rgba(35,75,112,1) 0%, rgba(35,75,112,0.95) 51%, rgba(35,75,112,0.93) 71%, rgba(35,75,112,0.9) 100%), url('../images/home-activities-feature/2016/07/10/eiti-prog-report-2016.png');
 	background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(35,75,112,1)), color-stop(51%, rgba(35,75,112,0.95)), color-stop(71%, rgba(35,75,112,0.93)), color-stop(100%, rgba(35,75,112,0.9))), url('../images/home-activities-feature/2016/07/10/eiti-prog-report-2016.png');
 	background: -webkit-linear-gradient(45deg, rgba(35,75,112,1) 0%, rgba(35,75,112,0.95) 51%, rgba(35,75,112,0.93) 71%, rgba(35,75,112,0.9) 100%), url('../images/home-activities-feature/2016/07/10/eiti-prog-report-2016.png');
 	background: -o-linear-gradient(45deg, rgba(35,75,112,1) 0%, rgba(35,75,112,0.95) 51%, rgba(35,75,112,0.93) 71%, rgba(35,75,112,0.9) 100%), url('../images/home-activities-feature/2016/07/10/eiti-prog-report-2016.png');
 	background: -ms-linear-gradient(45deg, rgba(35,75,112,1) 0%, rgba(35,75,112,0.95) 51%, rgba(35,75,112,0.93) 71%, rgba(35,75,112,0.9) 100%), url('../images/home-activities-feature/2016/07/10/eiti-prog-report-2016.png');
 	background: linear-gradient(45deg, rgba(35,75,112,1) 0%, rgba(35,75,112,0.95) 51%, rgba(35,75,112,0.93) 71%, rgba(35,75,112,0.9) 100%), url('../images/home-activities-feature/2016/07/10/eiti-prog-report-2016.png');
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#234b70', endColorstr='#234b70', GradientType=1 );*/
+	background: rgba(35,75,112,1), url('../images/home-activities-feature/2016/07/10/eiti-prog-report-2016.png');
+	background: -moz-linear-gradient(45deg, rgba(35,75,112,1) 0%, rgba(35,75,112,0.88) 50%, rgba(35,75,112,0.82) 71%, rgba(35,75,112,0.75) 100%), url('../images/home-activities-feature/2016/07/10/eiti-prog-report-2016.png');
+	background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(35,75,112,1)), color-stop(50%, rgba(35,75,112,0.88)), color-stop(71%, rgba(35,75,112,0.82)), color-stop(100%, rgba(35,75,112,0.75))), url('../images/home-activities-feature/2016/07/10/eiti-prog-report-2016.png');
+	background: -webkit-linear-gradient(45deg, rgba(35,75,112,1) 0%, rgba(35,75,112,0.88) 50%, rgba(35,75,112,0.82) 71%, rgba(35,75,112,0.75) 100%), url('../images/home-activities-feature/2016/07/10/eiti-prog-report-2016.png');
+	background: -o-linear-gradient(45deg, rgba(35,75,112,1) 0%, rgba(35,75,112,0.88) 50%, rgba(35,75,112,0.82) 71%, rgba(35,75,112,0.75) 100%), url('../images/home-activities-feature/2016/07/10/eiti-prog-report-2016.png');
+	background: -ms-linear-gradient(45deg, rgba(35,75,112,1) 0%, rgba(35,75,112,0.88) 50%, rgba(35,75,112,0.82) 71%, rgba(35,75,112,0.75) 100%), url('../images/home-activities-feature/2016/07/10/eiti-prog-report-2016.png');
+	background: linear-gradient(45deg, rgba(35,75,112,1) 0%, rgba(35,75,112,0.88) 50%, rgba(35,75,112,0.82) 71%, rgba(35,75,112,0.75) 100%), url('../images/home-activities-feature/2016/07/10/eiti-prog-report-2016.png');
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#234b70', endColorstr='#234b70', GradientType=1 );
 	background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -293,14 +291,24 @@ a {
 }
 
 #grid-contracts {	
-	background: rgba(250,188,1,1), url('../images/home-activities-feature/2016/07/10/contracts-link.png');
-	background: -moz-linear-gradient(45deg, rgba(250,188,1,1) 0%, rgba(250,188,1,0.9) 51%, rgba(250,188,1,0.87) 71%, rgba(250,188,1,0.81) 100%), url('../images/home-activities-feature/2016/07/10/contracts-link.png');
-	background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(250,188,1,1)), color-stop(51%, rgba(250,188,1,0.9)), color-stop(71%, rgba(250,188,1,0.87)), color-stop(100%, rgba(250,188,1,0.81))), url('../images/home-activities-feature/2016/07/10/contracts-link.png');
-	background: -webkit-linear-gradient(45deg, rgba(250,188,1,1) 0%, rgba(250,188,1,0.9) 51%, rgba(250,188,1,0.87) 71%, rgba(250,188,1,0.81) 100%), url('../images/home-activities-feature/2016/07/10/contracts-link.png');
-	background: -o-linear-gradient(45deg, rgba(250,188,1,1) 0%, rgba(250,188,1,0.9) 51%, rgba(250,188,1,0.87) 71%, rgba(250,188,1,0.81) 100%), url('../images/home-activities-feature/2016/07/10/contracts-link.png');
-	background: -ms-linear-gradient(45deg, rgba(250,188,1,1) 0%, rgba(250,188,1,0.9) 51%, rgba(250,188,1,0.87) 71%, rgba(250,188,1,0.81) 100%), url('../images/home-activities-feature/2016/07/10/contracts-link.png');
-	background: linear-gradient(45deg, rgba(250,188,1,1) 0%, rgba(250,188,1,0.9) 51%, rgba(250,188,1,0.87) 71%, rgba(250,188,1,0.81) 100%), url('../images/home-activities-feature/2016/07/10/contracts-link.png');
+	/*background: rgba(250,188,1,1), url('../images/home-activities-feature/2016/07/10/contracts-link-2.png');
+	background: -moz-linear-gradient(45deg, rgba(250,188,1,1) 0%, rgba(250,188,1,0.9) 51%, rgba(250,188,1,0.87) 71%, rgba(250,188,1,0.81) 100%), url('../images/home-activities-feature/2016/07/10/contracts-link-2.png');
+	background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(250,188,1,1)), color-stop(51%, rgba(250,188,1,0.9)), color-stop(71%, rgba(250,188,1,0.87)), color-stop(100%, rgba(250,188,1,0.81))), url('../images/home-activities-feature/2016/07/10/contracts-link-2.png');
+	background: -webkit-linear-gradient(45deg, rgba(250,188,1,1) 0%, rgba(250,188,1,0.9) 51%, rgba(250,188,1,0.87) 71%, rgba(250,188,1,0.81) 100%), url('../images/home-activities-feature/2016/07/10/contracts-link-2.png');
+	background: -o-linear-gradient(45deg, rgba(250,188,1,1) 0%, rgba(250,188,1,0.9) 51%, rgba(250,188,1,0.87) 71%, rgba(250,188,1,0.81) 100%), url('../images/home-activities-feature/2016/07/10/contracts-link-2.png');
+	background: -ms-linear-gradient(45deg, rgba(250,188,1,1) 0%, rgba(250,188,1,0.9) 51%, rgba(250,188,1,0.87) 71%, rgba(250,188,1,0.81) 100%), url('../images/home-activities-feature/2016/07/10/contracts-link-2.png');
+	background: linear-gradient(45deg, rgba(250,188,1,1) 0%, rgba(250,188,1,0.9) 51%, rgba(250,188,1,0.87) 71%, rgba(250,188,1,0.81) 100%), url('../images/home-activities-feature/2016/07/10/contracts-link-2.png');
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fabc01', endColorstr='#fabc01', GradientType=1 );*/
+
+	background: rgba(250,188,1,1), url('../images/home-activities-feature/2016/07/10/contracts-link-2.png');
+	background: -moz-linear-gradient(45deg, rgba(250,188,1,1) 0%, rgba(250,188,1,0.87) 51%, rgba(250,188,1,0.82) 71%, rgba(250,188,1,0.75) 100%), url('../images/home-activities-feature/2016/07/10/contracts-link-2.png');
+	background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(250,188,1,1)), color-stop(51%, rgba(250,188,1,0.87)), color-stop(71%, rgba(250,188,1,0.82)), color-stop(100%, rgba(250,188,1,0.75))), url('../images/home-activities-feature/2016/07/10/contracts-link-2.png');
+	background: -webkit-linear-gradient(45deg, rgba(250,188,1,1) 0%, rgba(250,188,1,0.87) 51%, rgba(250,188,1,0.82) 71%, rgba(250,188,1,0.75) 100%), url('../images/home-activities-feature/2016/07/10/contracts-link-2.png');
+	background: -o-linear-gradient(45deg, rgba(250,188,1,1) 0%, rgba(250,188,1,0.87) 51%, rgba(250,188,1,0.82) 71%, rgba(250,188,1,0.75) 100%), url('../images/home-activities-feature/2016/07/10/contracts-link-2.png');
+	background: -ms-linear-gradient(45deg, rgba(250,188,1,1) 0%, rgba(250,188,1,0.87) 51%, rgba(250,188,1,0.82) 71%, rgba(250,188,1,0.75) 100%), url('../images/home-activities-feature/2016/07/10/contracts-link-2.png');
+	background: linear-gradient(45deg, rgba(250,188,1,1) 0%, rgba(250,188,1,0.87) 51%, rgba(250,188,1,0.82) 71%, rgba(250,188,1,0.75) 100%), url('../images/home-activities-feature/2016/07/10/contracts-link-2.png');
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fabc01', endColorstr='#fabc01', GradientType=1 );
+
 	background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center center;

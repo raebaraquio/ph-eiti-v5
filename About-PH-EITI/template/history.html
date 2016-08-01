@@ -19,7 +19,7 @@
             <!-- can also hard-code to side="left" or side="right" -->
             <timeline-event ng-repeat="(k,event) in events" data-ng-init="useSide = (k%2)===0 ? 'right' : 'left'" side="{{useSide}}">
                 <!-- uses angular-scroll-animate to give it some pop -->
-                <timeline-badge class="{{event.badgeClass}} timeline-hidden" when-visible="animateElementIn" when-not-visible="animateElementOut">
+                <timeline-badge class="{{event.badgeClass}} timeline-hidden" when-visible="animateElementIn" when-not-visible="animateElementOut" style="z-index:1">
                     <span class="glyphicon {{event.badgeIconClass}}" style="font-size:0.85em;"><span data-ng-show="event.start===true">{{event.year}}</span></span>
                 </timeline-badge>
                 <!-- uses angular-scroll-animate to give it some pop -->

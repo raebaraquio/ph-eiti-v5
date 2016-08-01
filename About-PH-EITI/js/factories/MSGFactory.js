@@ -20,43 +20,35 @@ aboutApp.factory('MSGFactory',['$http',
 								primary: [
 									{
 									    "id":"g-0",
-						                "name": "Ma. Lourdes B. Recente",
-						                "position": "OIC - Domestic Finance Group",
+						                "name": "Gil S. Beltran",
+						                "position": "USEC and Chief Economist / PH-EITI OIC Focal Person and Chair",
 						                "office": "Department of Finance (DOF)",
-						                "avatar": "default.png"						            
+						                "avatar":"default.png"
 									}
 								],
 								alternate: [
 									{
 										"id":"ga-1",
-						                "name": "Hon. Ma. Teresa S. Habitan",
+						                "name": "Ma. Teresa S. Habitan",
 						                "position": "Assistant Secretary",
-						                "office": "Department of Finance (DOF)",
+						                "office": "DOF",
 						                "avatar":"Asec-Teresa-Habitan.png"
-						            },
-						            {
-										"id":"ga-1-3",
-						                "name": "Gil S. Beltran",
-						                "position": "USEC and Chief Economist / PH-EITI OIC Focal Person and Chair",
-						                "office": "Department of Finance (DOF)",
-						                "avatar":"default.png"
 						            }
-								]
-					                
+								]					                
 							},
 							{
 								primary: [{
 									"id":"g-2",
-									"name": "Hon. Austere A. Panadero",
+									"name": "Austere A. Panadero",
 									"position": "Undersecretary",
 									"office": "Department of the Interior and Local Government (DILG)",
 									"avatar":"Austere-Panadero.png"
 					            }],
 								alternate: [{
 					                "id":"ga-0",
-					                "name" : "Hon. Anna Liza F. Bonagua",
+					                "name" : "Anna Liza F. Bonagua",
 					                "position" :"OIC - Director",
-					                "office" : "Department of the Interior and Local Government-Bureau of Local Government Development (DILG-BLGD)",
+					                "office" : "DILG-Bureau of Local Government Development (BLGD)",
 					                "avatar" : "default.png"
 					            }]
 							},
@@ -64,38 +56,38 @@ aboutApp.factory('MSGFactory',['$http',
 								primary: [{
 					                "id":"g-4",
 					                "name": "Engr. Leo L. Jasareno",
-					                "position": "Acting Director",
-					                "office": "Mines and Geosciences Bureau - Department of Environment and Natural Resources (MGB- DENR)",
+					                "position": "Director",
+					                "office": "Mines and Geosciences Bureau - Department of Environment and Natural Resources (MGB-DENR)",
 					                "avatar":"Leo-Jasareno.png"
 					            }],
 								alternate: [{
 					            	"id":"ga-2",
-					                "name" : "Engr. Romualdo Aguilos",
+					                "name" : "Engr. Romualdo D. Aguilos",
 					                "position" :"OIC-Chief, Mineral Economics, Information and Publication",
-					                "office" : "MGB- DENR",
+					                "office" : "MGB-DENR",
 					                "avatar" : "Romy-Aguilos.png"
 					            }]
 							},
 							{
 								primary: [{
 					                "id":"g-6",
-					                "name": "Mr. Rino E. Abad",
+					                "name": "Rino E. Abad",
 					                "position": "Director IV",
-					                "office": "Department of Energy (DOE)",
+					                "office": "Energy Resource Development Bureau, Department of Energy (DOE)",
 					                "avatar":"default.png"
 					            }],
 								alternate: [{
 					            	"id":"ga-3",
-					                "name" : "Ms. Araceli Soluta",
+					                "name" : "Araceli Soluta",
 					                "position" :"Director III",
-					                "office" : "Department of Energy (DOE)",
+					                "office" : "Financial Services, DOE",
 					                "avatar" : "default.png"
 					            }]
 							},
 							{
 								primary: [{
 					                "id":"g-5",
-					                "name": "Gov. Alfonso Umali Jr.",
+					                "name": "Gov. Alfonso V. Umali Jr.",
 					                "position": "President",
 					                "office": "Union of Local Authorities of the Philippines (ULAP)",
 					                "avatar":"Gov-Alfonso-Umali.png"
@@ -111,16 +103,16 @@ aboutApp.factory('MSGFactory',['$http',
 							{
 								primary: [{
 					                "id":"g-7",
-					                "name": "Mr. Nestor Valeroso",
-					                "position": "Assistant Commissioner",
+					                "name": "Nestor Valeroso",
+					                "position": "Assistant Commissioner, Director II, Large Taxpayers Service",
 					                "office": "Bureau of Internal Revenue (BIR)",
 					                "avatar":"default.png"
 					            }],
 								alternate: [{
 					            	"id":"ga-5",
 					                "name" : "Atty. Teresita Angeles",
-					                "position" :"-",
-					                "office" : "Bureau of Internal Revenue (BIR)",
+					                "position" :"Head Revenue Executive Assistant, Director II, Large Taxpayers Service Excise LTs",
+					                "office" : "BIR",
 					                "avatar" : "default.png"
 					            }]
 							}
@@ -140,9 +132,9 @@ aboutApp.factory('MSGFactory',['$http',
 					            }],
 								alternate: [{
 									"id":"csa-0",
-					                "name" : "Mr. Filomeno Sta. Ana III",
+					                "name" : "Filomeno S. Sta. Ana III",
 					                "position" :"President",
-					                "office" : "Bantay Kita/Action for Economic Reforms (AER)",
+					                "office" : "Bantay Kita",
 					                "avatar" : "Filomeno-Sta-Ana.png"
 								}]
 							},
@@ -151,61 +143,57 @@ aboutApp.factory('MSGFactory',['$http',
 					            	"id":"cso-1",
 					                "name" : "Prof. Jay L. Batongbacal",
 					                "position" : "Assistant Professor",
-					                "office" : "UP College of Law/Bantay Kita",
+					                "office" : "UP College of Law",
 					                "avatar" : "default.png"
 					            }],
 								alternate: [{
-					            	"id":"csa-2",
-					                "name" : "Mr. Chadwick Go Llanos",
-					                "position" :"Focal Person",
-					                "office" : "Cebu Alliance for Safe and Sustainable Environment (CASSE)",
-					                "avatar" : "default.png"
-					            }]
-							},
-							{
-								primary: [{
 									id:'',
 									name: 'Jose Melvin A. Lamanilao',
 									office: '',
 									position: 'Independent Consultant'
-								}],
-								alternate: [{
-									"id":"csa-3",
-					                "name" : "Dr. Merian C. Mani",
-					                "position" :"Research Coordinator",
-					                "office" : "Romblon Ecumenical Forum Against Mining (REFAM)",
-					                "avatar" :  "default.png"
 								}]
 							},
 							{
 								primary: [{
+									"id":"csa-3",
+					                "name" : "Dr. Merian C. Mani",
+					                "position" :"President",
+					                "office" : "Marinduque State College",
+					                "avatar" :  "default.png"
+								}],
+								alternate: [{
 									name: 'Engr. Maria Rosario Aynon A. Gonzales',
 									office: 'Palawan State University',
 									position: 'Director, Center for Strategic Policy and Governance'
-								}],
-								alternate: [{
-
 								}]
 							},
 							{
 								primary: [{
+					            	"id":"csa-2",
+					                "name" : "Chadwick Go Llanos",
+					                "position" :"Focal Person",
+					                "office" : "Cebu Alliance for Safe and Sustainable Environment (CASSE)",
+					                "avatar" : "default.png"
+					            }],
+								alternate: [{
 									name: 'Atty. Golda S. Benjamin',
 									office:'Siliman University, Dumaguete City, Negros Oriental',
 									position: 'Lecturer'
-								}],
-								alternate: []
+								}]
 							},
 							{
 								primary: [{
+									"id":"csa-4",
+					                "name" : "Starjoan Villanueva",
+					                "position" :"Executive Director",
+					                "office" : "Alternate Forum for Research in Mindanao (AFRIM)",
+					                "avatar" :"Starj-Villanueva.png"
+								}],
+								alternate: [{
 									name: 'Buenaventura M. Maata Jr.',
 									office: 'Philippine Grassroots Engagement in Rural Development Foundation, Inc. (PhilGrassroots-ERDF), Dinagat Islands',
 									position: 'Executive Director'
-								}],
-								alternate: []
-							},
-							{
-								primary: [],
-								alternate: []
+								}]
 							}
 						]
 					},
@@ -216,48 +204,32 @@ aboutApp.factory('MSGFactory',['$http',
 							{
 								primary:[{
 					            	"id":"b-0",
-					                "name" : "Engr. Artemio F. Disini",
+					                "name" : "Artemio F. Disini",
 					                "position" : "Chairman",
 					                "office" : "Chamber of Mines of the Philippines (CoMP)",
 					                "avatar" : "Artemio-Disini.png"
 					            }],
 								alternate:[{
 					            	"id":"ba-0",
-					                "name" : "Ms. Nelia C. Halcon",
+					                "name" : "Nelia C. Halcon",
 					                "position" :"Executive Vice President",
-					                "office" : "Chamber of Mines of the Philippines (CoMP)",
+					                "office" : "CoMP",
 					                "avatar" : "Nelia-Halcon.png"
 					            }]
 							},
 							{
 								primary:[{
 					            	"id":"b-1",
-					                "name" : "Mr. Gerard H. Brimo",
+					                "name" : "Gerard H. Brimo",
 					                "position" : "President and CEO",
 					                "office" : "Nickel Asia Corporation",
 					                "avatar" : "default.png"
 					            }],
 								alternate:[{
 					            	"id":"ba-1",
-					                "name" : "Mr. Emmanuel L. Samson",
-					                "position" :"Senior Vice President- Chief Financial Officer",
+					                "name" : "Emmanuel L. Samson",
+					                "position" :"Senior Vice President and Chief Financial Officer",
 					                "office" : "Nickel Asia Corporation",
-					                "avatar" : "default.png"
-					            }]
-							},
-							{
-								primary:[ {
-					            	"id":"b-2",
-					                "name" : "Anthony P. Ferrer",
-					                "position" : "",
-					                "office" : "Galoc Production Company",
-					                "avatar" : "default.png"
-					            }],
-								alternate:[{
-					            	"id":"ba-2",
-					                "name" : "Mr. Sabino Santos",
-					                "position" :"Asset Manager",
-					                "office" : "Chevron - Malampaya LLC",
 					                "avatar" : "default.png"
 					            }]
 							},
@@ -265,9 +237,25 @@ aboutApp.factory('MSGFactory',['$http',
 								primary:[],
 								alternate:[{
 					            	"id":"ba-3",
-					                "name" : "Mr. James Ong",
+					                "name" : "James Ong",
 					                "position" :"President",
 					                "office" : "Ore Asia Mining and Development Corporation",
+					                "avatar" : "default.png"
+					            }]
+							},
+							{
+								primary:[{
+					            	"id":"ba-2",
+					                "name" : "Sabino Santos",
+					                "position" :"Asset Manager",
+					                "office" : "Chevron Malampaya LLC",
+					                "avatar" : "default.png"
+					            }],
+								alternate:[ {
+					            	"id":"b-2",
+					                "name" : "Anthony P. Ferrer",
+					                "position" : "",
+					                "office" : "Galoc Production Company",
 					                "avatar" : "default.png"
 					            }]
 							}
@@ -281,21 +269,21 @@ aboutApp.factory('MSGFactory',['$http',
 				    	"members":[
 				            {
 				                "id":"g-0",
-				                "name": "Hon. Jeremias N. Paul Jr.",
+				                "name": "Jeremias N. Paul Jr.",
 				                "position": "Undersecretary, Domestic Finance Group & Legislative Liasion",
 				                "office": "Department of Finance (DOF)",
 				                "avatar": "Usec-Jeremias-Paul.png"
 				            },
 				            {
 				                "id":"g-2",
-				                "name": "Hon. Austere A. Panadero",
+				                "name": "Austere A. Panadero",
 				                "position": "Undersecretary",
 				                "office": "Department of the Interior and Local Government (DILG)",
 				                "avatar":"Austere-Panadero.png"
 				            }/*,
 				            {
 				                "id":"g-3",
-				                "name": "Hon. Zenaida Y. Monsada",
+				                "name": "Zenaida Y. Monsada",
 				                "position": "Undersecretary",
 				                "office": "Department of Energy (DOE)",
 				                "avatar":""
@@ -309,7 +297,7 @@ aboutApp.factory('MSGFactory',['$http',
 				            },
 				            {
 				                "id":"g-6",
-				                "name": "Mr. Rino E. Abad",
+				                "name": "Rino E. Abad",
 				                "position": "Director IV",
 				                "office": "Department of Energy (DOE)",
 				                "avatar":"default.png"
@@ -323,7 +311,7 @@ aboutApp.factory('MSGFactory',['$http',
 				            },
 				            {
 				                "id":"g-7",
-				                "name": "Mr. Nestor Valeroso",
+				                "name": "Nestor Valeroso",
 				                "position": "Assistant Commissioner",
 				                "office": "Bureau of Internal Revenue (BIR)",
 				                "avatar":"default.png"
@@ -338,14 +326,14 @@ aboutApp.factory('MSGFactory',['$http',
 				        "alternates" : [
 				            {
 				                "id":"ga-1",
-				                "name": "Hon. Ma. Teresa S. Habitan",
+				                "name": "Ma. Teresa S. Habitan",
 				                "position": "Assistant Secretary",
 				                "office": "Department of Finance (DOF)",
 				                "avatar":"Asec-Teresa-Habitan.png"
 				            },
 				            {
 				            	"id":"ga-0",
-				                "name" : "Hon. Anna Liza F. Bonagua",
+				                "name" : "Anna Liza F. Bonagua",
 				                "position" :"OIC - Director",
 				                "office" : "Department of the Interior and Local Government-Bureau of Local Government Development (DILG-BLGD)",
 				                "avatar" : "default.png"
@@ -359,7 +347,7 @@ aboutApp.factory('MSGFactory',['$http',
 				            },
 				            {
 				            	"id":"ga-3",
-				                "name" : "Ms. Araceli Soluta",
+				                "name" : "Araceli Soluta",
 				                "position" :"Director III",
 				                "office" : "Department of Energy (DOE)",
 				                "avatar" : "default.png"
@@ -405,7 +393,7 @@ aboutApp.factory('MSGFactory',['$http',
 				            },
 				            {
 				            	"id":"cso-3",
-				                "name" : "Mr. Ronald Allan A. Barnacha",
+				                "name" : "Ronald Allan A. Barnacha",
 				                "position" : "Trustee/Provincial Chairperson",
 				                "office" : "Philippine Rural Reconstruction Movement (PRRM)-Nueva Vizcaya",
 				                "avatar" :"Ronald-Allan-Barnacha.png"
@@ -415,21 +403,21 @@ aboutApp.factory('MSGFactory',['$http',
 				        "alternates" : [
 				            {
 				            	"id":"csa-0",
-				                "name" : "Mr. Filomeno Sta. Ana III",
+				                "name" : "Filomeno Sta. Ana III",
 				                "position" :"President",
 				                "office" : "Bantay Kita/Action for Economic Reforms (AER)",
 				                "avatar" : "Filomeno-Sta-Ana.png"
 				            },
 				            {
 				            	"id":"csa-1",
-				                "name" : "Mr. Vince Lazatin",
+				                "name" : "Vince Lazatin",
 				                "position" :"Executive Director",
 				                "office" : "Bantay Kita/ Transparency & Accountability Network (TAN)",
 				                "avatar" : "default.png"
 				            },
 				            {
 				            	"id":"csa-2",
-				                "name" : "Mr. Chadwick Go Llanos",
+				                "name" : "Chadwick Go Llanos",
 				                "position" :"Focal Person",
 				                "office" : "Cebu Alliance for Safe and Sustainable Environment (CASSE)",
 				                "avatar" : "default.png"
@@ -443,7 +431,7 @@ aboutApp.factory('MSGFactory',['$http',
 				            },
 				            {
 				            	"id":"csa-4",
-				                "name" : "Ms. Starjoan Villanueva",
+				                "name" : "Starjoan Villanueva",
 				                "position" :"Executive Director",
 				                "office" : "Alternate Forum for Research in Mindanao (AFRIM)",
 				                "avatar" :"Starj-Villanueva.png"
@@ -461,14 +449,14 @@ aboutApp.factory('MSGFactory',['$http',
 				            },
 				            {
 				            	"id":"b-1",
-				                "name" : "Mr. Gerard H. Brimo",
+				                "name" : "Gerard H. Brimo",
 				                "position" : "President and CEO",
 				                "office" : "Nickel Asia Corporation",
 				                "avatar" : "default.png"
 				            },
 				            {
 				            	"id":"b-2",
-				                "name" : "Mr. Sebastian C. Quiniones, Jr.",
+				                "name" : "Sebastian C. Quiniones, Jr.",
 				                "position" : "General Manager and Managing Director",
 				                "office" : "Shell",
 				                "avatar" : "Sebastian-Quiniones.png"
@@ -478,28 +466,28 @@ aboutApp.factory('MSGFactory',['$http',
 				        "alternates" : [
 				            {
 				            	"id":"ba-0",
-				                "name" : "Ms. Nelia C. Halcon",
+				                "name" : "Nelia C. Halcon",
 				                "position" :"Executive Vice President",
 				                "office" : "Chamber of Mines of the Philippines (CoMP)",
 				                "avatar" : "Nelia-Halcon.png"
 				            },
 				            {
 				            	"id":"ba-1",
-				                "name" : "Mr. Emmanuel L. Samson",
+				                "name" : "Emmanuel L. Samson",
 				                "position" :"Senior Vice President- Chief Financial Officer",
 				                "office" : "Nickel Asia Corporation",
 				                "avatar" : "default.png"
 				            },
 				            {
 				            	"id":"ba-2",
-				                "name" : "Mr. Sabino Santos",
+				                "name" : "Sabino Santos",
 				                "position" :"Asset Manager",
 				                "office" : "Chevron - Malampaya LLC",
 				                "avatar" : "default.png"
 				            },
 				            {
 				            	"id":"ba-3",
-				                "name" : "Mr. James Ong",
+				                "name" : "James Ong",
 				                "position" :"President",
 				                "office" : "Ore Asia Mining and Development Corporation",
 				                "avatar" : "default.png"

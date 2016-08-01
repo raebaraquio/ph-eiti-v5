@@ -351,75 +351,175 @@ countryReportApp.factory('CountryReportFactory', function($http,$location){
 				folder_id:'Reporting-Templates',
 				folder_name:'Reporting Templates',
 				date: {
-					'lastUpdated': 'August 30, 2015 11:18 PM',
+					'lastUpdated': 'July 31, 2016 11:20 PM',
 					'created':''
 				},
 				subfolders: [
 					{
-						folder_id:'Government-Agencies',
-						folder_name:'Government Agencies',
-						subfolders: [],
-						files: [
+						year: 2015,
+						folder_id: 2015,
+						folder_name: 2015,
+						subfolders: [
 							{
-								id:"Bureau-of-Internal-Revenue-(BIR)",
-								title:"Bureau of Internal Revenue (BIR)",
-								author:'',
-								source:"../document/reporting-template/government-agencies/Reporting-templates-and-schedules-(BIR-FINAL).pdf"
+								folder_id:'Government-Agencies',
+								folder_name:'Government Agencies',
+								subfolders: [],
+								files: [
+									{
+										id:"Bureau-of-Internal-Revenue-(BIR)",
+										title:"Bureau of Internal Revenue (BIR)",
+										author:'',
+										source:"../document/reporting-template/2015/government-agencies/BIR_2015 Reporting template and schedules - MSG approved.pdf"
+									},
+									{
+										id:"Bureau-of-Customs-(BOC)",
+										title:"Bureau of Customs (BOC)",
+										author:'',
+										source:"../document/reporting-template/2015/government-agencies/BOC_2015 Reporting templates and schedules - MSG approved.pdf"
+									},
+									{
+										id:"Department-of-Budget-and-Management-(DBM)",
+										title:"Department of Budget and Management (DBM)",
+										author:'',
+										source:"../document/reporting-template/2015/government-agencies/DBM_2015 Reporting template and schedules - MSG approved.pdf"
+									},
+									{
+										id:"Department-of-Energy-(DOE)",
+										title:"Department of Energy (DOE)",
+										author:'',
+										source:"../document/reporting-template/2015/government-agencies/DOE_2015 Reporting template and schedules - MSG approved.pdf"
+									},
+									{
+										id:"Department-of-Energy-(DOE)-Coal-Ops",
+										title:"Department of Energy (DOE) - For Coal Operations",
+										author:'',
+										source:"../document/reporting-template/2015/government-agencies/DOE_2015 Reporting template and schedules (coal) - MSG approved.pdf"
+									},
+									{
+										id:"Local-Government-Units-(LGUs)",
+										title:"Local Government Units (LGUs)",
+										author:'',
+										source:"../document/reporting-template/2015/government-agencies/LGU_2015 Reporting template and schedules - MSG approved.pdf"
+									},
+									{
+										id:"Mines-and-Geosciences-Bureau---Department-of-Environment-and-Natural-Resources-(MGB-DENR)",
+										title:"Mines and Geosciences Bureau - Department of Environment and Natural Resources (MGB-DENR)",
+										author:'',
+										source:"../document/reporting-template/2015/government-agencies/MGB_2015 Reporting template and schedules - MSG approved.pdf"
+									},
+									{
+										id:"National-Commission-on-Indigenous-People-(NCIP)",
+										title:"National Commission on Indigenous People (NCIP)",
+										author:'',
+										source:"../document/reporting-template/2015/government-agencies/NCIP_2015 Reporting template and schedules - MSG approved.pdf"
+									},
+									{
+										id:"Philippine-Ports-Authority-(PPA)",
+										title:"Philippine Ports Authority (PPA)",
+										author:'',
+										source:"../document/reporting-template/2015/PPA_2015 reporting templates and schedules - MSG approved.pdf"
+									}
+								]
 							},
 							{
-								id:"Bureau-of-Customs-(BOC)",
-								title:"Bureau of Customs (BOC)",
-								author:'',
-								source:"../document/reporting-template/government-agencies/Reporting-templates-and-schedules-(BOC-FINAL).pdf"
-							},
-							{
-								id:"Department-of-Energy-(DOE)",
-								title:"Department of Energy (DOE)",
-								author:'',
-								source:"../document/reporting-template/government-agencies/Reporting-templates-and-schedules-(DOE-FINAL).pdf"
-							},
-							{
-								id:"Local-Government-Units-(LGUs)",
-								title:"Local Government Units (LGUs)",
-								author:'',
-								source:"../document/reporting-template/government-agencies/Reporting-templates-and-schedules-(LGU-FINAL).pdf"
-							},
-							{
-								id:"Mines-and-Geosciences-Bureau---Department-of-Environment-and-Natural-Resources-(MGB-DENR)",
-								title:"Mines and Geosciences Bureau - Department of Environment and Natural Resources (MGB-DENR)",
-								author:'',
-								source:"../document/reporting-template/government-agencies/Reporting-templates-and-schedules-(MGB-FINAL).pdf"
-							},
-							{
-								id:"National-Commission-on-Indigenous-People-(NCIP)",
-								title:"National Commission on Indigenous People (NCIP)",
-								author:'',
-								source:"../document/reporting-template/government-agencies/Reporting-templates-and-schedules-(NCIP-FINAL).pdf"
-							},
-							{
-								id:"Philippine-Ports-Authority-(PPA)",
-								title:"Philippine Ports Authority (PPA)",
-								author:'',
-								source:"../document/reporting-template/government-agencies/Reporting-templates-and-schedules-(PPA-FINAL).pdf"
+								folder_id:'Industry',
+								folder_name:'Industry',
+								subfolders: [],
+								files: [
+									{
+										id:'Coal-Companies',
+										title:'Coal Companies',
+										author:'',
+										source:'../document/reporting-template/2015/Coal Company_2015 Reporting template and schedules - MSG approved.pdf'
+									},
+									{
+										id:'Mining-Companies',
+										title:'Mining Companies',
+										author:'',
+										source:'../document/reporting-template/2015/mining companies_2015 Reporting template and schedules - MSG approved.pdf'
+									},
+									{
+										id:'Oil-and-Gas-Companies',
+										title:'Oil and Gas Companies',
+										author:'',
+										source:'../document/reporting-template/2015/Oil and Gas Companies_2015 Reporting template and schedules - MSG approved.pdf'
+									}
+								]
 							}
 						]
 					},
 					{
-						folder_id:'Industry',
-						folder_name:'Industry',
-						subfolders: [],
-						files: [
+						year:  2014,
+						folder_id: 2014,
+						folder_name: 2014,
+						subfolders: [
 							{
-								id:'Mining-Companies',
-								title:'Mining Companies',
-								author:'',
-								source:'../document/reporting-template/mining-companies/Reporting-templates-and-schedules-(participating-entity-FINAL).pdf'
+								folder_id:'Government-Agencies',
+								folder_name:'Government Agencies',
+								subfolders: [],
+								files: [
+									{
+										id:"Bureau-of-Internal-Revenue-(BIR)",
+										title:"Bureau of Internal Revenue (BIR)",
+										author:'',
+										source:"../document/reporting-template/2014/government-agencies/Reporting-templates-and-schedules-(BIR-FINAL).pdf"
+									},
+									{
+										id:"Bureau-of-Customs-(BOC)",
+										title:"Bureau of Customs (BOC)",
+										author:'',
+										source:"../document/reporting-template/2014/government-agencies/Reporting-templates-and-schedules-(BOC-FINAL).pdf"
+									},
+									{
+										id:"Department-of-Energy-(DOE)",
+										title:"Department of Energy (DOE)",
+										author:'',
+										source:"../document/reporting-template/2014/government-agencies/Reporting-templates-and-schedules-(DOE-FINAL).pdf"
+									},
+									{
+										id:"Local-Government-Units-(LGUs)",
+										title:"Local Government Units (LGUs)",
+										author:'',
+										source:"../document/reporting-template/2014/government-agencies/Reporting-templates-and-schedules-(LGU-FINAL).pdf"
+									},
+									{
+										id:"Mines-and-Geosciences-Bureau---Department-of-Environment-and-Natural-Resources-(MGB-DENR)",
+										title:"Mines and Geosciences Bureau - Department of Environment and Natural Resources (MGB-DENR)",
+										author:'',
+										source:"../document/reporting-template/2014/government-agencies/Reporting-templates-and-schedules-(MGB-FINAL).pdf"
+									},
+									{
+										id:"National-Commission-on-Indigenous-People-(NCIP)",
+										title:"National Commission on Indigenous People (NCIP)",
+										author:'',
+										source:"../document/reporting-template/2014/government-agencies/Reporting-templates-and-schedules-(NCIP-FINAL).pdf"
+									},
+									{
+										id:"Philippine-Ports-Authority-(PPA)",
+										title:"Philippine Ports Authority (PPA)",
+										author:'',
+										source:"../document/reporting-template/2014/government-agencies/Reporting-templates-and-schedules-(PPA-FINAL).pdf"
+									}
+								]
 							},
 							{
-								id:'Oil-and-Gas-Companies',
-								title:'Oil and Gas Companies',
-								author:'',
-								source:'../document/reporting-template/oil-and-gas-companies/Reporting-templates-and-schedules-(OG-FINAL).pdf'
+								folder_id:'Industry',
+								folder_name:'Industry',
+								subfolders: [],
+								files: [
+									{
+										id:'Mining-Companies',
+										title:'Mining Companies',
+										author:'',
+										source:'../document/reporting-template/2014/mining-companies/Reporting-templates-and-schedules-(participating-entity-FINAL).pdf'
+									},
+									{
+										id:'Oil-and-Gas-Companies',
+										title:'Oil and Gas Companies',
+										author:'',
+										source:'../document/reporting-template/2014/oil-and-gas-companies/Reporting-templates-and-schedules-(OG-FINAL).pdf'
+									}
+								]
 							}
 						]
 					}

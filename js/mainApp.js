@@ -1,4 +1,4 @@
-var pheiti = angular.module('pheiti',['ngMaterial','navMod','jkAngularCarousel','ngDialog','cgBusy']);
+var pheiti = angular.module('pheiti',['ngMaterial','navMod','jkAngularCarousel','secretariatContactMod']);
 
 pheiti.config(function($mdThemingProvider) {
 	/* Yellow is primary ; Blue is accent 
@@ -239,6 +239,7 @@ pheiti.controller('homeNewsController',['$scope','homeNewsFactory','$sce',
                     }
                 }
             }
+            delete $scope.newspromise
         })
     }
 
@@ -288,8 +289,8 @@ pheiti.controller('statementCarouselController',['$scope',
 }]);
 
 
-pheiti.controller('homeInfographicController',['$scope','ngDialog',
-    function($scope,ngDialog){
+pheiti.controller('homeInfographicController',['$scope','$mdDialog','$mdMedia',
+    function($scope,$mdDialog,$mdMedia){
 
     var chart = new Highcharts.Chart({
         chart: {
@@ -344,12 +345,12 @@ pheiti.controller('homeInfographicController',['$scope','ngDialog',
             name: 'Total Collection',
             colorByPoint: true,
             data: [
-                { name: 'Departent of Energy', y: 54.66, yData: '22,247,984,129'},
-                { name: 'Bureau of Internal Revenue', y: 40.01, yData: '16,284,928,889' },
-                { name: 'National Commission on Indigenous Peoples', y: 0.60, yData: '242,124,305' },
-                { name: 'Mines and Geosciences Bureau', y: 1.97, yData: '802,798,044' },
-                { name: 'Bureau of Customs', y:2.02, yData: '820,365,739' },
-                { name: 'Local Government Unit', y: 0.74, yData: '301,525,311' }
+                { name: 'Departent of Energy', y: 54.66, yData: 'Php 22,247,984,129'},
+                { name: 'Bureau of Internal Revenue', y: 40.01, yData: 'Php 16,284,928,889' },
+                { name: 'Mines and Geosciences Bureau', y: 1.97, yData: 'Php 802,798,044' },
+                { name: 'Bureau of Customs', y:2.02, yData: 'Php 820,365,739' },
+                { name: 'Local Government Unit', y: 0.74, yData: 'Php 301,525,311' },
+                { name: 'National Commission on Indigenous Peoples', y: 0.60, yData: 'Php 242,124,305' }
             ]
         }]
     });
@@ -380,7 +381,6 @@ pheiti.controller('homeInfographicController',['$scope','ngDialog',
         })
     });
 
-    
     $scope.variances = [
         {
             icon:'./images/icons/svg/ic_swap_horiz_black_24px.svg',
@@ -400,57 +400,85 @@ pheiti.controller('homeInfographicController',['$scope','ngDialog',
         }
     ]
 
-    $scope.openVariance=function(){
-        // ngDialog.open({ 
-        //     template: './template/see-reports.html', 
-        //     className: 'ngdialog-theme-default', 
-        //     scope:$scope,
-        //     closeByDocument: true,
-        //     closeByEscape: true,
-        //     showClose: true
-        // });
-    }    
+    $scope.openComparison=function(ev){
+        $mdDialog.show({
+            templateUrl: './template/see-reports.html?v=1.02', 
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:true,
+            fullscreen: true,
+            controller:'compareReportsController'
+        })
+    }
 }]);
 
-pheiti.controller('footerController',['$scope','ngDialog','homeNewsFactory',
-    function($scope,ngDialog,homeNewsFactory){
+pheiti.controller('footerController',['$scope','homeNewsFactory','$mdDialog','$mdMedia','secretariatContactDetails',
+    function($scope,homeNewsFactory,$mdDialog,$mdMedia,secretariatContactDetails){
 
+    $scope.contactDetails = secretariatContactDetails.get();
     $scope.userfeedback = { message : '',  type: '' }
     $scope.user = {name : '', email: ''}
-
-    $scope.resetForm=function(){
-        $scope.user.name = ''
-        $scope.user.email = ''
+    
+    $scope.resetFeedback=function(){
         $scope.userfeedback.message = '';
         $scope.userfeedback.type = ''; 
     }
 
-    $scope.triggerSubscribe=function(){
-        $scope.resetForm();
-        ngDialog.open({ 
-            template: './template/subscribe.html', 
-            className: 'ngdialog-theme-default', 
-            scope:$scope,
-            closeByDocument: true,
-            closeByEscape: true,
-            showClose: true
-        });
+    $scope.resetForm=function(mode){
+        $scope.user.name = '';
+        $scope.user.email = '';
+        if (mode===true){
+            $scope.userfeedback.message = '';
+            $scope.userfeedback.type = '';
+        }
+    }
+
+    $scope.closeDialog = function() {
+        $mdDialog.hide();
+    };
+
+    $scope.triggerSubscribe=function(ev){
+        $scope.resetForm(true);
+        // var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+        $mdDialog.show({
+            templateUrl: './template/subscribe.html?v=1.02', 
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:true,
+            fullscreen: true,
+            controller:'footerController'
+        })
     }
 
     $scope.subscribe = function() {
+        $scope.resetFeedback();
+
+        if ($scope.signupForm.$invalid){
+            $scope.userfeedback.message = 'Unable to proceed. Please check the required field.';
+            $scope.userfeedback.type = 'error';     
+            return false
+        }
+
+        if (!$scope.user.email) {
+            $scope.userfeedback.message = 'Unable to proceed. Email Address is required.';
+            $scope.userfeedback.type = 'error';     
+            return false
+        }
+
         $scope.subscribePromise = homeNewsFactory.subscribe($scope.user);
         $scope.subscribePromise.then(function(data){
             if (data.status==200) {
-                $scope.userfeedback.message = 'Confirmation email sent. Kindly check your inbox please, to confirm your subscription.';
+                delete $scope.subscribePromise
+                $scope.userfeedback.message = 'Confirmation email sent. Kindly check your inbox and confirm your subscription please.';
                 $scope.userfeedback.type = 'success';
                 $scope.resetForm();
-                // ngDialog.closeAll();
             }
         })
         .then(null,function(response){
+            delete $scope.subscribePromise
             switch(response.status) {
                 case 409:
-                    $scope.userfeedback.message = 'Conflict: Email address is already taken.';
+                    $scope.userfeedback.message = 'Error: Email address is already taken.';
                     $scope.userfeedback.type = 'error';     
                     break;
                 case 400:
@@ -463,8 +491,8 @@ pheiti.controller('footerController',['$scope','ngDialog','homeNewsFactory',
 }]);
 
 
-pheiti.controller('compareReportsController',['$scope',
-    function($scope){
+pheiti.controller('compareReportsController',['$scope','$mdDialog',
+    function($scope,$mdDialog){
     $scope.reportsData = [
         {
             periodCovered : 2012,
@@ -483,4 +511,9 @@ pheiti.controller('compareReportsController',['$scope',
             numCompaniesReporting:36
         }
     ]
+
+    $scope.closeDialog = function() {
+        $mdDialog.hide();
+    };
+
 }]);

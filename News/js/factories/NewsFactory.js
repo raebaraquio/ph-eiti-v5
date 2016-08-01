@@ -5,13 +5,15 @@ newsApp.factory('NewsFactory',['$http','$location',
 		getTypes:function(){
 			return {
 				'Media-Releases': 'Media Releases',
-				'In-the-News':'PH-EITI in the News',
+				'PH-EITI-In-the-News':'PH-EITI in the News',
+				'PH-EITI-Newsroom':'PH-EITI Newsroom',
 				'Archive':'Archive'
 			}
 		},
 		types: {
 			'Media-Releases': 'Media Releases',
-			'In-the-News':'In the News',
+			'PH-EITI-In-the-News':'PH-EITI In the News',
+			'PH-EITI-Newsroom':'PH-EITI Newsroom',
 			'Archive':'Archive'
 		},
 		getnews : function(data){

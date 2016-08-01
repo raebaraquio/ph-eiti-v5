@@ -1,4 +1,4 @@
-var aboutApp = angular.module('about',['ngRoute','ngSanitize','ngCookies','navMod','ngMaterial','utilsModule','angular-timeline','md.data.table','ngDialog','cgBusy']);
+var aboutApp = angular.module('about',['ngRoute','ngSanitize','ngCookies','navMod','ngMaterial','utilsModule','angular-timeline','md.data.table','secretariatContactMod']);
 
 aboutApp.config(function($routeProvider){
  	$routeProvider
@@ -6,42 +6,42 @@ aboutApp.config(function($routeProvider){
 	 	{
 	 		title: 'History | About PH-EITI',
             controller: 'HistoryController',
-	 		templateUrl:'./template/history.html'
+	 		templateUrl:'./template/history.html?v=1.02'
 	 	})
 
         .when('/Secretariat',
         {
             title: 'Secretariat | About PH-EITI',
             controller: 'SecretariatController',
-            templateUrl:'./template/secretariat.html'
+            templateUrl:'./template/secretariat.html?v=1.02'
         })
 
         .when('/MSG-Meetings',
         {
             title: 'MSG Meetings | About PH-EITI',
             controller:'MSGMeetingsController', 
-            templateUrl:'./template/msg/meetings.html'
+            templateUrl:'./template/msg/meetings.html?v=1.02'
         })
 
 	 	.when('/MSG-Members/Government',
 	 	{
 	 		title: 'Government - MSG Member | About PH-EITI',
             controller:'MSGController', 
-	 		templateUrl:'./template/msg/default.html'
+	 		templateUrl:'./template/msg/default.html?v=1.02'
 	 	})
 
 	 	.when('/MSG-Members/CSO',
 	 	{
 	 		title: 'CSO - MSG Member | About PH-EITI',
             controller:'MSGController', 
-	 		templateUrl:'./template/msg/default.html'
+	 		templateUrl:'./template/msg/default.html?v=1.02'
 	 	})
 
 	 	.when('/MSG-Members/Industry',
 	 	{
 	 		title: 'Industry - MSG Member | About PH-EITI',
             controller:'MSGController', 
-	 		templateUrl:'./template/msg/default.html'
+	 		templateUrl:'./template/msg/default.html?v=1.02'
 	 	})
 
 	 	.when('/MSG-Members',
@@ -316,45 +316,72 @@ aboutApp.factory('homeNewsFactory',['$http',
     return homeNewsFactory;
 }]);
 
-aboutApp.controller('footerController',['$scope','ngDialog','homeNewsFactory',
-    function($scope,ngDialog,homeNewsFactory){
-
+aboutApp.controller('footerController',['$scope','homeNewsFactory','$mdDialog','$mdMedia','secretariatContactDetails',
+    function($scope,homeNewsFactory,$mdDialog,$mdMedia,secretariatContactDetails){
+        
+    $scope.contactDetails = secretariatContactDetails.get();
     $scope.userfeedback = { message : '',  type: '' }
     $scope.user = {name : '', email: ''}
-
-    $scope.resetForm=function(){
-        $scope.user.name = ''
-        $scope.user.email = ''
+    
+    $scope.resetFeedback=function(){
         $scope.userfeedback.message = '';
         $scope.userfeedback.type = ''; 
     }
 
-    $scope.triggerSubscribe=function(){
-        $scope.resetForm();
-        ngDialog.open({ 
-            template: '../template/subscribe-innerpage.html', 
-            className: 'ngdialog-theme-default', 
-            scope:$scope,
-            closeByDocument: true,
-            closeByEscape: true,
-            showClose: true
-        });
+    $scope.resetForm=function(mode){
+        $scope.user.name = '';
+        $scope.user.email = '';
+        if (mode===true){
+            $scope.userfeedback.message = '';
+            $scope.userfeedback.type = '';
+        }
+    }
+
+    $scope.closeDialog = function() {
+        $mdDialog.hide();
+    };
+
+    $scope.triggerSubscribe=function(ev){
+        $scope.resetForm(true);
+        // var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+        $mdDialog.show({
+            templateUrl: '../template/subscribe-innerpage.html?v=1.02', 
+            parent: angular.element(document.getElementById('logo-wrapper')),
+            targetEvent: ev,
+            clickOutsideToClose:true,
+            fullscreen: true,
+            controller:'footerController'
+        })
     }
 
     $scope.subscribe = function() {
+        $scope.resetFeedback();
+        if ($scope.signupForm.$invalid){
+            $scope.userfeedback.message = 'Unable to proceed. Please check the required field.';
+            $scope.userfeedback.type = 'error';     
+            return false
+        }
+
+        if (!$scope.user.email) {
+            $scope.userfeedback.message = 'Unable to proceed. Email Address is required.';
+            $scope.userfeedback.type = 'error';     
+            return false
+        }
+
         $scope.subscribePromise = homeNewsFactory.subscribe($scope.user);
         $scope.subscribePromise.then(function(data){
             if (data.status==200) {
-                $scope.userfeedback.message = 'Confirmation email sent. Kindly check your inbox please, to confirm your subscription.';
+                delete $scope.subscribePromise
+                $scope.userfeedback.message = 'Confirmation email sent. Kindly check your inbox and confirm your subscription please.';
                 $scope.userfeedback.type = 'success';
                 $scope.resetForm();
-                // ngDialog.closeAll();
             }
         })
         .then(null,function(response){
+            delete $scope.subscribePromise
             switch(response.status) {
                 case 409:
-                    $scope.userfeedback.message = 'Conflict: Email address is already taken.';
+                    $scope.userfeedback.message = 'Error: Email address is already taken.';
                     $scope.userfeedback.type = 'error';     
                     break;
                 case 400:

@@ -4,7 +4,7 @@ activitiesApp.controller('ActivitiesController',['$scope','ActivitiesFactory','$
 	$scope.activites = []
 	$scope.years = []	
 
-	var start = 2012, current = parseInt( (new Date()).getFullYear(), 10);
+	var start = 2013, current = parseInt( (new Date()).getFullYear(), 10);
 	for (var idx=current;idx>=start;idx--){
 		$scope.years.push(idx);
 	}
@@ -18,6 +18,10 @@ activitiesApp.controller('ActivitiesController',['$scope','ActivitiesFactory','$
 
 	$scope.select_act_tab = function(tab){
 		$scope.active_activity_tab = tab;
+	}
+	
+	$scope.type_of_doc = function(d) {
+		return typeof(d);
 	}
 
 	$scope.get = {
@@ -53,30 +57,34 @@ activitiesApp.controller('ActivitiesController',['$scope','ActivitiesFactory','$
 						}
 						
 						if ($scope.activity.documentation) {
-							$scope.activity.documentation = '../'+$scope.activity.documentation	; // '../../'
-							if ($scope.activity.documentation.length) {
-								if ($scope.activity.documentation[0]) {
-									$scope.activity.documentation[0] = '../'+$scope.activity.documentation[0]; // '../../'
-								}
-								if ($scope.activity.documentation[1]) {
-									$scope.activity.documentation[1] = '../'+$scope.activity.documentation[1]; // '../../'
-								}
+							if ($scope.type_of_doc($scope.activity.documentation)==='string') {
+								$scope.activity.documentation = '../'+$scope.activity.documentation	; // '../../'	
 							}
+							else {
+								if ($scope.activity.documentation.length) {
+									if ($scope.activity.documentation[0]) {
+										$scope.activity.documentation[0] = '../'+$scope.activity.documentation[0]; // '../../'
+									}
+									if ($scope.activity.documentation[1]) {
+										$scope.activity.documentation[1] = '../'+$scope.activity.documentation[1]; // '../../'
+									}
+								}	
+							}							
 						}
 						
 						if ($scope.activity.gallery !== null) {
-							// $('#myGallery').empty();
-			    //             $.each($scope.activity.gallery, function(idx,img){
-			    //                 $("#myGallery").append('<li><img src="'+img.src+'"/></li>');
-			    //             });
-			    //             $('#myGallery')
-			    //             .off()
-			    //             .galleryView({
-			    //                 panel_width: 600,
-			    //                 panel_height: 300,
-			    //                 frame_width: 120,
-			    //                 frame_height: 90
-			    //             });
+							/*$('#myGallery').empty();
+			                $.each($scope.activity.gallery, function(idx,img){
+			                    $("#myGallery").append('<li><img src="'+img.src+'"/></li>');
+			                });
+			                $('#myGallery')
+			                .off()
+			                .galleryView({
+			                    panel_width: 600,
+			                    panel_height: 300,
+			                    frame_width: 120,
+			                    frame_height: 90
+			                });*/
 						}
 
 						if ($scope.activity.writeup !== null) {
@@ -113,11 +121,12 @@ activitiesApp.controller('ActivitiesController',['$scope','ActivitiesFactory','$
 
 	$scope.download_documentation =  function(src) {
 		// window.open('../../'+src);
-		window.open('../'+src)
+		// Uncomment for localhost -- window.open('./'+src)
+		window.open('../'+src) // For production
 	}
 
-	$scope.type_of_doc = function(d) {
-		return typeof(d);
+	$scope.trustSrc = function(src) {
+		var s = './'+src
+		return $sce.trustAsResourceUrl(s);
 	}
-
 }]);

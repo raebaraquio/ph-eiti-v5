@@ -23,7 +23,9 @@
 			</div>
 			<div data-ng-bind-html="article.content"></div>
 		</md-content>
-		<div class="ta-center" cg-busy="{promise:newspromise}"></div>
+		<div class="ta-center">
+			<md-progress-circular data-ng-if="newspromise" class="md-secondary" md-mode="indeterminate"></md-progress-circular>
+		</div>
 	</div>
 </div>
 

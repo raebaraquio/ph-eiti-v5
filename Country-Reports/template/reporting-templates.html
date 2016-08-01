@@ -19,6 +19,12 @@
             <md-content layout-padding>
                 <div layout-gt-sm="row">
                     <md-input-container flex-gt-sm>
+                        <label>Select Year</label>
+                        <md-select data-ng-model="filterYear" data-ng-change="refreshTemplates()">
+                            <md-option data-ng-repeat="year in years" value="{{year}}">{{year}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container flex-gt-sm>
                         <label>Select Sector</label>
                         <md-select data-ng-model="filterSector" data-ng-change="refreshTemplates()">
                             <md-option data-ng-repeat="sector in sectors" value="{{sector}}">{{sector}}</md-option>

@@ -1,4 +1,4 @@
-var newsApp = angular.module('news',['ngRoute','ngSanitize','ngCookies','navMod','ngMaterial','utilsModule','cgBusy','ngDialog']);
+var newsApp = angular.module('news',['ngRoute','ngSanitize','ngCookies','navMod','ngMaterial','utilsModule','secretariatContactMod']);
 
 newsApp.config(function($routeProvider){
     $routeProvider
@@ -7,56 +7,69 @@ newsApp.config(function($routeProvider){
         {
             title: 'Media Releases | News',
             controller: 'NewsViewController',
-            templateUrl:'./template/news-view.html'
+            templateUrl:'./template/news-view.html?v=1.02'
+        })
+
+        .when('/PH-EITI-Newsroom/:id',
+        {
+            title: 'PH-EITI Newsroom | News',
+            controller: 'NewsViewController',
+            templateUrl:'./template/news-view.html?v=1.02'
         })
         
-        .when('/In-the-News/:id',
+        .when('/PH-EITI-In-the-News/:id',
         {
-            title: 'In the News | News',
+            title: 'PH-EITI In the News | News',
             controller: 'NewsViewController',
-            templateUrl:'./template/news-view.html'
-        })
+            templateUrl:'./template/news-view.html?v=1.02'
+        })        
 
         .when('/Archive/:id',
         {
             title: 'Archive | News',
             controller: 'NewsViewController',
-            templateUrl:'./template/news-view.html'
+            templateUrl:'./template/news-view.html?v=1.02'
         })
 
         .when('/Media-Releases',
         {
             title: 'Media Releases | News',
             controller: 'NewsController',
-            templateUrl:'./template/media-releases.html'
+            templateUrl:'./template/media-releases.html?v=1.02'
         })
 
-        .when('/In-the-News',
+         .when('/PH-EITI-Newsroom',
         {
-            title: 'In the News | News',
+            title: 'PH-EITI Newsroom | News',
             controller: 'NewsController',
-            templateUrl:'./template/in-the-news.html'
+            templateUrl:'./template/newsroom.html?v=1.02'
+        })
+
+        .when('/PH-EITI-In-the-News',
+        {
+            title: 'PH-EITI In the News | News',
+            controller: 'NewsController',
+            templateUrl:'./template/in-the-news.html?v=1.02'
         })
 
         .when('/Newsletter',
         {
             title: 'Newsletter | News',
             controller: 'NewsletterController',
-            templateUrl:'./template/newsletter.html'
+            templateUrl:'./template/newsletter.html?v=1.02'
         })
 
         .when('/Archive',
         {
             title: 'Archive | News',
             controller: 'NewsController',
-            templateUrl:'./template/archive.html'
+            templateUrl:'./template/archive.html?v=1.02'
         })
 
         .otherwise({
-            redirectTo: '/In-the-News'
+            redirectTo: '/PH-EITI-Newsroom'
         });;
 }); 
-
 
 newsApp.config(function($mdThemingProvider) {
 
@@ -149,7 +162,6 @@ newsApp.config(function($mdThemingProvider) {
 	
 });
 
-
 newsApp.service('anchorSmoothScroll', function(){
     this.scrollTo = function(eID) {
 
@@ -212,7 +224,6 @@ newsApp.controller('returnToTopController',['$scope','$location', 'anchorSmoothS
 
 }]);
 
-
 newsApp.factory('homeNewsFactory',['$http',
     function($http){
     var homeNewsFactory = null;
@@ -229,45 +240,72 @@ newsApp.factory('homeNewsFactory',['$http',
     return homeNewsFactory;
 }]);
 
-newsApp.controller('footerController',['$scope','ngDialog','homeNewsFactory',
-    function($scope,ngDialog,homeNewsFactory){
-
+newsApp.controller('footerController',['$scope','homeNewsFactory','$mdDialog','$mdMedia','secretariatContactDetails',
+    function($scope,homeNewsFactory,$mdDialog,$mdMedia,secretariatContactDetails){
+        
+    $scope.contactDetails = secretariatContactDetails.get();
     $scope.userfeedback = { message : '',  type: '' }
     $scope.user = {name : '', email: ''}
-
-    $scope.resetForm=function(){
-        $scope.user.name = ''
-        $scope.user.email = ''
+    
+    $scope.resetFeedback=function(){
         $scope.userfeedback.message = '';
         $scope.userfeedback.type = ''; 
     }
 
-    $scope.triggerSubscribe=function(){
-        $scope.resetForm();
-        ngDialog.open({ 
-            template: '../template/subscribe-innerpage.html', 
-            className: 'ngdialog-theme-default', 
-            scope:$scope,
-            closeByDocument: true,
-            closeByEscape: true,
-            showClose: true
-        });
+    $scope.resetForm=function(mode){
+        $scope.user.name = '';
+        $scope.user.email = '';
+        if (mode===true){
+            $scope.userfeedback.message = '';
+            $scope.userfeedback.type = '';
+        }
+    }
+
+    $scope.closeDialog = function() {
+        $mdDialog.hide();
+    };
+
+    $scope.triggerSubscribe=function(ev){
+        $scope.resetForm(true);
+        // var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+        $mdDialog.show({
+            templateUrl: '../template/subscribe-innerpage.html?v=1.02', 
+            parent: angular.element(document.getElementById('logo-wrapper')),
+            targetEvent: ev,
+            clickOutsideToClose:true,
+            fullscreen: true,
+            controller:'footerController'
+        })
     }
 
     $scope.subscribe = function() {
+        $scope.resetFeedback();
+        if ($scope.signupForm.$invalid){
+            $scope.userfeedback.message = 'Unable to proceed. Please check the required field.';
+            $scope.userfeedback.type = 'error';     
+            return false
+        }
+
+        if (!$scope.user.email) {
+            $scope.userfeedback.message = 'Unable to proceed. Email Address is required.';
+            $scope.userfeedback.type = 'error';     
+            return false
+        }
+
         $scope.subscribePromise = homeNewsFactory.subscribe($scope.user);
         $scope.subscribePromise.then(function(data){
             if (data.status==200) {
-                $scope.userfeedback.message = 'Confirmation email sent. Kindly check your inbox please, to confirm your subscription.';
+                delete $scope.subscribePromise
+                $scope.userfeedback.message = 'Confirmation email sent. Kindly check your inbox and confirm your subscription please.';
                 $scope.userfeedback.type = 'success';
                 $scope.resetForm();
-                // ngDialog.closeAll();
             }
         })
         .then(null,function(response){
+            delete $scope.subscribePromise
             switch(response.status) {
                 case 409:
-                    $scope.userfeedback.message = 'Conflict: Email address is already taken.';
+                    $scope.userfeedback.message = 'Error: Email address is already taken.';
                     $scope.userfeedback.type = 'error';     
                     break;
                 case 400:

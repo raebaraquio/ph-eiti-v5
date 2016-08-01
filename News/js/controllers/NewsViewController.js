@@ -41,6 +41,7 @@ newsApp.controller('NewsViewController',['$scope','NewsFactory','$sce','$rootSco
 						}						
 					}	
 				}
+				delete $scope.newspromise
 			})
 		}
 	}
