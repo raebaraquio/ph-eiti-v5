@@ -260,19 +260,19 @@ pheiti.controller('headerCarouselController',['$scope',
     $scope.headersArr = [
         {
             title: '',
-            image: 'images/home-main-carousel/man.png'
+            image: 'images/home-main-carousel/main-2-transparent.png'
         },
         {
             title: '',
-            image: 'images/home-main-carousel/eiti-steps-1.png'
+            image: 'images/home-main-carousel/eiti-steps-1-transparent.png'
         },
         {
             title: '',
-            image: 'images/home-main-carousel/eiti-steps-2.png'
+            image: 'images/home-main-carousel/eiti-steps-2b-transparent.png'
         },
         {
             title: '',
-            image: 'images/home-main-carousel/eiti-steps-3.png'
+            image: 'images/home-main-carousel/eiti-steps-3b-transparent.png'
         }
     ]
 }]);
