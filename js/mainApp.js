@@ -263,8 +263,16 @@ pheiti.controller('headerCarouselController',['$scope',
             image: 'images/home-main-carousel/man.png'
         },
         {
-            title: 'How EITI works',
-            image: 'images/home-main-carousel/eiti-steps.png'
+            title: '',
+            image: 'images/home-main-carousel/eiti-steps-1.png'
+        },
+        {
+            title: '',
+            image: 'images/home-main-carousel/eiti-steps-2.png'
+        },
+        {
+            title: '',
+            image: 'images/home-main-carousel/eiti-steps-3.png'
         }
     ]
 }]);
