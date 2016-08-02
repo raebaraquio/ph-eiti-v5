@@ -17,14 +17,12 @@
 <div class="w-100">
 	<div class="mxw-80">
 		<md-content>
-			<div class="ta-center">
-				<md-progress-circular data-ng-if="newspromise" class="md-secondary" md-mode="indeterminate"></md-progress-circular>
-			</div>
-		</md-content>
-		<md-content>
 			<md-tabs md-dynamic-height md-border-bottom md-selected="selected_idx">
 				<md-tab label="PH-EITI Newsroom">
 					<h1 class="md-display-2">PH-EITI Newsroom</h1>	
+					<div flex="100" class="ta-center">
+						<md-progress-linear data-ng-show="newspromise" class="md-secondary" md-mode="indeterminate"></md-progress-linear>
+					</div>
 					<md-content	flex="100" layout-fill layout="row" layout-wrap  data-ng-show="newsandevents.length > 0">
 						<div flex="33" style="padding-top:0.5em;">
 							<md-input-container flex>
@@ -59,9 +57,9 @@
 							<md-list>
 								<md-list-item class="md-3-line" data-ng-repeat="(kfolder,ne) in newsandevents" layout="column" layout-align="left left">
 									<h3 tabindex="-1" class="md-heading padd-bt-0 mrgn-bt-0 fnt--bluepalette newsTitle" title="{{ne.title}}" data-ng-click="openNews(ne)">{{ne.title}}</h3>
-									<em style="padding:0px;margin:0px;" align="left" data-ng-show="ne.subhead!=null">{{ne.subhead}}</em>
+									<!-- <em style="padding:0px;margin:0px;" align="left" data-ng-show="ne.subhead!=null">{{ne.subhead}}</em> -->
 									<div layout="row" style="font-size:0.85em;">
-										<span data-ng-ng-show="ne.author">{{ne.author}} <span data-ng-show="ne.readmore_source">, </span><a data-ng-show="ne.readmore_source" href="{{ne.readmore_source}}">{{ne.readmore_sourcewebsite}}</a> &nbsp;</span><!--  {{ne.dateposted}} -->
+										<span data-ng-ng-show="ne.author">{{ne.author}} <span data-ng-show="ne.author && ne.readmore_source">, </span><a data-ng-show="ne.readmore_source" href="{{ne.readmore_source}}">{{ne.readmore_sourcewebsite}}</a> &nbsp;</span><!--  {{ne.dateposted}} -->
 									</div>
 									<div>
 										<span class="fnt--sm fnt--gray">{{ne.dateposted}}</span>
@@ -77,13 +75,16 @@
 								</md-list-item>				
 							</md-list>
 						</md-content>
-						<div data-ng-show="newsandevents.length==0" class="ta-left">
+						<div data-ng-show="!newspromise && newsandevents.length==0" class="ta-left">
 							No data available.
 						</div>
 					</md-content>
 				</md-tab>
 				<md-tab label="PH-EITI in the News">
 					<h1 class="md-display-2">PH-EITI in the News</h1>	
+					<div flex="100" class="ta-center">
+						<md-progress-linear data-ng-show="newspromise" class="md-secondary" md-mode="indeterminate"></md-progress-linear>
+					</div>
 					<md-content	flex="100" layout-fill layout="row" layout-wrap data-ng-show="newsandevents.length > 0">
 						<div flex="33" style="padding-top:0.5em;">
 							<md-input-container flex>
@@ -118,9 +119,9 @@
 							<md-list>
 								<md-list-item class="md-3-line" data-ng-repeat="(kfolder,ne) in newsandevents" layout="column" layout-align="left left">
 									<h3 tabindex="-1" class="md-heading padd-bt-0 mrgn-bt-0 fnt--bluepalette newsTitle" title="{{ne.title}}" data-ng-click="openNews(ne)">{{ne.title}}</h3>
-									<em style="padding:0px;margin:0px;" align="left" data-ng-show="ne.subhead!=null">{{ne.subhead}}</em>
+									<!-- <em style="padding:0px;margin:0px;" align="left" data-ng-show="ne.subhead!=null">{{ne.subhead}}</em> -->
 									<div layout="row" style="font-size:0.85em;">
-										<span data-ng-ng-show="ne.author">{{ne.author}} <span data-ng-show="ne.readmore_source">, </span><a data-ng-show="ne.readmore_source" href="{{ne.readmore_source}}">{{ne.readmore_sourcewebsite}}</a> &nbsp;</span><!--  {{ne.dateposted}} -->
+										<span data-ng-ng-show="ne.author">{{ne.author}} <span data-ng-show="ne.author && ne.readmore_source">, </span><a data-ng-show="ne.readmore_source" href="{{ne.readmore_source}}">{{ne.readmore_sourcewebsite}}</a> &nbsp;</span><!--  {{ne.dateposted}} -->
 									</div>
 									<div>
 										<span class="fnt--sm fnt--gray">{{ne.dateposted}}</span>
@@ -136,13 +137,16 @@
 								</md-list-item>				
 							</md-list>
 						</md-content>
-						<div data-ng-show="newsandevents.length==0" class="ta-left">
+						<div data-ng-show="!newspromise && newsandevents.length==0" class="ta-left">
 							No data available.
 						</div>
 					</md-content>
 				</md-tab>
 				<md-tab label="Media Releases">
 					<h1 class="md-display-2">Media releases</h1>	
+					<div flex="100" class="ta-center">
+						<md-progress-linear data-ng-show="newspromise" class="md-secondary" md-mode="indeterminate"></md-progress-linear>
+					</div>
 					<md-content	flex="100" layout-fill layout="row" layout-wrap data-ng-show="newsandevents.length > 0">
 						<div flex="33" style="padding-top:0.5em;">
 							<md-input-container flex>
@@ -177,9 +181,9 @@
 							<md-list>
 								<md-list-item class="md-3-line" data-ng-repeat="(kfolder,ne) in newsandevents" layout="column" layout-align="left left">
 									<h3 tabindex="-1" class="md-heading padd-bt-0 mrgn-bt-0 fnt--bluepalette newsTitle" title="{{ne.title}}" data-ng-click="openNews(ne)">{{ne.title}}</h3>
-									<em style="padding:0px;margin:0px;" align="left" data-ng-show="ne.subhead!=null">{{ne.subhead}}</em>
+									<!-- <em style="padding:0px;margin:0px;" align="left" data-ng-show="ne.subhead!=null">{{ne.subhead}}</em> -->
 									<div layout="row" style="font-size:0.85em;">
-										<span data-ng-ng-show="ne.author">{{ne.author}} <span data-ng-show="ne.readmore_source">, </span><a data-ng-show="ne.readmore_source" href="{{ne.readmore_source}}">{{ne.readmore_sourcewebsite}}</a> &nbsp;</span><!--  {{ne.dateposted}} -->
+										<span data-ng-ng-show="ne.author">{{ne.author}} <span data-ng-show="ne.author && ne.readmore_source">, </span><a data-ng-show="ne.readmore_source" href="{{ne.readmore_source}}">{{ne.readmore_sourcewebsite}}</a> &nbsp;</span><!--  {{ne.dateposted}} -->
 									</div>
 									<div>
 										<span class="fnt--sm fnt--gray">{{ne.dateposted}}</span>
@@ -195,13 +199,16 @@
 								</md-list-item>				
 							</md-list>
 						</md-content>
-						<div data-ng-show="newsandevents.length==0" class="ta-left">
+						<div data-ng-show="!newspromise && newsandevents.length==0" class="ta-left">
 							No data available.
 						</div>
 					</md-content>
 				</md-tab>
 				<md-tab label="Archive">
 					<h1 class="md-display-2">Archive</h1>	
+					<div flex="100" class="ta-center">
+						<md-progress-linear data-ng-show="newspromise" class="md-secondary" md-mode="indeterminate"></md-progress-linear>
+					</div>
 					<md-content	flex="100" layout-fill layout="row" layout-wrap data-ng-show="newsandevents.length > 0">
 						<div flex="33" style="padding-top:0.5em;">
 							<md-input-container flex>
@@ -236,9 +243,9 @@
 							<md-list>
 								<md-list-item class="md-3-line" data-ng-repeat="(kfolder,ne) in newsandevents" layout="column" layout-align="left left">
 									<h3 tabindex="-1" class="md-heading padd-bt-0 mrgn-bt-0 fnt--bluepalette newsTitle" title="{{ne.title}}" data-ng-click="openNews(ne)">{{ne.title}}</h3>
-									<em style="padding:0px;margin:0px;" align="left" data-ng-show="ne.subhead!=null">{{ne.subhead}}</em>
+									<!-- <em style="padding:0px;margin:0px;" align="left" data-ng-show="ne.subhead!=null">{{ne.subhead}}</em> -->
 									<div layout="row" style="font-size:0.85em;">
-										<span data-ng-ng-show="ne.author">{{ne.author}} <span data-ng-show="ne.readmore_source">, </span><a data-ng-show="ne.readmore_source" href="{{ne.readmore_source}}">{{ne.readmore_sourcewebsite}}</a> &nbsp;</span>
+										<span data-ng-ng-show="ne.author">{{ne.author}} <span data-ng-show="ne.author && ne.readmore_source">, </span><a data-ng-show="ne.readmore_source" href="{{ne.readmore_source}}">{{ne.readmore_sourcewebsite}}</a> &nbsp;</span>
 									</div>
 									<div>
 										<span class="fnt--sm fnt--gray">{{ne.dateposted}}</span>
@@ -253,7 +260,7 @@
 								</md-list-item>				
 							</md-list>
 						</md-content>
-						<div data-ng-show="newsandevents.length==0" class="ta-left">
+						<div data-ng-show="!newspromise && newsandevents.length==0" class="ta-left">
 							No data available.
 						</div>
 					</md-content>

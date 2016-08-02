@@ -218,7 +218,7 @@ pheiti.controller('homeNewsController',['$scope','homeNewsFactory','$sce',
         $scope.lastUpdated = ""
         var obj = {
             id:'',
-            section:'PH-EITI in the News',
+            section:'PH-EITI Newsroom',
             published:true,
             page:'index',
             pageLimit:6,

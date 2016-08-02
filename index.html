@@ -135,7 +135,7 @@
                                     <span class="fnt--white fnt--sm">March 07, 2016 10:12 PM </span>
                                 </div>
                                 <div flex="30" layout="row" layout-align="end center">
-                                    <a class="fnt--white sref" href="./News/#/PH-EITI-In-the-News/PH-bags-2016-EITI-International-Chair-Award-in-Lima-Peru"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_white_18px.svg"></md-icon> <span class="fnt--white fnt--md">Read Story</span> </a>
+                                    <a class="fnt--white sref" href="./News/#/PH-EITI-Newsroom/PH-bags-2016-EITI-International-Chair-Award-in-Lima-Peru"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_white_18px.svg"></md-icon> <span class="fnt--white fnt--md">Read Story</span> </a>
                                 </div>
                             </div>
                         </div>
@@ -143,18 +143,18 @@
                     <md-content flex="60" layout="column">
                         <md-progress-linear data-ng-if="newspromise" class="md-primary" md-mode="indeterminate"></md-progress-linear>
                         <div class="md-padding">
-                            <h3 style="padding:0;margin:0;line-height:1em;">PH-EITI IN THE NEWS</h3>    
+                            <h3 class="md-primary" style="padding:0;margin:0;line-height:1em;">PH-EITI NEWSROOM</h3>    
                         </div>
                         <div class="ta-center">
                         </div>
                         <md-list>
-                            <md-list-item class="md-2-line" data-ng-repeat="(kn,news) in homenews" data-ng-if="kn < 5" style="min-height:4.2em">
+                            <md-list-item class="md-2-line" data-ng-repeat="(kn,news) in homenews" data-ng-if="kn < 4" style="min-height:5em">
                                 <div class="md-list-item-text">
-                                    <h2 title="{{news.title}}" style="font-size:1.3em;line-height:1em;padding:0px;margin:0px;margin-bottom:3px;"><a class="sref fnt--bluepalette__linkHover" href="./News/#/In-the-News/{{news.id}}">{{news.title}}</a></h2>
+                                    <h2 title="{{news.title}}" style="font-size:1.3em;line-height:1em;padding:0px;margin:0px;margin-bottom:3px;"><a class="sref fnt--bluepalette__linkHover" href="./News/#/PH-EITI-Newsroom/{{news.id}}">{{news.title}}</a></h2>
                                     <span class="ww-breakword fnt--sm"><a data-ng-show="news.readmore_source" class="sref" href="{{news.readmore_source}}">{{news.readmore_sourcewebsite}} |</a> {{news.dateposted}}</span>
                                 </div>
                             </md-list-item>
-                            <md-list-item class="md-2-line" data-ng-repeat="(kn,news) in homenews" data-ng-if="kn==5 && homenews.length > 6" style="min-height:3em;">
+                            <md-list-item class="md-2-line" data-ng-repeat="(kn,news) in homenews" data-ng-if="kn==4 && homenews.length > 5" style="min-height:3em;">
                                 <div class="md-list-item-text ta-right">
                                     <a class="sref" href="./News/#/"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_black_24px.svg"></md-icon> <span class="fnt--md fnt--black">More News</span> </a>
                                 </div>
@@ -177,7 +177,7 @@
                     <md-grid-tile class="sitepalette-yellow tileZoom" md-colspan="2" id="grid-contracts">
                         <div layout="column" class="md-padding">
                             <span class="md-headline fnt--white">CONTRACTS PORTAL</span>
-                            <h1 class="fnt--white">An Open Database of Mining, Oil and Gas contracts in the Philippines</h1>
+                            <h1 class="fnt--white mrgn-tp-0 padd-tp-0">An Open Database of Mining, Oil and Gas contracts in the Philippines</h1>
                             <div layout="row" class="ta-left">
                                 <a class="sref" href="javascript:window.open('http://contracts.ph-eiti.org')"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_white_24px.svg"></md-icon> <span class="fnt--md fnt--white">Click here</span> </a>
                             </div>    
@@ -317,7 +317,7 @@
 
     <!-- Application -->
     <script src="js/modules/navigation.js?v=1.02"></script>
-    <script src="js/mainApp.js?v=1.02"></script>
+    <script src="js/mainApp.js?v=1.03"></script>
 
 </body>
 </html>
