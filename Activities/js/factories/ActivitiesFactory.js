@@ -1,7 +1,7 @@
 activitiesApp.factory('ActivitiesFactory', function($http,$location){
 	var ActivitiesFactory = {
 		lastUpdatedDate : function() {
-			return 'October 13, 2016 10:37 PM'
+			return 'October 15, 2016 12:06 AM'
 		},
 		get : function() {
 			return [
@@ -20,9 +20,33 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					documentation:null,
 					presentations:null,
 					withOfflineGallery:true,
-					fbPhotoAlbum:'https://www.facebook.com/PhilippineEITI/photos/?tab=album&album_id=932233640214860',
+					fbPhotoAlbum:'https://www.facebook.com/pg/PhilippineEITI/photos/?tab=album&album_id=931449263626631',
 					embedGallery:null,
 					gallery:[
+						{
+							"src":"https://scontent.fmnl4-5.fna.fbcdn.net/v/t1.0-9/14484844_931423356962555_2607285004649715940_n.jpg?oh=28ab90f3735c2b08ab3883c227e8b19c&oe=589F8E7F",
+							"title":"",
+							"frame": "",
+							"description":""
+						},
+						{
+							"src":"https://scontent.fmnl4-5.fna.fbcdn.net/t31.0-8/14500382_931449423626615_6719035432179227058_o.jpg",
+							"title":"",
+							"frame": "",
+							"description":""
+						},
+						{
+							"src":"https://scontent.fmnl4-5.fna.fbcdn.net/v/t1.0-9/14502758_931450323626525_9021114567694506776_n.jpg?oh=d60bf086fae278463fe550dcf69059bd&oe=58A19FE0",
+							"title":"",
+							"frame": "",
+							"description":""
+						},
+						{
+							"src":"https://scontent.fmnl4-5.fna.fbcdn.net/t31.0-8/14468633_931425543629003_2267337700559592905_o.jpg",
+							"title":"",
+							"frame": "",
+							"description":""
+						}
 					]
 				},
 				{
