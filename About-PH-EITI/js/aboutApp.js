@@ -20,7 +20,7 @@ aboutApp.config(function($routeProvider){
         {
             title: 'MSG Meetings | About PH-EITI',
             controller:'MSGMeetingsController', 
-            templateUrl:'./template/msg/meetings.html?v=1.02'
+            templateUrl:'./template/msg/meetings.html?v=1.03'
         })
 
 	 	.when('/MSG-Members/Government',

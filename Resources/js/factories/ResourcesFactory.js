@@ -15,8 +15,8 @@ resourcesApp.factory('ResourcesFactory',['$http',
 					multiple:true
 				},
 				{
-					name: 'Organization Documents',
-					href: '/Laws-and-Legal-Issuances',
+					name: 'Organizational Documents',
+					href: '/Organizational-Documents',
 					multiple:true
 				},
 				{

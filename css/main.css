@@ -213,13 +213,14 @@ a {
 
 
 #home-activitiesfeature-photo {
-	background: rgba(0,0,0,0), url('../images/home-activities-feature/2016/07/10/4th-nat-con.png');
-	background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 47%, rgba(0,0,0,0.5) 81%, rgba(0,0,0,0.74) 100%), url('../images/home-activities-feature/2016/07/10/4th-nat-con.png');
-	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,0)), color-stop(47%, rgba(0,0,0,0.08)), color-stop(81%, rgba(0,0,0,0.5)), color-stop(100%, rgba(0,0,0,0.74))), url('../images/home-activities-feature/2016/07/10/4th-nat-con.png');
-	background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 47%, rgba(0,0,0,0.5) 81%, rgba(0,0,0,0.74) 100%), url('../images/home-activities-feature/2016/07/10/4th-nat-con.png');
-	background: -o-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 47%, rgba(0,0,0,0.5) 81%, rgba(0,0,0,0.74) 100%), url('../images/home-activities-feature/2016/07/10/4th-nat-con.png');
-	background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 47%, rgba(0,0,0,0.5) 81%, rgba(0,0,0,0.74) 100%), url('../images/home-activities-feature/2016/07/10/4th-nat-con.png');
-	background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 47%, rgba(0,0,0,0.5) 81%, rgba(0,0,0,0.74) 100%), url('../images/home-activities-feature/2016/07/10/4th-nat-con.png');
+	/*background: rgba(0,0,0,0), url('../images/home-activities-feature/2016/07/10/4th-nat-con.png');*/
+	background: rgba(0,0,0,0), url('../images/home-activities-feature/2016/10/10/2016-LGU-Roadshow-ENRDMT-Training.png');
+	background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 47%, rgba(0,0,0,0.5) 81%, rgba(0,0,0,0.74) 100%), url('../images/home-activities-feature/2016/10/10/2016-LGU-Roadshow-ENRDMT-Training.png');
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,0)), color-stop(47%, rgba(0,0,0,0.08)), color-stop(81%, rgba(0,0,0,0.5)), color-stop(100%, rgba(0,0,0,0.74))), url('../images/home-activities-feature/2016/10/10/2016-LGU-Roadshow-ENRDMT-Training.png');
+	background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 47%, rgba(0,0,0,0.5) 81%, rgba(0,0,0,0.74) 100%), url('../images/home-activities-feature/2016/10/10/2016-LGU-Roadshow-ENRDMT-Training.png');
+	background: -o-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 47%, rgba(0,0,0,0.5) 81%, rgba(0,0,0,0.74) 100%), url('../images/home-activities-feature/2016/10/10/2016-LGU-Roadshow-ENRDMT-Training.png');
+	background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 47%, rgba(0,0,0,0.5) 81%, rgba(0,0,0,0.74) 100%), url('../images/home-activities-feature/2016/10/10/2016-LGU-Roadshow-ENRDMT-Training.png');
+	background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 47%, rgba(0,0,0,0.5) 81%, rgba(0,0,0,0.74) 100%), url('../images/home-activities-feature/2016/10/10/2016-LGU-Roadshow-ENRDMT-Training.png');
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0 );
 	max-height: 531px;
 	height: 531px;

@@ -1,10 +1,258 @@
 activitiesApp.factory('ActivitiesFactory', function($http,$location){
 	var ActivitiesFactory = {
 		lastUpdatedDate : function() {
-			return 'May 30, 2016 10:37 PM'
+			return 'October 13, 2016 10:37 PM'
 		},
 		get : function() {
 			return [
+				{
+					id:"Workshop-on-Validation-and-Beneficial-Ownership",
+					href:"Workshop-on-Validation-and-Beneficial-Ownership",
+					title:"Workshop on Validation and Beneficial Ownership",
+					date:"September 22-23, 2016",
+					venue:"",
+					coverphoto:"images/_activities/cp/2016/10/12/Pre-validation-workshop.png",
+					writeup: {
+						title:"",
+						content:"<p></p>"
+					},
+					program: null,
+					documentation:null,
+					presentations:null,
+					withOfflineGallery:true,
+					fbPhotoAlbum:'https://www.facebook.com/PhilippineEITI/photos/?tab=album&album_id=932233640214860',
+					embedGallery:null,
+					gallery:[
+					]
+				},
+				{
+					id:"PH-EITI-2016-LGU-Roadshow-&-ENRDMT-Training",
+					href:"PH-EITI-2016-LGU-Roadshow-&-ENRDMT-Training",
+					title:"2016 LGU Roadshow and ENRDMT training ",
+					date:"August-September 2016",
+					venue:"",
+					coverphoto:"images/_activities/cp/2016/10/11/2016-LGU-Roadshow.png",
+					writeup: {
+						title:"",
+						content:"<p>To communicate the Second Country Report, the PH-EITI Secretariat, MSG members, industry experts, together with the US Aid conducted a series of provincial roadshows across the country, particularly in key areas hosting extractive industries. With the theme \"PH-EITI: Making Transparency Work for You. A local forum on promoting transparency and accountability in the mining, oil, and gas sectors\", this year's LGU roadshow travelled to Davao, Cebu, Baguio, Palawan, Manila, and Butuan.</p>"
+					},
+					program: null,
+					documentation:null,
+					presentations:null,
+					withOfflineGallery:true,
+					fbPhotoAlbum:'https://www.facebook.com/PhilippineEITI/photos/?tab=album&album_id=932233640214860',
+					embedGallery:null,
+					gallery:[
+						{
+							"src":"https://scontent.fmnl4-6.fna.fbcdn.net/v/t1.0-9/14446025_923058134465744_2144256629236006984_n.jpg?oh=cbaf055ca12d369cee1e5dbfbe08c7b6&oe=586DF121",
+							"title":"",
+							"frame": "",
+							"description":""
+						},
+						{
+							"src":"https://scontent.fmnl4-6.fna.fbcdn.net/v/t1.0-9/14479618_932235780214646_8614860989402141712_n.jpg?oh=e8faac8a7daa8acad50e97cf10f2bda6&oe=58A7CA49",
+							"title":"",
+							"frame": "",
+							"description":""
+						},
+						{
+							"src":"https://scontent.fmnl4-6.fna.fbcdn.net/v/t1.0-9/13939436_894164700688421_9076340258878932174_n.jpg?oh=519b958aee80243ae5c8c10eecf78dbc&oe=589B087B",
+							"title":"",
+							"frame": "",
+							"description":""
+						},
+						{
+							"src":"https://scontent.fmnl4-6.fna.fbcdn.net/v/t1.0-9/14370085_923057047799186_6353120072408640047_n.jpg?oh=37a98347cf9f651219a894f3b653a37b&oe=586FC118",
+							"title":"",
+							"frame": "",
+							"description":""
+						},
+						{
+							"src":"https://scontent.fmnl4-6.fna.fbcdn.net/v/t1.0-9/14222222_910553039049587_7549699531296660477_n.jpg?oh=7828273abc467e3cc005a985a810aa7a&oe=585FFB9B",
+							"title":"",
+							"frame": "",
+							"description":""
+						},
+						{
+							"src":"https://scontent.fmnl4-6.fna.fbcdn.net/v/t1.0-9/13921131_894162754021949_1010248483081601755_n.jpg?oh=b5848e577a8ed053b3d604014d30715d&oe=58A1F79F",
+							"title":"",
+							"frame": "",
+							"description":""
+						},
+						{
+							"src":"https://scontent.fmnl4-6.fna.fbcdn.net/v/t1.0-9/14568200_932235063548051_4918359778784816082_n.jpg?oh=08530a222284a4c1dde8d4e87b425068&oe=5861A431",
+							"title":"",
+							"frame": "",
+							"description":""
+						},
+						{
+							"src":"https://scontent.fmnl4-6.fna.fbcdn.net/v/t1.0-9/14265029_910552705716287_8649925167164800488_n.jpg?oh=6ed701f1b935a07d6427369a3d86d3bb&oe=58A19968",
+							"title":"",
+							"frame": "",
+							"description":""
+						},
+						{
+							"src":"https://scontent.fmnl4-6.fna.fbcdn.net/v/t1.0-9/14199316_906750136096544_8454902317546456790_n.jpg?oh=b4db32d6edcfd77a18b886a24b0a00ee&oe=585F9CB7",
+							"title":"",
+							"frame": "",
+							"description":""
+						}
+					]
+				},
+				{
+					id:"Communications-Training",
+					href:"Communications-Training",
+					title:"Communications Training",
+					date:"July 2016",
+					venue:"",
+					coverphoto:"images/_activities/cp/2016/10/14/Communications-Training.png",
+					writeup: {
+						title:"",
+						content:"<p>Webinar for PH-EITI MSG members and Secretariat as headed by Mr. Alex Gordy, Ms. Christina Berger and Atty. Alessandra Gay Ordenes of EITI International. The event discussed the best practices and proper engagement of members of the media.</p>"
+					},
+					program: null,
+					documentation:null,
+					presentations:null,
+					withOfflineGallery:true,
+					fbPhotoAlbum:null,
+					embedGallery:null,
+					gallery:[
+						{
+							"src":"../images/gallery/2016/10/14/Communications-Training/image001.jpg",
+							"title":"",
+							"frame": "",
+							"description":""
+						},
+						{
+							"src":"../images/gallery/2016/10/14/Communications-Training/image002.jpg",
+							"title":"",
+							"frame": "",
+							"description":""
+						},
+						{
+							"src":"../images/gallery/2016/10/14/Communications-Training/image003.jpg",
+							"title":"",
+							"frame": "",
+							"description":""
+						},
+						{
+							"src":"../images/gallery/2016/10/14/Communications-Training/image004.jpg",
+							"title":"",
+							"frame": "",
+							"description":""
+						},
+						{
+							"src":"../images/gallery/2016/10/14/Communications-Training/image005.jpg",
+							"title":"",
+							"frame": "",
+							"description":""
+						}
+					]
+				},
+				{
+					id:"PH-EITI-Secretariat-Activities",
+					href:"PH-EITI-Secretariat-Activities",
+					title:"PH-EITI Secretariat Activities",
+					date:"March 31 & May 25, 2016",
+					venue:"",
+					coverphoto:"images/_activities/cp/2016/10/14/Annual-Capacity-Building.png",
+					writeup: {
+						title:"",
+						content:"<p><ul><li>The PH-EITI Secretariat held its annual capacity building seminar in Batangas last March 31 to April 1, 2016 to strategize and prepare for the activities lined-up for the year.</li><li>Gallup Strengths Finder Training Workshop in Manila last May 25, 2016.</li></ul></p>"
+					},
+					program: null,
+					documentation:null,
+					presentations:null,
+					withOfflineGallery:true,
+					fbPhotoAlbum:null,
+					embedGallery:null,
+					gallery:[
+						{
+							"src":"../images/gallery/2016/10/14/Capacity-Building/image001.jpg",
+							"title":"",
+							"frame": "",
+							"description":""
+						},
+						{
+							"src":"../images/gallery/2016/10/14/Capacity-Building/image002.jpg",
+							"title":"",
+							"frame": "",
+							"description":""
+						},
+						{
+							"src":"../images/gallery/2016/10/14/Capacity-Building/image003.jpg",
+							"title":"",
+							"frame": "",
+							"description":""
+						},
+						{
+							"src":"../images/gallery/2016/10/14/Capacity-Building/image004.jpg",
+							"title":"",
+							"frame": "",
+							"description":""
+						},
+						{
+							"src":"../images/gallery/2016/10/14/Capacity-Building/image005.jpg",
+							"title":"",
+							"frame": "",
+							"description":""
+						},
+						{
+							"src":"../images/gallery/2016/10/14/Capacity-Building/image006.jpg",
+							"title":"",
+							"frame": "",
+							"description":""
+						},
+						{
+							"src":"../images/gallery/2016/10/14/Capacity-Building/image007.jpg",
+							"title":"",
+							"frame": "",
+							"description":""
+						},
+						{
+							"src":"../images/gallery/2016/10/14/Strengths-Finder/image001.jpg",
+							"title":"",
+							"frame": "",
+							"description":""
+						},
+						{
+							"src":"../images/gallery/2016/10/14/Strengths-Finder/image002.jpg",
+							"title":"",
+							"frame": "",
+							"description":""
+						},
+						{
+							"src":"../images/gallery/2016/10/14/Strengths-Finder/image003.jpg",
+							"title":"",
+							"frame": "",
+							"description":""
+						},
+						{
+							"src":"../images/gallery/2016/10/14/Strengths-Finder/image004.jpg",
+							"title":"",
+							"frame": "",
+							"description":""
+						},
+						{
+							"src":"../images/gallery/2016/10/14/Strengths-Finder/image005.jpg",
+							"title":"",
+							"frame": "",
+							"description":""
+						},
+						{
+							"src":"../images/gallery/2016/10/14/Strengths-Finder/image006.jpg",
+							"title":"",
+							"frame": "",
+							"description":""
+						},
+						{
+							"src":"../images/gallery/2016/10/14/Strengths-Finder/image007.jpg",
+							"title":"",
+							"frame": "",
+							"description":""
+						}
+					]
+				},
 				{
 					id:"4th-PH-EITI-National-Conference",
 					href:"4th-PH-EITI-National-Conference",

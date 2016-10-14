@@ -4,6 +4,87 @@ aboutApp.factory('HistoryFactory',function(){
 		get : function(){
 			return [
 				{
+					year: 2016,
+					date: 'August to September',
+					start: false,	
+					badgeClass: 'default',
+					when: 'August to September',
+					content: '2016 LGU roadshow in Davao, Cebu, Baguio, Palawan, Manila and Butuan',
+					contentHtml: '2016 LGU roadshow in Davao, Cebu, Baguio, Palawan, Manila and Butuan'
+				},
+				{
+					year: 2016,
+					date: 'June',
+					start: false,	
+					badgeClass: 'default',
+					when: 'June',
+					content: 'Confirmation of country validation starting January 2017',
+					contentHtml: 'Confirmation of country validation starting January 2017'
+				},
+				{
+					year: 2016,
+					date: 'February 16',
+					start: true,	
+					badgeClass: 'primary',
+					when: 'February 16',
+					content: '4th National Conference at the Manila Hotel',
+					contentHtml: '4th National Conference at the Manila Hotel'
+				},
+				{
+					year: 2015,
+					date: 'November',
+					start: false,	
+					badgeClass: 'default',
+					when: 'November',
+					content: 'Pilot testing and roll-out of ENRDMT',
+					contentHtml: 'Pilot testing and roll-out of ENRDMT'
+				},
+				{
+					year: 2015,
+					date: 'October 6',
+					start: false,	
+					badgeClass: 'default',
+					when: 'October 6',
+					content: 'NCIP forum/workshop on IP royalty management ',
+					contentHtml: 'NCIP forum/workshop on IP royalty management '
+				},
+				{
+					year: 2015,
+					date: 'September 9',
+					start: false,	
+					badgeClass: 'default',
+					when: 'September 9',
+					content: 'LGU forum hosting coal operations  in five provinces and 15 municipalities and cities',
+					contentHtml: 'LGU forum hosting coal operations  in five provinces and 15 municipalities and cities'
+				},
+				{
+					year: 2015,
+					date: 'August 24',
+					start: false,	
+					badgeClass: 'default',
+					when: 'August',
+					content: 'PH-EITI briefing for Financial Executives of the Philippines (FINEX)',
+					contentHtml: 'PH-EITI briefing for Financial Executives of the Philippines (FINEX)'
+				},
+				{
+					year: 2015,
+					date: 'July to August',
+					start: true,	
+					badgeClass: 'primary',
+					when: 'July to August',
+					content: 'LGU roadshow conducted in Butuan, Palawan, Cebu, Davao, and Manila',
+					contentHtml: 'LGU roadshow conducted in Butuan, Palawan, Cebu, Davao, and Manila'
+				},
+				{
+					year: 2014,
+					date: 'September 3',
+					start: false,	
+					badgeClass: 'default',
+					when: 'September 3',
+					content: 'CSO and media briefing: Updates on EITI implementation and understanding the EITI report',
+					contentHtml: 'CSO and media briefing: Updates on EITI implementation and understanding the EITI report'
+				},
+				{
 					year: 2014,
 					date: 'May 15 and 16',
 					start: false,	
@@ -18,10 +99,19 @@ aboutApp.factory('HistoryFactory',function(){
 					start: false,	
 					badgeClass: 'default',
 					when: 'May 14',
-					content: 'PH-EITI Secretariat, the MSG, and the Independent Auditor (IA) stage a second LGU briefing, this time concentrating on the EITI Reporting Template.',
-					contentHtml: 'PH-EITI Secretariat, the MSG, and the Independent Auditor (IA) stage a second LGU briefing, this time concentrating on the EITI Reporting Template.'
+					content:'PH-EITI Secretariat, the MSG, and the Independent Auditor (IA) stage a second LGU briefing, this time concentrating on the EITI Reporting Template.',
+					contentHtml:'PH-EITI Secretariat, the MSG, and the Independent Auditor (IA) stage a second LGU briefing, this time concentrating on the EITI Reporting Template.'
 				},
 				{
+					year: 2014,
+					date: 'February to March',
+					start: true,	
+					badgeClass: 'primary',
+					when: 'February to March',
+					content: 'Engaging national agencies, LGUs and members of congress and senate for possible areas of convergence and support',
+					contentHtml: 'Engaging national agencies, LGUs and members of congress and senate for possible areas of convergence and support'
+				},
+				/*{
 					year: 2014,
 					date: 'February 11 and 12',
 					start: false,	
@@ -38,7 +128,7 @@ aboutApp.factory('HistoryFactory',function(){
 					when: 'February 4',
 					content: 'Asec. Ma. Teresa S. Habitan and Mr. Michael Stanley of the World Bank brief members of the Senate and House of Representatives on the EITI Reporting Standard and PH-EITI’s activities to date.',
 					contentHtml: 'Asec. Ma. Teresa S. Habitan and Mr. Michael Stanley of the World Bank brief members of the Senate and House of Representatives on the EITI Reporting Standard and PH-EITI’s activities to date.'
-				},
+				}*/
 				{
 					year: 2013,
 					date: 'September 26 and 27',
