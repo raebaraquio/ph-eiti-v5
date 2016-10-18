@@ -14,7 +14,7 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					coverphoto:"images/_activities/cp/2016/10/12/Pre-validation-workshop.png",
 					writeup: {
 						title:"",
-						content:"<p></p>"
+						content:"<p><p>The Pre-Validation Workshop was held on September 22, 2016 while the Workshop on Beneficial Ownership was conducted on September 23, 2016. Both events were conducted by the EITI International Secretariat headed by Atty. Gay Ordenes (former PH-EITI National Coordinator).</p><p>Both workshops was held at the Orchid Garden Suites, Manila from 9:00 AM to 5:00 PM and was well attended by MSG members as well as the Secretariat.</p><p>The Pre-Validation Workshop takes an in-depth look on PH-EITI's preparedness for country validation in 2017 that includes the Secretariat's and MSG members roles, deliverables, and assessment guidelines.</p><p>The Beneficial Ownership, on the other hand, will form part of all EITI implementing countries where companies must disclose the identity of the real company owners engaged in the extractive industries by year 2020.</p></p>"
 					},
 					program: null,
 					documentation:null,

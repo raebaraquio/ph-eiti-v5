@@ -126,20 +126,6 @@
         <div class="mxw-80">
             <md-card style="padding-bottom:0px;">
                 <md-content layout="row" flex>
-                    <md-content flex="40" layout="column">
-                        <div id="home-newsfeature-photo">
-                            <h1 class="fnt--white" title="PH bags 2016 EITI International Chair Award in Lima, Peru">PH bags 2016 EITI International Chair Award in Lima, Peru</h1>
-                            <div layout="row" class="md-padding">
-                                <div flex="70" layout="column">
-                                    <span class="fnt--white">PH-EITI NEWSROOM</span>
-                                    <span class="fnt--white fnt--sm">March 07, 2016 10:12 PM </span>
-                                </div>
-                                <div flex="30" layout="row" layout-align="end center">
-                                    <a class="fnt--white sref" href="./News/#/PH-EITI-Newsroom/PH-bags-2016-EITI-International-Chair-Award-in-Lima-Peru"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_white_18px.svg"></md-icon> <span class="fnt--white fnt--md">Read Story</span> </a>
-                                </div>
-                            </div>
-                        </div>
-                    </md-content>
                     <md-content flex="60" layout="column">
                         <md-progress-linear data-ng-if="newspromise" class="md-primary" md-mode="indeterminate"></md-progress-linear>
                         <div class="md-padding">
@@ -155,11 +141,27 @@
                                 </div>
                             </md-list-item>
                             <md-list-item class="md-2-line" data-ng-repeat="(kn,news) in homenews" data-ng-if="kn==4 && homenews.length > 5" style="min-height:3em;">
-                                <div class="md-list-item-text ta-right">
+                                <div class="md-list-item-text ta-left">
                                     <a class="sref" href="./News/#/"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_black_24px.svg"></md-icon> <span class="fnt--md fnt--black">More News</span> </a>
                                 </div>
                             </md-list-item>
                         </md-list>
+                    </md-content>
+                    <md-content flex="40" layout="column">
+                        <div id="home-newsfeature-photo">
+                            <!-- <h1 class="fnt--white" title="PH bags 2016 EITI International Chair Award in Lima, Peru">PH bags 2016 EITI International Chair Award in Lima, Peru</h1> -->
+                            <h1 class="fnt--white">PH-EITI launches 3rd nationwide roadshow</h1>
+                            <div layout="row" class="md-padding">
+                                <div flex="70" layout="column">
+                                    <span class="fnt--white">PH-EITI NEWSROOM</span>
+                                    <span class="fnt--white fnt--sm">August 14, 2016</span>
+                                </div>
+                                <div flex="30" layout="row" layout-align="start center">
+                                    <!-- <a class="fnt--white sref" href="./News/#/PH-EITI-Newsroom/PH-bags-2016-EITI-International-Chair-Award-in-Lima-Peru"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_white_18px.svg"></md-icon> <span class="fnt--white fnt--md">Read Story</span> </a> -->
+                                    <a class="fnt--white sref" href="./News/#/PH-EITI-Newsroom/PH-EITI-launches-3rd-nationwide-roadshow"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_white_18px.svg"></md-icon> <span class="fnt--white fnt--md">Read Story</span> </a>
+                                </div>
+                            </div>
+                        </div>
                     </md-content>
                 </md-content>
             </md-card>
@@ -174,15 +176,6 @@
         <div class="mxw-80">
             <md-card>
                  <md-grid-list md-cols="3" md-row-height="1:0.75" md-gutter="4px">
-                    <md-grid-tile class="sitepalette-yellow tileZoom" md-colspan="2" id="grid-contracts">
-                        <div layout="column" class="md-padding">
-                            <span class="md-headline fnt--white">CONTRACTS PORTAL</span>
-                            <h1 class="fnt--white mrgn-tp-0 padd-tp-0">An Open Database of Mining, Oil and Gas contracts in the Philippines</h1>
-                            <div layout="row" class="ta-left">
-                                <a class="sref" href="javascript:window.open('http://contracts.ph-eiti.org')"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_white_24px.svg"></md-icon> <span class="fnt--md fnt--white">Click here</span> </a>
-                            </div>    
-                        </div>
-                    </md-grid-tile>
                     <md-grid-tile class="red tileZoom" md-rowspan="2" id="home-activitiesfeature-photo">
                         <div layout="column" class="md-padding">
                             <h1 class="fnt--white">PH-EITI 2016 LGU Roadshow</h1>
@@ -195,6 +188,15 @@
                                     <a class="fnt--white sref" href="Activities/#/PH-EITI-2016-LGU-Roadshow-&-ENRDMT-Training"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_white_18px.svg"></md-icon> <span class="fnt--white fnt--md">More Info</span> </a>
                                 </div>
                             </div>
+                        </div>
+                    </md-grid-tile>
+                    <md-grid-tile class="sitepalette-yellow tileZoom" md-colspan="2" id="grid-contracts">
+                        <div layout="column" class="md-padding">
+                            <span class="md-headline fnt--white">CONTRACTS PORTAL</span>
+                            <h1 class="fnt--white mrgn-tp-0 padd-tp-0">An Open Database of Mining, Oil and Gas contracts in the Philippines</h1>
+                            <div layout="row" class="ta-left">
+                                <a class="sref" href="javascript:window.open('http://contracts.ph-eiti.org')"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_white_24px.svg"></md-icon> <span class="fnt--md fnt--white">Click here</span> </a>
+                            </div>    
                         </div>
                     </md-grid-tile>
                     <md-grid-tile class="sitepalette-blue tileZoom" layout="column" id="grid-progress-report">

@@ -173,13 +173,13 @@ a {
 }
 
 #home-newsfeature-photo {
-	background: rgba(0,0,0,0), url('../images/home-news-feature/2016/07/10/cvp-peru.png');
-	background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 47%, rgba(0,0,0,0.5) 81%, rgba(0,0,0,0.74) 100%), url('../images/home-news-feature/2016/07/10/cvp-peru.png');
-	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,0)), color-stop(47%, rgba(0,0,0,0.08)), color-stop(81%, rgba(0,0,0,0.5)), color-stop(100%, rgba(0,0,0,0.74))), url('../images/home-news-feature/2016/07/10/cvp-peru.png');
-	background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 47%, rgba(0,0,0,0.5) 81%, rgba(0,0,0,0.74) 100%), url('../images/home-news-feature/2016/07/10/cvp-peru.png');
-	background: -o-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 47%, rgba(0,0,0,0.5) 81%, rgba(0,0,0,0.74) 100%), url('../images/home-news-feature/2016/07/10/cvp-peru.png');
-	background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 47%, rgba(0,0,0,0.5) 81%, rgba(0,0,0,0.74) 100%), url('../images/home-news-feature/2016/07/10/cvp-peru.png');
-	background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 47%, rgba(0,0,0,0.5) 81%, rgba(0,0,0,0.74) 100%), url('../images/home-news-feature/2016/07/10/cvp-peru.png');
+	background: rgba(0,0,0,0), url('../images/home-news-feature/2016/10/18/lgu-2016-roadshow-feature.png');
+	background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 47%, rgba(0,0,0,0.5) 81%, rgba(0,0,0,0.74) 100%), url('../images/home-news-feature/2016/10/18/lgu-2016-roadshow-feature.png');
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,0)), color-stop(47%, rgba(0,0,0,0.08)), color-stop(81%, rgba(0,0,0,0.5)), color-stop(100%, rgba(0,0,0,0.74))), url('../images/home-news-feature/2016/10/18/lgu-2016-roadshow-feature.png');
+	background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 47%, rgba(0,0,0,0.5) 81%, rgba(0,0,0,0.74) 100%), url('../images/home-news-feature/2016/10/18/lgu-2016-roadshow-feature.png');
+	background: -o-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 47%, rgba(0,0,0,0.5) 81%, rgba(0,0,0,0.74) 100%), url('../images/home-news-feature/2016/10/18/lgu-2016-roadshow-feature.png');
+	background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 47%, rgba(0,0,0,0.5) 81%, rgba(0,0,0,0.74) 100%), url('../images/home-news-feature/2016/10/18/lgu-2016-roadshow-feature.png');
+	background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 47%, rgba(0,0,0,0.5) 81%, rgba(0,0,0,0.74) 100%), url('../images/home-news-feature/2016/10/18/lgu-2016-roadshow-feature.png');
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0 );
 	max-height: 450px;
 	height: 450px;
