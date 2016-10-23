@@ -210,8 +210,8 @@ pheiti.factory('homeNewsFactory',['$http',
     return homeNewsFactory;
 }]);
 
-pheiti.controller('homeNewsController',['$scope','homeNewsFactory','$sce',
-    function($scope,homeNewsFactory,$sce){
+pheiti.controller('homeNewsController',['$scope','homeNewsFactory','$sce','$location',
+    function($scope,homeNewsFactory,$sce,$location){
 
     function getNews() {
         $scope.homenews = []
@@ -252,6 +252,10 @@ pheiti.controller('homeNewsController',['$scope','homeNewsFactory','$sce',
     }
 
     getNews();
+
+    $scope.goTo=function(link){
+        window.location.href = link;
+    }
 
 }]);
 

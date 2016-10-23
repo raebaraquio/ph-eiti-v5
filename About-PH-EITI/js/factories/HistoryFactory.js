@@ -4,6 +4,15 @@ aboutApp.factory('HistoryFactory',function(){
 		get : function(){
 			return [
 				{
+					year:2016,
+					date:'September 2016',
+					start:false,
+					badgeClass:'default',
+					when:'September 2016',
+					content:'Beneficial Ownership and Workshop on Validation conducted by EITI International',
+					contentHtml:'Beneficial Ownership and Workshop on Validation conducted by EITI International'
+				},
+				{
 					year: 2016,
 					date: 'August to September',
 					start: false,	

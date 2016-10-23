@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="css/font-awesome.min.css"> 
     <link rel="stylesheet" href="css/jk-carousel.min.css" />
     <link rel="stylesheet" href="css/basic.css?v=1.02"> 
-    <link rel="stylesheet" href="css/main.css?v=1.03"> 
+    <link rel="stylesheet" href="css/main.css?v=1.04"> 
     <link rel="stylesheet" href="css/nav.css?v=1.02"> 
 </head>	
 <body ng-cloak>
@@ -124,12 +124,12 @@
 
     <div class="wd-100" id="home-news" data-ng-controller="homeNewsController"> <!-- News -->
         <div class="mxw-80">
-            <md-card style="padding-bottom:0px;">
+            <md-card style="padding-bottom:0px;">   
                 <md-content layout="row" flex>
                     <md-content flex="60" layout="column">
                         <md-progress-linear data-ng-if="newspromise" class="md-primary" md-mode="indeterminate"></md-progress-linear>
                         <div class="md-padding">
-                            <h3 class="md-primary" style="padding:0;margin:0;line-height:1em;">PH-EITI NEWSROOM</h3>    
+                            <h3 class="md-primary fnt--eitiyellow" style="padding:0;margin:0;line-height:1em;">PH-EITI NEWSROOM</h3>    
                         </div>
                         <div class="ta-center">
                         </div>
@@ -148,12 +148,12 @@
                         </md-list>
                     </md-content>
                     <md-content flex="40" layout="column">
-                        <div id="home-newsfeature-photo">
+                        <div id="home-newsfeature-photo" style="border:1px solid #ababab;" data-ng-click="goTo('./News/#/PH-EITI-Newsroom/PH-EITI-launches-3rd-nationwide-roadshow')">
                             <!-- <h1 class="fnt--white" title="PH bags 2016 EITI International Chair Award in Lima, Peru">PH bags 2016 EITI International Chair Award in Lima, Peru</h1> -->
                             <h1 class="fnt--white">PH-EITI launches 3rd nationwide roadshow</h1>
                             <div layout="row" class="md-padding">
                                 <div flex="70" layout="column">
-                                    <span class="fnt--white">PH-EITI NEWSROOM</span>
+                                    <span class="fnt--eitiyellow">PH-EITI NEWSROOM</span>
                                     <span class="fnt--white fnt--sm">August 14, 2016</span>
                                 </div>
                                 <div flex="30" layout="row" layout-align="start center">
@@ -176,12 +176,12 @@
         <div class="mxw-80">
             <md-card>
                  <md-grid-list md-cols="3" md-row-height="1:0.75" md-gutter="4px">
-                    <md-grid-tile class="red tileZoom" md-rowspan="2" id="home-activitiesfeature-photo">
+                    <md-grid-tile class="red tileZoom" md-rowspan="2" id="home-activitiesfeature-photo" onclick="window.location.href='Activities/#/PH-EITI-2016-LGU-Roadshow-&-ENRDMT-Training';">
                         <div layout="column" class="md-padding">
                             <h1 class="fnt--white">PH-EITI 2016 LGU Roadshow</h1>
                             <div layout="row" flex>
                                 <div flex="60" layout="column">
-                                    <span class="fnt--white">ACTIVITIES</span>
+                                    <span class="fnt--eitiyellow">ACTIVITIES</span>
                                     <span class="fnt--white fnt--sm">August-September 2016</span>
                                 </div>
                                 <div flex="40" layout="row" layout-align="end center">
@@ -190,7 +190,7 @@
                             </div>
                         </div>
                     </md-grid-tile>
-                    <md-grid-tile class="sitepalette-yellow tileZoom" md-colspan="2" id="grid-contracts">
+                    <md-grid-tile class="sitepalette-yellow tileZoom" md-colspan="2" id="grid-contracts" onclick="window.open('http://contracts.ph-eiti.org')">
                         <div layout="column" class="md-padding">
                             <span class="md-headline fnt--white">CONTRACTS PORTAL</span>
                             <h1 class="fnt--white mrgn-tp-0 padd-tp-0">An Open Database of Mining, Oil and Gas contracts in the Philippines</h1>
@@ -199,7 +199,7 @@
                             </div>    
                         </div>
                     </md-grid-tile>
-                    <md-grid-tile class="sitepalette-blue tileZoom" layout="column" id="grid-progress-report">
+                    <md-grid-tile class="sitepalette-blue tileZoom" layout="column" id="grid-progress-report" onclick="window.open('http://progrep.eiti.org/2016/glance')">
                         <div layout="column" class="md-padding">
                             <h1 class="fnt--white">EITI Progress Report 2016</h1>
                             <div layout="row" class="ta-left">
@@ -207,7 +207,7 @@
                             </div>
                         </div>
                     </md-grid-tile>
-                    <md-grid-tile class="sitepalette-brown" id="grid-mgb">
+                    <md-grid-tile class="sitepalette-brown" id="grid-mgb" onclick="window.open('http://mgb.gov.ph/2015-05-13-01-44-56/2015-05-13-01-47-51')">
                         <div layout="column" class="md-padding">
                             <h1 class="fnt--white">Mineral Industry Statistics</h1>
                             <a class="fnt--white sref" href="javascript:window.open('http://mgb.gov.ph/2015-05-13-01-44-56/2015-05-13-01-47-51')"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_white_18px.svg"></md-icon> <span class="fnt--white fnt--md">Click here</span></a>
@@ -225,7 +225,7 @@
     <div class="wd-100" id="home-videos">   
         <div class="mxw-80">
             <md-card class="md-padding">
-                <h3 style="padding:0;margin:0;line-height:2em;">VIDEOS</h3>
+                <h3 class="fnt--eitiyellow" style="padding:0;margin:0;line-height:2em;">VIDEOS</h3>
                 <md-content layout="row">
                     <md-content flex="50" layout="column" class="ta-center" layout-align="center center">
                         <iframe width="420" height="280" src="//www.youtube.com/embed/5TTq5W9rklw?rel=0" frameborder="0" allowfullscreen></iframe>
@@ -319,7 +319,7 @@
 
     <!-- Application -->
     <script src="js/modules/navigation.js?v=1.02"></script>
-    <script src="js/mainApp.js?v=1.03"></script>
+    <script src="js/mainApp.js?v=1.04"></script>
 
 </body>
 </html>
