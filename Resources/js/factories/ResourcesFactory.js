@@ -21,16 +21,16 @@ resourcesApp.factory('ResourcesFactory',['$http',
 				},
 				{
 					name: 'Studies',
-					href: '/Laws-and-Legal-Issuances',
+					href: '/Studies',
 					multiple:true
 				},
 				{
 					name: 'Activity Reports',
-					href: '/Activity Reports',
+					href: '/Activity-Reports',
 					multiple:true
 				},
 				{
-					name: 'Infographics',
+					name: 'Infographics & Brochures',
 					href: '/Infographics',
 					media:true
 				},

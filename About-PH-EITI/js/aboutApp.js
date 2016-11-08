@@ -6,14 +6,14 @@ aboutApp.config(function($routeProvider){
 	 	{
 	 		title: 'History | About PH-EITI',
             controller: 'HistoryController',
-	 		templateUrl:'./template/history.html?v=1.02'
+	 		templateUrl:'./template/history.html?v=1.03'
 	 	})
 
         .when('/Secretariat',
         {
             title: 'Secretariat | About PH-EITI',
             controller: 'SecretariatController',
-            templateUrl:'./template/secretariat.html?v=1.02'
+            templateUrl:'./template/secretariat.html?v=1.03'
         })
 
         .when('/MSG-Meetings',
