@@ -66,14 +66,32 @@ resourcesApp.factory('ResourcesFactory',['$http',
 		studies: function(){
 			return [
 				{
+					id:'Large-Scale-Non-Metallic-Mining:-Scoping-Study',
+					title:'Large-Scale Non-Metallic Mining: Scoping Study',
+					file:'document/2016/11/06/Large-Scale__Spread.pdf',
+					year:2015,
+					month:'December'
+				},
+				{
+					id:'Philippines-EITI-Scoping-Study-On-Small-Scale-Metallic-Mining',
+					title:'Philippines EITI Scoping Study On Small-Scale Metallic Mining',
+					file:'document/2016/11/06/SSMM_v07__Spread.pdf',
+					year:2015,
+					month:'December'
+				},
+				{
 					id:'Scoping-Study-on-Local-Revenue-Streams-and-Subnational-Implementation',
 					title:'Scoping Study on Local Revenue Streams and Subnational Implementation',
-					file:'document/Papers/Scoping-Study-on-Local-Revenue-Streams-and-Subnational-Implementation.pdf'
+					file:'document/Papers/Scoping-Study-on-Local-Revenue-Streams-and-Subnational-Implementation.pdf',
+					year:2014,
+					month:'December'
 				},
 				{
 					id:'Legal-Framework',
 					title:'Legal Framework',
-					file:'document/Papers/Final-EITI-Legal_Framework_October2014.pdf'
+					file:'document/Papers/Final-EITI-Legal_Framework_October2014.pdf',
+					year:2014,
+					month:'December'
 				},
 				{
 					id:'Economic-Contribution-Mining',
@@ -91,19 +109,25 @@ resourcesApp.factory('ResourcesFactory',['$http',
 					file:''
 				},
 				{
-					id:'IPs',
-					title:'IPs',
-					file:'document/Papers/IP-Study-Formatted.pdf'
+					id:'Obtaining-Permits-for-Ancestral-Domain-Areas',
+					title:'Obtaining Permits for Ancestral Domain Areas',
+					file:'document/Papers/IP-Study-Formatted.pdf',
+					year:2014,
+					month:'December'
 				},
 				{
-					id:'Licensing-Processes ',
-					title:'Licensing Processes ',
-					file:'document/Papers/Licensing-Processes-Formatted.pdf'
+					id:'Licensing-System-for-Mining,-Coal,-Oil-and-Gas-Operations-in-the-Philippines',
+					title:'Licensing System for Mining, Coal, Oil and Gas Operations in the Philippines',
+					file:'document/Papers/Licensing-Processes-Formatted.pdf',
+					year:2014,
+					month:'December'
 				},
 				{
-					id:'State-Owned-Enterprises',
-					title:'State Owned Enterprises',
-					file:'document/Papers/SOE-Study-Formatted.pdf'
+					id:'State-Owned-Enterprises-in-the-Philippines',
+					title:'State Owned Enterprises in the Philippines',
+					file:'document/Papers/SOE-Study-Formatted.pdf',
+					year:2014,
+					month:'December'
 				}
 			]
 		},
@@ -173,24 +197,24 @@ resourcesApp.factory('ResourcesFactory',['$http',
 				subfolders: [],
 				files: [
 					{
-						id: "First-Year-of-Implementation",
-						title: "First Year of Implementation",
+						id: "APR-August-2012-May-2014",
+						title: "Annual Progress Report",
 						author:'',
 						coverage:"August 2012 - May 2014",
 						src:"../document/2014/07/PH-EITI-Activity-Report.pdf",
 						cardIcon:"../document/2014/07/card-icon.png"
 					},
 					{
-						id: "Second-Year-of-Implementation",
-						title: "Second Year of Implementation",
+						id: "APR-June-2014-June-2015",
+						title: "Annual Progress Report",
 						coverage:"June 2014 - June 2015",
 						src:"../document/2015/07/06/2nd-PH-EITI-Annual-Activity-Report.pdf",
 						cardIcon:"../document/2015/07/06/card-icon.png"
 					},
 					{
-						id: "APR-June-2014-June-2015",
+						id: "APR-July-2015-June-2016",
 						title: "Annual Progress Report",
-						coverage:"June 2014 - June 2015",
+						coverage:"July 2015 - June 2016",
 						src:"../document/2016/07/18/Annual-Progress-Report-July-2015-to-June-2016.pdf",
 						cardIcon:"../document/2016/07/18/card-icon.png"
 					}

@@ -275,14 +275,14 @@ countryReportApp.factory('CountryReportFactory', function($http,$location){
 							file:'../document/EITI-Report/Second-Country-Report/Key findings_Inner_Page.pdf',
 							cardIcon:'../document/EITI-Report/Second-Country-Report/card-icon-keyfindings-inner.png'
 						},
-						{
+						/*{
 							title:"Impact Story (Booklet)",
 							href:"Impact-Story-Booklet",
 							id:'impact-story-booklet',
 							multiple:false,
 							file:'',
 							cardIcon:'../document/EITI-Report/Second-Country-Report/card-icon-none.png'
-						},
+						},*/
 						{
 							title:"Key findings (Outer Page)",
 							href:"Key-findings-Outer",
@@ -291,13 +291,13 @@ countryReportApp.factory('CountryReportFactory', function($http,$location){
 							file:'../document/EITI-Report/Second-Country-Report/Key findings_Outer_page.pdf',
 							cardIcon:'../document/EITI-Report/Second-Country-Report/card-icon-keyfindings-outer.png'
 						},
-						{
+						/*{
 							title:"Impact Story (Video)",
 							href:"Impact-Story-Video",
 							id:'impact-story-video',
 							media:true,
 							cardIcon:'../document/EITI-Report/Second-Country-Report/card-icon-none.png'
-						},
+						},*/
 						{
 							title:"Completed Reporting Templates",
 							href:"Completed-Reporting-Templates",

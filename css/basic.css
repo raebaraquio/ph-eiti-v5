@@ -129,3 +129,5 @@
 .brd--eitiyellow { border-color: #fabc01; }
 .brd--gray { border-color: gray; }
 .brd--black { border-color: #000; }
+
+.curs--hover { cursor: pointer; }

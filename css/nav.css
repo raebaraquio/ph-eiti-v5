@@ -10,8 +10,10 @@
 017fcb*/
 
 .md-nav-bar {
-	background-color: #f7f7f7 !important;
-	z-index: 999;
+	background-color: #f7f7f7;
+	/*z-index: 999;*/
+	z-index: 35;
+	border:1px solid #f0efef;
 }
 
 ._md-nav-bar-list {
@@ -90,7 +92,222 @@
 	margin-top:-0.6em;
 }
 
-
 .toDefaultColor {
 	color: #333;
+}
+
+.c-nav--main {
+	-webkit-box-align:center;
+	align-items:center;
+	display: flex;
+	/*padding: 42px 36px;*/
+}
+
+.c-nav--main [role='menuitem'] {
+	font-weight: 500;
+	display: inline-block;
+}
+
+.c-nav--main li {	}
+.c-nav--main [role='menuitem'] { }
+
+*::before, *::after {
+    box-sizing: border-box;
+}
+
+.icon {
+    display: inline-block;
+    vertical-align: middle;
+    outline: none;
+}
+
+.c-nav .icon--caret {
+    left: 1px;
+    /*pointer-events: none;*/
+    position: relative;
+    top: -1px;
+    outline: none;
+    color: rgba(35,75,112,1);
+}
+
+.c-nav .icon--caret:hover {
+	cursor: pointer;
+}
+
+.icon--caret, .icon--caret-outline,
+.icon--caret-outline::before {
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid;
+    height: 0;
+    vertical-align: middle;
+    width: 0;
+}
+
+.nsnav {
+	/*display: none;*/
+	position: absolute;
+	padding:0;
+	margin:0;
+	list-style-type: none;
+	text-align: left;
+	z-index: 2;
+	margin-top: 1em;
+	background-color: #fff;
+}
+
+md-menu-bar.md-default-theme md-menu._md-open > button, 
+md-menu-bar md-menu._md-open > button, 
+md-menu-bar.md-default-theme md-menu > button:focus, 
+md-menu-bar md-menu > button:focus {
+	background-color: transparent;
+	color: #fabc01;
+}
+
+md-menu-bar.md-default-theme md-menu._md-open > button, 
+md-menu-bar md-menu._md-open > button, 
+md-menu-bar.md-default-theme md-menu > button:focus, 
+md-menu-bar md-menu > button:focus > a {
+	color: #fabc01;
+	outline: none;
+}
+
+.c-nav .icon--caret.icon--caret--isopen {
+	border-bottom:5px solid;
+	border-top:0;
+	color: #fabc01;
+}
+
+._md._md-open-menu-container {
+	margin-top:5.5em !important;
+}
+
+/*._md._md-open-menu-container > md-menu-content > md-menu-item  */
+
+._md-open-menu-container._md-active>md-menu-content>a{
+	outline: none;
+}
+
+._md-open-menu-container._md-active>md-menu-content>md-menu-item:hover {
+	background-color: #e5e5e5;
+}
+
+md-menu-content {
+	max-height: 350px;
+}
+
+md-menu button.menulevel--first > a {
+	text-decoration: none;
+	font-family: 'Roboto';
+	font-weight: 500;
+	text-transform: uppercase;
+}
+
+md-menu-item > a {
+	text-decoration: none;
+	font-size: 0.85em;
+	color: rgba(35,75,112,1);
+}
+
+.main--active {
+	color: #fabc01;
+}
+
+.with_sub_menu:after {
+	/*✔';*/
+	/*content: '▼';
+	margin-left: 5px;
+	transition: all .2s;*/
+}
+
+.with_sub_menu .with_sub_menu--open .md-button._md-nav-button:after {
+	/*content: '▲';
+	margin-left: 5px;
+	transition: all .2s;*/
+}
+
+#slider-nav {
+	position: absolute;
+    z-index: 99;
+    background-color: #fabc01; /*ff;234b70;*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #000;
+    top: 1px;
+    left: -500px;
+    width: 325px;
+    min-width: 325px;
+    height: 100%;
+    transition: 1s;
+    border-right: 1px solid #ccc;
+}  
+
+.slider-nav--open {
+	display: block;
+    left: 0px !important;
+	transition: 1s;
+}
+
+.menu--active {
+	border-bottom: 3px solid rgba(35,75,112,1);/* #fabc01;*/
+}
+
+.side-main-nav,
+.side-sub-nav {
+	padding: 0px;
+	margin: 0px;
+	list-style-type: none;
+}
+
+.side-main-nav li {
+	display: block;
+	box-sizing:border-box;
+	padding:15px;
+	border-bottom: 1px solid #fede7c;
+}
+
+.side-sub-nav {
+	margin-top: 1em;
+}
+
+.side-sub-nav li {
+	border-top: 1px solid #fede7c;	
+	border-bottom:none;	
+}
+
+.side-main-nav li:last-child {
+	border-bottom: none;	
+}
+
+.side-main-nav li a {
+	color: #fff;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 1.25em;
+	font-family: 'Roboto';
+	font-weight: 400;
+}
+
+.sidenav-menu__item--open {
+	background-color: #ffcf3f;
+}
+
+#overlay {
+    background-color: #000;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    z-index: 50;
+    opacity: 0.6;
+}
+
+#overlay--on {
+	display: block;
+    transition: 0.5s;
+}
+
+img {
+	outline: none;
 }

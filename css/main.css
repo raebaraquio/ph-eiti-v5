@@ -153,6 +153,7 @@ footer md-content {
 
 a {
 	color: rgba(35,75,112,1);
+	outline: none;
 }
 
 .navLink {
@@ -319,4 +320,269 @@ a {
 #grid-contracts:hover {
 	cursor: pointer;
     background-size: 120% 120%;    
+}
+
+#home-newsfeature-photo {
+	border:1px solid #ababab;
+}
+
+.news-title {
+	font-size:1.3em;
+	line-height:1em;
+	padding:0px;
+	margin:0px;
+	margin-bottom:3px;
+}
+
+
+/*@media (max-width: 600px) {*/
+@media all and (min-width: 412px) and (max-width: 736px) {
+	
+	#logo-wrapper--inner {
+		max-width: 100%;
+	}
+
+	.feature-card__heading {
+		font-size: 1.25em;
+	}
+
+	.feature-photo__heading {
+		font-size: 1.75em;	
+	}
+
+	#collections {
+		margin-left: 0px;
+		padding: 0px;
+		word-wrap:break-word;
+	}	
+
+	#collections h3,
+	#collections p {
+		font-size: 0.85em;
+	}
+
+	#collections h1 {
+		font-size: 1.2em;
+	}
+
+	#collections h2 {
+		font-size: 1em;
+	}
+
+	#home-newsfeature-photo {
+		background-size: 100% 90%;
+		border:none;
+		background-position: top;
+	}
+
+	#home-statements {
+		display: none;
+	}
+	
+	#contact {
+		padding-bottom: 1em;
+		margin-top: -1em;
+		background-color: transparent;
+	}
+
+	#contact-social,
+	#contact-main {
+		text-align: left;
+	}
+
+	#contact-main p {
+		font-size: 1em;
+	}
+
+	.news-title {
+		font-size: 1em;
+	}
+
+	#home-activitiesfeature-photo {
+		background-size: 125% 100%;
+		background-position: top;
+		border:none;
+	}
+
+	.related {
+		text-align: left !important;
+		vertical-align: middle;
+		padding-left: 0.75em;
+	}
+
+	.related > div {
+		text-align: left;
+	}
+
+	.related h1 {
+		font-size: 2em;
+		text-align: left;
+	}
+
+	.related div > a {
+		font-size: 1.2em;
+	}
+	
+	.md-nav-bar {
+		/*display: none;*/
+	}
+
+	#home-nav-bar {
+		background-color: #fabc01;
+	}
+	
+	#home-statements--inner div {
+		font-size: 0.8em;
+		line-height: 1.5em;
+	}
+
+}
+
+@media all and (min-width: 360px) and (max-width: 400px) {
+	
+	#logo-wrapper--inner {
+		max-width: 100%;
+	}
+
+	.feature-card__heading {
+		font-size: 1.25em;
+	}
+
+	.feature-photo__heading {
+		font-size: 1.75em;	
+	}
+
+	#collections {
+		margin-left: 0px;
+		padding: 0px;
+		word-wrap:break-word;
+	}	
+
+	#collections h3,
+	#collections p {
+		font-size: 0.85em;
+	}
+
+	#collections h1 {
+		font-size: 1.2em;
+	}
+
+	#collections h2 {
+		font-size: 1em;
+	}
+
+	#home-newsfeature-photo {
+		background-size: 100% 90%;
+		border:none;
+		background-position: top;
+	}
+
+	#home-statements {
+		display: none;
+	}
+	
+	#contact {
+		padding-bottom: 1em;
+		margin-top: -1em;
+		background-color: transparent;
+	}
+
+	#contact-social,
+	#contact-main {
+		text-align: left;
+	}
+
+	#contact-main p {
+		font-size: 1em;
+	}
+
+	.news-title {
+		font-size: 1em;
+	}
+
+	#home-activitiesfeature-photo {
+		background-size: 125% 100%;
+		background-position: top;
+		border:none;
+	}
+
+	.related {
+		text-align: left !important;
+		vertical-align: middle;
+		padding-left: 0.75em;
+	}
+
+	.related > div {
+		text-align: left;
+	}
+
+	.related h1 {
+		font-size: 2em;
+		text-align: left;
+	}
+
+	.related div > a {
+		font-size: 1.2em;
+	}
+	
+	.md-nav-bar {
+		/*display: none;*/
+	}
+
+	#home-nav-bar {
+		background-color: #fabc01;
+	}
+	
+	#home-statements--inner div {
+		font-size: 0.8em;
+		line-height: 1.5em;
+	}
+
+}
+
+@media all and (min-width: 600px) and (max-width: 768px) {
+	#home-nav-bar {
+		background-color: #fabc01;
+	}
+	#logo-wrapper--inner {
+		max-width: 100%;
+	}
+	#home-statements--inner div {
+		font-size: 0.8em;
+		line-height: 1.5em;
+	}
+}
+
+/* Portrait */
+@media all screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+	#logo-wrapper--inner {
+		max-width: 100%;
+	}
+
+	#home-nav-bar {
+		background-color: #fabc01;
+	}
+}
+
+/* Landscape */
+@media all and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+	#logo-wrapper--inner {
+		max-width: 100%;
+	}
+
+	#home-nav-bar {
+		background-color: #fabc01;
+	}
+}
+
+@media all and (min-width: 1025px) and (max-width: 1280px) {
+	
+	#collections {
+		margin-left:1.5em;
+	}
+
+	#logo-wrapper--inner {
+		max-width: 100%;
+	}
+
 }

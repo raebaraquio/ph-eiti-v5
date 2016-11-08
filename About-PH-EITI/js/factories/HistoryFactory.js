@@ -32,6 +32,15 @@ aboutApp.factory('HistoryFactory',function(){
 				},
 				{
 					year: 2016,
+					date: 'February 24-25',
+					start: false,	
+					badgeClass: 'default',
+					when: 'February 24-25',
+					content: 'PH-EITI was honored as one of four recipients of the “EITI International Chair Award” at the opening ceremony of the 7th EITI Global Conference in Lima, Peru on February 24, 2016.',
+					contentHtml: 'PH-EITI was honored as one of four recipients of the “EITI International Chair Award” at the opening ceremony of the 7th EITI Global Conference in Lima, Peru on February 24, 2016.'
+				},
+				{
+					year: 2016,
 					date: 'February 16',
 					start: true,	
 					badgeClass: 'primary',
@@ -95,6 +104,15 @@ aboutApp.factory('HistoryFactory',function(){
 				},
 				{
 					year: 2014,
+					date: 'August to September',
+					start: false,	
+					badgeClass: 'default',
+					when: 'August to September',
+					content: '2014 LGU Roadshow: Introduction and Briefing of PH-EITI',
+					contentHtml: 'August to September 2014 LGU Roadshow: Introduction and Briefing of PH-EITI'
+				},
+				{
+					year: 2014,
 					date: 'May 15 and 16',
 					start: false,	
 					badgeClass: 'default',
@@ -137,7 +155,16 @@ aboutApp.factory('HistoryFactory',function(){
 					when: 'February 4',
 					content: 'Asec. Ma. Teresa S. Habitan and Mr. Michael Stanley of the World Bank brief members of the Senate and House of Representatives on the EITI Reporting Standard and PH-EITI’s activities to date.',
 					contentHtml: 'Asec. Ma. Teresa S. Habitan and Mr. Michael Stanley of the World Bank brief members of the Senate and House of Representatives on the EITI Reporting Standard and PH-EITI’s activities to date.'
-				}*/
+				}*/				 
+				{
+					year: 2013,
+					date:'November 26',
+					start: false,	
+					badgeClass: 'default',
+					when:'November 26',
+					content: 'President Benigno Aquino Jr. signed Executive Order 147 formally creating PH-EITI',
+					contentHtml: 'President Benigno Aquino Jr. signed Executive Order 147 formally creating PH-EITI'
+				},
 				{
 					year: 2013,
 					date: 'September 26 and 27',

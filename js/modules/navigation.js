@@ -141,7 +141,7 @@ angular.module('navMod',['ngRoute','utilsModule'])
 							},
 							{
 								id:"archive",
-								name: "archive",
+								name: "Archive",
 								href: "Archive"
 							}
 						]
@@ -154,12 +154,22 @@ angular.module('navMod',['ngRoute','utilsModule'])
 						]
 					}
 			];
+		},
+		admin: function(){
+			return [
+				{
+					id:"cms",
+					href: "cms",
+					name: "Content Management",
+					subnav: [ ]
+				}
+			];
 		}
 	};
 	return NavigationFactory;	
 })
-.controller('NavigationController',['$scope','$location','NavigationFactory','$rootScope','$route','utilsService',
-	function($scope,$location,NavigationFactory,$rootScope,$route,utilsService){
+.controller('NavigationController',['$scope','$location','NavigationFactory','$rootScope','$route','utilsService','$mdMenu',
+	function($scope,$location,NavigationFactory,$rootScope,$route,utilsService,$mdMenu){
 	$scope.active = {
 		mnav : '',
 		subnav : ''
@@ -167,7 +177,16 @@ angular.module('navMod',['ngRoute','utilsModule'])
 
 	$scope.getnavigation = function() {
 		$scope.main_nav = [];
-		$scope.main_nav = NavigationFactory.get();
+		var mainnav = NavigationFactory.get();
+		for (var idx=0;idx<mainnav.length;idx++){
+			if (mainnav[idx].subnav.length > 0) {
+				mainnav[idx].subnav_open = false;
+				for (var sidx=0;sidx<mainnav[idx].subnav.length;sidx++) {
+					mainnav[idx].subnav[sidx].subnav_open = false;
+				}
+			}
+		}
+		$scope.main_nav = mainnav;
 		if ($location.$$absUrl.match(/#/gi)){
 			var locs = $location.$$absUrl.split('#');
 			var host = locs[0].split('/');
@@ -193,7 +212,23 @@ angular.module('navMod',['ngRoute','utilsModule'])
 		}
 	});
 
-	$scope.getnavigation()
+	$scope.getnavigation();
+
+	$scope.runMe=function(){
+		$mdMenu.hide();
+	}
+
+	$scope.$on('$mdMenuOpen', function(event, menu) { 
+		
+	});
+
+	$scope.$on('$mdMenuClose', function(event, menu) { 
+		for (var idx=0;idx<$scope.main_nav.length;idx++){
+			if ($scope.main_nav[idx].subnav_open===true){
+				$scope.main_nav[idx].subnav_open = false;
+			}			
+		}
+	});
 
 }])
 .directive('footersitemap',function(){

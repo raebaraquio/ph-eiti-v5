@@ -26,10 +26,16 @@
 	                    </md-select>
 	                </md-input-container>
 	                <md-input-container flex-gt-sm>
+	                    <label>Select Year</label>
+	                    <md-select data-ng-model="filterYear" data-ng-change="refreshInfographics()">
+	                    	<md-option data-ng-repeat="year in years" value="{{year}}">{{year}}</md-option>
+	                    </md-select>
+	                </md-input-container>
+	                <md-input-container flex-gt-sm>
 	                	<label>Keyword filter</label><input data-ng-model="filterKeyword"/>
 	                </md-input-container>        
 	                <md-input-container flex-gt-sm data-ng-show="infoContent.length">
-	                    <label><strong>{{ (infoContent | filter:{contentType:filterContentType,file:filterKeyword}).length }} result<span data-ng-show="(infoContent | filter:{contentType:filterContentType,file:filterKeyword}).length > 1">s</span> found</strong></label>
+	                    <label><strong>{{ (infoContent | filter:{contentType:filterContentType,file:filterKeyword,year:filterYear}).length }} result<span data-ng-show="(infoContent | filter:{contentType:filterContentType,file:filterKeyword}).length > 1">s</span> found</strong></label>
 	                </md-input-container>
 	                <md-input-container flex-gt-sm></md-input-container>
 	                <md-input-container flex-gt-sm></md-input-container>
@@ -43,7 +49,7 @@
 <div class="wd-100">
 	<div class="mxw-80">
 		<div flex="100" layout-fill layout="row" layout-wrap>	
-			<md-card flex="45" layout="row" data-ng-repeat="(k,infomaterial) in infoContent | filter:{contentType:filterContentType,file:filterKeyword}"  class="card-container">
+			<md-card flex="45" layout="row" data-ng-repeat="(k,infomaterial) in infoContent | filter:{contentType:filterContentType,file:filterKeyword,year:filterYear}"  class="card-container">
 				<div flex="25" layout="left left" class="infographic-card-icon" style="background:url('../{{infomaterial.cardIcon}}')">
 				</div>				
             	<md-card-title flex="50">

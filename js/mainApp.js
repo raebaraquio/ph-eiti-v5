@@ -509,7 +509,7 @@ pheiti.controller('compareReportsController',['$scope','$mdDialog',
         {
             periodCovered : 2012,
             publicationDate: "December 2012",
-            sectorsCovered: "Oil, Gas, Mining",
+            sectorsCovered: "Oil, Gas, Mining, Coal",
             govtRevenues: 1203,
             companyPayments:1270,
             numCompaniesReporting:36
@@ -528,4 +528,91 @@ pheiti.controller('compareReportsController',['$scope','$mdDialog',
         $mdDialog.hide();
     };
 
+}]);
+
+pheiti.controller('menuController',['$scope','NavigationFactory','utilsService','$location','$rootScope',
+    function($scope,NavigationFactory,utilsService,$location,$rootScope){
+        $scope.showMenu = false;
+        $scope.main_nav = [];
+        $scope.active = {mnav: '', subnav: ''};
+        $scope.getnavigation = function() {
+            $scope.main_nav = [];
+            var mainnav = NavigationFactory.get();
+            for (var idx=0;idx<mainnav.length;idx++){
+                if (mainnav[idx].subnav.length > 0) {
+                    mainnav[idx].subnav_open = false;
+                    for (var sidx=0;sidx<mainnav[idx].subnav.length;sidx++) {
+                        mainnav[idx].subnav[sidx].subnav_open = false;
+                        try {
+                            if (mainnav[idx].subnav[sidx].subnav.length > 0) {
+                                for (var ssidx=0;ssidx<mainnav[idx].subnav[sidx].subnav.length;ssidx++){
+                                    mainnav[idx].subnav[sidx].subnav[ssidx].subnav_open = false;
+                                }
+                            }    
+                        }
+                        catch(err){
+
+                        }
+                    }
+                }
+            }
+            $scope.main_nav = mainnav;
+            if ($location.$$absUrl.match(/#/gi)){
+                var locs = $location.$$absUrl.split('#');
+                var host = locs[0].split('/');
+            }
+            else {
+                var host = $location.$$absUrl.split('/');
+            }
+            if (utilsService.inObj($scope.main_nav,'href',host[host.length-2])) {
+                $scope.active.mnav = utilsService.getObjOtherPropVal($scope.main_nav,'href',host[host.length-2],'id');
+            }
+            $scope.active.subnav = ''
+        }
+
+        $scope.getnavigation();
+
+        $scope.expand=function(nav){
+            nav.subnav_open = !nav.subnav_open;
+            for (var idx=0;idx<$scope.main_nav.length;idx++){
+                if ($scope.main_nav[idx].subnav.length > 0) {
+                    if ($scope.main_nav[idx].subnav_open===true && $scope.main_nav[idx].id!==nav.id){
+                        $scope.main_nav[idx].subnav_open = false;
+                    }
+                }
+            }
+        }
+
+        $scope.collapse=function(nav){
+            nav.subnav_open = !nav.subnav_open;
+        }
+
+        $rootScope.$on('$routeChangeSuccess', function(next, current) { 
+            try {
+                $scope.active.subnav = $location.path().split('/')[1];
+                for (var idx=0;idx<$scope.main_nav.length;idx++){
+                    if ($scope.main_nav[idx].subnav.length > 0) {
+                        for (var sidx=0;sidx<$scope.main_nav[idx].subnav.length;sidx++){
+                            $scope.main_nav[idx].subnav_open = false;
+                        }
+                    }
+                }
+                for (var idx=0;idx<$scope.main_nav.length;idx++){
+                    if ($scope.main_nav[idx].subnav.length > 0) {
+                        for (var sidx=0;sidx<$scope.main_nav[idx].subnav.length;sidx++){
+                            if ($scope.main_nav[idx].subnav[sidx].href === $scope.active.subnav && $scope.main_nav[idx].id===$scope.active.mnav) {
+                                $scope.main_nav[idx].subnav_open = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if ($route.current.title) {
+                    document.title = $route.current.title;  
+                }
+            }
+            catch(err)  {
+                
+            }
+        });
 }]);
