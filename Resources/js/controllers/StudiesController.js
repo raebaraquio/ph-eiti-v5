@@ -1,6 +1,11 @@
 resourcesApp.controller('StudiesController',['$scope','ResourcesFactory',
 	function($scope,ResourcesFactory){
-
+	try {
+		ga('send', 'event', 'Pages', 'loaded', 'Resources : Studies');	
+	}
+	catch(gaError){
+		console.log('GA - '+gaError)
+	}
 	$scope.studies = ResourcesFactory.studies();
 	$scope.filterKeyword = ''
 	$scope.years = []	
@@ -12,9 +17,14 @@ resourcesApp.controller('StudiesController',['$scope','ResourcesFactory',
 
 	$scope.filterYear =  2015; //$scope.years[0];
 
-	$scope.goto_file = function(link) {
+	$scope.goto_file = function(link,file) {
 		if (link!=''){
-			//window.open('../../'+link)
+			try {
+				ga('send', 'event', 'Files', 'opened', 'Studies ('+$scope.filterYear+') : '+file.title);	
+			}
+			catch(gaError){
+				console.log('GA - '+gaError)
+			}
 			window.open('../'+link)
 		}
 		else {

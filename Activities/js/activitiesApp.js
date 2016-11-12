@@ -4,12 +4,12 @@ activitiesApp.config(function($routeProvider){
     .when('/',
     {
         controller:'ActivitiesController',
-        templateUrl:'template/index.html?v=1.02'
+        templateUrl:'template/index.html?v=1.03'
     })
     .when('/:id',
     {
         controller: 'ActivitiesController',
-        templateUrl: 'template/view.html?v=1.02'
+        templateUrl: 'template/view.html?v=1.03'
     })
     .otherwise({
         redirectTo:'/'

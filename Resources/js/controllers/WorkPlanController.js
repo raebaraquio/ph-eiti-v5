@@ -17,6 +17,12 @@ resourcesApp.controller('WorkPlanController',['$scope','ResourcesFactory',
 			for (var idx=0;idx<$scope.workPlans.length;idx++) {
 				if ($scope.filterYear===$scope.workPlans[idx].year) {
 					$scope.selected_workPlan = $scope.workPlans[idx];
+					try {
+						ga('send', 'event', 'Pages', 'loaded', 'Work Plan : '+$scope.selected_workPlan.title);	
+					}
+					catch(gaError){
+						console.log('GA - '+gaError)
+					}
 				}
 			}
 		}
@@ -24,7 +30,13 @@ resourcesApp.controller('WorkPlanController',['$scope','ResourcesFactory',
 
 	$scope.refresh();
 
-	$scope.preview = function(src) {
+	$scope.preview = function(src,wplan) {
+		try {
+			ga('send', 'event', 'Files', 'opened', 'Work Plan : '+wplan.title);	
+		}
+		catch(gaError){
+			console.log('GA - '+gaError)
+		}
 		window.open(src)
 	}
 

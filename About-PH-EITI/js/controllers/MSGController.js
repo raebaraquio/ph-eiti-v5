@@ -1,6 +1,11 @@
 aboutApp.controller('MSGController',['$scope','MSGFactory','$location','$sce',
 	function($scope,MSGFactory,$location,$sce){
-	
+	try {
+        ga('send', 'event', 'Pages', 'loaded', 'About PH-EITI : MSG Members'); 
+    }
+    catch(gaError){
+        console.log('GA - '+gaError)
+    }
 	var loc = $location.path().split('/');
 
 	$scope.members = []

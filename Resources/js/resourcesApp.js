@@ -7,70 +7,70 @@ resourcesApp.config(function($routeProvider){
             // redirectTo: '/Work-Plan'
             controller:'ResourcesController',
             title: 'Resources | PH-EITI',
-            templateUrl:'./template/index.html?v=1.03'
+            templateUrl:'./template/index.html?v=1.04'
 	 	})
 
 	 	.when('/Work-Plan',
 	 	{
             controller:'WorkPlanController',
             title: 'Work Plan | PH-EITI',
-	 		templateUrl:'./template/work-plan/index.html?v=1.03'	
+	 		templateUrl:'./template/work-plan/index.html?v=1.04'	
 	 	})
 
 	 	.when('/Laws-and-Legal-Issuances',
 	 	{
             controller:'LawsController',
             title: 'Laws and Legal Issuances | PH-EITI',
-	 		templateUrl:'./template/laws-and-legal-issuances/index.html?v=1.03'	
+	 		templateUrl:'./template/laws-and-legal-issuances/index.html?v=1.04'	
 	 	})
 
         .when('/Organizational-Documents/:folderName',
         {
             controller:'OrgDocsController',
             title: 'Organizational Documents | PH-EITI',
-            templateUrl:'./template/organizational-documents/folder-view.html?v=1.03'
+            templateUrl:'./template/organizational-documents/folder-view.html?v=1.04'
         })
 
 	 	.when('/Organizational-Documents',
 	 	{
             controller:'OrgDocsController',
             title: 'Organizational Documents | PH-EITI',
-	 		templateUrl:'./template/organizational-documents/index.html?v=1.03'	
+	 		templateUrl:'./template/organizational-documents/index.html?v=1.04'	
 	 	})
 
 	 	.when('/Studies',
 	 	{
             controller:'StudiesController',
             title: 'Studies | PH-EITI',
-	 		templateUrl:'./template/studies/index.html?v=1.03'	
+	 		templateUrl:'./template/studies/index.html?v=1.04'	
 	 	})
 
 	 	.when('/Infographics',
 	 	{
             controller:'InfographicsController',
             title: 'Infographics & Brochures | PH-EITI',
-	 		templateUrl:'./template/infographics/index.html?v=1.03'	
+	 		templateUrl:'./template/infographics/index.html?v=1.04'	
 	 	})
 
 	 	.when('/Activity-Reports',
 	 	{
             controller:'ActivityReportsController',
             title: 'Activity Reports | PH-EITI',
-	 		templateUrl:'./template/activity-reports/index.html?v=1.03'	
+	 		templateUrl:'./template/activity-reports/index.html?v=1.04'	
 	 	})
 
         .when('/GIS/:folderName',
         {
             controller:'GISController',
             title: 'General Information Sheet | PH-EITI',
-            templateUrl:'./template/gis/folder-view.html?v=1.03'   
+            templateUrl:'./template/gis/folder-view.html?v=1.04'   
         })
 
         .when('/GIS',
         {
             controller:'GISController',
             title: 'General Information Sheet | PH-EITI',
-            templateUrl:'./template/gis/index.html?v=1.03'   
+            templateUrl:'./template/gis/index.html?v=1.04'   
         })
 
 	 	.otherwise({

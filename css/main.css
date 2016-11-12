@@ -334,6 +334,9 @@ a {
 	margin-bottom:3px;
 }
 
+#footer-logo {
+	width: 85px;
+}
 
 /*@media (max-width: 600px) {*/
 @media all and (min-width: 412px) and (max-width: 736px) {
@@ -540,6 +543,19 @@ a {
 
 }
 
+@media all and  (min-width:600px) and (max-width: 736px){
+	#contact-social,
+	#contact-main {
+		text-align: right;
+		padding-right: 1.2em;
+		font-size: 1em;
+	}
+
+	#contact-main p {
+	    font-size: 0.8em;
+	}
+}
+
 @media all and (min-width: 600px) and (max-width: 768px) {
 	#home-nav-bar {
 		background-color: #fabc01;
@@ -559,21 +575,60 @@ a {
 		max-width: 100%;
 	}
 
-	#home-nav-bar {
+	/*/#home-nav-bar {
 		background-color: #fabc01;
-	}
+	}*/
 }
 
 /* Landscape */
-@media all and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+@media all and (min-width: 768px) and (max-width: 960px) and (orientation: landscape) {
 	#logo-wrapper--inner {
 		max-width: 100%;
 	}
+}
 
+@media all and (min-width: 768px) and (max-width: 959px) {
 	#home-nav-bar {
 		background-color: #fabc01;
 	}
 }
+
+@media all and (min-width: 960px) and (max-width: 1280px) {
+	#logo-wrapper--inner {
+		max-width: 100%;
+	}
+	
+	#logo-wrapper__main img {
+		margin-left: 1em;
+	}
+	
+	#home-nav-bar > md-menu-bar {
+		max-width: 100%;
+	}
+
+	.flex-md-17, .layout-row>.flex-md-17 {
+	    -webkit-flex: 1 1 17%;
+	    -ms-flex: 1 1 17%;
+	    flex: 1 1 17%;
+	    max-width: 17%;
+	    max-height: 100%;
+	    box-sizing: border-box;
+	}
+
+	#home-nav-bar ul > li:last-child {
+		max-width: 20%;	
+		margin-left:-2em;
+	}
+	
+}
+
+@media all and (min-width: 1281px) and (max-width: 1318px) {
+	#home-nav-bar ul > li:last-child {
+		max-width: 20%;	
+		margin-left:-2em;
+	}
+}
+
 
 @media all and (min-width: 1025px) and (max-width: 1280px) {
 	
@@ -585,4 +640,35 @@ a {
 		max-width: 100%;
 	}
 
+}
+
+@media all and (min-width: 960px) and (max-width: 1140px) { 
+	#home-statements--inner div > em {
+		font-size: 1em;
+	}
+	#home-statements--inner div > h2 {
+		font-size: 1.25em;
+	}
+	#home-statements--inner div > a {
+		font-size: 1em;
+	} 
+}
+
+@media all and (min-width: 768px) and (max-width: 959px) { 
+	#home-statements--inner div > em {
+		font-size: 1em;
+	}
+	#home-statements--inner div > h2 {
+		font-size: 1.25em;
+	}
+	#home-statements--inner div > a {
+		font-size: 1em;
+	} 
+}
+
+@media all and (min-width: 360px) and (max-width: 735px) {
+	footer .mxw-80 {
+		max-width: 100%;
+		padding-left:1em;
+	}
 }

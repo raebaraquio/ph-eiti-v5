@@ -37,6 +37,12 @@ activitiesApp.controller('ActivitiesController',['$scope','ActivitiesFactory','$
 				var act = $location.path().split('/')[1]
 				for (var k in $scope.activities) {
 					if ($scope.activities[k].id == act) {
+						try {
+					        ga('send', 'event', 'Pages', 'loaded', 'Activities - '+$scope.activities[k].title); 
+					    }
+					    catch(gaError){
+					        console.log('GA - '+gaError)
+					    }
 						$scope.activity = $scope.activities[k];
 
 						if ($scope.activity.writeup != null) {
@@ -113,6 +119,14 @@ activitiesApp.controller('ActivitiesController',['$scope','ActivitiesFactory','$
 						}
 					}
 				}
+			}
+			else {
+				try {
+			        ga('send', 'event', 'Pages', 'loaded', 'Activities'); 
+			    }
+			    catch(gaError){
+			        console.log('GA - '+gaError)
+			    }
 			}
 		}
 	}

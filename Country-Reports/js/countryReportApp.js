@@ -6,7 +6,7 @@ countryReportApp.config(function($routeProvider){
  	{	
  		title: 'Country Report | PH-EITI',
 		controller:'CountryReportCtrl',
-	    templateUrl: 'template/index.html?v=1.02'
+	    templateUrl: 'template/index.html?v=1.03'
 	})
     .when('/Reporting-Templates',
     {
@@ -18,13 +18,13 @@ countryReportApp.config(function($routeProvider){
 	{
 		title: 'Country Report | PH-EITI',
 		controller:'CountryReportCtrl',
-	    templateUrl: 'template/annex.html?v=1.02'
+	    templateUrl: 'template/annex.html?v=1.03'
 	})
 	.when('/:reportId',
 	{
 		title: 'Country Report | PH-EITI',
 		controller:'CountryReportCtrl',
-	    templateUrl: 'template/countryReport-index.html?v=1.02'
+	    templateUrl: 'template/countryReport-index.html?v=1.03'
 	})
 	.otherwise({
 		redirectTo:'/'

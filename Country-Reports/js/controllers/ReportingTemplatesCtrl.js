@@ -1,6 +1,13 @@
 countryReportApp.controller('ReportingTemplatesCtrl',['$scope','CountryReportFactory','utilsService',
 	function($scope,CountryReportFactory,utilsService){
 
+	try {
+		ga('send', 'event', 'Pages', 'loaded', 'Country Reports : Reporting Templates');	
+	}
+	catch(gaError){
+		console.log('GA - '+gaError)
+	}
+
 	$scope.filterSector = 'Industry'; //'Government Agencies'
 	$scope.filterYear = 2015;
 	$scope.sectors = [];
@@ -35,7 +42,13 @@ countryReportApp.controller('ReportingTemplatesCtrl',['$scope','CountryReportFac
 
 	$scope.refreshTemplates();
 
-	$scope.open_file=function(src){
+	$scope.open_file=function(src,file){
+		try {
+			ga('send', 'event', 'Files', 'opened', "Reporting Templates ("+$scope.filterYear+") : "+file.title);	
+		}
+		catch(gaError){
+			console.log('GA - '+gaError)
+		}
 		window.open(src)
 	}
 

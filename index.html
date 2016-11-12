@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="css/jk-carousel.min.css" />
     <link rel="stylesheet" href="css/basic.css?v=1.02"> 
     <link rel="stylesheet" href="css/nav.css?v=1.02"> 
-    <link rel="stylesheet" href="css/main.css?v=1.04">
+    <link rel="stylesheet" href="css/main.css?v=1.05">
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -36,7 +36,7 @@
         <div class="mxw-80" id="logo-wrapper--inner">
             <md-content layout flex layout="row" layout-md="row" layout-sm="row" layout-xs="column">
                 <md-content flex="50" flex-xs="100" flex-sm="50" flex-md="50" id="logo-wrapper__main" layout-md="row" layout-sm="row" layout-xs="row" >
-                    <img class="curs--hover" flex-md="15" flex-sm="15" flex-xs="15" src="images/icons/svg/ic_menu_black_24px.svg" alt="PH-EITI" title="PH-EITI" width="36px" hide-lg hide-gt-lg hide-gt-xl data-ng-click="showMenu=!showMenu" /><a flex-md="50" flex-xs="50" flex-sm="50" href="./"><img class="gutters" src="images/logo-without-text.png" alt="PH-EITI" title="PH-EITI" width="165"/></a>
+                    <img class="curs--hover" flex-md="15" flex-sm="15" flex-xs="15" src="images/icons/svg/ic_menu_black_24px.svg" alt="PH-EITI" title="PH-EITI" width="36px" hide-md hide-lg hide-gt-lg hide-gt-xl data-ng-click="showMenu=!showMenu" /><a flex-md="50" flex-xs="50" flex-sm="50" href="./"><img class="gutters" src="images/logo-without-text.png" alt="PH-EITI" title="PH-EITI" width="165"/></a>
                 </md-content>
                 <md-content flex="50" flex-xs="100" flex-sm="50" flex-md="50" class="ta-right" id="logo-wrapper__social" style="padding-top:0.4em;" hide-xs>
                     <a href="javascript:window.open('https://www.facebook.com/PhilippineEITI/')" title="Philippine EITI"><img src="images/icons/facebook.png" class="va-mid" alt="" width="32px" /></a>&nbsp;&nbsp;<!--
@@ -48,7 +48,7 @@
             <div class="ta-left va-mid" style="padding-top:3px;">
                 <img class="curs--hover va-mid" src="images/icons/svg/ic_arrow_back_white_24px.svg" alt="PH-EITI" title="PH-EITI" width="40px" hide-lg data-ng-click="showMenu=!showMenu" style="margin-left:7px;outline:none;"/>
             </div>            
-            <div style="max-height:100%;overflow-y:scroll;">
+            <div style="max-height:600px;overflow-y:scroll;">
                 <ul class="side-main-nav">
                     <li><a href="./#" title="Home" data-ng-click="showMenu=!showMenu">Home</a></li>
                     <li data-ng-repeat="(kmnav,vmnav) in main_nav" layout="column" data-ng-class="{'sidenav-menu__item--open':vmnav.subnav_open===true}">
@@ -81,9 +81,9 @@
     <div class="wd-100" data-ng-controller="NavigationController">
         <nav class="c-nav c-nav--main" role="navigation">
             <div class="wd-100 md-nav-bar" id="home-nav-bar">
-                <md-menu-bar class="mxw-80" hide-xs hide-sm hide-md>
+                <md-menu-bar class="mxw-80" hide-xs hide-sm>
                     <ul role="menubar" layout="row" style="margin: opx;margin-top: 0px;margin-bottom: 0px;padding-bottom: 0em;padding-left:0px;">
-                        <li role="menuitem" data-ng-repeat="(kmnav,vmnav) in main_nav" flex="20" class="mnav-item" >
+                        <li role="menuitem" data-ng-repeat="(kmnav,vmnav) in main_nav" flex="20" flex-md="17" class="mnav-item" >
                             <md-menu style="padding-bottom:0.3em;" md-position-mode="target-right target">
                                 <button class="menulevel--first">
                                     <a href="{{vmnav.href}}" role="menutiem" title="{{vmnav.name}}" data-ng-class="{'main--active':vmnav.subnav_open===true}" style="padding:10px;">{{vmnav.name}}</a>
@@ -130,7 +130,7 @@
         <div class="mxw-80"><br/></div>   
     </div>
 
-    <header class="wd-100" id="home-slider" data-ng-controller="headerCarouselController" hide-md hide-sm hide-xs>   
+    <header class="wd-100" id="home-slider" data-ng-controller="headerCarouselController" hide-sm hide-xs>   
         <div class="mxw-80" layout-align="center center" >
             <jk-carousel
                 data="headersArr"
@@ -338,10 +338,10 @@
 
     <footer class="wd-100">   
         <div class="mxw-80" class="md-padding">
-            <md-content layout="row" layout-xs="column" >
-                <md-content flex="30" layout="column" flex-xs="100">
+            <md-content layout="row" layout-xs="column" layout-sm="row">
+                <md-content flex="30" layout="column" flex-xs="100" flex-sm="30">
                     <div>
-                        <a tabindex="-1" href="./"><img src="images/white-logo-no-desc.png" alt="PH-EITI" title="PH-EITI" style="width:30%"/></a>
+                        <a tabindex="-1" href="./"><img id="footer-logo" src="images/white-logo-no-desc.png" alt="PH-EITI" title="PH-EITI"/></a>
                     </div>
                     <div hide-xs>    
                         <ul class="footer-nav-list">
@@ -350,11 +350,12 @@
                             <li><a href="./Resources">Resources</a></li>
                             <li><a href="./Activities">Activities</a></li>
                             <li><a href="./News">News</a></li>
-                            <li><a href="./Contry-Reports">Country Reports</a></li>
+                            <li><a href="./Country-Reports">Country Reports</a></li>
                         </ul>
                     </div>
                 </md-content>
-                <md-content flex="70" layout="column" flex-xs="100" data-ng-controller="footerController" id="contact">
+                <md-content show-sm flex-sm="30"></md-content>
+                <md-content flex="70" layout="column" flex-xs="100" flex-sm="70" class="ta-right" data-ng-controller="footerController" id="contact">
                     <div id="contact-social" flex-order-xs="2" class="ta-right" layout="column">
                         <div>
                             <md-button class="md-accent md-raised" data-ng-click="triggerSubscribe($event)"><strong>Subscribe</strong></md-button>
@@ -364,10 +365,10 @@
                     </div>
                     <div id="contact-main" flex-order-xs="1" class="ta-right footer-secretariat-contact">
                         <strong hide-xs>PH-EITI Secretariat</strong>
-                        <p layout-xs="column" >
+                        <p>
                             {{contactDetails.add_line1}}<br/>{{contactDetails.add_line2}}<br/>
-                            <md-icon md-svg-icon="./images/icons/svg/ic_email_white_18px.svg"></md-icon> {{contactDetails.email}}
-                            <md-icon md-svg-icon="./images/icons/svg/ic_phone_white_18px.svg"></md-icon> {{contactDetails.phone}}
+                            <md-icon md-svg-icon="images/icons/svg/ic_email_white_18px.svg"></md-icon> {{contactDetails.email}}
+                            <md-icon md-svg-icon="images/icons/svg/ic_phone_white_18px.svg"></md-icon> {{contactDetails.phone}}
                         </p>
                     </div>
                 </md-content>

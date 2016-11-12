@@ -51,14 +51,14 @@
 						<h3 title="{{folder.folder_name}}">{{folder.folder_name}}</h3>
 						<p>Found {{folder.files.length}} file<span data-ng-show="folder.files.length > 1">s</span></p>
 					</div>
-					<md-button class="md-accent" data-ng-show="folder.files.length > 0" data-ng-click="openFolder(folder.folder_id)"><strong>View Files</strong></md-button>
+					<md-button class="md-accent" data-ng-show="folder.files.length > 0" data-ng-click="openFolder(folder.folder_id,folder)"><strong>View Files</strong></md-button>
 				</md-list-item>
 				<md-list-item  data-ng-repeat="(kfolder,folderFile) in orgdocs.files" class="md-2-line">
 					<md-icon md-svg-icon="../images/icons/svg/document9.svg" class="md-avatar" ></md-icon>
 					<div class="md-list-item-text">
 						<h3 title="{{folderFile.title}}">{{folderFile.title}}</h3>
 					</div>
-					<md-button class="md-accent" data-ng-show="folderFile.src!==''" data-ng-click="openFile(folderFile.src)"><strong>open</strong></md-button>
+					<md-button class="md-accent" data-ng-show="folderFile.src!==''" data-ng-click="openFile(folderFile.src,folderFile)"><strong>open</strong></md-button>
 				</md-list-item>
 			</md-list>
 		</div>

@@ -26,6 +26,12 @@ newsApp.controller('NewsController',['$scope','NewsFactory','$sce','$rootScope',
 	if (loc.length===2){
 		$scope.selected_type = loc[loc.length-1];
 		$scope.selected_idx = $scope.setSelectedidx();
+		try {
+			ga('send', 'event', 'Pages', 'loaded', 'News : '+$scope.newsTypes[$scope.selected_type]);	
+		}
+		catch(gaError){
+			console.log('GA - '+gaError)
+		}
 	}
 	
 	var get = {
@@ -57,7 +63,7 @@ newsApp.controller('NewsController',['$scope','NewsFactory','$sce','$rootScope',
 				console.log(err)
 			})
 		},
-		news : function() {
+		news : function() {			
 			$scope.nearticle = {}
 			$scope.newsandevents = []
 			$scope.lastUpdated = ""

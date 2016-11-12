@@ -5,30 +5,46 @@ wieApp.config(function($routeProvider){
 	 	.when('/',
 	 	{
             title: 'What is EITI? | ph-eiti.org',            
-            templateUrl:'./template/index.html?v=1.02'	
+            templateUrl:'./template/index.html?v=1.03'	
 	 	})
 
         .when('/History',
         {
             title: 'History | What is EITI?',
             controller:'HistoryController',
-            templateUrl:'./template/history.html?v=1.02'
+            templateUrl:'./template/history.html?v=1.03'
         })
 
 	 	.when('/The-EITI-Standard',
 	 	{
 	 		title: 'The EITI Standard | What is EITI?',
-	 		templateUrl:'./template/standard.html?v=1.02'
+	 		templateUrl:'./template/standard.html?v=1.03',
+            controller:function(){
+                try {
+                    ga('send', 'event', 'Pages', 'loaded', 'What is EITI : The EITI Standard'); 
+                }
+                catch(gaError){
+                    console.log('GA - '+gaError)
+                }
+            }
 	 	})
 
 	 	.when('/The-EITI-Principles',
 	 	{
 	 		title: 'The EITI Principles | What is EITI?',
-	 		templateUrl:'./template/principles.html?v=1.02'
+	 		templateUrl:'./template/principles.html?v=1.03',
+            controller:function(){
+                try {
+                    ga('send', 'event', 'Pages', 'loaded', 'What is EITI : The EITI Principles'); 
+                }
+                catch(gaError){
+                    console.log('GA - '+gaError)
+                }
+            }
 	 	})
 	 	
 	 	.otherwise({
-			redirectTo: '/History'
+			redirectTo: '/'
 		});;
 }); 
 

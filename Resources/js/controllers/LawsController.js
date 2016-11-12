@@ -3,9 +3,23 @@ resourcesApp.controller('LawsController',['$scope','LawsFactory',
 
 	$scope.lawsContent = LawsFactory.get();
     $scope.filterMuniProv = 'Provinces';
+    $scope.selectedLawCategory = $scope.lawsContent[0].category;
 
-	$scope.goto_link = function(link) {
+    try {
+        ga('send', 'event', 'Pages', 'loaded', 'Resources : Laws & Legal Issuances'); 
+    }
+    catch(gaError){
+        console.log('GA - '+gaError)
+    }    
+
+	$scope.goto_link = function(link,file) {
     	if (link!='') {
+            try {
+                ga('send', 'event', 'Files', 'opened', $scope.selectedLawCategory+' : '+file.title);   
+            }
+            catch(gaError){
+                console.log('GA - '+gaError)
+            }
     		if (link.match(/http/)) {
 				window.open(link)	
     		}
@@ -18,12 +32,18 @@ resourcesApp.controller('LawsController',['$scope','LawsFactory',
     	}
     }
 
-    $scope.goto_file = function(link) {
-    	// ../../
+    $scope.goto_file = function(link,file,filter) {
+    	try {
+            ga('send', 'event', 'Files', 'opened',$scope.selectedLawCategory+' ('+filter+') : '+file.title);
+        }
+        catch(gaError){
+            console.log('GA - '+gaError)
+        }
     	window.open('../document/Laws/Tax-Codes/'+link+'.pdf')
     }
 
     $scope.refresh_taxcodes = function() {
+        $scope.$apply();
     	$scope.taxcodes = $scope.alltaxcodes[$scope.selected_tax_code]
     }
         
@@ -36,6 +56,16 @@ resourcesApp.controller('LawsController',['$scope','LawsFactory',
             ret = ret.substr(0,maxLength-3) + "...";
         }
         return ret;
+    }
+
+    $scope.trackEvent=function(law){
+        $scope.selectedLawCategory = law.category;
+        try {
+            ga('send', 'event', 'Pages', 'loaded', 'Laws & Legal Issuances : '+law.category); 
+        }
+        catch(gaError){
+            console.log('GA - '+gaError)
+        }    
     }
 
 }]);

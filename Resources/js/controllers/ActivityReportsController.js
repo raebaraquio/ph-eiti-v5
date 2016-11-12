@@ -1,6 +1,11 @@
 resourcesApp.controller('ActivityReportsController',['$scope','ResourcesFactory','$location',
 	function($scope,ResourcesFactory,$location){
-
+	try {
+		ga('send', 'event', 'Pages', 'loaded', 'Resources : Activity Reports');	
+	}
+	catch(gaError){
+		console.log('GA - '+gaError)
+	}
 	$scope.activityReports = ResourcesFactory.activityReports();
 	$scope.selected_folder = {}
 
@@ -13,7 +18,13 @@ resourcesApp.controller('ActivityReportsController',['$scope','ResourcesFactory'
 		}
 	}
 
-	$scope.openFile=function(link){
+	$scope.openFile=function(link,folder){
+		try {
+			ga('send', 'event', 'Files', 'opened', folder.title+' : '+folder.coverage);	
+		}
+		catch(gaError){
+			console.log('GA - '+gaError)
+		}
 		window.open(link)
 	}
 
