@@ -1,6 +1,11 @@
 aboutApp.controller('MSGMeetingsController',['$scope','MSGFactory',
 	function($scope,MSGFactory){
-	
+	try {
+        ga('send', 'event', 'Pages', 'loaded', 'About PH-EITI : MSG Meetings'); 
+    }
+    catch(gaError){
+        console.log('GA - '+gaError)
+    }
 	$scope.meetings = []
     $scope.meeting_selected = {}
     $scope.filterTitle = ''

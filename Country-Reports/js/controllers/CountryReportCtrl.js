@@ -10,7 +10,13 @@ countryReportApp.controller('CountryReportCtrl',['$scope','CountryReportFactory'
 			var p = CountryReportFactory.get();
 			for (var k in p) {
 				if (p[k].id == id) {
-					$scope.current_report = p[k]
+					$scope.current_report = p[k];
+					try {
+						ga('send', 'event', 'Pages', 'loaded', 'Country Reports : '+p[k].title);	
+					}
+					catch(gaError){
+						console.log('GA - '+gaError)
+					}
 					break;
 				}
 			}
@@ -27,6 +33,12 @@ countryReportApp.controller('CountryReportCtrl',['$scope','CountryReportFactory'
 				if ($scope.current_report.content[a]) {
 					if ($scope.current_report.content[a].href == annex) {
 						$scope.current_annex = $scope.current_report.content[a];
+						try {
+							ga('send', 'event', 'Pages', 'loaded', 'Country Reports : '+$scope.current_annex.title);	
+						}
+						catch(gaError){
+							console.log('GA - '+gaError)
+						}
 						$scope.refresh_annexTemplate()
 						break;
 					}	
@@ -45,6 +57,12 @@ countryReportApp.controller('CountryReportCtrl',['$scope','CountryReportFactory'
         	case 2:
         		if (currloc=='/') {
 					get.countryreport();
+					try {
+						ga('send', 'event', 'Pages', 'loaded', 'Country Reports');	
+					}
+					catch(gaError){
+						console.log('GA - '+gaError)
+					}
         		}
         		else {
 					get.creport(loc[loc.length-1]);
@@ -63,8 +81,14 @@ countryReportApp.controller('CountryReportCtrl',['$scope','CountryReportFactory'
 		$location.path('/'+id);
 	}
 
-	$scope.open_file = function(link){
+	$scope.open_file = function(link,file){
 		if (link) {
+			try {
+				ga('send', 'event', 'Files', 'opened', $scope.current_report.title+' : '+file.title);	
+			}
+			catch(gaError){
+				console.log('GA - '+gaError)
+			}
 			window.open(link)	
 		}
 		else {

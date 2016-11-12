@@ -7,28 +7,28 @@ newsApp.config(function($routeProvider){
         {
             title: 'Media Releases | News',
             controller: 'NewsViewController',
-            templateUrl:'./template/news-view.html?v=1.02'
+            templateUrl:'./template/news-view.html?v=1.03'
         })
 
         .when('/PH-EITI-Newsroom/:id',
         {
             title: 'PH-EITI Newsroom | News',
             controller: 'NewsViewController',
-            templateUrl:'./template/news-view.html?v=1.02'
+            templateUrl:'./template/news-view.html?v=1.03'
         })
         
         .when('/PH-EITI-In-the-News/:id',
         {
             title: 'PH-EITI In the News | News',
             controller: 'NewsViewController',
-            templateUrl:'./template/news-view.html?v=1.02'
+            templateUrl:'./template/news-view.html?v=1.03'
         })        
 
         .when('/Archive/:id',
         {
             title: 'Archive | News',
             controller: 'NewsViewController',
-            templateUrl:'./template/news-view.html?v=1.02'
+            templateUrl:'./template/news-view.html?v=1.03'
         })
 
         .when('/Media-Releases',
@@ -56,7 +56,7 @@ newsApp.config(function($routeProvider){
         {
             title: 'Newsletter | News',
             controller: 'NewsletterController',
-            templateUrl:'./template/newsletter.html?v=1.02'
+            templateUrl:'./template/newsletter.html?v=1.03'
         })
 
         .when('/Archive',

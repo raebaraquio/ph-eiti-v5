@@ -1,6 +1,5 @@
 newsApp.controller('NewsViewController',['$scope','NewsFactory','$sce','$rootScope','$location',
 	function($scope,NewsFactory,$sce,$rootScope,$location){
-	
 	$scope.newsType = '';
 	$scope.newsTypesForDb = NewsFactory.getTypes();
 	$scope.article = {};
@@ -37,7 +36,13 @@ newsApp.controller('NewsViewController',['$scope','NewsFactory','$sce','$rootSco
 							if (news[i].content != null && news[i].content != '') {
 								news[i].content = $sce.trustAsHtml('<div style="font-size:13px;">'+news[i].content+'</div>');
 							}
-							$scope.article = news[i]
+							$scope.article = news[i];
+							try {
+								ga('send', 'event', 'Pages', 'loaded', $scope.newsTypesForDb[$scope.selected_type]+' : '+$scope.article.title);	
+							}
+							catch(gaError){
+								console.log('GA - '+gaError)
+							}
 						}						
 					}	
 				}

@@ -17,13 +17,13 @@
 	<div class="mxw-80">
 		<md-content>
 			<md-tabs md-dynamic-height md-border-bottom>
-				<md-tab data-ng-repeat="(kidx,vlaw) in lawsContent" label="{{vlaw.category}}">
+				<md-tab data-ng-repeat="(kidx,vlaw) in lawsContent" label="{{vlaw.category}}" data-ng-click="trackEvent(vlaw)">
 					<h1 class="md-display-2">{{vlaw.category}}</h1>	
 					<md-content>
 			            <div layout-gt-sm="row">
 			                <md-input-container flex-gt-sm data-ng-show="vlaw.category==='Local Tax Codes'">
 			                    <label>Select</label>
-			                    <md-select data-ng-model="filterMuniProv" data-ng-change="refresh()">
+			                    <md-select ng-model="filterMuniProv" data-ng-change="refresh()" >
 			                    	<md-option value="Provinces">Provinces</md-option>
 			                    	<md-option value="Municipalities">Municipalities</md-option>
 			                    </md-select>
@@ -51,7 +51,7 @@
 								</md-card-title>
 								<md-card-actions flex="30" layout="row" layout-align="end center">
 									<h5 data-ng-show="vfile.link==''" class="md-warn" aria-label="unavailable">Link Unavailable</h5>
-									<md-button class="md-secondary md-accent" data-ng-show="vfile.link!==''" data-ng-click="goto_link(vfile.link)">Open</md-button>
+									<md-button class="md-secondary md-accent" data-ng-show="vfile.link!==''" data-ng-click="goto_link(vfile.link,vfile)">Open</md-button>
 								</md-card-actions>
 							</md-card>
 							<md-card flex="30" layout="row" data-ng-if="vlaw.category==='Local Tax Codes'"  data-ng-repeat="(kfile,vfile) in vlaw.files | filter:{title:filterKeyword,level:filterMuniProv}"    class="card-container">
@@ -62,7 +62,7 @@
 									</md-card-title-text>
 								</md-card-title>
 								<md-card-actions flex="30" layout="row" layout-align="end center">
-									<md-button class="md-secondary md-accent" data-ng-click="goto_file(vfile.title)">Open</md-button>
+									<md-button class="md-secondary md-accent" data-ng-click="goto_file(vfile.title,vfile,filterMuniProv)">Open</md-button>
 								</md-card-actions>
 							</md-card>
 						</div>	

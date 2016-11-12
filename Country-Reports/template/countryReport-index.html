@@ -34,8 +34,8 @@
                         <md-button data-ng-if="cr.media && cr.file" class="md-accent"  data-ng-click="goto_activity(current_report.id+'/'+cr.href)" alt="Go to {{cr.title}}"  title="Go to {{cr.title}}"><strong>Go to page</strong></md-button>
                         <md-button data-ng-if="cr.media && !cr.file" class="md-secondary" alt="Material not yet available"  title="Material not yet available"><strong>Material unavailable</strong></md-button>
                         <md-button data-ng-if="cr.multiple===false && !cr.file" class="md-secondary" alt="Material not yet available"  title="Material not yet available"><strong>Material unavailable</strong></md-button>
-                        <md-button data-ng-if="cr.multiple===false && cr.mso===undefined && cr.file" class="md-accent" data-ng-click="open_file(cr.file)" alt="Open/Download {{cr.title}}"  title="Open/Download {{cr.title}}"><strong>Open</strong></md-button>
-                        <md-button data-ng-if="cr.multiple===false && cr.mso===true" class="md-accent" data-ng-click="open_file(cr.file)" alt="Open/Download {{cr.title}}"  title="Open/Download {{cr.title}}"><strong>Download</strong></md-button>
+                        <md-button data-ng-if="cr.multiple===false && cr.mso===undefined && cr.file" class="md-accent" data-ng-click="open_file(cr.file,cr)" alt="Open/Download {{cr.title}}"  title="Open/Download {{cr.title}}"><strong>Open</strong></md-button>
+                        <md-button data-ng-if="cr.multiple===false && cr.mso===true" class="md-accent" data-ng-click="open_file(cr.file,cr)" alt="Open/Download {{cr.title}}"  title="Open/Download {{cr.title}}"><strong>Download</strong></md-button>
                     </md-card-actions>
                 </div>                
             </md-card>
