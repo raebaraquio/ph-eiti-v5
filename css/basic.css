@@ -17,6 +17,8 @@
 .va-bottom { vertical-align: bottom; }
 
 .wd-100 { box-sizing: border-box; width: 100%; }
+.wd-98 { box-sizing: border-box; width: 98%; }
+.wd-97 { box-sizing: border-box; width: 97%; }
 .wd-95 { box-sizing: border-box; width: 95%; }
 .wd-90 { box-sizing: border-box; width: 90%; }
 .wd-80 { box-sizing: border-box; width: 80%; }
@@ -38,6 +40,8 @@
 .wd-15 { box-sizing: border-box; width: 15%; }
 .wd-10 { box-sizing: border-box; width: 10%; }
 .wd-5 { box-sizing: border-box; width: 5%; }
+.wd-3 { box-sizing: border-box; width: 3%; }
+.wd-2 { box-sizing: border-box; width: 2%; }
 
 .mnw-full { box-sizing: border-box; min-width: 100%; margin: auto; }
 .mnw-95 { box-sizing: border-box; min-width: 95%; margin: auto; }

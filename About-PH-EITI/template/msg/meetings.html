@@ -30,12 +30,12 @@
 	                    	<md-option data-ng-repeat="mtg in meetings" value="{{mtg.title}}">{{mtg.title}} Meeting</md-option>
 	                    </md-select>
 	                </md-input-container>
-	                <!-- <md-input-container flex="30" >
-	                	<label>Keyword filter</label><input data-ng-model="filterKeyword"/>
-	                </md-input-container> -->
-	                <md-input-container flex="60" data-ng-show="meetings.length">
+	                <md-input-container flex="30">
+	                	<md-button class="md-raised md-default" data-ng-disabled="selectedIdx == meetings.length-1" data-ng-click="getPrevMtg()">Prev</md-button><md-button class="md-raised md-default" data-ng-disabled="selectedIdx == 0"  data-ng-click="getNexMtg()">Next</md-button>
+	                </md-input-container>
+	                <!-- <md-input-container flex="60" data-ng-show="meetings.length">
 	                    <label><strong>{{ (meetings | filter:filterKeyword | filter:{title:filterTitle}).length }} result<span data-ng-show="(meetings | filter:{title:filterTitle}).length > 1">s</span> found</strong></label>
-	                </md-input-container>            
+	                </md-input-container> -->            
 	            </div>            
 	        </md-content>
 	    </div>

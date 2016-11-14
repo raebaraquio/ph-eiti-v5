@@ -27,9 +27,16 @@
 						<h1 class="md-display-2">{{msgtab.group}}</h1>
 						<p>
 							<h4>Roles of {{msgtab.group}} representatives:</h4>
-							<md-list>
-								<md-list-item data-ng-repeat="role in msgtab.roles">* {{ role }}</md-list-item>
-							</md-list>
+							<ul>
+								<li data-ng-repeat="role in msgtab.roles" layout="row" layout-align="start top">
+									<span class="wd-2">&#9679;</span><span class="wd-98">{{ role }}</span>
+								</li>
+							</ul>
+							<!-- <md-list style="list-style-type:circle;">
+								<md-list-item data-ng-repeat="role in msgtab.roles" layout="row" layout-align="start top" style="height:auto;margin:0px;padding:0px;">
+									<span class="wd-2">&#9679;</span><span class="wd-98">{{ role }}</span>
+								</md-list-item>
+							</md-list> -->
 							<!-- <md-content flex> -->
 								<md-table-container>
 									<table md-table id="msgMembers-table">

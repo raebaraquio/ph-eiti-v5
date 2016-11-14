@@ -629,6 +629,135 @@ aboutApp.factory('MSGFactory',['$http',
 			meetings: function() {
 				return [
 					{
+						title:"34th",
+						date:"July 1, 2016 | 09:00AM-12:00PM",
+						updated: "Last updated on September 20, 2016 01:46 PM",
+						venue: "Waling-Waling Room, Orchid Garden Suites, Pablo Ocampo Street, Manila",
+						minutes: "document/msg-mtg/2016/11/14/34th/34th MSG meeting_minutes_7.1.2016.pdf",
+						annexes: [
+							{
+								title:"Annex A - Presentation on the Improvements of the Reporting Template",
+								file:"document/msg-mtg/2016/11/14/34th/Annex A. Presentation on the Improvements of the Reporting Template.pdf"
+							},
+							{
+								title:"Annex B - Facilitating the Release and Public Discolure of LGU Share from National Wealth",
+								file:"document/msg-mtg/2016/11/14/34th/Annex B. DILG-PPEI Study re LGU Shares.pdf"
+							}					
+						]
+					},
+					{
+						title:"33rd",
+						date:"June 3, 2016 | 09:00AM-12:00PM",
+						updated: "Last updated on September 20, 2016 11:53 AM",
+						venue: "Waling-Waling Room, Orchid Garden Suites, Pablo Ocampo Street, Manila",
+						minutes: "document/msg-mtg/2016/11/14/33rd/33rd MSG meeting_minutes_6.3.2016.pdf",
+						annexes: [
+							{
+								title:"Annex A - Scoping Study on Large-Scale Non-Metallic Mining and Quarrying in the Philippines (Part 2)",
+								file:"document/msg-mtg/2016/11/14/33rd/Annex A. Scoping Study on Large-Scale Non-Metallic Mining_part 2.pdf"
+							},
+							{
+								title:"Annex B - 2016 LGU Roadshow",
+								file:"document/msg-mtg/2016/11/14/33rd/Annex B. 2016 LGU Roadshow.pdf"
+							},
+							{
+								title:"Annex B1 - Concept Note - 2016 LGU Roadshow",
+								file:"document/msg-mtg/2016/11/14/33rd/Annex B1. Concept Note_2016 LGU Roadshow.pdf"
+							},
+							{
+								title:"Annex B2 - Programme - 2016 LGU Roadshow",
+								file:"document/msg-mtg/2016/11/14/33rd/Annex B2. Programme_2016 LGU Roadshow.pdf"
+							},
+							{
+								title:"Annex C - 2016 \"Report Analysis Workshop\" Proposal",
+								file:"document/msg-mtg/2016/11/14/33rd/Annex C. 2016 Report Analysis Workshop Proposal.pdf"
+							}						
+						]
+					},
+					{
+						title:"32nd",
+						date:"April 8, 2016 | 09:00AM-12:00PM",
+						updated: "Last updated on June 28, 2016 01:17 PM",
+						venue: "Waling-Waling Room, Orchid Garden Suites, Pablo Ocampo Street, Manila",
+						minutes: "document/msg-mtg/2016/11/14/32nd/32nd MSG meeting_minutes_4.8.2016.pdf",
+						annexes: [
+							{
+								title:"Annex A - 2016 Philippine EITI Work Plan",
+								file:"document/msg-mtg/2016/11/14/32nd/Annex A. Updated 2016 Work Plan.pdf"
+							},
+							{
+								title:"Annex B - Terms of Reference for Independent Administrator",
+								file:"document/msg-mtg/2016/11/14/32nd/Annex B. Terms of Reference for the IA.pdf"
+							},
+							{
+								title:"Annex C - Terms of Reference (Contextual Information Writer)",
+								file:"document/msg-mtg/2016/11/14/32nd/Annex C. Terms of Reference for the Contextual Information Consultant.pdf"
+							},
+							{
+								title:"Annex D - Tax Analysis (2013 EITI Report)",
+								file:"document/msg-mtg/2016/11/14/32nd/Annex D. 2013 Tax Analysis.pdf"
+							},
+							{
+								title:"Annex E - Meeting of the TWG on Local Government Code (LGC) Amendment ",
+								file:"document/msg-mtg/2016/11/14/32nd/Annex E. Report from the TWG on LGC amendments_Proposed scope of study.pdf"
+							},
+							{
+								title:"Annex F - 2016 EITI Validation Checklist",
+								file:"document/msg-mtg/2016/11/14/32nd/Annex F. Validation Checklist.pdf"
+							},
+							{
+								title:"Annex G - EITI Funding Review – a webinar consultation ",
+								file:"document/msg-mtg/2016/11/14/32nd/Annex G. Briefer on EITI Funding Review.pdf"
+							},
+							{
+								title:"Annex H - Gantt Chart of Activities of PH-EITI for 2016",
+								file:"document/msg-mtg/2016/11/14/32nd/Annex H. Gantt Chart of PH-EITI Activities for 2016.pdf"
+							}							
+						]
+					},
+					{
+						title:"31st",
+						date:"March 11, 2016 | 09:00AM-12:00PM",
+						updated: "Last updated on June 30, 2016 04:08 AM",
+						venue: "Waling-Waling Room, Orchid Garden Suites, Manila",
+						minutes: "document/msg-mtg/2016/11/14/31st/31st MSG meeting_minutes_3.11.2016.pdf",
+						annexes: [
+							{
+								title:"Annex A - Terms of Reference for Independent Administrator",
+								file:"document/msg-mtg/2016/11/14/31st/Annex A. Draft Terms of Reference of the IA.pdf"
+							}
+						]
+					},
+					{
+						title:"30th",
+						date:"February 9, 2016 | 09:00AM-12:00PM",
+						updated: "Last updated on June 30, 2016 04:08 AM",
+						venue: "Embassy Ballroom B, Hotel Jen, Roxas Blvd., Manila",
+						minutes: "document/msg-mtg/2016/11/14/30th/30th MSG meeting_minutes_2.9.2016.pdf",
+						annexes: [
+							{
+								title:"Annex A - EITI Validation",
+								file:"document/msg-mtg/2016/11/14/30th/Annex A. EITI Validation.pdf"
+							},
+							{
+								title:"Annex B - Comments on the 2nd PH-EITI Report",
+								file:"document/msg-mtg/2016/11/14/30th/Annex B. Comments on the 2nd report.pdf"
+							},
+							{
+								title:"Annex C - Philippine Non-Metallic Minerals",
+								file:"document/msg-mtg/2016/11/14/30th/Annex C. Philippine Non-Metallic Minerals.pdf"
+							}
+						]
+					},
+					{
+						title:"29th",
+						date:"January 15, 2016 | 09:00AM-12:00PM",
+						updated: "Last updated on March 24, 2016 12:45 PM",
+						venue: "Visayas Room, Department of Finance, Roxas Blvd., Manila",
+						minutes: "document/msg-mtg/2016/11/14/29th/29th MSG meeting_minutes_1.15.2016.pdf",
+						annexes: []
+					},
+					{
 						title:"Approval of 2nd Report - Special",
 						date:"December 21, 2015 | 09:00AM-12:00PM",
 						updated: "Last updated on March 24, 2016 07:10 PM",

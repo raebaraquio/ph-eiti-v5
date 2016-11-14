@@ -20,28 +20,28 @@ aboutApp.config(function($routeProvider){
         {
             title: 'MSG Meetings | About PH-EITI',
             controller:'MSGMeetingsController', 
-            templateUrl:'./template/msg/meetings.html?v=1.03'
+            templateUrl:'./template/msg/meetings.html?v=1.04'
         })
 
 	 	.when('/MSG-Members/Government',
 	 	{
 	 		title: 'Government - MSG Member | About PH-EITI',
             controller:'MSGController', 
-	 		templateUrl:'./template/msg/default.html?v=1.02'
+	 		templateUrl:'./template/msg/default.html?v=1.03'
 	 	})
 
 	 	.when('/MSG-Members/CSO',
 	 	{
 	 		title: 'CSO - MSG Member | About PH-EITI',
             controller:'MSGController', 
-	 		templateUrl:'./template/msg/default.html?v=1.02'
+	 		templateUrl:'./template/msg/default.html?v=1.03'
 	 	})
 
 	 	.when('/MSG-Members/Industry',
 	 	{
 	 		title: 'Industry - MSG Member | About PH-EITI',
             controller:'MSGController', 
-	 		templateUrl:'./template/msg/default.html?v=1.02'
+	 		templateUrl:'./template/msg/default.html?v=1.03'
 	 	})
 
 	 	.when('/MSG-Members',

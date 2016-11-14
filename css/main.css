@@ -671,4 +671,146 @@ a {
 		max-width: 100%;
 		padding-left:1em;
 	}
+
+	.md-toolbar-tools h2,
+	.md-toolbar-tools p {
+		font-size: 0.7em;
+		line-height: 1em;
+	}
+
+}
+
+@media all and (min-width: 360px) and (max-width: 412px)  {
+	.related h1 {
+		font-size: 1.25em;
+		line-height: 1em;
+	}
+
+	#home-newsfeature-photo h1 {
+		font-size: 1.65em;
+		line-height: 1em;	
+	}
+	#home-activitiesfeature-photo h1 {
+		font-size: 1.75em;
+		line-height: 1em;	
+	}
+}
+
+@media all and (max-width: 320px)  {
+	#home-nav-bar {
+		background-color: #fabc01;
+	}
+
+	#logo-wrapper--inner {
+		max-width: 100%;
+	}
+
+	.feature-card__heading {
+		font-size: 1.2em;
+	}
+
+	.feature-photo__heading {
+		font-size: 1.5em;	
+	}
+
+	#collections {
+		margin-left: 0px;
+		padding: 0px;
+		word-wrap:break-word;
+	}	
+
+	#collections h3,
+	#collections p {
+		font-size: 0.85em;
+	}
+
+	#collections h1 {
+		font-size: 1.2em;
+	}
+
+	#collections h2 {
+		font-size: 1em;
+	}
+
+	.related h1 {
+		font-size: 1em;
+		line-height: 1em;
+	}
+
+	#home-newsfeature-photo h1 {
+		font-size: 1.3em;
+		line-height: 1em;	
+	}
+
+	#home-activitiesfeature-photo h1 {
+		font-size: 1.3em;
+		line-height: 1em;	
+	}
+
+	.md-toolbar-tools h2,
+	.md-toolbar-tools p {
+		font-size: 0.7em;
+		line-height: 1em;
+	}
+
+	#home-statements {
+		display: none;
+	}
+
+	#contact-main,
+	#contact-social {
+		text-align: left;
+	}
+
+	#contact-main {
+		margin-top: 0px;
+		padding-top: 0px;
+	}
+	
+	#home-activitiesfeature-photo {
+		background-size:125% 90%;
+		background-position: top center;
+	}
+
+	#home-newsfeature-photo {
+		height: 325px;
+		background-size: 100% 100%;
+		background-position: top center;
+	}
+
+	#home-newsfeature-photo .fnt--eitiyellow {
+		font-size: 1em;
+	}
+
+	#home-newsfeature-photo .fnt--white.fnt--md {
+		font-size: 0.75em;
+	}
+
+	.news-title {
+		font-size:1em;
+		line-height:1em;
+	}
+}
+
+
+@media all and (min-width: 413px) and (max-width: 414px)  {
+	.related h1 {
+		font-size: 1.25em;
+		line-height: 1em;
+	}
+}
+
+@media all and (width: 768px)  {
+	.related h1 {
+		font-size: 1.75em;
+		line-height: 1em;
+	}
+
+	.feature-photo__heading {
+		font-size: 1.85em;
+	}
+
+	#home-newsfeature-photo .fnt--white.sref {
+		font-size: 0.82em;
+	}
 }
