@@ -3,7 +3,7 @@ aboutApp.factory('MSGFactory',['$http',
 	var MSGFactory = {
 		get : {
 			dateLastUpdated : function() {
-				return  'March 24, 2016 04:48 PM'
+				return  'November 24, 2016 11:03 PM'
 			},	
 			updated: function(){
 				return [
@@ -262,6 +262,283 @@ aboutApp.factory('MSGFactory',['$http',
 						]
 					}
 				]
+			},
+			newMembers : function() {
+				return [
+					{
+						group: "Government",
+						roles: ["Provide political leadership and support, such as creating a unit which will provide secretariat and technical support to PH-EITI’s activities.",
+								"Ensure the full participation of the national government agencies and local government units in the implementation of EITI standards, and create an enabling policy environment for the same.",
+								"Ensure the full participation of extractive companies.",
+								"Encourage the full participation of civil society.",
+								"Provide a legal basis for implementation of EITI standards, as well as identify and address legal barriers and regulations that block the proper implementation of EITI.",
+								"Disclose government revenues and relevant data in an accurate and timely manner, and adhering to a level of detail that has been agreed upon by the MSG."],
+						members: [
+							{
+								office: "Department of Finance (DOF)",
+								members: {
+									primary: [
+										{
+										    "id":"g-0",
+							                "name": "Gil S. Beltran",
+							                "position": "Undersecretary and Chief Economist",
+							                "subposition": "OIC - PH-EITI Focal Person and Chair",
+							                "avatar":"default.png"
+										}
+									],
+									alternate: [
+										{
+											"id":"ga-1",
+							                "name": "Ma. Teresa S. Habitan",
+							                "position": "Assistant Secretary",
+							                "avatar":"Asec-Teresa-Habitan.png"
+							            }
+									]	
+								}
+							},
+							{
+								office: "Bureau of Internal Revenue (BIR)",
+								members: {
+									primary: [{
+						                "id":"g-7",
+						                "name": "Nestor Valeroso",
+						                "position": "Deputy Commissioner",
+						                "avatar":"default.png"
+						            }],
+									alternate: [{
+						            	"id":"ga-5",
+						                "name" : "Atty. Teresita M. Angeles",
+						                "position" :"Assistant Commissioner",
+						                "avatar" : "default.png"
+						            }]
+								}
+							},
+							{
+								office: "Department of the Interior and Local Government (DILG)",
+								members: {
+									primary: [{
+										"id":"g-2",
+										"name": "Austere A. Panadero",
+										"position": "Undersecretary",
+										"avatar":"Austere-Panadero.png"
+						            }],
+									alternate: [{
+						                "id":"ga-0",
+						                "name" : "Anna Liza F. Bonagua",
+						                "position" :"OIC - Director",
+						                "avatar" : "default.png"
+						            }]
+								}
+							},
+							{
+								office: "Department of Environment and Natural Resources - Mines and Geosciences Bureau (DENR-MGB)",
+								members: {
+									primary: [{
+										"name": "Mario Luis J. Jacinto",
+										"position": "Undersecretary",
+										"subposition" : "MGB Director",
+										"avatar":"default.png"
+						            }],
+									alternate: [{
+						            	"id":"ga-2",
+						                "name" : "Engr. Romualdo D. Aguilos",
+						                "position" :"OIC-Chief, Mineral Economics, Information and Publication",
+						                "avatar" : "Romy-Aguilos.png"
+						            }]
+								}
+							},
+							{
+								office: "Department of Energy (DOE)",
+								members: {
+									primary: [{
+						                "id":"g-6",
+						                "name": "Rino E. Abad",
+						                "position": "Director IV",
+						                "avatar":"default.png"
+						            }],
+									alternate: [{
+						            	"id":"ga-3",
+						                "name" : "Araceli Soluta",
+						                "position" :"Director III",
+						                "avatar" : "default.png"
+						            }]
+								}
+							},
+							{
+								office: "Department of Energy (DOE)",
+								members: {
+									primary: [{
+						                "id":"g-5",
+						                "name": "Gov. Alfonso V. Umali Jr.",
+						                "position": "President",
+						                "avatar":"Gov-Alfonso-Umali.png"
+						            }],
+									alternate: [{
+						            	"id":"ga-4",
+						                "name" : "Maria Czarina Medina-Guce",
+						                "position" :"Executive Director",
+						                "avatar" : "default.png"
+						            }]
+								}
+							}
+						]
+					},
+					{
+						group: 'Civil Society Organizations',
+						roles:  ["Communicate and consult widely with a diverse set of stakeholders, including those outside the Steering group, and build capacities for understanding EITI standards.","Ensure full participation of relevant CSOs.","Monitor the disclosures done by the government and extractive companies."],
+						members: [
+							{
+								members : {
+									primary: [{
+						            	"id":"cso-0",
+						                "name" : "Dr. Cielo D. Magno",
+						                "position" : "Assistant Professor",
+						                "office" : "University of the Philippines - Diliman",
+						                "avatar" : "default.png"
+						            }],
+									alternate: [{
+										"id":"csa-0",
+						                "name" : "Filomeno S. Sta. Ana III",
+						                "position" :"President",
+						                "office" : "Bantay Kita",
+						                "avatar" : "Filomeno-Sta-Ana.png"
+									}]	
+								}								
+							},
+							{
+								members : {
+									primary: [ {
+						            	"id":"cso-1",
+						                "name" : "Atty. Jay L. Batongbacal",
+						                "position" : "Assistant Professor",
+						                "office" : "University of the Philippines - Diliman",
+						                "avatar" : "default.png"
+						            }],
+									alternate: [{
+										id:'',
+										name: 'Jose Melvin A. Lamanilao',
+										office: '',
+										position: 'Independent Consultant'
+									}]	
+								}								
+							},
+							{
+								members: {
+									primary: [{
+										"id":"csa-3",
+						                "name" : "Dr. Merian C. Mani",
+						                "position" :"President",
+						                "office" : "Marinduque State College",
+						                "avatar" :  "default.png"
+									}],
+									alternate: [{
+										name: 'Engr. Maria Rosario Aynon A. Gonzales',
+										office: 'Palawan State University',
+										position: 'Director, Center for Strategic Policy and Governance'
+									}]	
+								}								
+							},
+							{
+								members: {
+									primary: [{
+						            	"id":"csa-2",
+						                "name" : "Chadwick G. Llanos",
+						                "position" :"Chairperson",
+						                "office" : "United Sibonga Residents for Environmental Protection and Development (USREP-D)",
+						                "avatar" : "default.png"
+						            }],
+									alternate: [{
+										name: 'Atty. Golda S. Benjamin',
+										office:'Siliman University',
+										position: 'Lecturer'
+									}]	
+								}								
+							},
+							{
+								members: {
+									primary: [{
+										"id":"csa-4",
+						                "name" : "Starjoan Villanueva",
+						                "position" :"Executive Director",
+						                "office" : "Alternate Forum for Research in Mindanao (AFRIM)",
+						                "avatar" :"Starj-Villanueva.png"
+									}],
+									alternate: [{
+										name: 'Buenaventura M. Maata Jr.',
+										office: 'Philippine Grassroots Engagement in Rural Development Foundation, Inc. (PhilGrassroots-ERDF)',
+										position: 'Executive Director'
+									}]	
+								}								
+							}
+						]
+					},
+					{
+						group: 'Industry',
+						roles: ["Help ensure the full participation of extractive companies","Disclose payments and relevant data to government, indigenous peoples, and other stakeholders, in an accurate and timely manner, and at a level of detail that has been agreed upon by the MSG.","Communicate EITI developments with industry stakeholders."],
+						members: [
+							{
+								members : {
+									primary:[{
+						            	"id":"b-0",
+						                "name" : "Artemio F. Disini",
+						                "position" : "Chairman",
+						                "office" : "Chamber of Mines of the Philippines (COMP)",
+						                "avatar" : "Artemio-Disini.png"
+						            }],
+									alternate:[{
+						            	"id":"ba-0",
+						                "name" : "Nelia C. Halcon",
+						                "position" :"Executive Vice President",
+						                "office" : "COMP",
+						                "avatar" : "Nelia-Halcon.png"
+						            }]	
+								}								
+							},
+							{
+								members : {
+									primary:[{
+						            	"id":"b-1",
+						                "name" : "Gerard H. Brimo",
+						                "position" : "President and CEO",
+						                "office" : "Nickel Asia Corporation",
+						                "avatar" : "default.png"
+						            }],
+									alternate:[{
+						            	"id":"ba-1",
+						                "name" : "Emmanuel L. Samson",
+						                "position" :"Senior Vice President and Chief Financial Officer",
+						                "office" : "Nickel Asia Corporation",
+						                "avatar" : "default.png"
+						            }]	
+								}								
+							},
+							{
+								members : {
+									primary:[{
+						            	"id":"ba-3",
+						                "name" : "James Ong",
+						                "position" :"President",
+						                "office" : "Ore Asia Mining and Development Corporation",
+						                "avatar" : "default.png"
+						            }],
+									alternate:[]	
+								}								
+							},
+							{
+								members: {
+									primary:[{
+						            	"id":"b-2",
+						                "name" : "Anthony P. Ferrer",
+						                "position" : "President",
+						                "office" : "Petroleum Association of the Philippines (PAP)",
+						                "avatar" : "default.png"
+						            }],
+									alternate:[ ]	
+								}								
+							}
+						]
+					}
+				];
 			},
 			members : function() {
 				return {

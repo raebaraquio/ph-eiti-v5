@@ -1162,7 +1162,10 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					date:"3 February 2015",
 					coverphoto:"images/_activities/cp/cp-first-ph-eiti-country-report-launch.jpg",
 					venue:"Sofitel Philippine Plaza Manila",
-					writeup:null,
+					writeup: {
+						content: null,
+						title: null
+					},
 					program: null,
 					documentation:null,
 					presentations:[
@@ -1242,7 +1245,10 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					date:"2 February 2015",
 					coverphoto:"images/_activities/cp/cp-analyzing-eiti-data-comm-ph-eiti-report.jpg",
 					venue:"Hotel Jen, Roxas Blvd., Manila",
-					writeup:null,
+					writeup: {
+						content: null,
+						title: null
+					},
 					program: null,
 					documentation:null,
 					presentations:[
@@ -1331,7 +1337,10 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 					date:"August-September 2014",
 					coverphoto:"images/_activities/cp/cp-lgu-roadshow.jpg",
 					venue:"",
-					writeup:null,
+					writeup: {
+						content: null,
+						title: null
+					},
 					program: null,
 					documentation:"document/2014/08/LGU-Roadshow-Documentation_Edited.pdf",
 					presentations: null,
@@ -1390,12 +1399,15 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 				},
 				{
 					id:"Follow-the-Money-A-Forum-on-Revenue-Management-in-the-Extractive-Sector-and-the-Role-of-EITI",
-					href:"Follow-the-Money-A-Forum-on-Revenue-Management-in-the-Extractive-Sector-and-the-Role-of-EITI.html",
+					href:"Follow-the-Money-A-Forum-on-Revenue-Management-in-the-Extractive-Sector-and-the-Role-of-EITI",
 					title: "Follow the Money: A Forum on Revenue Management in the Extractive Sector and the Role of EITI",
 					date:"4 September 2014",
 					coverphoto:"images/_activities/cp/cp-follow-the-money.jpg",
 					venue:"Traders Hotel, Manila",
-					writeup:null,
+					writeup: {
+						content: null,
+						title: null
+					},
 					program: null,
 					documentation:"document/Follow-the-Money-A-Forum-on-Revenue-Management-in-the-Extractive-Sector-and-the-Role-of-EITI/Revenue-Management-Forum-Documentation.pdf",
 					presentations: [
@@ -1479,12 +1491,15 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 				},
 				{
 					id:"Media-Briefing",
-					href:"Media-Briefing.html",
+					href:"Media-Briefing",
 					title: "Philippine Extractive Industries Transparency Initiative Media Briefing",
 					date:"3 September 2014",
 					coverphoto:"images/_activities/cp/cp-media-briefing.jpg",
 					venue:"Traders Hotel, Manila",
-					writeup:null,
+					writeup: {
+						content: null,
+						title: null
+					},
 					program: "document/Media-Briefing/Media-Briefing-Program.pdf",
 					documentation:"document/Media-Briefing/Media-Briefing-Documentation.pdf",
 					presentations: [
@@ -1542,12 +1557,15 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 				
 				{
 					id:"cso-briefing-updates-on-eiti-implementation-understanding-the-eiti-report",
-					href:"cso-briefing-updates-on-eiti-implementation-understanding-the-eiti-report.html",
+					href:"cso-briefing-updates-on-eiti-implementation-understanding-the-eiti-report",
 					title: "CSO Briefing: Updates on EITI Implementation and Understanding the EITI Report",
 					date:"3 September 2014",
 					coverphoto:"images/_activities/cp/cp-cso-briefing.jpg",
 					venue:"Traders Hotel, Manila",
-					writeup:null,
+					writeup: {
+						content: null,
+						title: null
+					},
 					program: "document/CSO-Briefing-Updates-on-EITI-Implementation-and-Understanding-the-EITI-Report/CSO-Briefing-Program.pdf",
 					documentation:"document/CSO-Briefing-Updates-on-EITI-Implementation-and-Understanding-the-EITI-Report/CSO-Briefing-Documentation.pdf",
 					presentations: [
@@ -1604,7 +1622,7 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 				},
 				{
 					id:"ph-eiti-2nd-national-conference",
-					href:"ph-eiti-2nd-national-conference.html",
+					href:"ph-eiti-2nd-national-conference",
 					title: "2nd National Conference",
 					date:"15-16 May 2014",
 					coverphoto:"images/_activities/cp/cp-ph-eiti-2nd-national-conference.jpg",
@@ -1768,7 +1786,7 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 				},
 				{
 					id:"ph-eiti-2nd-lgu-briefing",
-					href:"ph-eiti-2nd-lgu-briefing.html",
+					href:"ph-eiti-2nd-lgu-briefing",
 					title: "2nd LGU Briefing",
 					date:"14 May 2014",
 					coverphoto:"images/_activities/cp/cp-ph-eiti-2nd-lgu-briefing.jpg",
@@ -1884,7 +1902,7 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 				},
 				{
 					id:"ph-eiti-na-briefing",
-					href:"ph-eiti-na-briefing.html",
+					href:"ph-eiti-na-briefing",
 					title: "Understanding the EITI: Engaging National Agencies in EITI Implementation",
 					date:"21 March 2014",
 					coverphoto:"images/_activities/cp/cp-ph-eiti-na-briefing.jpg",
@@ -1997,7 +2015,7 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 				},
 				{
 					id:"ph-eiti-lgu-briefing",
-					href:"ph-eiti-lgu-briefing.html",
+					href:"ph-eiti-lgu-briefing",
 					title: "Understanding the EITI: Engaging Local Government Units in EITI Implementation",
 					date:"11-12 February 2014",
 					coverphoto:"images/_activities/cp/cp-ph-eiti-lgu-briefing.jpg",
@@ -2170,7 +2188,7 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 				},
 				{
 					id:"ph-eiti-congress-and-senate-briefing",
-					href:"ph-eiti-congress-and-senate-briefing.html",	
+					href:"ph-eiti-congress-and-senate-briefing",	
 					title: "Understanding the EITI: Senate and Congress Briefing",
 					date:"4-5 February 2014",
 					coverphoto:"images/_activities/cp/cp-ph-eiti-congress-and-senate-briefing.jpg",
@@ -2297,7 +2315,7 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 				},
 				{
 					id:"conference-on-the-adoption-of-2013-eiti-standards",
-					href:"conference-on-the-adoption-of-2013-eiti-standards.html",
+					href:"conference-on-the-adoption-of-2013-eiti-standards",
 					title: "Conference on the Adoption of the 2013 EITI Standards",
 					date:"26-27 September 2013",
 					coverphoto:"images/_activities/cp/cp-conference-on-the-adoption-of-the-2013-eiti-standards.jpg",
@@ -2517,7 +2535,7 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 				},
 				{
 					id:"development-eiti-reporting-template",
-					href:"development-eiti-reporting-template.html",
+					href:"development-eiti-reporting-template",
 					title: "Development of EITI Reporting Template",
 					date:"24 August 2013",
 					coverphoto:"images/_activities/cp/cp-development-eiti-reporting-template.jpg",
@@ -2643,7 +2661,7 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 				},
 				{
 					id:"eiti-global-conference",
-					href:"eiti-global-conference.html",
+					href:"eiti-global-conference",
 					title: "EITI Global Conference",
 					date:"22-24 May 2013",
 					coverphoto:"images/_activities/cp/cp-eiti-global-conference.jpg",
@@ -2849,12 +2867,15 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 				},
 				{
 					id:"national-conference-and-workshop",
-					href:"ph-eiti-national-conference-and-workshop.html",
+					href:"ph-eiti-national-conference-and-workshop",
 					title: "EITI Philippines National Conference and Workshop",
 					date:"18-19 January 2013",
 					coverphoto:"images/_activities/cp/cp-national-conference-and-workshop.jpg",
 					venue:"",
-					writeup: null,
+					writeup: {
+						content: null,
+						title : null
+					},
 					program: "document/FINAL-PROGRAM-as-of-Jan-16pm.pdf",
 					documentation: "document/1st-National-Conference/PH-EITI-National-Conference-documentation.pdf",
 					presentations: [
@@ -3051,7 +3072,7 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 				{
 					id:'cso-national-congress',
 					title:'CSO National Congress',
-					href:"cso-national-congress.html",
+					href:"cso-national-congress",
 					date:"17 January 2013",
 					venue:"",
 					coverphoto:"images/_activities/cp/cp-cso-national-congress.jpg",

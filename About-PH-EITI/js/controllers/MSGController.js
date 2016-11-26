@@ -37,7 +37,7 @@ aboutApp.controller('MSGController',['$scope','MSGFactory','$location','$sce',
             $scope.roles = data[group].roles
             $scope.alternates = data[group].alternates
 
-            $scope.msg = MSGFactory.get.updated();
+            $scope.msg = MSGFactory.get.newMembers();
         },
         memOfmonth : function(){
             $scope.articles = []

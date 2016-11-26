@@ -46,23 +46,28 @@
 												<th width="50%" md-column class="ta-left"><span>Alternate Members</span></th>
 											</tr>
 										</thead>
-										<tbody md-body>
-											<tr md-row ng-repeat="mem in msgtab.members">
+										<tbody md-body ng-repeat="mem in msgtab.members">
+											<tr md-row ng-if="mem.office" style="height:22px;">
+												<td colspan="2" class="ta-left" style="font-weight:600;font-size:0.95em;border-bottom:1px solid #f0f0f0;">{{mem.office}}</td>
+											</tr>
+											<tr md-row>
 												<td md-cell class="te-left">
-													<md-list-item class="md-3-line" data-ng-repeat="(kipm,vipm) in mem.primary">
+													<md-list-item class="md-3-line" data-ng-repeat="(kipm,vipm) in mem.members.primary">
 														<div class="md-list-item-text">
 															<h3>{{vipm.name}}</h3>
-															<h4 class="ww-breakword">{{vipm.office}}</h4>
 															<p class="ww-breakword">{{vipm.position}}</p>
+															<p class="ww-breakword" ng-if="vipm.subposition">{{vipm.subposition}}</p>
+															<p class="ww-breakword" ng-if="vipm.office">{{vipm.office}}</p>
 														</div>
 													</md-list-item>
 												</td>
 												<td md-cell class="te-left">
-													<md-list-item class="md-3-line" data-ng-repeat="(kiam,viam) in mem.alternate">
+													<md-list-item class="md-3-line" data-ng-repeat="(kiam,viam) in mem.members.alternate">
 														<div class="md-list-item-text">
 															<h3>{{viam.name}}</h3>
-															<h4 class="ww-breakword">{{viam.office}}</h4>
 															<p class="ww-breakword">{{viam.position}}</p>
+															<p class="ww-breakword" ng-if="viam.subposition">{{viam.subposition}}</p>
+															<p class="ww-breakword" ng-if="viam.office">{{viam.office}}</p>
 														</div>
 													</md-list-item>
 												</td>
