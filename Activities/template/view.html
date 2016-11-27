@@ -19,7 +19,7 @@
         	<h4>{{activity.venue}}</h4>
         	
 			<md-tabs md-dynamic-height md-border-bottom data-ng-show="no_content_elem===false">
-				<md-tab label="About" data-ng-if="activity.writeup!==null">
+				<md-tab label="About" data-ng-if="activity.writeup!==null && activity.writeup.content !== null">
 					<md-content class="md-padding">
 						<h1 class="md-display-2">About</h1>
 						<p><div data-ng-bind-html="activity.writeup.content"></div></p>

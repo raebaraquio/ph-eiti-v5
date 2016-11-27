@@ -52,7 +52,7 @@ activitiesApp.factory('ActivitiesFactory', function($http,$location){
 				{
 					id:"PH-EITI-2016-LGU-Roadshow-&-ENRDMT-Training",
 					href:"PH-EITI-2016-LGU-Roadshow-&-ENRDMT-Training",
-					title:"2016 LGU Roadshow and ENRDMT training ",
+					title:"2016 LGU Roadshow and ENRDMT training",
 					date:"August-September 2016",
 					venue:"",
 					coverphoto:"images/_activities/cp/2016/10/11/2016-LGU-Roadshow.png",
