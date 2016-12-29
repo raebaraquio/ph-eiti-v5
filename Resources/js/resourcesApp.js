@@ -10,11 +10,11 @@ resourcesApp.config(function($routeProvider){
             templateUrl:'./template/index.html?v=1.04'
 	 	})
 
-	 	.when('/Work-Plan',
+	 	.when('/Work-Plan-and-BO-Roadmap',
 	 	{
             controller:'WorkPlanController',
-            title: 'Work Plan | PH-EITI',
-	 		templateUrl:'./template/work-plan/index.html?v=1.04'	
+            title: 'Work Plan and BO Roadmap | PH-EITI',
+	 		templateUrl:'./template/work-plan/index.html?v=1.05'	
 	 	})
 
 	 	.when('/Laws-and-Legal-Issuances',

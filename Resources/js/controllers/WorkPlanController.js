@@ -32,7 +32,7 @@ resourcesApp.controller('WorkPlanController',['$scope','ResourcesFactory',
 
 	$scope.preview = function(src,wplan) {
 		try {
-			ga('send', 'event', 'Files', 'opened', 'Work Plan : '+wplan.title);	
+			ga('send', 'event', 'Files', 'opened', 'Work Plan and BO Roadmap : '+wplan.title);	
 		}
 		catch(gaError){
 			console.log('GA - '+gaError)

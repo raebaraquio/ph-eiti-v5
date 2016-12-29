@@ -70,9 +70,9 @@ angular.module('navMod',['ngRoute','utilsModule'])
 						href: "Resources",
 						subnav: [
 							{
-								id:"work-plan",
-								name: "Work Plan",
-								href: "Work-Plan"
+								id:"work-plan-and-bo-roadmap",
+								name: "Work Plan and BO Roadmap",
+								href: "Work-Plan-and-BO-Roadmap"
 							},
 							{
 								id:"laws-and-legal-issuances",

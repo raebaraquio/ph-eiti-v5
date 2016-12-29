@@ -1,7 +1,7 @@
 <header class="wd-100">   
     <div class="mxw-80 ta-left" id="header-wrapper">
         <p>RESOURCES</p>
-        <h1 class="md-display-2">Work Plan</h1>
+        <h1 class="md-display-2">Work Plan and BO Roadmap</h1>
     </div>   
 </header>
 
@@ -39,7 +39,40 @@
 	            </div>            
 	        </md-content>
 	    </div>
-	    <div data-ng-show="selected_workPlan">
+	    <md-tabs md-dynamic-height md-border-bottom data-ng-show="selected_workPlan.bo.length > 0">
+			<md-tab label="Work Plan" data-ng-if="selected_workPlan.bo.length > 0">
+				<md-content class="md-padding">
+					<h1 class="md-display-2 mrgn-bt-0 padd-bt-0">{{selected_workPlan.title}}</h1>
+			    	<p>{{selected_workPlan.lastUpdated}}</p>
+			    	<div class="ta-right wd-65">
+			    		<md-button class="md-raised md-accent" data-ng-click="preview(selected_workPlan.src,selected_workPlan)" title="Download {{selected_workPlan.title}}">Download</md-button>	
+			    	</div>
+			    	<md-content id="work-plan__iframe">	    		
+			    		<div class="ta-left">
+			    			<iframe src="{{selected_workPlan.src}}" style="min-width:700px;height:550px;" frameborder="0"></iframe>
+			    		</div>
+			    	</md-content>
+				</md-content>
+			</md-tab>
+			<md-tab label="BO Roadmap" data-ng-if="selected_workPlan.bo.length > 0">
+				<md-content class="md-padding">
+					<h1 class="md-display-2">BO Roadmap</h1>
+					<div flex="100" layout-fill layout="row" layout-wrap>   
+			            <md-card flex="45" layout="row" data-ng-repeat="(k,rmap) in selected_workPlan.bo" class="card-container">
+			                <md-card-title flex="70">
+			                    <md-card-title-text class="ta-left">
+			                        <span class="md-headline" title="{{rmap.title}}" style="font-size:1em;line-height:1em;">{{rmap.title}}</span>
+			                    </md-card-title-text>
+			                </md-card-title>
+			                <md-card-actions flex="30" layout="row" layout-align="end center">
+			                    <md-button class="md-accent" data-ng-if="rmap.file_url" data-ng-click="preview(rmap.file_url,rmap)" alt="Download {{rmap.title}}"  title="Download {{rmap.title}}"><strong>Download</strong></md-button>
+			                </md-card-actions>
+			            </md-card>
+			        </div>
+				</md-content>
+			</md-tab>
+		</md-tabs>
+	    <div data-ng-show="selected_workPlan.bo.length===0">
 	    	<h1 class="md-display-2 mrgn-bt-0 padd-bt-0">{{selected_workPlan.title}}</h1>
 	    	<p>{{selected_workPlan.lastUpdated}}</p>
 	    	<div class="ta-right wd-65">

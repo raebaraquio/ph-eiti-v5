@@ -5,8 +5,8 @@ resourcesApp.factory('ResourcesFactory',['$http',
 		content : function(){
 			return [
 				{
-					name: 'Work Plan',
-					href: '/Work-Plan',
+					name: 'Work Plan and BO Roadmap',
+					href: '/Work-Plan-and-BO-Roadmap',
 					multiple:false
 				},
 				{
@@ -47,19 +47,31 @@ resourcesApp.factory('ResourcesFactory',['$http',
 					year:'2016',
 					title: '2016 Work Plan',
 					lastUpdated: '',
-					src:'../document/Work-Plan/2016/05/30/2016WorkPlan_12May16_FINAL.pdf'
+					src:'../document/Work-Plan/2016/05/30/2016WorkPlan_12May16_FINAL.pdf',
+					bo:[
+						{
+							title: 'BO Roadmap - Layout',
+							file_url: '../document/BO-Roadmap/2016/12/29/PH-EITI-Beneficial-Ownership-Roadmap__layout.pdf'
+						},
+						{
+							title: 'BO Roadmap - Gantt Chart',
+							file_url: '../document/BO-Roadmap/2016/12/29/Beneficial-Ownership-Roadmap__Gantt-Chart.pdf'	
+						}
+					]
 				},
 				{
 					year:'2015',
 					title: '2015 Work Plan',
 					lastUpdated: '',
-					src:'../document/Work-Plan/2015/03/PH-EITI_2015_WorkPlan_sent_to_EITI_Intl.pdf'
+					src:'../document/Work-Plan/2015/03/PH-EITI_2015_WorkPlan_sent_to_EITI_Intl.pdf',
+					bo:[]
 				},
 				{
 					year:'2013-2014',
 					title: '2013-2014 Work Plan',
 					lastUpdated: '',
-					src:'../document/Work-plan-as-of-May.pdf'
+					src:'../document/Work-plan-as-of-May.pdf',
+					bo:[]
 				}
 			]
 		},
@@ -159,6 +171,12 @@ resourcesApp.factory('ResourcesFactory',['$http',
 					}
 				],
 				files: [
+					{
+						id:'PH-EITI-Open-Data-Policy',
+						title:'PH-EITI Open Data Policy',
+						author:'',
+						src:'../document/Organizational-Documents/2016/12/29/PH-EITI-Open-Data-Policy__12.2016.pdf'
+					},
 					{
 						id:'PH-EITI-Internal-Rules',
 						title:'PH-EITI Internal Rules',
