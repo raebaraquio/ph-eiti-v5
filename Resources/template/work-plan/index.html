@@ -39,7 +39,7 @@
 	            </div>            
 	        </md-content>
 	    </div>
-	    <md-tabs md-dynamic-height md-border-bottom data-ng-show="selected_workPlan.bo.length > 0">
+	    <md-tabs md-dynamic-height md-border-bottom data-ng-show="selected_workPlan.bo.length > 0" md-selected="tabSelected">
 			<md-tab label="Work Plan" data-ng-if="selected_workPlan.bo.length > 0">
 				<md-content class="md-padding">
 					<h1 class="md-display-2 mrgn-bt-0 padd-bt-0">{{selected_workPlan.title}}</h1>

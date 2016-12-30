@@ -14,7 +14,7 @@ resourcesApp.config(function($routeProvider){
 	 	{
             controller:'WorkPlanController',
             title: 'Work Plan and BO Roadmap | PH-EITI',
-	 		templateUrl:'./template/work-plan/index.html?v=1.05'	
+	 		templateUrl:'./template/work-plan/index.html?v=1.06'	
 	 	})
 
 	 	.when('/Laws-and-Legal-Issuances',

@@ -110,6 +110,7 @@
 
 .fnt--upper { text-transform: uppercase; }
 .fnt--lower { text-transform: lowercase; }
+.fnt--bold { font-weight: 500 };
 
 .sref { text-decoration: none; }
 .sref:hover { cursor: pointer; }
@@ -135,3 +136,4 @@
 .brd--black { border-color: #000; }
 
 .curs--hover { cursor: pointer; }
+a.sref { text-decoration: none }
