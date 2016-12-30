@@ -11,7 +11,7 @@ resourcesApp.controller('WorkPlanController',['$scope','ResourcesFactory',
 
 	$scope.filterYear = $scope.years[0]
 	$scope.selected_workPlan = {}
-	$scope.tabSelected = 1;
+	$scope.tabSelected = 0;
 
 	$scope.refresh=function(){
 		if ($scope.workPlans) {	
@@ -26,16 +26,17 @@ resourcesApp.controller('WorkPlanController',['$scope','ResourcesFactory',
 					}
 				}
 			}
+			
 			try	{
 				if (window.location.href.match(/=/gi)) { 
 					var query = window.location.href.split('=');
-					if (query[0]==='roadmap') {
-						$scope.tabSelected = 2;
+					if (query[1]==='roadmap') {
+						$scope.tabSelected = 1;
 					}
 				}
 			}
 			catch(err){
-
+				console.log(err)
 			}
 			
 		}
