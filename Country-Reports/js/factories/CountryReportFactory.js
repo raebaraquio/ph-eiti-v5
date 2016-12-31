@@ -343,6 +343,35 @@ countryReportApp.factory('CountryReportFactory', function($http,$location){
 					],
 					annexes: [
 					]
+				},
+				{
+					id:"Third-Country-Report",
+					href:"Third-Country-Report",
+					title:"Third Country Report",
+					date:'December 2016',
+					lastupdated:'December 31, 2016 08:32 PM',
+					card_img:'../document/EITI-Report/Third-Country-Report/card-icon.png',
+					content: [
+						{
+							title:"Third PH-EITI Country Report",
+							href:"third-country-report",
+							id:'third-country-report',
+							multiple:false,
+							file:'../document/EITI-Report/Third-Country-Report/PH-EITI_Country-Report_2016.pdf',
+							cardIcon:'../document/EITI-Report/Third-Country-Report/card-icon.png'
+						},
+						{
+							title:"Data Summary Template",
+							href:"Data-Summary-Template",
+							id:'data-summary-template',
+							multiple:false,
+							file:'../document/EITI-Report/Third-Country-Report/PH-EITI_Data-Summary-Template_final.xlsx',
+							cardIcon:'../document/EITI-Report/Third-Country-Report/card-icon-xlsx.png',
+							mso:true
+						}
+					],
+					annexes: [
+					]
 				}
 			];
 		},
