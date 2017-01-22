@@ -616,3 +616,23 @@ pheiti.controller('menuController',['$scope','NavigationFactory','utilsService',
             }
         });
 }]);
+
+pheiti.controller('bannerFeatureController',['$scope','$mdDialog',
+    function($scope,$mdDialog){
+
+    $scope.openValidationDetails=function(ev){
+        $mdDialog.show({
+            templateUrl: './template/validation-details.html?v=1.0', 
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:true,
+            fullscreen: true,
+            controller:'bannerFeatureController'
+        })
+    }
+
+    $scope.closeDialog = function() {
+        $mdDialog.hide();
+    };
+
+}]);

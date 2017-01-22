@@ -365,7 +365,7 @@ countryReportApp.factory('CountryReportFactory', function($http,$location){
 							href:"Data-Summary-Template",
 							id:'data-summary-template',
 							multiple:false,
-							file:'../document/EITI-Report/Third-Country-Report/PH-EITI_Data-Summary-Template_final.xlsx',
+							file:'../document/EITI-Report/Third-Country-Report/PH-EITI-2014__Summary-Data-Template_12.31.2016_Final.xlsx',
 							cardIcon:'../document/EITI-Report/Third-Country-Report/card-icon-xlsx.png',
 							mso:true
 						}

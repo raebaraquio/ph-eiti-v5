@@ -335,8 +335,8 @@ aboutApp.factory('MSGFactory',['$http',
 								members: {
 									primary: [{
 										"name": "Mario Luis J. Jacinto",
-										"position": "Undersecretary",
-										"subposition" : "MGB Director",
+										"position": "Undersecretary for Mining",
+										"subposition" : "Concurrent, MGB Director",
 										"avatar":"default.png"
 						            }],
 									alternate: [{
@@ -369,14 +369,14 @@ aboutApp.factory('MSGFactory',['$http',
 								members: {
 									primary: [{
 						                "id":"g-5",
-						                "name": "Gov. Alfonso V. Umali Jr.",
-						                "position": "President",
+						                "name": "Gov. Al Francis C. Bichara",
+						                "position": "President, Union of Local Authorities of the Philippines",
 						                "avatar":"Gov-Alfonso-Umali.png"
 						            }],
 									alternate: [{
 						            	"id":"ga-4",
-						                "name" : "Maria Czarina Medina-Guce",
-						                "position" :"Executive Director",
+						                "name" : "Sandra T. Paredes",
+						                "position" :"Concurrent Executive Director, Union of Local Authorities of the Philippines; Director, League of Provinces of the Philippines",
 						                "avatar" : "default.png"
 						            }]
 								}
@@ -480,9 +480,9 @@ aboutApp.factory('MSGFactory',['$http',
 								members : {
 									primary:[{
 						            	"id":"b-0",
-						                "name" : "Artemio F. Disini",
-						                "position" : "Chairman",
-						                "office" : "Chamber of Mines of the Philippines (COMP)",
+						                "name" : "Gerard H. Brimo",
+						                "position" : "Board of Directors, Chamber of Mines of the Philippines (COMP)",
+						                "office" : "President and CEO, Nickel Asia Corporation",
 						                "avatar" : "Artemio-Disini.png"
 						            }],
 									alternate:[{
@@ -495,36 +495,6 @@ aboutApp.factory('MSGFactory',['$http',
 								}								
 							},
 							{
-								members : {
-									primary:[{
-						            	"id":"b-1",
-						                "name" : "Gerard H. Brimo",
-						                "position" : "President and CEO",
-						                "office" : "Nickel Asia Corporation",
-						                "avatar" : "default.png"
-						            }],
-									alternate:[{
-						            	"id":"ba-1",
-						                "name" : "Emmanuel L. Samson",
-						                "position" :"Senior Vice President and Chief Financial Officer",
-						                "office" : "Nickel Asia Corporation",
-						                "avatar" : "default.png"
-						            }]	
-								}								
-							},
-							{
-								members : {
-									primary:[{
-						            	"id":"ba-3",
-						                "name" : "James Ong",
-						                "position" :"President",
-						                "office" : "Ore Asia Mining and Development Corporation",
-						                "avatar" : "default.png"
-						            }],
-									alternate:[]	
-								}								
-							},
-							{
 								members: {
 									primary:[{
 						            	"id":"b-2",
@@ -533,7 +503,49 @@ aboutApp.factory('MSGFactory',['$http',
 						                "office" : "Petroleum Association of the Philippines (PAP)",
 						                "avatar" : "default.png"
 						            }],
-									alternate:[ ]	
+									alternate:[{
+						            	"id":"b-1",
+						                "name" : "Don Paulino",
+						                "position" : "General Manager/Managing Director",
+						                "office" : "Shell Philippines Exploration B. V.",
+						                "avatar" : "default.png"
+						            }]	
+								}								
+							},
+							{
+								members : {
+									primary:[{
+						            	"id":"b-2",
+						                "name" : "Eulalio B. Agustin Jr.",
+						                "position" : "Board of Directors, COMP",
+						                "office" : "President and CEO, Philex Mining Corporation",
+						                "avatar" : "default.png"
+						            }],
+									alternate:[{
+										"id":"b-2",
+						                "name" : "Atty. Ronald Rex S. Recidoro",
+						                "position" : "Vice President for Legal and Policy",
+						                "office" : "COMP",
+						                "avatar" : "default.png"
+									}]	
+								}								
+							},
+							{
+								members : {
+									primary:[{
+						            	"id":"b-2",
+						                "name" : "Jose P. Leviste Jr.",
+						                "position" : "Board of Directors, COMP",
+						                "office" : "Chairman, OceanaGold Philippines, Inc.",
+						                "avatar" : "default.png"
+						            }],
+									alternate:[{
+										"id":"b-2",
+						                "name" : "Francis Joseph G. Ballesteros",
+						                "position" : "Manager, Public and Regulatory Affairs",
+						                "office" : "Philex Mining Corporation",
+						                "avatar" : "default.png"
+									}]	
 								}								
 							}
 						]
@@ -905,6 +917,61 @@ aboutApp.factory('MSGFactory',['$http',
 			},
 			meetings: function() {
 				return [
+					{
+						title:"37th",
+						date:"November 4, 2016 | 09:00AM-05:00PM",
+						updated: "Last updated on January 19, 2017 08:31 AM",
+						venue: "Carlota Paz Room. Hotel Jen, 3001 Roxas Blvd., Pasay City, Manila",
+						minutes: "document/msg-mtg/2017/01/19/37th/37th MSG meeting_minutes_11.4.2016.pdf",
+						annexes: [
+							{
+								title:"Annex A - SEC Presentation on Beneficial Ownership",
+								file:"document/msg-mtg/2017/01/19/37th/Annex A. SEC Presentation on Beneficial Ownership.pdf"
+							},
+							{
+								title:"Annex B - Status of Template Submission and Reconciliation",
+								file:"document/msg-mtg/2017/01/19/37th/Annex B. Status of Template Submission and Reconciliation.pdf"
+							},
+							{
+								title:"Annex C - Draft Contextual Information",
+								file:"document/msg-mtg/2017/01/19/37th/Annex C. Draft Contextual Information.docx"
+							}							
+						]
+					},
+					{
+						title:"36th",
+						date:"October 7, 2016 | 09:00AM-12:00PM",
+						updated: "Last updated on January 19, 2017 08:31 AM",
+						venue: "Waling-Waling Room, Orchid Garden Suites, Pablo Ocampo Street, Manila",
+						minutes: "document/msg-mtg/2017/01/19/36th/36th MSG meeting_minutes_10.7.2016",
+						annexes: [
+							{
+								title:"Annex A - Presentation on LGU Roadshow",
+								file:"document/msg-mtg/2017/01/19/36th/Annex A. Presentation on LGU Roadshow.pptx"
+							},
+							{
+								title:"Annex B - Comments on the 2016 Work plan",
+								file:"document/msg-mtg/2017/01/19/36th/Annex B. Comments on the 2016 Work plan.docx"
+							},
+							{
+								title:"Annex C - Status update on template submission",
+								file:"document/msg-mtg/2017/01/19/36th/Annex C. Status update on template submission.pptx"
+							}
+						]
+					},
+					{
+						title:"35th",
+						date:"August 5, 2016 | 09:00AM-12:00PM",
+						updated: "Last updated on January 19, 2017 08:31 AM",
+						venue: "Waling-Waling Room, Orchid Garden Suites, Pablo Ocampo Street, Manila",
+						minutes: "document/msg-mtg/2017/01/19/35th/35th MSG meeting_minutes_8.5.2016.pdf",
+						annexes: [
+							{
+								title:"Annex A - Presentation on Materality",
+								file:"document/msg-mtg/2017/01/19/35th/Annex A. Presentation on Materality.pdf"
+							}				
+						]
+					},
 					{
 						title:"34th",
 						date:"July 1, 2016 | 09:00AM-12:00PM",
