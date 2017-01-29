@@ -349,7 +349,7 @@ countryReportApp.factory('CountryReportFactory', function($http,$location){
 					href:"Third-Country-Report",
 					title:"Third Country Report",
 					date:'December 2016',
-					lastupdated:'December 31, 2016 08:32 PM',
+					lastupdated:'January 29, 2017 11:20 PM',
 					card_img:'../document/EITI-Report/Third-Country-Report/card-icon.png',
 					content: [
 						{
@@ -368,6 +368,77 @@ countryReportApp.factory('CountryReportFactory', function($http,$location){
 							file:'../document/EITI-Report/Third-Country-Report/PH-EITI-2014__Summary-Data-Template_12.31.2016_Final.xlsx',
 							cardIcon:'../document/EITI-Report/Third-Country-Report/card-icon-xlsx.png',
 							mso:true
+						},
+						{
+							title:"Completed Reporting Templates",
+							href:"Completed-Reporting-Templates",
+							id:'completed-reporting-templates',
+							multiple:true,
+							file:'',
+							cardIcon:'../document/EITI-Report/Third-Country-Report/card-icon-none.png',
+							templates: {
+								"Companies" : [
+									{company:'Adnama Mining Corporation',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/Adnama Mining Corporation 2014 Reporting template.xlsx'},
+									{company:'Apex Mining Company',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/Apex Mining Company 2014 Reporting Template.xlsx'},
+									{company:'Benguet Nickel Mines',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/Benguet Nickel Mines 2014 Reporting Template.xlsx'},
+									{company:'Cagdianao Mining Corp',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/Cagdianao Mining Corp_EITI reporting template & schedules Y2014 FINAL.pdf'},
+									{company:'Carmen Copper Corporation',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/Carmen Copper Corporation 2014 Reporting Template.xlsx'},
+									{company:'Carrascal Nickel Corporation',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/Carrascal Nickel Corporation 2014 Reporting template.pdf'},
+									{company:'Citinickel Mines and Development Corporation',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/Citinickel Mining Development Corporation.xlsx'},
+									{company:'Filminera',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/Filminera_2014 EITI Reporting Template.xlsx'},
+									{company:'GREENSTONE',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/GREENSTONE 2014 Reporting Template.pdf'},
+									{company:'Hinatuan Mining Corporation',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/Hinatuan Mining Corporation.pdf'},
+									{company:'Johson Gold Mining Corp',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/Johson Gold Mining Corporation 2014 Reporting Template.xlsx'},
+									{company:'Krominco Inc',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/Krominco Inc 2014 Reporting Template.pdf'},
+									{company:'Lepanto Consolidated Mining Corporation',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/Lepanto Consolidated Mining Corporation 2014 Reporting Template.xlsx'},
+									{company:'Leyte Ironsand Mining Corporation',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/Leyte Ironsand Mining Corporation 2014 Reporting template.pdf'},
+									{company:'Libjo Mining Corporation',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/Libjo Mining Corporation 2014 Reporting Template.pdf'},
+									{company:'LNL Archipelago Minerals Incorporated',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/LNL Archipelago Minerals Incorporated 2014.xlsx'},
+									{company:'Marcventures Mining and Development Corporation',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/Marcventures Mining and Development Corporation 2014 Reporting Template.xlsx'},
+									{company:'Oceanagold (Philippines) Inc',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/Oceanagold (Philippines) Inc 2014 Reporting Template.xlsx'},
+									{company:'Ore Asia Mining and Development Corporation',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/Ore Asia Mining and Development Corporation 2014 FS.xlsx'},
+									{company:'Pacific Nickels Inc 2014',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/Pacific Nickels Inc 2014 Reporting Template.xlsx'},
+									{company:'Philex Mining Corporation',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/Philex Mining Corporation 2014 Reporting Template.pdf'},
+									{company:'Philsaga Mining Corporation',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/Philsaga Mining Corporation 2014 Reporting Template.xlsx'},
+									{company:'Platinum Group Metals Corporation',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/Platinum Group Metals Corporation 2014 Reporting Template.xlsx'},
+									{company:'Rio Tuba Nickel Mining Corporation',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/Rio Tuba Nickel Mining Corporation 2014 Reporting Template.pdf'},
+									{company:'Shuley Mine Incorporated',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/Shuley Mine Incorporated 2014 Reporting Template.pdf'},
+									{company:'Sinosteel Phils HY Mining Corporation',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/Sinosteel Phils HY Mining Corporation 2014 Reporting Template.xlsx'},
+									{company:'SR Metals',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/SR Metals 2014 Reporting Template.xlsx'},
+									{company:'Taganito Mining Corporation',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/Taganito Mining Corporation 2014 Reporting Template.xlsx'},
+									{company:'TVI Resource Development',author:'',file:'../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Companies/TVI Resource Development 2014 Reporting template.xlsx'}
+								],
+								"Government" : [
+									{
+										company:"BIR",
+										file:"../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Government/BIR FILES.zip",
+									},
+									{
+										company:"BOC",
+										file:"../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Government/BOC FILES.zip",
+									},
+									{
+										company:"DOE",
+										file:"../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Government/DOE FILES.zip",
+									},
+									{
+										company:"LGU",
+										file:"../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Government/LGU FILES.zip",
+									},
+									{
+										company:"MGB",
+										file:"../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Government/MGB FILES.zip",
+									},
+									{
+										company:"NCIP",
+										file:"../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Government/NCIP FILES - COMPLETE.zip",
+									},
+									{
+										company:"PPA",
+										file:"../document/EITI-Report/Third-Country-Report/Completed-Reporting-Templates/Government/PPA FILES.zip",
+									}
+								]
+							}
 						}
 					],
 					annexes: [

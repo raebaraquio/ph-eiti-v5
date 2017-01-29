@@ -918,6 +918,14 @@ aboutApp.factory('MSGFactory',['$http',
 			meetings: function() {
 				return [
 					{
+						title:"38th",
+						date:"December 9, 2016 | 09:00AM-05:00PM",
+						updated: "Last updated on January 26, 2017 10:53 PM",
+						venue: "Waling-Waling Room, Orchid Garden Hotel Suites, Manila",
+						minutes: "document/msg-mtg/2017/01/26/38th/38th MSG Meeting Minutes.pdf",
+						annexes: []
+					},
+					{
 						title:"37th",
 						date:"November 4, 2016 | 09:00AM-05:00PM",
 						updated: "Last updated on January 19, 2017 08:31 AM",
