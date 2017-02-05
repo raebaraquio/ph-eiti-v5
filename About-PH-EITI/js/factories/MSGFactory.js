@@ -177,7 +177,7 @@ aboutApp.factory('MSGFactory',['$http',
 					            }],
 								alternate: [{
 									name: 'Atty. Golda S. Benjamin',
-									office:'Siliman University, Dumaguete City, Negros Oriental',
+									office:'Silliman University, Dumaguete City, Negros Oriental',
 									position: 'Lecturer'
 								}]
 							},
@@ -449,7 +449,7 @@ aboutApp.factory('MSGFactory',['$http',
 						            }],
 									alternate: [{
 										name: 'Atty. Golda S. Benjamin',
-										office:'Siliman University',
+										office:'Silliman University',
 										position: 'Lecturer'
 									}]	
 								}								

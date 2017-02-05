@@ -264,7 +264,7 @@ pheiti.controller('headerCarouselController',['$scope',
     $scope.headersArr = [
         {
             title: '',
-            image: 'images/home-main-carousel/main-2-transparent.png'
+            image: 'images/home-main-carousel/third-country-report-transparent.png'
         },
         {
             title: '',
@@ -277,6 +277,10 @@ pheiti.controller('headerCarouselController',['$scope',
         {
             title: '',
             image: 'images/home-main-carousel/eiti-steps-3b-transparent.png'
+        },
+        {
+            title: '',
+            image: 'images/home-main-carousel/main-2-transparent.png'
         }
     ]
 }]);
@@ -317,7 +321,7 @@ pheiti.controller('homeInfographicController',['$scope','$mdDialog','$mdMedia',
             text: ''
         },
         tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            pointFormat: '{series.name}: <b>{point.percentage:.2f}%</b>'
         },
         plotOptions: {
             pie: {
@@ -357,12 +361,12 @@ pheiti.controller('homeInfographicController',['$scope','$mdDialog','$mdMedia',
             name: 'Total Collection',
             colorByPoint: true,
             data: [
-                { name: 'Departent of Energy', y: 54.66, yData: 'Php 22,247,984,129'},
-                { name: 'Bureau of Internal Revenue', y: 40.01, yData: 'Php 16,284,928,889' },
-                { name: 'Mines and Geosciences Bureau', y: 1.97, yData: 'Php 802,798,044' },
-                { name: 'Bureau of Customs', y:2.02, yData: 'Php 820,365,739' },
-                { name: 'Local Government Unit', y: 0.74, yData: 'Php 301,525,311' },
-                { name: 'National Commission on Indigenous Peoples', y: 0.60, yData: 'Php 242,124,305' }
+                { name: 'Departent of Energy', y: 50.73, yData: 'Php 27,055,539,705',color:'#3182bd'},
+                { name: 'Bureau of Internal Revenue', y: 43.22, yData: 'Php 23,047,592,223',color:'#9ecae1'},
+                { name: 'Mines and Geosciences Bureau', y: 3.81, yData: 'Php 2,029,816,208',color:'#addd8e'},
+                { name: 'Bureau of Customs', y:1.07, yData: 'Php 570,844,638',color:'#feb24c' },
+                { name: 'Local Government Unit', y: 0.60, yData: 'Php 320,782,806',color:'#dd1c77'},
+                { name: 'National Commission on Indigenous Peoples', y: 0.57, yData: 'Php 303,607,900',color:'#c994c7'}
             ]
         }]
     });

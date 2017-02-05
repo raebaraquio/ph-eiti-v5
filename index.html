@@ -18,9 +18,9 @@
     <link rel="stylesheet" href="css/angular-material.min.css?v1.1.0-rc2"> 
     <link rel="stylesheet" href="css/font-awesome.min.css"> 
     <link rel="stylesheet" href="css/jk-carousel.min.css" />
-    <link rel="stylesheet" href="css/basic.css?v=1.03"> 
+    <link rel="stylesheet" href="css/basic.css?v=1.04"> 
     <link rel="stylesheet" href="css/nav.css?v=1.02"> 
-    <link rel="stylesheet" href="css/main.css?v=1.05">
+    <link rel="stylesheet" href="css/main.css?v=1.06">
     <!--script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -134,11 +134,11 @@
         <div class="mxw-80" layout-align="center center" >
             <jk-carousel
                 data="headersArr"
-                item-template-url="'slide-item-template.html'"
+                item-template-url="'slide-item-template.html?v=1.02'"
                 max-width="900" 
                 max-height="250"
                 auto-slide="true"
-                auto-slide-time="12000" >
+                auto-slide-time="12000">
             </jk-carousel>
         </div>   
     </header>
@@ -147,55 +147,45 @@
         <div class="mxw-80"><br/></div>   
     </div>
 
-    <div class="wd-100" data-ng-controller="bannerFeatureController">  <!-- Banner Feature --> 
-        <div class="mxw-80">
-            <a class="sref" data-ng-click="openValidationDetails($event)" title="Country Validation is now ongoing"><img src="images/home-banner-feature/Validation-Banner__txt--right.png" alt="Country Validation is now ongoing" title="Country Validation is now ongoing" width="100%" /></a>
-        </div>   
-    </div>
-
-    <div class="wd-100" hide-md hide-sm hide-xs>
-        <div class="mxw-80"><br/></div>   
-    </div>
-
     <div class="wd-100" id="home-infographic" data-ng-controller="homeInfographicController">  <!-- Infographic Feature --> 
         <div class="mxw-80" >
             <md-card layout="column" class="md-padding">
-                <h1 class="feature-card__heading">How much does the National Government collect from the mining, oil and gas sectors?</h1>
+                <h1 class="feature-card__heading"><span style="background-color: #df0707;color:#fff;padding:2px;font-size: 0.3em;border-radius: 2px;-webkit-border-radius: 2px;-moz-border-radius: 2px;vertical-align: text-top;">UPDATED</span>How much does the Philippine Government collect from the mining, oil and gas sectors?</h1>
                 <div layout="row" layout-md="column">
                     <div flex="60" flex-md="100" layout="column" class="ta-left" hide-sm hide-xs>
                         <div id="chart-container" style="min-width:400px;height:400px;max-width:100%;margin-top:0px;padding:0px;"></div>
                     </div>
                     <div flex="40" layout="column" flex-xs="100" flex-sm="100" flex-md="100">
                         <md-list class="md-padding" id="collections" layout-xs="column">
-                            <md-list-item flex-xs="100" class="md-2-line" style="border:1px solid #fabc01;border-left:10px solid #fabc01;" title="TOTAL COLLECTIONS FOR 2013 - Php 40,699,726,417">
+                            <md-list-item flex-xs="100" class="md-2-line" style="border:1px solid #fabc01;border-left:10px solid #fabc01;" title="TOTAL COLLECTIONS FOR 2014 - Php 53,328,183,480">
                                 <div class="md-list-item-text">
-                                    <h3>TOTAL COLLECTIONS FOR 2013</h3>
-                                    <h1 style="padding:0;margin:0;line-height:1em;">Php 40,699,726,417</h1>
+                                    <h3>TOTAL COLLECTIONS FOR 2014</h3>
+                                    <h1 style="padding:0;margin:0;line-height:1em;">Php 53,328,183,480</h1>
                                 </div>
                             </md-list-item>
-                            <md-list-item flex-xs="100" class="md-2-line" title="TOTAL COLLECTIONS FROM MINING - Php 5,376,239,684">
+                            <md-list-item flex-xs="100" class="md-2-line" title="TOTAL COLLECTIONS FROM MINING - Php 10,884,763,212">
                                 <div class="md-list-item-text">
                                     <p>TOTAL COLLECTIONS FROM MINING</p>     
-                                    <h2 style="padding:0;margin:0;line-height:1em;">Php 5,376,239,684</h2>
+                                    <h2 style="padding:0;margin:0;line-height:1em;">Php 10,884,763,212</h2>
                                 </div>
                             </md-list-item>
-                            <md-list-item flex-xs="100" class="md-2-line" title="TOTAL COLLECTIONS FROM OIL AND GAS - Php 35,323,486,733">
+                            <md-list-item flex-xs="100" class="md-2-line" title="TOTAL COLLECTIONS FROM OIL AND GAS - Php 42,443,420,268">
                                 <div class="md-list-item-text">
                                     <p>TOTAL COLLECTIONS FROM OIL AND GAS</p>   
-                                    <h2 style="padding:0;margin:0;line-height:1em;">Php 35,323,486,733</h2>  
+                                    <h2 style="padding:0;margin:0;line-height:1em;">Php 42,443,420,268</h2>  
                                 </div>
                             </md-list-item>
-                            <md-list-item flex-xs="100" class="md-2-line" title="TOTAL VARIANCE POST-RECONCILIATION - Php 2,659,478">
+                            <md-list-item flex-xs="100" class="md-2-line" title="TOTAL VARIANCE POST-RECONCILIATION - Php 518,391,801">
                                 <div class="md-list-item-text">
                                     <p tabindex="-1">TOTAL VARIANCE POST-RECONCILIATION</p>     
-                                    <h2 style="padding:0;margin:0;line-height:1em;">Php 2,659,478</h2>
+                                    <h2 style="padding:0;margin:0;line-height:1em;">Php 518,391,801</h2>
                                 </div>
                             </md-list-item>
-                            <md-list-item flex-xs="100" class="md-2-line">
+                            <!-- <md-list-item flex-xs="100" class="md-2-line">
                                 <div class="md-list-item-text ta-left">
                                     <a class="sref" data-ng-click="openComparison($event)"><md-icon md-svg-icon="./images/icons/svg/ic_play_circle_outline_black_24px.svg"></md-icon> <span class="fnt--md fnt--black" title="See Comparative table of Revenue/Payment from First and Second PH-EITI Country Reports">See Comparative Table of Revenue/Payment</span> </a>
                                 </div>
-                            </md-list-item>
+                            </md-list-item> -->
                         </md-list>
                     </div>
                 </div>
@@ -207,7 +197,26 @@
         <div class="mxw-80"><br/></div>   
     </div>
     
-    <div class="wd-100" id="home-bo">
+    <!-- Banner Feature -->
+    <div class="wd-100">  
+        <div id="min-three-box" class="mxw-80" layout="row" layout-align="center center" data-ng-controller="bannerFeatureController">
+            <div flex="325">
+                <img class="sref" src="images/home-bo/1-Country Validation.png" width="100%" title="Country Validation is now ongoing. Click here to find more." ng-click="openValidationDetails($event)" />
+            </div>
+            <div flex="325">
+                <a class="sref" href="document/Organizational-Documents/2016/12/29/PH-EITI-Open-Data-Policy__12.2016.pdf"><img class="sref" src="images/home-bo/2-Open Data Policy.png" width="100%"title="Click here to know about PH-EITI's Open Data Policy."/></a>
+            </div>
+            <div flex="325">
+                <a href="Resources/#/Work-Plan-and-BO-Roadmap?q=roadmap" class="sref"><img class="sref" src="images/home-bo/3-Beneficial Ownership.png" width="100%"title="Click here to know about PH-EITI's plan towards disclosing the beneficial owners of extractive companies."/></a>
+            </div>
+        </div>   
+    </div>
+
+    <div class="wd-100" hide-md hide-sm hide-xs>
+        <div class="mxw-80"><br/></div>   
+    </div>
+
+    <!--div class="wd-100" id="home-bo">
         <div class="mxw-80">
             <md-card>   
                 <md-content layout="row" flex layout-xs="column" layout-sm="row" layout-md="row">
@@ -230,11 +239,7 @@
                 </md-content>
             </md-card>
         </div>
-    </div>
-
-    <div class="wd-100">   
-        <div class="mxw-80"><br/></div>   
-    </div>
+    </div-->
     
     <div class="wd-100" id="home-news" data-ng-controller="homeNewsController"> <!-- News -->
         <div class="mxw-80">
@@ -431,7 +436,7 @@
     <!--script src="js/vendor/angular-busy.js?v=1.01"></script-->
 
     <script src="js/vendor/angular-material.js"></script>
-    <script src="js/vendor/jk-carousel.min.js"></script>
+    <script src="js/vendor/jk-carousel.js?v=1.2"></script>
 
     <!-- Utilities -->
     <!--<script src="js/vendor/moment.min.js?v1.01"></script>-->
@@ -440,7 +445,7 @@
 
     <!-- Application -->
     <script src="js/modules/navigation.js?v=1.04"></script>
-    <script src="js/mainApp.js?v=1.06"></script>
+    <script src="js/mainApp.js?v=1.07"></script>
     <!-- script src="https://use.typekit.net/vpj1jvp.js"></script>
     <script>try{Typekit.load({ async: true });}catch(e){}</script -->
 </body>

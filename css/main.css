@@ -27,7 +27,7 @@ html {
 }
 
 header {
-	background-color:#fabc01; /*#f1f1f1*/
+	background-color:#fabc01; /* #fabc01;#f1f1f1*/
 	color: #272727; /*#4a4a4a;#fff;*/
 	min-height:250px;
 	display: block;
@@ -813,4 +813,14 @@ a {
 	#home-newsfeature-photo .fnt--white.sref {
 		font-size: 0.82em;
 	}
+}
+
+
+#min-three-box > .flex-325 {
+	-webkit-flex:1 1 32.5%;
+	-ms-flex:1 1 32.5%;
+	flex:1 1 32.5%;
+	max-width:32.5%;
+	max-height:100%;
+	box-sizing:border-box;
 }

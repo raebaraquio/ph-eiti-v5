@@ -9,15 +9,21 @@
 (function() {
   'use strict';
 
-  function CarouselController($timeout, $attrs, $interval, $window) {
-
+  function CarouselController($timeout, $attrs, $interval, $window, $scope) {
+    
     var that = this;
     that.currentIndex = 0;
     that.currentMarginLeftValue = 0;
     that.radioButtonIndex = 0;
     that.transitionsTime = 500;
     that.transitionsEnabled = true;
+    that.currentSlideItem = {};
 
+    if (!that.currentSlideItem.image && !that.currentSlideItem.statement) {
+      var headerElement = angular.element(document.getElementById('home-slider'));
+      $(headerElement).css({'background-color':'#1D92DE','transition':'fade-in'});
+    }
+  
     $attrs.$observe('data', function() {
       that.onDataChange();
     });
@@ -181,6 +187,19 @@
         return;
       }
       that.currentIndex--;
+      if (that.currentSlideItem.image) {
+        var headerElement = angular.element(document.getElementById('home-slider'));
+        try {
+          if (that.currentIndex == 0 || that.currentIndex == 5) {
+            $(headerElement).css({'background-color':'#1D92DE','transition':'background-color 0.5s fade-in'});
+            // $(headerElement).css({'background-color':'#1D92DE','transition':'ease-in'});
+          }
+          else {
+            $(headerElement).css({'background-color':'#fabc01','transition':'background-color 0.5s fade-in'});
+          }  
+        }
+        catch(cerr){}  
+      }
       that.radioButtonIndex = that.currentIndex;
       that.currentMarginLeftValue += that.currentWidth;
       that.applyMarginLeft();
@@ -211,6 +230,18 @@
         return;
       }
       that.currentIndex++;
+      if (that.currentSlideItem.image) {
+        var headerElement = angular.element(document.getElementById('home-slider'));
+        try {
+          if (that.currentIndex == 0 || that.currentIndex == 5) {
+            $(headerElement).css({'background-color':'#1D92DE','transition':'background-color 0.5s fade-in'});
+          }
+          else {
+            $(headerElement).css({'background-color':'#fabc01','transition':'background-color 0.5s fade-in'});
+          }  
+        }
+        catch(cerr){}  
+      }
       that.radioButtonIndex = that.currentIndex;
       that.currentMarginLeftValue -= that.currentWidth;
       that.applyMarginLeft();
@@ -276,6 +307,7 @@
   function CarouselDirective() {
 
     function link(scope, element, attrs, ctrl) {
+      
       if (attrs.autoSlide === undefined) {
         ctrl.autoSlide = false;
       }
@@ -321,4 +353,4 @@
 
 }());
 
-(function(){angular.module("jkAngularCarousel.templates", []).run(["$templateCache", function($templateCache) {$templateCache.put("carousel-directive.html","<div class=\"jk-carousel\" >\n\n  <div class=\"slides-container\" layout=\"row\" >\n    <div\n      ng-repeat=\"slideItem in ctrl.cloneData\"\n      class=\"slide\"\n    >\n      <div ng-include=\"ctrl.itemTemplateUrl\" ></div>\n    </div>\n  </div>\n\n  <md-button class=\"md-icon-button left-arrow-button\" ng-click=\"ctrl.navigateLeft()\" >\n    <md-icon >chevron_left</md-icon>\n  </md-button>\n\n  <md-button class=\"md-icon-button right-arrow-button\" ng-click=\"ctrl.navigateRight()\" >\n    <md-icon >chevron_right</md-icon>\n  </md-button>\n\n  <md-radio-group\n    class=\"radio-buttons-container\"\n    layout=\"row\"\n    ng-model=\"ctrl.radioButtonIndex\"\n    layout-align=\"center center\"\n    ng-change=\"ctrl.onRadioButtonClick()\" >\n    <md-radio-button\n      ng-repeat=\"item in ctrl.data\"\n      ng-value=\"$index\"\n      aria-label=\"$index\" >\n    </md-radio-button>\n  </md-radio-group>\n\n</div>\n");}]);})();
+(function(){angular.module("jkAngularCarousel.templates", []).run(["$templateCache", function($templateCache) {$templateCache.put("carousel-directive.html","<div class=\"jk-carousel\" >\n\n  <div class=\"slides-container\" layout=\"row\" >\n    <div\n      ng-repeat=\"(idxSlideItem,slideItem) in ctrl.cloneData\"\n  ng-init=\"ctrl.currentSlideItem=slideItem;\"    class=\"slide\"\n    >\n      <div ng-include=\"ctrl.itemTemplateUrl\" ></div>\n    </div>\n  </div>\n\n  <md-button class=\"md-icon-button left-arrow-button\" ng-click=\"ctrl.navigateLeft()\" >\n    <md-icon >chevron_left</md-icon>\n  </md-button>\n\n  <md-button class=\"md-icon-button right-arrow-button\" ng-click=\"ctrl.navigateRight()\" >\n    <md-icon >chevron_right</md-icon>\n  </md-button>\n\n  <md-radio-group\n    class=\"radio-buttons-container\"\n    layout=\"row\"\n    ng-model=\"ctrl.radioButtonIndex\"\n    layout-align=\"center center\"\n    ng-change=\"ctrl.onRadioButtonClick()\" >\n    <md-radio-button\n      ng-repeat=\"item in ctrl.data\"\n      ng-value=\"$index\"\n      aria-label=\"$index\" >\n    </md-radio-button>\n  </md-radio-group>\n\n</div>\n");}]);})();
