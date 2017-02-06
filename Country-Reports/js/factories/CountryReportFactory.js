@@ -268,6 +268,15 @@ countryReportApp.factory('CountryReportFactory', function($http,$location){
 							cardIcon:'../document/EITI-Report/Second-Country-Report/card-icon-exec-summary.png'
 						},
 						{
+							title:"Data Summary Template",
+							href:"Data-Summary-Template",
+							id:'data-summary-template',
+							multiple:false,
+							file:'../document/EITI-Report/Second-Country-Report/PH-EITI_Data-Summary-Template_2013_Final.xlsx',
+							cardIcon:'../document/EITI-Report/Second-Country-Report/card-icon-xlsx.png',
+							mso:true
+						},
+						{
 							title:"Key findings (Inner Page)",
 							href:"Key-findings-Inner",
 							id:'key-finding-inner',
