@@ -25,7 +25,7 @@
     <div class="mxw-80 ta-left" data-ng-show="!current_annex.file && current_annex.multiple==false">
         <p>Document not yet available.</p>
     </div>
-    <div class="mxw-80" data-ng-show="current_annex.multiple==true && !current_annex.media">
+    <div class="mxw-80" data-ng-show="current_annex.multiple==true && !current_annex.media && !current_annex.otherFiles">
         <div class="md-inline-form">
             <md-content layout-padding>
                 <div layout-gt-sm="row">
@@ -60,6 +60,25 @@
                 </md-card>
             </div>  
             <div class="ta-left" data-ng-show="completedTemplates.length == 0">
+                <p>Document/s not yet available.</p>
+            </div>
+        </md-content>
+    </div>
+    <div class="mxw-80" data-ng-show="current_annex.multiple==true && !current_annex.media && current_annex.otherFiles">
+        <md-content>
+            <div flex="100" layout-fill layout="row" layout-wrap>   
+                <md-card flex="45" layout="row" data-ng-repeat="(k,cr) in current_annex.otherFiles" title="{{cr.company}}" class="card-container">
+                    <md-card-title flex="70">
+                        <md-card-title-text class="ta-left">
+                            <span class="md-headline" title="{{cr.title}}" style="font-size:1.25em;line-height:1em;">{{shorten(cr.title,90)}}</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-actions flex="30" layout="row" layout-align="end center">
+                        <md-button class="md-accent" data-ng-if="cr.file" data-ng-click="open_file(cr.file,cr)" alt="Open/Download {{cr.title}}"  title="Open/Download {{cr.title}}"><strong>Download</strong></md-button>
+                    </md-card-actions>
+                </md-card>
+            </div>  
+            <div class="ta-left" data-ng-show="otherFiles.length == 0">
                 <p>Document/s not yet available.</p>
             </div>
         </md-content>

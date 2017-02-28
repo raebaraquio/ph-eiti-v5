@@ -175,7 +175,7 @@
 						</div>
 					</md-content>     
 					<md-content>
-						<md-content data-ng-show="newsandevents.length==0">
+						<md-content data-ng-show="newsandevents.length > 0">
 							<md-list>
 								<md-list-item class="md-3-line" data-ng-repeat="(kfolder,ne) in newsandevents" layout="column" layout-align="left left">
 									<h3 tabindex="-1" class="md-heading padd-bt-0 mrgn-bt-0 fnt--bluepalette newsTitle" title="{{ne.title}}" data-ng-click="openNews(ne)">{{ne.title}}</h3>

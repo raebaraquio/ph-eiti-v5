@@ -35,21 +35,21 @@ newsApp.config(function($routeProvider){
         {
             title: 'Media Releases | News',
             controller: 'NewsController',
-            templateUrl:'./template/media-releases.html?v=1.03'
+            templateUrl:'./template/media-releases.html?v=1.04'
         })
 
          .when('/PH-EITI-Newsroom',
         {
             title: 'PH-EITI Newsroom | News',
             controller: 'NewsController',
-            templateUrl:'./template/newsroom.html?v=1.03'
+            templateUrl:'./template/newsroom.html?v=1.04'
         })
 
         .when('/PH-EITI-In-the-News',
         {
             title: 'PH-EITI In the News | News',
             controller: 'NewsController',
-            templateUrl:'./template/in-the-news.html?v=1.03'
+            templateUrl:'./template/in-the-news.html?v=1.04'
         })
 
         .when('/Newsletter',
@@ -63,7 +63,7 @@ newsApp.config(function($routeProvider){
         {
             title: 'Archive | News',
             controller: 'NewsController',
-            templateUrl:'./template/archive.html?v=1.03'
+            templateUrl:'./template/archive.html?v=1.04'
         })
 
         .otherwise({

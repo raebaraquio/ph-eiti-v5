@@ -18,7 +18,7 @@ countryReportApp.config(function($routeProvider){
 	{
 		title: 'Country Report | PH-EITI',
 		controller:'CountryReportCtrl',
-	    templateUrl: 'template/annex.html?v=1.03'
+	    templateUrl: 'template/annex.html?v=1.04'
 	})
 	.when('/:reportId',
 	{
