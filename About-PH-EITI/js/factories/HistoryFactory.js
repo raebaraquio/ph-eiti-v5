@@ -4,6 +4,15 @@ aboutApp.factory('HistoryFactory',function(){
 		get : function(){
 			return [
 				{
+					year:2017,
+					date:'February 20-28',
+					start:true,
+					badgeClass:'primary',
+					when:'February 20-28',
+					content:'The international fact-finding mission team of Dyveke Rogan and Alex Gordy conducted a series of consultative meetings with various stakeholders in Philippine extractives as part of the country\'s EITI Validation.',
+					contentHtml:'The international fact-finding mission team of Dyveke Rogan and Alex Gordy conducted a series of consultative meetings with various stakeholders in Philippine extractives as part of the country\'s EITI Validation.'
+				},
+				{
 					year:2016,
 					date:'September 2016',
 					start:false,
