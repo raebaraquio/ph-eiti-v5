@@ -304,12 +304,12 @@ pheiti.controller('statementCarouselController',['$scope','$sce',
         {
             statedBy: $sce.trustAsHtml('<div><span style="display:block;line-height:1.25em;">Foreword to the Third Country Report</span><strong style="display:block;line-height:1.25em;">President Rodrigo Roa Duterte</strong><span style="display:block;line-height:1.25em;">Republic of the Philippines</span></div>'),
             pullquote: 'Together with the PH-EITI Multi Sectoral Group, it is my hope that this report will ensure that all extractive activities will provide meaningful and impactful opportunities and benefits not just for the economy, but for everyone concerned. I trust that we will continue to abide with the principles that led to its establishment and use it to usher in the just, equitable, and prosperous future we envision for all Filipinos.',
-            link: ''
+            link: 'document/Statement/2017/03/09/Signed Foreword - 3rd Country Report.pdf'
         },
         {
             statedBy: $sce.trustAsHtml('<div><span style="display:block;line-height:1.25em;">Message from </span><strong style="display:block;line-height:1.25em;">Sec. Carlos G. Dominguez</strong><span style="display:block;line-height:1.25em;">Department of Finance</span></div>'),
             pullquote: '…DOF sees the Philippine EITI as aligned with at least three goals in the Duterte Administration’s ten-point socioeconomic agenda: institute more effective tax collection, increase competitiveness and the ease of doing business, and promote rural and value chain development, as to a critical albeit specific sector.',
-            link: ''
+            link: 'document/Statement/2017/03/09/DOF Message Signed.pdf'
         }
     ];
 }]);
