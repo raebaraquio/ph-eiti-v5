@@ -516,7 +516,7 @@ aboutApp.factory('MSGFactory',['$http',
 								members : {
 									primary:[{
 						            	"id":"b-2",
-						                "name" : "Eulalio B. Agustin Jr.",
+						                "name" : "Eulalio B. Austin Jr.",
 						                "position" : "Board of Directors, COMP",
 						                "office" : "President and CEO, Philex Mining Corporation",
 						                "avatar" : "default.png"
