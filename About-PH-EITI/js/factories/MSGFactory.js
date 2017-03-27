@@ -342,7 +342,7 @@ aboutApp.factory('MSGFactory',['$http',
 									alternate: [{
 						            	"id":"ga-2",
 						                "name" : "Engr. Romualdo D. Aguilos",
-						                "position" :"OIC-Chief, Mineral Economics, Information and Publication",
+						                "position" :"Engineer IV",
 						                "avatar" : "Romy-Aguilos.png"
 						            }]
 								}
@@ -365,18 +365,18 @@ aboutApp.factory('MSGFactory',['$http',
 								}
 							},
 							{
-								office: "Department of Energy (DOE)",
+								office: "Union of Local Authorities of the Philippines (ULAP)",
 								members: {
 									primary: [{
 						                "id":"g-5",
 						                "name": "Gov. Al Francis C. Bichara",
-						                "position": "President, Union of Local Authorities of the Philippines",
+						                "position": "President",
 						                "avatar":"Gov-Alfonso-Umali.png"
 						            }],
 									alternate: [{
 						            	"id":"ga-4",
 						                "name" : "Sandra T. Paredes",
-						                "position" :"Concurrent Executive Director, Union of Local Authorities of the Philippines; Director, League of Provinces of the Philippines",
+						                "position" :"Concurrent Executive Director; Director, League of Provinces of the Philippines",
 						                "avatar" : "default.png"
 						            }]
 								}
@@ -481,7 +481,7 @@ aboutApp.factory('MSGFactory',['$http',
 									primary:[{
 						            	"id":"b-0",
 						                "name" : "Gerard H. Brimo",
-						                "position" : "Board of Directors, Chamber of Mines of the Philippines (COMP)",
+						                "position" : "Board Director, Chamber of Mines of the Philippines (COMP)",
 						                "office" : "President and CEO, Nickel Asia Corporation",
 						                "avatar" : "Artemio-Disini.png"
 						            }],
@@ -517,7 +517,7 @@ aboutApp.factory('MSGFactory',['$http',
 									primary:[{
 						            	"id":"b-2",
 						                "name" : "Eulalio B. Austin Jr.",
-						                "position" : "Board of Directors, COMP",
+						                "position" : "Board Director, COMP",
 						                "office" : "President and CEO, Philex Mining Corporation",
 						                "avatar" : "default.png"
 						            }],
