@@ -40,14 +40,14 @@ aboutApp.factory('AboutFactory',['$http',
 					prevprofile:"<p></p>"
 				},
 				{
-					name:"Angelita Galano",
+					name:"Johna Paula Manzano",
 					position:"Office Manager",
 					picture:null,
 					profile:null,
 					prevprof:null
 				},
 				{
-					name:"Marikit Soliman",
+					name:"Leah Ivy Manzanero",
 					position:"Technical Specialist",
 					picture:null,
 					profile:null,
@@ -61,8 +61,8 @@ aboutApp.factory('AboutFactory',['$http',
 					prevprofile:"<p></p>"
 				},
 				{
-					name:"Katherine Dennise Domingo",
-					position:"Project Development Officer III",
+					name:"Rhoda Aranco",
+					position:"Project Finance Associate",
 					picture:"",
 					profile:"",
 					prevprofile:null
