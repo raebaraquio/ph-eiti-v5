@@ -358,15 +358,16 @@ countryReportApp.factory('CountryReportFactory', function($http,$location){
 					href:"Third-Country-Report",
 					title:"Third Country Report",
 					date:'December 2016',
-					lastupdated:'January 29, 2017 11:20 PM',
+					lastupdated:'May 9, 2017 08:47 PM',
 					card_img:'../document/EITI-Report/Third-Country-Report/card-icon.png',
 					content: [
 						{
-							title:"Third PH-EITI Country Report",
-							href:"third-country-report",
-							id:'third-country-report',
+							title:"Third PH-EITI Report",
+							href:"third-ph-eiti-report",
+							id:'third-ph-eiti-report',
 							multiple:false,
-							file:'../document/EITI-Report/Third-Country-Report/PH-EITI_Country-Report_2016.pdf',
+							// file:'../document/EITI-Report/Third-Country-Report/PH-EITI_Country-Report_2016.pdf',
+							file:'../document/EITI-Report/Third-Country-Report/PH-EITI 2016_FINAL_for uploading with footnote FY2014.pdf',
 							cardIcon:'../document/EITI-Report/Third-Country-Report/card-icon.png'
 						},
 						{
@@ -377,6 +378,14 @@ countryReportApp.factory('CountryReportFactory', function($http,$location){
 							file:'../document/EITI-Report/Third-Country-Report/PH-EITI-2014__Summary-Data-Template_12.31.2016_Final.xlsx',
 							cardIcon:'../document/EITI-Report/Third-Country-Report/card-icon-xlsx.png',
 							mso:true
+						},
+						{
+							title:"Annexes",
+							href:"third-country-report-annexes",
+							id:'third-country-report-annexes',
+							multiple:false,
+							file:'../document/EITI-Report/Third-Country-Report/3rd PH EITI Report_annexes.pdf',
+							cardIcon:'../document/EITI-Report/Third-Country-Report/card-icon-none.png'
 						},
 						{
 							title:"Completed Reporting Templates",
