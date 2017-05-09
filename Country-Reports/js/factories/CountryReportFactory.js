@@ -367,7 +367,7 @@ countryReportApp.factory('CountryReportFactory', function($http,$location){
 							id:'third-ph-eiti-report',
 							multiple:false,
 							// file:'../document/EITI-Report/Third-Country-Report/PH-EITI_Country-Report_2016.pdf',
-							file:'../document/EITI-Report/Third-Country-Report/PH-EITI 2016_FINAL_for uploading with footnote FY2014.pdf',
+							file:'../document/EITI-Report/Third-Country-Report/Third PH-EITI Report.pdf',
 							cardIcon:'../document/EITI-Report/Third-Country-Report/card-icon.png'
 						},
 						{
@@ -384,7 +384,7 @@ countryReportApp.factory('CountryReportFactory', function($http,$location){
 							href:"third-country-report-annexes",
 							id:'third-country-report-annexes',
 							multiple:false,
-							file:'../document/EITI-Report/Third-Country-Report/3rd PH EITI Report_annexes.pdf',
+							file:'../document/EITI-Report/Third-Country-Report/Third PH-EITI Report_annexes.pdf',
 							cardIcon:'../document/EITI-Report/Third-Country-Report/card-icon-none.png'
 						},
 						{
