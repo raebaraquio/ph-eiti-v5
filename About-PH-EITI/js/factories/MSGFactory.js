@@ -280,9 +280,9 @@ aboutApp.factory('MSGFactory',['$http',
 									primary: [
 										{
 										    "id":"g-0",
-							                "name": "Gil S. Beltran",
-							                "position": "Undersecretary and Chief Economist",
-							                "subposition": "OIC - PH-EITI Focal Person and Chair",
+							                "name": "Antonette C. Tiongko",
+							                "position": "Undersecretary",
+							                "subposition": "PH-EITI Focal Person and Chair",
 							                "avatar":"default.png"
 										}
 									],
@@ -416,9 +416,9 @@ aboutApp.factory('MSGFactory',['$http',
 						            }],
 									alternate: [{
 										id:'',
-										name: 'Jose Melvin A. Lamanilao',
+										name: 'Agusto Blanco Jr.',
 										office: '',
-										position: 'Independent Consultant'
+										position: 'Indigenous People (IP) representative'
 									}]	
 								}								
 							},
