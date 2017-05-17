@@ -78,7 +78,7 @@ aboutApp.factory('MSGFactory',['$http',
 					            }],
 								alternate: [{
 					            	"id":"ga-3",
-					                "name" : "Araceli Soluta",
+					                "name" : "Araceli S. Soluta",
 					                "position" :"Director III",
 					                "office" : "Financial Services, DOE",
 					                "avatar" : "default.png"
@@ -184,7 +184,7 @@ aboutApp.factory('MSGFactory',['$http',
 							{
 								primary: [{
 									"id":"csa-4",
-					                "name" : "Starjoan Villanueva",
+					                "name" : "Starjoan D. Villanueva",
 					                "position" :"Executive Director",
 					                "office" : "Alternate Forum for Research in Mindanao (AFRIM)",
 					                "avatar" :"Starj-Villanueva.png"
@@ -284,6 +284,13 @@ aboutApp.factory('MSGFactory',['$http',
 							                "position": "Undersecretary",
 							                "subposition": "PH-EITI Focal Person and Chair",
 							                "avatar":"default.png"
+										},
+										{
+										    "id":"gv-0",
+							                "name": "Gil S. Beltran",
+							                "position": "Undersecretary",
+							                "subposition": "",
+							                "avatar":"default.png"
 										}
 									],
 									alternate: [
@@ -291,8 +298,16 @@ aboutApp.factory('MSGFactory',['$http',
 											"id":"ga-1",
 							                "name": "Ma. Teresa S. Habitan",
 							                "position": "Assistant Secretary",
+							                "subposition": "Alternate Focal Person and Chair",
 							                "avatar":"Asec-Teresa-Habitan.png"
-							            }
+							            },
+										{
+										    "id":"gv-0",
+							                "name": "Elsa P. Agustin",
+							                "position": "Director",
+							                "subposition": "",
+							                "avatar":"default.png"
+										}
 									]	
 								}
 							},
@@ -358,7 +373,7 @@ aboutApp.factory('MSGFactory',['$http',
 						            }],
 									alternate: [{
 						            	"id":"ga-3",
-						                "name" : "Araceli Soluta",
+						                "name" : "Araceli S. Soluta",
 						                "position" :"Director III",
 						                "avatar" : "default.png"
 						            }]
@@ -416,9 +431,10 @@ aboutApp.factory('MSGFactory',['$http',
 						            }],
 									alternate: [{
 										id:'',
-										name: 'Agusto Blanco Jr.',
+										name: 'Augusto S. Blanco Jr.',
+							            subposition: "Indigenous People (IP) representative",
 										office: '',
-										position: 'Indigenous People (IP) representative'
+										position: 'Mandaya Tribe'
 									}]	
 								}								
 							},
@@ -458,7 +474,7 @@ aboutApp.factory('MSGFactory',['$http',
 								members: {
 									primary: [{
 										"id":"csa-4",
-						                "name" : "Starjoan Villanueva",
+						                "name" : "Starjoan D. Villanueva",
 						                "position" :"Executive Director",
 						                "office" : "Alternate Forum for Research in Mindanao (AFRIM)",
 						                "avatar" :"Starj-Villanueva.png"
@@ -636,7 +652,7 @@ aboutApp.factory('MSGFactory',['$http',
 				            },
 				            {
 				            	"id":"ga-3",
-				                "name" : "Araceli Soluta",
+				                "name" : "Araceli S. Soluta",
 				                "position" :"Director III",
 				                "office" : "Department of Energy (DOE)",
 				                "avatar" : "default.png"
@@ -720,7 +736,7 @@ aboutApp.factory('MSGFactory',['$http',
 				            },
 				            {
 				            	"id":"csa-4",
-				                "name" : "Starjoan Villanueva",
+				                "name" : "Starjoan D. Villanueva",
 				                "position" :"Executive Director",
 				                "office" : "Alternate Forum for Research in Mindanao (AFRIM)",
 				                "avatar" :"Starj-Villanueva.png"
