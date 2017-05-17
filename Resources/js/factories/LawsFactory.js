@@ -274,6 +274,11 @@ resourcesApp.factory('LawsFactory', function(){
 							title:'NCIP AO 3-2012',
 							desc:'THE REVISED GUIDELINES ON THE EXERCISE OF FREE AND PRIOR INFORMED CONSENT (FPIC) AND RELATED PROCESSES',
 							link:'document/Laws/NCIP AO 3-2012.pdf'
+						},
+						{
+							title:'Administrative Order No. 2017-07',
+							desc: 'MANDATING MINING CONTRACTORS TO PARTICIPATE IN THE PHILIPPINE EXTRACTIVE INDUSTRIES TRANSPARENCY INITIATIVE (PH-EITI)',
+							link:'document/Laws/Administrative Order No. 2017-07.pdf'
 						}
 					]
 				},
