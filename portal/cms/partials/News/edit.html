@@ -1,0 +1,175 @@
+<md-content layout-padding>
+    <h1>Edit News</h1>
+    <small class="link-map-hier" style="margin-bottom:1em;"><a href="#/News">{{article.section}}</a>&nbsp;&nbsp; > &nbsp;&nbsp; <a href="#/{{article.sectionHref}}/Article/Edit/{{entry.id}}/{{entry.pk}}">Edit {{entry.title}}</a> </small>
+    <div style="mg-top" layout="column">
+        <div flex="85" layout="row" layout-align="start center"  style="margin-top:1em;">
+            <div flex class="storyList ta-center" layout="row" layout-align="center center">
+                <div class="storyList-block ta-center" data-ng-repeat="(k,v) in steps" title="{{v}}" id="editNews-storyList" flex layout="row" layout-align="space-between center">
+                    <div class="storyList-block__step" data-ng-class="{'activeStory':activeStory==v}"  data-ng-click="traverse(v)" flex="20">
+                        <a href="" style="margin-top:6px;">{{v}}</a>
+                    </div>
+                    <!-- <div class="storyList-block__separator--cloak" data-ng-show="k == 4"></div> -->
+                    <div class="storyList-block__separator" data-ng-if="k < 3" flex="80" style="height:9px;"></div>
+                </div>
+            </div>
+        </div>
+        <div layout="row">
+            <div flex="85" cg-busy="{promise:savePromise}"  style="margin-top:1em;">
+                <div layout="column" data-ng-class="{'inlineFeedback inlineFeedback-success':detailsFeedback.edit.type=='success',
+                                    'inlineFeedback inlineFeedback-error':detailsFeedback.edit.type=='error',
+                                    'inlineFeedback inlineFeedback-warning':detailsFeedback.edit.type=='warning'}"
+                    data-ng-show="detailsFeedback.edit.message" style="margin-top:1em;width:98%;">
+                    <div layout="row" layout-align="space-between center">
+                        <span>{{detailsFeedback.edit.message}}</span>                        
+                        <div class="inlineFeedback-action inlineFeedback-action--close" data-ng-click="toggleInlineFeedback('reset',null,null,'edit')" title="Close">[x]</div>  
+                    </div>
+                    <div class="ta-center" data-ng-show="entry.publish=='publish'">
+                        <a href="#/{{article.sectionHref}}" class="btn btn-gray">Go to {{article.section}}</a>
+                    </div>
+                </div>
+
+                <!-- Main -->
+                <div data-ng-show="!entry.publish" cg-busy="{promise:newspromise}">
+                    
+                    <!-- Details -->
+                    <form class="storyForm" name="addFormDetails" data-ng-show="activeStory=='Details'" novalidate layout="column">
+                        <table class="storyForm-table" flex>
+                            <tr>
+                                <td width="66%" colspan="2">
+                                    <label for="detailsForm-title">Title</label> <br/>
+                                    <input type="text" size="68" id="detailsForm-title" data-ng-required="true" data-ng-class="{invalidField:invalidField=='detailsForm-title'}" data-ng-model="entry.title" title="Title" placeholder="Title"/>
+                                </td>
+                                <td width="33%">
+                                    <label for="detailsForm-subtitle">Subtitle</label> <br/>
+                                    <input type="text" size="28" id="detailsForm-subtitle" data-ng-class="{invalidField:invalidField=='detailsForm-subtitle'}" data-ng-model="entry.subtitle" title="Subtitle/Sub-heading" placeholder="Subtitle/Sub-heading"/>
+                                </td>
+                                <!-- <td width="33%"> </td> -->
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <label for="detailsForm-sourceurl">Source URL</label> <br/>
+                                    <input type="text" size="68" id="detailsForm-sourceurl" data-ng-class="{invalidField:invalidField=='detailsForm-sourceurl'}" data-ng-model="entry.sourceurl" data-ng-required="newsletterArticle==false" title="Source URL" placeholder="Source URL"/>
+                                </td>
+                                <td>
+                                    <label for="detailsForm-source">Source</label> <br/>
+                                    <input type="text" size="28" id="detailsForm-source" data-ng-class="{invalidField:invalidField=='detailsForm-source'}" data-ng-model="entry.source" data-ng-required="newsletterArticle==false" title="Source" placeholder="Source"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="detailsForm-author">Author</label> <br/>
+                                    <!-- data-ng-required="newsletterArticle==false" -->
+                                    <input type="text" size="30" id="detailsForm-author" data-ng-class="{invalidField:invalidField=='detailsForm-author'}" data-ng-model="entry.author" title="Author" placeholder="Author"/>
+                                </td>
+                                <td>
+                                    <label for="detailsForm-dateposted">Date posted</label>&nbsp;&nbsp;&nbsp;&nbsp;<!--
+                                    --><em style="font-size:11px;color:#ccc;">Ex. January 01, 2015 01:01 PM</em> <br />
+                                    <input type="text" size="30" id="detailsForm-dateposted" data-ng-required="newsletterArticle==false" data-ng-class="{invalidField:invalidField=='detailsForm-dateposted'}" data-ng-model="entry.dateposted" title="Date Posted" placeholder="Format: Month dd, YYYY hh:mi AM"/>
+                                </td>
+                                <td>
+                                    <label for="detailsForm-continuelink">Continue link</label> <br/>
+                                    <select id="detailsForm-continuelink" data-ng-options="link as link for link in continueOpts" data-ng-class="{invalidField:invalidField=='detailsForm-continuelink'}" data-ng-model="entry.readmore" style="width:90%;" data-ng-required="true" title="Read More link">
+                                        <option value="">Choose one</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"> 
+                                    <label for="detailsForm-excerpt">Excerpt</label> <br/>
+                                    <textarea id="detailsForm-excerpt" rows="4" cols="101" data-ng-class="{invalidField:invalidField=='detailsForm-excerpt'}" data-ng-model="entry.excerpt" data-ng-required="true" placeholder="Excerpt" title="Excerpt" style="font-family:sans-serif;resize:none;max-height:100px;"></textarea>
+                                </td>
+                            </tr>
+                        </table>
+                        <div layout="row" layout-align="center center">
+                            <md-button class="md-accent md-raised" data-ng-click="validateForm('Details','Media')">Save & Proceed to Media</md-button>
+                        </div>
+                    </form>
+                    <!-- End: Details -->
+
+                    <!-- Media -->
+                    <iframe id="addForMedia-iframe" name="addForMedia-iframe" style="width:0px;height:0px;border:none" border="0" onload="uploadEditReturn()"></iframe>
+                    <form class="storyForm" name="addFormMedia" id="add-form-Media" data-ng-show="activeStory=='Media'" enctype="multipart/form-data" method="post" action="../../be/functions/upload.php" target="addForMedia-iframe">
+                        <input type="hidden" name="uploadType" id="uploadType" value="picture" />
+                        <input type="hidden" name="contentSection" id="contentSection" value="Newsletter" />
+                        <input type="hidden" name="uploadedBy" id="uploadedBy" value="" />
+                        <input type="hidden" name="newsfk" id="newsfk" value="" />
+                        <div style="margin-top:5px;padding-top:10px;" cg-busy="{promise:getPromise}">
+                            <div class="fl-left" data-ng-show="mediaFiles" style="box-sizing:border-box;width:65%;">
+                                <h2 style="padding-top:0px;margin-top:0px;">Pictures</h2>
+                                <small data-ng-show="!mediaFiles.length">No pictures uploaded in this article yet.</small>
+                                <span data-ng-show="mediaFiles.length">There <span data-ng-show="mediaFiles.length==1">is {{mediaFiles.length}}</span><span data-ng-show="mediaFiles.length>1">are {{mediaFiles.length}}</span> picture<span data-ng-show="mediaFiles.length>1">s</span> uploaded in this article.</span>
+                               <!--  <ul>
+                                    <li data-ng-repeat="(kl,vl) in mediaFiles"></li>
+                                </ul> -->
+                                <table>
+                                    <tr data-ng-repeat="(kl,vl) in mediaFiles">
+                                        <td class="ta-left">
+                                            <input type="text" value="{{vl.hrefDisplay}}" readonly size="45" id="link-{{kl}}"/>
+                                            <!-- <small><a class="resetLink" data-ng-click="previewFile(vl)">{{vl.hrefDisplay}}</a></small> -->
+                                        </td>
+                                        <td class="ta-left">
+                                            <button class="btn-pumpkin" data-ng-click="doCopy($event,vl,kl)">Copy</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="fl-right">
+                                <div class="ta-left" cg-busy="{promise:uploadPromise}">
+                                    <h2 style="padding-top:0px;margin-top:0px;">Upload here</h2>
+                                    <em><small>NOTE: Maximum file upload size is 500KB.</small></em> <br />
+                                    <!-- <input type="file" name="uploadFile" id="uploadFile" style="display:none;"/>     -->
+                                    <input type="file" id="file-to-upload" name="fileToUpload" fileforupload="mediaupload.file" maxsize=usefilesize />
+                                    <!-- <button class="btn btn-pumpkin" style="margin-top:15px;" id="btn-chooseFile" data-ng-click="chooseFile()">CHOOOSE FILE</button> -->
+                                    <br /><a class="resetLink va-bottom" data-ng-click="toggleMedia('reset',null)">Reset</a>
+                                </div>
+                                <div class="ta-right" style="box-sizing:border-box;padding-right:32px;padding-bottom:8px;margin-top:25px;">
+                                    <input class="va-mid" type="checkbox" data-ng-model="addAnother" id="add-another"/> <label for="add-another">Add another</label>
+                                </div>
+                                <div>
+                                    <div class="fl-left ta-left">
+                                        <!-- <a class="resetLink va-bottom" data-ng-click="toggleMedia('reset',null)">Reset</a> -->
+                                    </div>
+                                    <div class="fl-right ta-right">
+                                        <button class="btn btn-gray" data-ng-click="traverse('Details')">Back to Details</button>&nbsp;
+                                        <!-- <input type="submit" class="btn btn-submitForm" data-ng-click="submitMe()" value="Upload 2"/>     -->
+                                        <input type="submit" name="submitMedia" class="btn btn-submitForm" data-ng-click="validateForm('Media','Content')" value="Upload"/>    
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </form>
+                    <!-- End: Media -->
+                    <!-- Content -->
+                    <form class="storyForm" name="addFormContent" data-ng-show="activeStory=='Content'" layout="column">
+                        <div flex style="box-sizing:border-box;padding-right:25px;">
+                            <textarea id="articleContent" cols="30" rows="40" ui-tinymce="tinymceopts" data-ng-model="entry.content" ></textarea>    
+                        </div>
+                        <div flex layout="row" layout-align="start center" style="margin-top:1em;">
+                            <div flex="60"></div>
+                            <div flex="40" layout="row" layout-align="end center">
+                                <a class="resetLink" data-ng-click="clearContent()">Reset</a>&nbsp;
+                                <md-button class="md-default md-raised"  data-ng-click="traverse('Media')">Back to Media</md-button>&nbsp;
+                                <md-button class="md-accent md-raised" data-ng-click="validateForm('Content','Save')">Proceed</md-button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- End: Content -->
+                    <!-- Save/Publish -->
+                    <form class="storyForm" name="addFormSave" data-ng-show="activeStory=='Save'">
+                        <div class="ta-center" data-ng-show="entry.content" >
+                            <h3>How would you like to save your article?</h3>
+                            <div class="ta-center">
+                                <md-button class="md-default md-raised" data-ng-click="finish()" title="Article will be saved but will NOT be published. Article will NOT yet be available for the public.">Save changes</md-button>&nbsp;
+                                <md-button class="md-accent md-raised" data-ng-show="entry.publishedstatus=='Unpublished'" data-ng-click="validateForm('Save',null)" title="Article will be saved and published. Article will be available for the public.">Save and Publish</md-button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- End: Save/Publish -->
+                </div>
+                <!-- End: Main -->
+            </div>
+        </div>
+    </div>
+</md-content>

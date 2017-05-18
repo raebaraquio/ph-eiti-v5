@@ -1,0 +1,22 @@
+<div class="page-content" id="profile-page" style="padding-top:25px;">
+    <div id="subcontent" >
+        <h1>Activities</h1>
+        <div class="btnGroup">
+        	<div class="btnGroup-option" data-ng-repeat="(k,v) in contentTypes" data-ng-class="{'btnGroup-option--active':selectedContent==v}">
+        		<a href="#/{{v}}">{{v}}</a>
+        	</div>
+        </div>
+        <div id="filterOptions">
+        	<a class="btn-pumpkin" href="#/Activities/add{{filter.category}}">Add New</a>
+        	<div class="fl-right">
+        		<div class="btnGroup" id="btnGroup-filter">
+		        	<div class="btnGroup-option" data-ng-repeat="(pubk,pubv) in pubishedOptions" data-ng-class="{'btnGroup-option--active':filter.published==pubv}"
+		        	data-ng-click="setPublished(pubv)">
+		        		{{pubv}}
+		        	</div>
+		        </div>
+        	</div>
+        	<div class="clearfix"></div>
+        </div>
+    </div>
+</div>

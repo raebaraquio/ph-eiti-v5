@@ -1,0 +1,21 @@
+<div class="page-content" id="profile-page">
+
+    <div id="subcontent" style="padding-top:50px;">
+        <h1 class="content-heading">CONTENT MANAGEMENT</h1>
+
+        <hr />
+    
+        <ul class="secretariatlist-icon-menu">
+            <li class="iconmenus" data-ng-repeat="section in cmssections" id="iconmenu-{{section.id}}" data-ng-click="goTo(section.goTo)"  title="Manage {{section.title}}">
+                <a href="#/Content-Management/{{section.goTo}}" title="Manage {{section.title}}">{{section.title}}</a>
+                <div class="acticon" data-ng-click="goTo(section.goTo)"></div>
+                <div class="clearfix"></div>
+            </li>
+        </ul>
+        
+        <div class="clearfix"></div>
+        
+    </div>
+</div>
+
+    

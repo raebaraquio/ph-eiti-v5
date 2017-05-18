@@ -1,0 +1,58 @@
+<div class="page-content" id="profile-page">
+
+	<button class="button-secondaryaction" data-ng-click="editProfile()">Close</button>
+	
+	<div class="clearfix"></div>
+
+    <div id="subcontent">
+        <h1 class="content-heading">PROFILE</h1>
+
+        <hr />
+
+        <form name="profileupdateform">
+        	<div id="profile-box">
+        		<div class="profile-field" data-ng-show="userfeedback.message !=''">
+        			<div data-ng-class="{'userfeedback-success':userfeedback.type=='success',
+	    						 		'userfeedback-error':userfeedback.type=='error' }" style="text-align:center;">
+			    		{{ userfeedback.message }}
+			    	</div>
+        		</div>
+	        	<div class="profile-field">
+	        		<label for="name">Name</label>
+	        		<input type="text" data-ng-model="updatedprofile.name" maxlength="50" size="45" id="name"/>
+	        		<div class="clearfix"></div>
+	        		
+	        	</div>
+
+	        	<div class="profile-field">
+	        		<label for="position">Position</label>
+	        		<input type="text" data-ng-model="updatedprofile.position" size="30" maxlength="30" id="position"/>
+	        		<div class="clearfix"></div>
+	        	</div>
+
+	        	<br />
+
+	        	<h3>Contact Information</h3>
+
+	        	<div class="profile-field">
+	        		<label for="email">Email</label>
+	        		<input type="text" data-ng-model="updatedprofile.email" size="25" maxlength="40"
+	        	 id="email"/>
+	        		<div class="clearfix"></div>
+	        	</div>
+
+	        	<div class="profile-field">
+	        		<label for="mobile">Mobile</label>
+	        		<input type="text" data-ng-model="updatedprofile.mobile" size="10" maxlength="11"
+	        	 id="mobile"/>
+	        		<div class="clearfix"></div>
+	        	</div>
+	        </div>
+	        <div>
+		        <button class="button-download" data-ng-click="saveProfile()">Save Changes</button>
+		    </div>
+        </form>
+    </div>
+</div>
+
+    

@@ -1,0 +1,185 @@
+<div class="page-content" id="profile-page" style="padding-top:25px;">
+    <div id="subcontent" >
+        <small class="link-map-hier"><a href="#/Activities">Activities</a>&nbsp;&nbsp; > &nbsp;&nbsp; <a href="#/Activities/add">Add</a> </small>
+        
+        <div style="mg-top">
+            <h3>Add</h3>
+            <div>
+                <div class="storyList ta-center">
+                    <div class="storyList-block ta-center" data-ng-repeat="(k,v) in steps" title="{{v}}">
+                        <div class="storyList-block__step" data-ng-class="{'activeStory':activeStory==v}"  data-ng-click="traverse(v)">
+                            <a href="">{{v}}</a>
+                        </div>
+                        <!-- <div class="storyList-block__separator--cloak" data-ng-show="k == 4"></div> -->
+                        <div class="storyList-block__separator" data-ng-show="k < 4"></div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin:auto;">
+                <div style="width:87%;margin:auto;padding-top:20px;" cg-busy="{promise:savePromise}">
+                    <div data-ng-class="{'inlineFeedback inlineFeedback-success':inlineFeedback.type=='success',
+                                        'inlineFeedback inlineFeedback-error':inlineFeedback.type=='error',
+                                        'inlineFeedback inlineFeedback-warning':inlineFeedback.type=='warning'}"
+                        data-ng-show="inlineFeedback.message">
+                        {{inlineFeedback.message}}
+                        <div class="fl-right ta-right inlineFeedback-action inlineFeedback-action--close" data-ng-click="toggleInlineFeedback('reset',null,null,null)" title="Close">[x]</div>
+                        <div class="ta-center" data-ng-show="activity.publish=='publish'">
+                            <a href="#/Activities" class="btn btn-gray">Go to Activities</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <!-- Main -->
+                    <div data-ng-show="!activity.publish">
+                        <!-- One-day -->
+                        <form class="storyForm" name="addFormPurpose" data-ng-show="activeStory=='Duration'" >
+                            <div class="ta-center">
+                                <h3>How many days are allotted for this activity?</h3>
+                                <div class="btnGrp">
+                                    <div class="btnGroup-option" data-ng-class="{'btnGroup-option--active':onedayactivity===true}" data-ng-click="onedayactivity=true;traverse('Details')">
+                                        One day
+                                    </div>
+                                    <div class="btnGroup-option" data-ng-class="{'btnGroup-option--active':onedayactivity===false}" data-ng-click="onedayactivity=false;traverse('Details')">
+                                        More than One
+                                    </div>                                
+                                </div>
+                            </div>
+                        </form>
+                        <!-- End: One-day -->
+                        <!-- Details -->
+                        <form class="storyForm" name="addFormDetails" data-ng-show="activeStory=='Details'" novalidate>
+                            <table class="storyForm-table" style="width:100%;">
+                                <tr>
+                                    <td colspan="3">
+                                        <label for="detailsForm-title">Title</label> <br/>
+                                        <input type="text" size="100%" id="detailsForm-title" data-ng-required="true" data-ng-class="{invalidField:invalidField=='detailsForm-title'}" data-ng-model="activity.title" title="Title" placeholder="Title"/>
+                                    </td>
+                                    <!-- <td width="33%">
+                                        <label for="detailsForm-subtitle">Subtitle</label> <br/>
+                                        <input type="text" size="28" id="detailsForm-subtitle" data-ng-class="{invalidField:invalidField=='detailsForm-subtitle'}" data-ng-model="activity.subtitle" title="Subtitle/Sub-heading" placeholder="Subtitle/Sub-heading"/>
+                                    </td> -->
+                                    <!-- <td width="33%"> </td> -->
+                                </tr>
+                                 <tr>
+                                    <td>
+                                        <label for="detailsForm-startDate"><span data-ng-show="onedayactivity===false">Start</span> Date</label> <br/>
+                                        <input type="text" size="28" id="detailsForm-startDate" data-ng-required="true" data-ng-class="{invalidField:invalidField=='detailsForm-title'}" data-ng-model="activity.venue" title="Date" placeholder="Date"/>
+                                    </td>
+                                    <td>
+                                        <label for="detailsForm-endDate" data-ng-show="onedayactivity===false"><span data-ng-show="onedayactivity===false">End</span> Date</label> <br/>
+                                        <input data-ng-show="onedayactivity===false" type="text" size="28" id="detailsForm-endDate" data-ng-required="true" data-ng-class="{invalidField:invalidField=='detailsForm-title'}" data-ng-model="activity.venue" title="End Date" placeholder="End Date"/>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">
+                                        <label for="detailsForm-venue">Venue</label> <br/>
+                                        <input type="text" size="100%" id="detailsForm-venue" data-ng-required="true" data-ng-class="{invalidField:invalidField=='detailsForm-title'}" data-ng-model="activity.venue" title="Venue" placeholder="Venue"/>
+                                    </td>
+                                </tr>
+                                <!-- <tr>
+                                    <td colspan="3"> 
+                                        <label for="detailsForm-excerpt">Excerpt</label> <br/>
+                                        <textarea id="detailsForm-excerpt" rows="4" cols="107" data-ng-class="{invalidField:invalidField=='detailsForm-excerpt'}" data-ng-model="activity.excerpt" data-ng-required="true" placeholder="Excerpt" title="Excerpt" style="font-family:sans-serif;"></textarea>
+                                    </td>
+                                </tr> -->
+                                <tr>
+                                    <td colspan="2"><br /></td>
+                                </tr>
+                                <tr>
+                                    <td class="ta-left">
+                                        
+                                    </td>
+                                    <td colspan="2" class="ta-right">
+                                        <button class="btn btn-gray" data-ng-click="traverse('Duration')">Back to Purpose</button>&nbsp;
+                                        <button class="btn btn-submitForm" data-ng-click="validateForm('Details','Upload')">Save and proceed</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                        <!-- End: Details -->
+                        <!-- Media -->
+                        <iframe id="addForMedia-iframe" name="addForMedia-iframe" style="width:0px;height:0px;border:none" border="0" onload="uploadReturn()"></iframe>
+                        <form class="storyForm" name="addFormMedia" id="add-form-Media" data-ng-show="activeStory=='Upload'" enctype="multipart/form-data" method="post" action="../../be/functions/upload.php" target="addForMedia-iframe">
+                            <!-- <input type="hidden" name="uploadType" id="uploadType" value="picture" />
+                            <input type="hidden" name="contentSection" id="contentSection" value="Newsletter" /> -->
+                            <input type="hidden" name="uploadedBy" id="uploadedBy" value="" />
+                            <!-- <input type="hidden" name="activitiesfk" id="activitiesfk" value="" /> -->
+                            <div style="margin-top:5px;padding-top:10px;" cg-busy="{promise:getPromise}">
+                                <div class="fl-left" data-ng-show="mediaFiles" style="box-sizing:border-box;width:65%;">
+                                    <h2 style="padding-top:0px;margin-top:0px;">Pictures</h2>
+                                    <small data-ng-show="!mediaFiles.length">No pictures uploaded in this article yet.</small>
+                                    <span data-ng-show="mediaFiles.length">There <span data-ng-show="mediaFiles.length==1">is {{mediaFiles.length}}</span><span data-ng-show="mediaFiles.length>1">are {{mediaFiles.length}}</span> picture<span data-ng-show="mediaFiles.length>1">s</span> uploaded in this article.</span>
+                                   <!--  <ul>
+                                        <li data-ng-repeat="(kl,vl) in mediaFiles"></li>
+                                    </ul> -->
+                                    <table>
+                                        <tr data-ng-repeat="(kl,vl) in mediaFiles">
+                                            <td class="ta-left">
+                                                <input type="text" value="{{vl.hrefDisplay}}" readonly size="45" id="link-{{kl}}"/>
+                                                <!-- <small><a class="resetLink" data-ng-click="previewFile(vl)">{{vl.hrefDisplay}}</a></small> -->
+                                            </td>
+                                            <td class="ta-left">
+                                                <button class="btn-pumpkin" data-ng-click="doCopy($event,vl,kl)">Copy</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="fl-right">
+                                    <div class="ta-left" cg-busy="{promise:uploadPromise}">
+                                        <h2 style="padding-top:0px;margin-top:0px;">Upload here</h2>
+                                        <em><small>NOTE: Maximum file upload size is 500KB.</small></em> <br />
+                                        <!-- <input type="file" name="uploadFile" id="uploadFile" style="display:none;"/>     -->
+                                        <input type="file" id="file-to-upload" name="fileToUpload" fileforupload="mediaupload.file" maxsize=usefilesize />
+                                        <!-- <button class="btn btn-pumpkin" style="margin-top:15px;" id="btn-chooseFile" data-ng-click="chooseFile()">CHOOOSE FILE</button> -->
+                                        <br /><a class="resetLink va-bottom" data-ng-click="toggleMedia('reset',null)">Reset</a>
+                                    </div>
+                                    <div class="ta-right" style="box-sizing:border-box;padding-right:32px;padding-bottom:8px;margin-top:25px;">
+                                        <input class="va-mid" type="checkbox" data-ng-model="addAnother" id="add-another"/> <label for="add-another">Add another</label>
+                                    </div>
+                                    <div>
+                                        <div class="fl-left ta-left">
+                                            <!-- <a class="resetLink va-bottom" data-ng-click="toggleMedia('reset',null)">Reset</a> -->
+                                        </div>
+                                        <div class="fl-right ta-right">
+                                            <button class="btn btn-gray" data-ng-click="traverse('Details')">Back to Details</button>&nbsp;
+                                            <!-- <input type="submit" class="btn btn-submitForm" data-ng-click="submitMe()" value="Upload 2"/>     -->
+                                            <input type="submit" name="submitMedia" class="btn btn-submitForm" data-ng-click="validateForm('Upload','Content')" value="Upload"/>    
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </form>
+                        <!-- End: Media -->
+                        <!-- Content -->
+                        <form class="storyForm" name="addFormContent" data-ng-show="activeStory=='Content'">
+                            <div style="box-sizing:border-box;padding-right:25px;">
+                                <textarea id="articleContent" cols="30" rows="40" ui-tinymce="tinymceopts" data-ng-model="activity.content" ></textarea>    
+                            </div>
+                            <div class="ta-right" style="margin-top:45px;">
+                                <a class="resetLink" data-ng-click="clearContent()">Reset</a>&nbsp;
+                                <button class="btn btn-gray" data-ng-click="traverse('Upload')">Back to Media</button>&nbsp;
+                                <button class="btn btn-submitForm" data-ng-click="validateForm('Content','Save')">Proceed</button>
+                            </div>
+                        </form>
+                        <!-- End: Content -->
+                        <!-- Save/Publish -->
+                        <form class="storyForm" name="addFormSave" data-ng-show="activeStory=='Save'">
+                            <div class="ta-center" data-ng-show="activity.content" >
+                                <h3>How would you like to save your article?</h3>
+                                <div class="ta-center">
+                                    <button class="btn btn-gray" data-ng-click="finish()" title="Article will be saved but will NOT be published. Article will NOT yet be available for the public.">Save as Draft</button>&nbsp;
+                                    <button class="btn btn-submitForm" data-ng-click="validateForm('Save',null)" title="Article will be saved and published. Article will be available for the public.">Save and Publish</button>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- End: Save/Publish -->
+                    </div>
+                    <!-- End: Main -->
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

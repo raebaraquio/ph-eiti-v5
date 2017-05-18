@@ -1,0 +1,47 @@
+<div class="page-content" id="profile-page">
+
+    <div id="subcontent" style="padding-top:50px;">
+        <small class="link-map-hier"><a href="#/Content-Management">Content Management</a>&nbsp;&nbsp; > &nbsp;&nbsp; <a href="#/Content-Management/Status-Report">Status Report</a></small>
+
+        <h1 class="content-heading">Status Report</h1>
+
+        <div style="margin-top:20px;">
+        	<a href="#/Content Management/Status Report/New" class="button-download"
+        	style="float:right;">+ Add Task</a>
+        	<div class="clearfix"></div>
+        </div>
+        
+        <div style="margin-top:30px;">
+        	<table id="statusreport-table">
+	        	<tr class="statusreport-table-heading">
+	        		<th>#</th>
+	        		<th>Task</th>
+	        		<th class="center">Status</th>
+	        		<th class="center"></th>
+	        	</tr>
+	        	<tr data-ng-if="tasks.length > 0" data-ng-repeat="(idx,task) in tasks track by idx">
+	        		<td>{{idx+1}}</td>
+	        		<td>
+	        			<a href="#/Content-Management/Status-Report/{{task.pk}}/view" title="{{task.task}}">{{task.task}}</a>
+	        		</td>
+	        		<td class="status-col">
+       					<img data-ng-show="task.reportstatus == 'Done'" src="images/icons/status-done.png" width="50px" title="{{task.statusreport}}"/>
+       					<img data-ng-show="task.reportstatus == 'In progress'" src="images/icons/status-inprogress.png" width="50px" title="{{task.statusreport}}"/>
+       					<img data-ng-show="task.reportstatus == 'Not started'" src="images/icons/status-notstarted.png" width="50px" title="{{task.statusreport}}"/>
+       					<br />
+       					<small>{{task.reportstatus}}</small>
+	        		</td>
+	        		<td class="center">
+	        			<button class="button-secondaryaction">Update Status</button>
+	        		</td>
+	        	</tr>
+	        	<tr data-ng-show="tasks.length == 0">
+	        		<td colspan="5" style="padding-left:9px;color:#7F8C8D;">No data available</td>
+	        	</tr>
+	        </table>
+        </div>
+        
+    </div>
+</div>
+
+    

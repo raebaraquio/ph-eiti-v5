@@ -1,0 +1,11 @@
+<div class="page-content" id="profile-page" style="padding-top:25px;">
+    <div id="subcontent" cg-busy="{promise:newspromise}">
+        <small class="link-map-hier"><a href="#/News">{{article.section}}</a>&nbsp;&nbsp; > &nbsp;&nbsp; <a href="#/{{article.sectionHref}}/Article/{{nearticle.id}}">{{nearticle.title}}</a> </small>
+        <br /><br />
+        <h1 style="padding-bottom:0px;margin-bottom:0px;">{{nearticle.title}}</h1>
+        <h2 data-ng-if="nearticle.subhead">{{nearticle.subhead}}</h2>
+        <small data-ng-if="nearticle.author!='' && nearticle.title">Author: {{nearticle.author}} | </small><small data-ng-show="nearticle.readmore_source">Source website: <a href="{{nearticle.readmore_source}}">{{nearticle.readmore_sourcewebsite}}</a> |</small><small data-ng-if="nearticle.dateposted!=''"> {{nearticle.dateposted}}</small>
+        <br/><br/>
+        <div data-ng-bind-html="nearticle.content"></div>
+    </div>
+</div>

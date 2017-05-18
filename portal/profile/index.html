@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html data-ng-app="profile">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Profile - Secretariat | PH-EITI</title>
+    <link rel="icon" type="image/gif" href="../../images/eitifavicon.ico">
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/nstyle.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/portal-style.css"/>
+</head>
+
+<body> 
+	<div class="main">
+		<div class="maincontent">
+			<div class="page-content" style="margin:auto;border:none;">
+				<div class="grid-two-column" data-ng-cloak>
+					<!-- Header -->
+					<div style="border-bottom:1px dashed #ccc;padding-top:3px;">
+						<div class="left-col ta-left">
+							<img src="../../images/logo.png" width="200px" title="Philippine Extractive Industries Transparency Initiative (PH-EITI) | www.ph-eiti.org" style="border:none !important;"/>
+						</div>
+						<div class="right-col third" data-ng-controller="ProfileController">
+							<div class="fl-left excerpt">
+								<div class="fl-left thumb">
+									<img data-ng-src="{{user.piclocation}}" width="50px" style="border-radius:50%;border:1px solid #ccc;"/>
+								</div>
+								<div class="fl-right excerpt" style="box-sizing:border-box;padding-top:5px;">
+									<h3 style="padding:0px;margin:0px">{{user.name}}</h3>
+									<small>{{user.position}}</small>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+							<div class="fl-right thumb" style="box-sizing:border-box;padding-top:15px;">
+								<a href="../login">Log out</a>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<!-- End: Header -->
+
+					<!-- Navigation -->
+					<div data-ng-controller="NavigationController" style="background-color:#fabc01;">
+						<ul style="list-style-type:none;padding:0px;margin:0px;">
+							<li data-ng-repeat="(idx,nav) in usernavigation" style="display:inline-block;padding:6px 21px;">
+								<a href="{{nav.href}}" style="color:#000;"> {{ nav.route }}</a>
+							</li>
+						</ul>
+					</div>
+					<!-- End: Navigation -->
+
+					<div>
+						<div data-ng-view="" data-ng-cloak>
+							<h1>Loading...</h1>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script src="../../js/angular/angular.js"></script>
+<script src="../../js/angular/angular-cookies.js"></script>
+<script src="../../js/angular/angular-route.js"></script>
+<script src="../../js/angular/angular-sanitize.js"></script>
+<script src="../../js/jquery-latest-min.js"></script>
+
+<script src="../js/modules/portal-directives.js"></script>
+<script src="js/profile-module.js"></script>
+
+<script src="js/factories/ProfileFactory.js"></script>
+<script src="js/controllers/ProfileController.js"></script>
+<script src="js/controllers/EditProfileController.js"></script>
+
+<!-- <script src="js/factories/ProfileFactory.js"></script>
+<script src="js/factories/StatusReportFactory.js"></script>
+<script src="js/factories/NewsletterFactory.js"></script>
+<script src="js/factories/CMSFactory.js"></script>
+<script src="js/factories/CMNewsFactory.js"></script>
+
+<script src="js/controllers/ProfileController.js"></script>
+<script src="js/controllers/ProfileNavigationController.js"></script>
+<script src="js/controllers/ContentManagementController.js"></script>
+<script src="js/controllers/AccountSettingsController.js"></script>
+<script src="js/controllers/CMStatusReportController.js"></script>
+<script src="js/controllers/CMStatusReportNewController.js"></script>
+<script src="js/controllers/CMStatusReportTaskViewController.js"></script>
+
+<script src="js/controllers/CMNewsletterController.js"></script>
+<script src="js/controllers/CMNewsController.js"></script> -->
+
+</html>
+

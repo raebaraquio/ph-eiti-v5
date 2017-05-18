@@ -1,0 +1,91 @@
+<md-content layout-padding>
+    <h1>Add/Edit/Publish News</h1>
+    <div layout="row" layout-align="space-between center">
+        <div flex="40" layout="row" layout-align="start center">
+           <md-input-container flex="65">
+                <label>Choose Category</label>
+                <md-select data-ng-model="filter.category" data-ng-change="setCategory()">
+                    <md-option data-ng-repeat="cat in categories" value="{{cat}}">{{cat}}</md-option>
+                </md-select>
+            </md-input-container>
+            <md-button class="md-accent md-raised" ng-href="#/News/add/{{filter.category}}"> Add </md-button> 
+        </div>
+        <div flex="60" style="margin-top:0.35em" layout="row" layout-align="end center">
+            <div class="btnGroup" id="btnGroup-filter">
+                <div class="btnGroup-option" data-ng-repeat="(pubk,pubv) in pubishedOptions" data-ng-class="{'btnGroup-option--active':filter.published==pubv}"
+                data-ng-click="setPublished(pubv)">
+                    {{pubv}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <md-content layout="row" layout-padding style="border:none;background-color:#f7f7f7;height:5em;max-height:5em;overflow:hidden;">
+            <div flex >
+                <md-input-container  style="padding:0px;margin:0px;margin-top:0.65em;">
+                    <label>Keyword filter</label>
+                    <input ng-model="keywordFilterNews" size="25" placeholder="Enter keyword here" id="keywordFilter">
+                </md-input-container>               
+            </div>            
+            <div flex >
+                <md-input-container flex  style="padding:0px;margin:0px;margin-top:0.65em;">
+                    <label>Showing</label>
+                    <md-select data-ng-model="page.limit" data-ng-change="determineOffset()">
+                        <md-option value="5">5</md-option>
+                        <md-option value="10">10</md-option>
+                        <md-option value="15">15</md-option>
+                    </md-select> 
+                </md-input-container>
+                <md-input-container flex  style="padding:0px;margin:0px;margin-top:0.65em;">
+                    of <strong>{{totalNum}} results</strong>
+                </md-input-container>  
+            </div>
+            <div flex layout="row" layout-align="start start">
+                <md-input-container flex layout="row" style="padding:0px;margin:0px;margin-top:0.65em;">
+                    <label>Page</label>
+                    <md-select data-ng-model="page.num" data-ng-change="determineOffset()"><!-- data-ng-options="npage as npage for npage in newspages"> -->
+                        <md-option data-ng-repeat="npage in newspages" value="{{npage}}">{{npage}}</md-option>
+                    </md-select>
+                </md-input-container>               
+                <md-input-container layout="row" style="padding:0px;margin:0px;">
+                    <md-button class="md-raised md-secondary" data-ng-disabled="page.num == 1" data-ng-click="determineOffset('p')">Prev</md-button><!--          
+                    --><md-button class="md-raised md-secondary" data-ng-disabled="page.num == newspages.length" data-ng-click="determineOffset('n')">Next</md-button>
+                </md-input-container>
+            </div>
+        </md-content>
+        <div data-ng-class="{'inlineFeedback inlineFeedback-success':inlineFeedback.type=='success','inlineFeedback inlineFeedback-error':inlineFeedback.type=='error','inlineFeedback inlineFeedback-warning':inlineFeedback.type=='warning'}" data-ng-show="inlineFeedback.message">
+            {{inlineFeedback.message}}
+            <div class="fl-right ta-right inlineFeedback-action inlineFeedback-action--close" data-ng-click="toggleInlineFeedback('reset',null,null,'add')" title="Close">[x]</div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="confirmation inlineFeedback-error" data-ng-show="confirmation.msg">
+            <div class="confirmation-question">{{confirmation.article}}</div>
+            <div class="confirmation-msg">{{confirmation.msg}}</div>
+            <div class="confirmation-question">{{confirmation.question}}</div>
+            <div class="confirmation-btns ta-center" id="confirmation-delete">
+                <button class="confirmation-btns--secondary" data-ng-click="confirmation.option.no.action()">{{confirmation.option.no.label}}</button>
+                <button class="confirmation-btns--primary" data-ng-click="confirmation.option.yes.action()">{{confirmation.option.yes.label}}</button>
+            </div>
+        </div>
+        <md-progress-linear data-ng-show="newspromise" class="md-secondary" md-mode="indeterminate"></md-progress-linear>
+        <md-content layout-padding>
+            <md-list ng-cloak data-ng-show="newsandevents.length > 0">
+                <md-list-item class="secondary-button-padding" data-ng-repeat="(neidx,ne) in newsandevents | filter:keywordFilterNews">
+                    <p><a href="#/{{sectionCategory}}/Article/{{ne.id}}" style="font-size:15px !important;">{{ne.title}}</a></p>
+                    <!-- <md-button class="md-secondary" ng-href="#/{{sectionCategory}}/Article/{{ne.id}}">Preview</md-button> -->                    
+                    <md-button class="md-secondary md-raised" data-ng-show="ne.archived=='0'" data-ng-click="confirmAction('archive',ne)">Archive</md-button>
+                    <md-button class="md-secondary md-raised" data-ng-show="ne.archived=='1'" data-ng-click="confirmAction('unarchive',ne)">Unarchive</md-button>
+                    <md-button class="md-primary" data-ng-show="ne.published=='0' && filter.published!='Archived'" data-ng-click="confirmAction('publish',ne)">Publish</md-button>
+                    <md-button class="md-primary" data-ng-show="ne.published=='1' && filter.published!='Archived'" data-ng-click="confirmAction('unpublish',ne)">Unpublish</md-button>
+                    <md-button class="md-accent md-raised" ng-href="#/{{sectionCategory}}/Article/Edit/{{ne.id}}/{{ne.pk}}">Edit</md-button>                    
+                </md-list-item>
+            </md-list>
+            <p data-ng-if="newsandevents.length == 0">
+                No articles found under News
+            </p>
+            <p data-ng-if="newsandevents.length > 0 && (newsandevents | filter:keywordFilterNews).length == 0">
+                No match found
+            </p>  
+        </md-content>          
+    </div>
+</md-content>

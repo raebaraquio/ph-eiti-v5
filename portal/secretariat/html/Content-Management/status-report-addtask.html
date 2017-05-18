@@ -1,0 +1,51 @@
+<div class="page-content" id="profile-page">
+
+    <div id="subcontent" style="padding-top:50px;">
+        <small class="link-map-hier"><a href="#/Content-Management">Content Management</a>&nbsp;&nbsp; > &nbsp;&nbsp; <a href="#/Content-Management/Status-Report">Status Report</a></small>
+
+        <h1 class="content-heading">New Task</h1>
+
+        <div style="margin-top:20px;">
+        	<button class="button-download" style="float:right;" data-ng-click="saveNewTask()">Save Task</button>
+        	<button class="button-secondaryaction" style="float:right;" data-ng-click="resetForm()">Reset Form</button>
+        	<div class="clearfix"></div>
+        </div>
+
+		<form name="statusreportaddtaskform">
+        	<div id="profile-box"  style="margin-top:0px;">
+        		<div class="profile-field" data-ng-if="userfeedback.message !=''" data-ng-show="userfeedback.message !=''">
+        			<div data-ng-class="{'userfeedback-success':userfeedback.type=='success',
+	    						 'userfeedback-error':userfeedback.type=='error' }"
+	    						 style="text-align:center;">
+			    		{{ userfeedback.message }}
+			    	</div>
+        		</div>
+	        	<div class="profile-field">
+	        		<label for="name">Task</label>
+	        		<div class="clearfix"></div>
+	        		<input type="text" maxlength="50" size="50" id="name" data-ng-model="newtask.name" data-ng-required/>
+	        	</div>
+
+	        	<div class="profile-field">
+	        		<label for="position">Description</label>
+	        		<div class="clearfix"></div>
+	        		<textarea rows="4" cols="40" id="description" data-ng-model="newtask.description"></textarea>
+	        	</div>
+
+	        	<div class="profile-field">
+	        		<label for="position">Status</label>
+	        		<div class="clearfix"></div>
+	        		<select id="reportstatus" data-ng-model="newtask.reportstatus" data-ng-required>
+	        			<option value="Not started">Not started</option>
+	        			<option value="In progress">In progress</option>
+	        			<option value="Completed">Completed</option>
+	        		</select>
+	        	</div>
+	        </div>
+        </form>
+
+        
+    </div>
+</div>
+
+    

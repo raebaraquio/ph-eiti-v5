@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Portal - Secretariat | PH-EITI</title>
+    <link rel="icon" type="image/gif" href="../../images/eitifavicon.ico">
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/nstyle.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+</head>
+
+<body data-ng-app="Secretariat">
+	<div class="main">
+		<div class="maincontent">
+			<div class="page-content" style="margin:auto;border:none;">
+				<div class="grid-two-column">
+					<div class="left-col" id="secretariat-sidebar" data-ng-controller="ProfileNavigationController">
+						<div id="userbox-main">
+							<div id="userbox-photo" style="text-align:center;margin:auto;">
+								<img data-ng-src="{{user.piclocation}}" width="175px" style="margin-top:15px;"/>
+							</div>
+							<div id="userbox-name">
+								<h3>{{user.name}}</h3>
+								<small>{{user.position}}</small>
+							</div>
+							<div id="userbox-navigation">
+								<ul id="userbox-main-navigation">
+									<li data-ng-repeat="(idx,nav) in usernavigation"
+										data-ng-class="{'unav-selected':nav.selected == true}"
+										id="unav-{{nav.id}}" class="unav">
+										<a href="{{nav.href}}"> {{ nav.route }}</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div id="secretariat-footer">	
+	                        <p class="paragraph-content"> 
+	                            <a href="../../" title="www.ph-eiti.org">www.ph-eiti.org</a> <br/>
+	                            <strong class="amber">PH-EITI</strong> <br/>
+	                            Copyright 2015. All rights reserved.
+	                        </p>
+						</div>
+					</div>
+					<div class="right-col" id="secretariat-content">
+						<div data-ng-view="" data-ng-cloak>
+							<h1>Loading...</h1>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script src="../../js/angular/angular.js"></script>
+<script src="../../js/angular/angular-cookies.js"></script>
+<script src="../../js/angular/angular-route.js"></script>
+<script src="../../js/angular/angular-sanitize.js"></script>
+<script src="../../js/jquery-latest-min.js"></script>
+<script src="tinymce/jscripts/tiny_mce/jquery.tinymce.js"></script>
+
+<script src="js/modules/Secretariat.js"></script>
+
+<script src="js/factories/ProfileFactory.js"></script>
+<script src="js/factories/StatusReportFactory.js"></script>
+<script src="js/factories/NewsletterFactory.js"></script>
+<script src="js/factories/CMSFactory.js"></script>
+<script src="js/factories/CMNewsFactory.js"></script>
+
+<script src="js/controllers/ProfileController.js"></script>
+<script src="js/controllers/ProfileNavigationController.js"></script>
+<script src="js/controllers/ContentManagementController.js"></script>
+<script src="js/controllers/AccountSettingsController.js"></script>
+<script src="js/controllers/CMStatusReportController.js"></script>
+<script src="js/controllers/CMStatusReportNewController.js"></script>
+<script src="js/controllers/CMStatusReportTaskViewController.js"></script>
+
+<script src="js/controllers/CMNewsletterController.js"></script>
+<script src="js/controllers/CMNewsController.js"></script>
+
+</html>
+

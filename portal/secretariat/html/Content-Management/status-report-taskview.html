@@ -1,0 +1,63 @@
+<div class="page-content" id="profile-page">
+
+    <button class="button-secondaryaction" data-ng-click="editProfile()" data-ng-show="edit==false">Edit Task</button>
+	<button class="button-download" data-ng-click="saveProfile()" data-ng-show="edit==true">Save Changes</button>
+	<div class="clearfix"></div>
+
+    <div id="subcontent" style="padding-top:20px;">
+        <small class="link-map-hier"><a href="#/Content-Management">Content Management</a>&nbsp;&nbsp; > &nbsp;&nbsp; <a href="#/Content-Management/Status-Report">Status Report</a> &nbsp;&nbsp; > &nbsp;&nbsp; <a href="#/Content-Management/Status-Report/{{currtask.pk}}/view">{{currtask.task}}</a></small>
+        <br /><br />
+        <h1 class="content-heading">{{currtask.task}}</h1>
+		<small class="lastupdated-mark">Added by {{currtask.addedby}} on {{currtask.dateadded}}</small>
+
+        <hr />
+        
+        <form name="profileupdateform">
+        	<div id="profile-box">
+        		<!-- <div class="profile-field" data-ng-show="userfeedback.message !=''">
+        			<div data-ng-class="{'userfeedback-success':userfeedback.type=='success',
+	    						 'userfeedback-error':userfeedback.type=='error' }"
+	    						 style="text-align:center;">
+			    		{{ userfeedback.message }}
+			    	</div>
+        		</div> -->
+	        	<div class="profile-field">
+	        		<label for="name">Task</label>
+	        		<strong data-ng-show="edit==false">{{currtask.task}}</strong>
+	        		<div class="clearfix"></div>
+	        		<!-- <input type="text" data-ng-model="updatedprofile.name" maxlength="50" size="45"
+	        			data-ng-show="edit==true" id="name" data/> -->
+	        	</div>
+
+	        	<div class="profile-field">
+	        		<label for="position">Description</label>
+	        		<strong data-ng-show="edit==false">{{currtask.description}}</strong>
+	        		<strong data-ng-show="!currtask.description"></strong>
+	        		<div class="clearfix"></div>
+	        		<!-- <input type="text" data-ng-model="updatedprofile.position" size="30" maxlength="30"
+	        		data-ng-show="edit==true" id="position"/> -->
+	        	</div>
+
+	        	<div class="profile-field">
+	        		<label for="email">Status</label>
+	        		<strong data-ng-show="edit==false">{{currtask.reportstatus}}</strong>
+	        		<div class="clearfix"></div>
+	        		<!-- <input type="text" data-ng-model="updatedprofile.email" size="25" maxlength="40"
+	        		data-ng-show="edit==true" id="email"/> -->
+	        	</div>
+
+	        	<!-- <div class="profile-field">
+	        		<label for="mobile">Mobile</label>
+	        		<strong data-ng-show="edit==false">{{user.mobile}}</strong>
+	        		<div class="clearfix"></div>
+	        		<input type="text" data-ng-model="updatedprofile.mobile" size="10" maxlength="11"
+	        		data-ng-show="edit==true" id="mobile"/>
+	        	</div> -->
+	        </div>
+        </form>
+        
+
+    </div>
+</div>
+
+    

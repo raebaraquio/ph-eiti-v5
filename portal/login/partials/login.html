@@ -1,0 +1,42 @@
+<div id="login-wrapper"> 
+	<div id="login-box">
+	    <div id="login-logo">
+	        <img src="../../images/logo.png" alt="PH-EITI Logo" title="PH-EITI Secretariat Login"/>
+	    </div>
+	    <form name="loginForm">
+	    	<md-progress-linear data-ng-show="loginPromise" class="md-secondary" md-mode="indeterminate"></md-progress-linear>
+	    	<div id="login-form">
+		    	<div class="login-field">
+		    		<div data-ng-class="{'userfeedback-success':userfeedback.type=='success',
+			    						 'userfeedback-error':userfeedback.type=='error' }" 
+			    		 data-ng-show="userfeedback.message !=''">
+			    		{{ userfeedback.message }}
+			    	</div>
+			    	
+			    	<!-- <div id="preloader-wrapper" data-ng-if="loading==true">
+			    		<h3 data-ng-if="userfeedback.type=='success'">Logging in...</h3>
+			    		<img src="../../images/preloader2.gif" width="50px"/>
+			    	</div> -->
+		    	</div>
+		    	<div class="login-label">
+		    	</div>
+		    	<div class="login-field">
+		    		<input type="text" id="username" placeholder="Username" data-ng-model="login.username" data-ng-required="true"  data-ng-keypress="logIn($event)" title="Username"/>
+		    	</div>
+		    	<div class="login-label">
+		    	</div>
+		    	<div class="login-field">
+		    		<input type="password" id="password" placeholder="Password" data-ng-model="login.password" data-ng-required="true" data-ng-keypress="logIn($event)" title="Password"/>
+		    	</div>
+		    </div>
+		    <div id="button-box" layout="row" layout-align="space-between center">		    	
+	    		<small><a id="gotosite-link" href="../../">&#8592; PH-EITI Homepage</a></small>	
+	    		<div>
+	    			<button class="login-btn" type="reset" id="button-reset" ng-click="reset()">Reset</button>&nbsp;
+	    			<button class="login-btn"  type="submit" id="button-login" class="button-secondaryaction" data-ng-click='log_on()' 
+	        		data-ng-disabled='!login.username && !login.password'>Log In</button>	
+	    		</div> 	
+		    </div>
+	    </form>
+	</div>
+<div>

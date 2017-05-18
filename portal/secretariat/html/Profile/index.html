@@ -1,0 +1,63 @@
+<div class="page-content" id="profile-page">
+
+	<button class="button-secondaryaction" data-ng-click="editProfile()" data-ng-show="edit==false">Edit Profile</button>
+	<button class="button-download" data-ng-click="saveProfile()" data-ng-show="edit==true">Save Changes</button>
+	<div class="clearfix"></div>
+
+    <div id="subcontent">
+        <h1 class="content-heading">PROFILE</h1>
+
+        <hr />
+
+        <form name="profileupdateform">
+        	<div id="profile-box">
+        		<div class="profile-field" data-ng-show="userfeedback.message !=''">
+        			<div data-ng-class="{'userfeedback-success':userfeedback.type=='success',
+	    						 'userfeedback-error':userfeedback.type=='error' }"
+	    						 style="text-align:center;">
+			    		{{ userfeedback.message }}
+			    	</div>
+        		</div>
+	        	<div class="profile-field">
+	        		<label for="name">Name</label>
+	        		<strong data-ng-show="edit==false">{{user.name}}</strong>
+	        		<div class="clearfix"></div>
+	        		<input type="text" data-ng-model="updatedprofile.name" maxlength="50" size="45"
+	        			data-ng-show="edit==true" id="name" data/>
+	        	</div>
+
+	        	<div class="profile-field">
+	        		<label for="position">Position</label>
+	        		<strong data-ng-show="edit==false">{{user.position}}</strong>
+	        		<div class="clearfix"></div>
+	        		<input type="text" data-ng-model="updatedprofile.position" size="30" maxlength="30"
+	        		data-ng-show="edit==true" id="position"/>
+	        	</div>
+
+	        	<br />
+
+	        	<h3>Contact Information</h3>
+
+	        	<div class="profile-field">
+	        		<label for="email">Email</label>
+	        		<strong data-ng-show="edit==false">{{user.email}}</strong>
+	        		<div class="clearfix"></div>
+	        		<input type="text" data-ng-model="updatedprofile.email" size="25" maxlength="40"
+	        		data-ng-show="edit==true" id="email"/>
+	        	</div>
+
+	        	<div class="profile-field">
+	        		<label for="mobile">Mobile</label>
+	        		<strong data-ng-show="edit==false">{{user.mobile}}</strong>
+	        		<div class="clearfix"></div>
+	        		<input type="text" data-ng-model="updatedprofile.mobile" size="10" maxlength="11"
+	        		data-ng-show="edit==true" id="mobile"/>
+	        	</div>
+	        </div>
+        </form>
+        
+
+    </div>
+</div>
+
+    

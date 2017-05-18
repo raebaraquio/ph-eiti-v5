@@ -1,0 +1,57 @@
+<div class="page-content" id="profile-page" style="padding-top:25px;">
+
+	<div style="position:relative;margin-bottom:25px;">
+		<div style="position:absolute;top:0;right:0;">
+			<a class="btn-secondaryAction" href="#/edit/{{user.id}}">Edit Profile</a>
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+    <div id="subcontent" >
+        <h1 class="content-heading">PROFILE</h1>
+
+        <hr />
+
+        <form name="profileupdateform">
+        	<div id="profile-box">
+        		<div class="profile-field" data-ng-show="userfeedback.message !=''">
+        			<div data-ng-class="{'userfeedback-success':userfeedback.type=='success',
+	    						 'userfeedback-error':userfeedback.type=='error' }"
+	    						 style="text-align:center;">
+			    		{{ userfeedback.message }}
+			    	</div>
+        		</div>
+	        	<div class="profile-field">
+	        		<label for="name">Name</label>
+	        		<strong>{{user.name}}</strong>
+	        		<div class="clearfix"></div>
+	        	</div>
+
+	        	<div class="profile-field">
+	        		<label for="position">Position</label>
+	        		<strong>{{user.position}}</strong>
+	        		<div class="clearfix"></div>
+	        	</div>
+
+	        	<br />
+
+	        	<h3>Contact Information</h3>
+
+	        	<div class="profile-field">
+	        		<label for="email">Email</label>
+	        		<strong>{{user.email}}</strong>
+	        		<div class="clearfix"></div>
+	        	</div>
+
+	        	<div class="profile-field">
+	        		<label for="mobile">Mobile</label>
+	        		<strong>{{user.mobile}}</strong>
+	        		<div class="clearfix"></div>
+	        	</div>
+	        </div>
+        </form>
+    </div>
+</div>
+
+    

@@ -1,0 +1,133 @@
+<div class="page-content" id="profile-page">
+
+   <!--  <button class="button-download">View All</button>
+    <div class="clearfix"></div> -->
+
+    <div id="subcontent" style="padding-top:50px;">
+        <small class="link-map-hier"><a href="#/Content-Management">Content Management</a>&nbsp;&nbsp; > &nbsp;&nbsp; <a href="#/Content-Management/News">News</a></small>
+
+        <h1 class="content-heading">News</h1>
+
+        <div class="subsectionmenu-wrapper">
+            <span>Add article to:</span>
+            <ul id="newsandeventsections-list">
+                <li data-ng-repeat="(idx,nesection) in newandeventssections" data-ng-click="setSection(nesection,idx)"
+                data-ng-class="{'selectedneventsect':section_selected == nesection}"
+                    id="nesection-{{idx}}" title="{{nesection}}">
+                    {{nesection}}
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="subsectionmenu-wrapper-after"></div>
+        
+        <div data-ng-show="section_selected!=''" style="margin-top:25px;">
+            <div class="crumbs">
+                <ul class="breadcrumbslist">
+                    <li data-ng-class="{'activecrumb':selectedcrumb=='appearance'}" id="bcrumbs-appearance"><a href="" data-ng-click="crumbnavigate('appearance')">List appearance</a></li>
+                    <li data-ng-class="{'activecrumb':selectedcrumb=='source'}" id="bcrumbs-source"><a href="" data-ng-click="crumbnavigate('source')">Source</a></li>
+                    <li data-ng-class="{'activecrumb':selectedcrumb=='content'}" id="bcrumbs-content"><a href="" data-ng-click="crumbnavigate('content')">Content</a></li>
+                    <li data-ng-class="{'activecrumb':selectedcrumb=='publish'}" id="bcrumbs-publish"><a href="" data-ng-click="crumbnavigate('publish')">Save or Publish</a></li>
+                </ul>
+            </div>
+            <div id="crumbscontents" style="height:500px;overflow-y:scroll;width:98%;">
+                <div id="bcbody-appearance" data-ng-show="selectedcrumb=='appearance'"> 
+                    <p class="">Select how would this article appear in our news feed:</p>
+                    <h1>Templates soon..</h1>
+                </div>
+                <div id="bcbody-source" data-ng-show="selectedcrumb=='source'">
+                    <form data-ng-show="section_selected!=''">  
+                        <div class="newsformfield" style="display:none">
+                            <label for="newsform-id">ID</label> <br />
+                            <input data-ng-model="newsentry.id" id="newsform-id" type="text" size="35" disabled/>
+                        </div> 
+                        <div class="newsformfield">
+                            <label for="newsform-ttitle">Title</label> <br />
+                            <input data-ng-model="newsentry.title" id="newsform-title" type="text" size="50"/>
+                        </div>
+                        <div class="newsformfield">
+                            <label for="newsform-tsubtitle">Subtitle/Subheading</label><br />
+                            <input data-ng-model="newsentry.subtitle" id="newsform-subtitle" type="text" size="40"/>
+                        </div>
+                        <div class="newsformfield">
+                            <label for="newsform-sourcelink">Source/URL</label><br />
+                            <input data-ng-model="newsentry.source" id="newsform-sourcelink" type="text" size="50"/>
+                        </div>
+                        <div class="newsformfield">
+                            <label for="newsform-sourcewebsite">Source Website</label><br />
+                            <input data-ng-model="newsentry.sourcewebsite" id="newsform-sourcewebsite" type="text" size="50"/>
+                        </div>
+                        <div class="newsformfield">
+                            <label for="newsform-author">Author</label><br />
+                            <input data-ng-model="newsentry.author" id="newsform-author" type="text" size="30"/>
+                        </div>
+                        <div class="newsformfield">
+                            <label for="newsform-dateposted">Date posted</label><br />
+                            <input data-ng-model="newsentry.dateposted" id="newsform-dateposted" type="text" size="15"/>
+                        </div>
+                        <!-- <div class="newsformfield">
+                            <label for="">Intro</label><br />
+                            <textarea cols="40" rows="2"></textarea>
+                        </div> -->
+                        <div class="newsformfield">
+                            <label for="newsform-brief">Brief/Excerpt</label><br />
+                            <textarea data-ng-model="newsentry.brief" id="newsform-brief" cols="40" rows="5"></textarea>
+                        </div>
+                        <div class="newsformfield">
+                            <label for="newsform-readmorelink">Continue link</label><br />
+                            <select id="newsform-readmorelink" data-ng-model="newsentry.readmorelabel">
+                                <option value="None">None selected</option>
+                                <option value="Read more">Read more</option>
+                                <option value="Continued">Continued</option>
+                                <option value="Continue reading">Continue reading</option>
+                            </select>
+                        </div>
+
+                    </form>
+                </div>
+                <div id="bcbody-content" data-ng-show="selectedcrumb=='content'">
+                    <form>
+                        <!-- <div class="newsformfield">
+                            <label for="">Add picture?</label><br />
+                            <select>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="newsformfield">
+                            <label for="">Upload picture:</label><br />
+                            <input data-ng-model="newsentry." id="newsform-" type="file" />
+                        </div>
+                        <div class="newsformfield">
+                            <label for="">Position of the picture</label><br />
+                            <select>
+                                <option value="start">At the start of the Article</option>
+                                <option value="end">At the end of the Article</option>
+                                <option value="middle">At the middle of the Article</option>
+                            </select>
+                        </div> -->
+                        <div class="newsformfield">
+                            <label for="">Content</label><br />
+                            <textarea data-ng-model="newsentry.contentbody" id="newsform-newsbody" cols="50" rows="15"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div id="bcbody-publish" data-ng-show="selectedcrumb=='publish'">
+                    <p>
+                        If you want this to be available to the public, select Save and Publish,
+                        otherwise, click Save. 
+                    </p>
+                    <div class="newsformfield">
+                        <button class="button-secondaryaction" data-ng-click="saveNews('false')">Save</button>
+                        <button class="button-download" data-ng-click="saveNews('true')">Save and Publish</button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+</div>
+
+    

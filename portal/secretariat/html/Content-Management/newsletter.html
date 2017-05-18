@@ -1,0 +1,49 @@
+<div class="page-content" id="profile-page">
+
+    <div id="subcontent" style="padding-top:50px;">
+        <small class="link-map-hier"><a href="#/Content-Management">Content Management</a>&nbsp;&nbsp; > &nbsp;&nbsp; <a href="#/Content-Management/Newsletter">Newsletter</a></small>
+
+        <h1 class="content-heading">Newsletter</h1>
+
+        <h5>Subscribers</h5>	
+
+        <select data-ng-model="subscription_type">
+        	<option value="unconfirmed">Unconfirmed subscription</option>
+        	<option value="confirmed">Confirmed subscription</option>
+        </select>
+        
+        <button data-ng-show="subscribers.length > 0" style="float:right;" data-ng-click="exportsubscribers()">Export as .CSV</button>
+        <div class="clearfix"></div>
+
+        <table class="reporttable">
+        	<tr class="reporttable-head">
+        		<th>Email Address</th>
+        		<th>Name</th>
+        		<th>Date Subscribed</th>
+        	</tr>
+        	<tbody data-ng-show="subscription_type=='unconfirmed'">
+	        	<tr data-ng-repeat="subs in subscribers" data-ng-if="subs.confirmed=='0'">
+	        		<td>{{subs.subscriber_email}}</td>
+	        		<td>{{subs.subscriber}}</td>
+	        		<td>{{subs.datesubscribed}}</td>
+	        	</tr>
+	        	<tr data-ng-show="noneunconfirmed==0">
+	        		<td colspan="3">No data available</td>
+	        	</tr>	
+        	</tbody>
+        	<tbody data-ng-show="subscription_type=='confirmed'">
+	        	<tr data-ng-repeat="subs in subscribers" data-ng-if="subs.confirmed=='1'">
+	        		<td>{{subs.subscriber_email}}</td>
+	        		<td>{{subs.subscriber}}</td>
+	        		<td>{{subs.datesubscribed}}</td>
+	        	</tr>	
+	        	<tr data-ng-show="noneconfirmed==0">
+	        		<td colspan="3">No data available</td>
+	        	</tr>
+        	</tbody>
+        </table>
+        
+    </div>
+</div>
+
+    

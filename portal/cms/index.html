@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html data-ng-app="cms">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Content Management | PH-EITI</title>
+    <link rel="icon" type="image/gif" href="../../images/eitifavicon.ico">
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/nstyle.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/portal-style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/angular-busy.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../../css/angular-material.min.css?v1.1.0-rc2"> 
+</head>
+
+<body> 
+	<md-content ng-cloak ng-controller="CMSController">
+		<md-toolbar class="md-accent" layout="row" layout-align="space-between center">
+			<div flex="25" layout="column" style="padding-left:1em;box-sizing:border-box;">
+				<p style="margin:0px;padding:0px">Hi {{user.name}},</p>
+				<h4 style="margin:0px;padding:0px;color:#fff;"> what do you want to do?</h4>
+			</div>
+			<div flex="75" layout="row" layout-align="end center" style="padding-right:1em;box-sizing:border-box;background-color:#ffc822;">
+				<h2 style="color:#fff;">PH-EITI Content Manager</h2>
+			</div>
+		</md-toolbar>
+		<md-content >
+			<md-content layout="row" style="overflow:hidden">
+				<md-content flex="25" layout="column" style="background-color:#fefefe">
+					<md-list flex>
+						<!-- <md-subheader class="md-no-sticky">3 line item (with hover)</md-subheader> -->
+						<md-list-item class="md-3-line" ng-repeat="(k,cr) in tasks">
+							<div class="md-list-item-text" layout="column">
+								<p><a href="{{cr.href}}">{{cr.task}}</a></p>
+							</div>
+						</md-list-item>
+					</md-list>
+				</md-content>
+				<md-content flex="75" layout="column">
+					<md-content ng-view ng-cloak layout-padding style="max-height:590px;overflow-x:hidden;overflow-y:scroll;">
+					</md-content>
+				</md-content>
+			</md-content>			
+		</md-content>
+	</md-content>
+	
+</body>
+
+<script src="../../js/vendor/angular.js"></script>
+<script src="../../js/vendor/angular-cookies.js"></script>
+<script src="../../js/vendor/angular-route.js"></script>
+<script src="../../js/vendor/angular-sanitize.js"></script>
+<script src="../../js/vendor/angular-animate.js"></script>
+<script src="../../js/vendor/angular-aria.js"></script>
+<script src="../../js/vendor/angular-messages.js"></script>
+<script src="../../js/vendor/angular-material.js"></script>
+
+<script src="../../js/vendor/jquery-3.1.0.js"></script>
+<script src="../../js/vendor/angular-busy.js"></script>
+<script src="../../js/vendor/moment.min.js"></script>
+
+<script src="js/lib/tinymce/tinymce.dev.js"></script>
+<script src="js/lib/tinymce/plugins/table/plugin.dev.js"></script>
+<script src="js/lib/tinymce/plugins/paste/plugin.dev.js"></script>
+<script src="js/lib/tinymce/plugins/spellchecker/plugin.dev.js"></script>
+
+<script src="../js/modules/utilsService.js"></script>
+<script src="../js/modules/sessionService.js"></script>
+<script src="../js/modules/portal-directives.js"></script>
+<script src="js/lib/tinymce.js"></script>
+<script src="js/cms-module.js"></script>
+
+<script src="js/factories/NewsFactory.js"></script>
+<script src="js/factories/UploadFactory.js"></script>
+<script src="js/factories/CMSFactory.js"></script>
+<script src="js/controllers/CMSController.js"></script>
+
+<script src="js/controllers/CMSNewsController.js"></script>
+<script src="js/controllers/CMSNewsViewController.js"></script>
+<script src="js/controllers/CMSAddNewsController.js"></script>
+<script src="js/controllers/CMSEditNewsController.js"></script>
+
+<script src="js/controllers/CMSActivitiesAddController.js"></script>
+<script src="js/controllers/CMSActivitiesController.js"></script>
+<script src="js/controllers/CMSDocsController.js"></script>
+<script src="js/controllers/CMSInfographicsController.js"></script>
+<script src="js/controllers/CMSAnnouncementsController.js"></script>
+
+<!-- <script src="js/factories/ProfileFactory.js"></script>
+<script src="js/controllers/ProfileController.js"></script>
+<script src="js/controllers/EditProfileController.js"></script>
+ -->
+<!-- <script src="js/factories/ProfileFactory.js"></script>
+<script src="js/factories/StatusReportFactory.js"></script>
+<script src="js/factories/NewsletterFactory.js"></script>
+<script src="js/factories/CMSFactory.js"></script>
+<script src="js/factories/CMNewsFactory.js"></script>
+
+<script src="js/controllers/ProfileController.js"></script>
+<script src="js/controllers/ProfileNavigationController.js"></script>
+<script src="js/controllers/ContentManagementController.js"></script>
+<script src="js/controllers/AccountSettingsController.js"></script>
+<script src="js/controllers/CMStatusReportController.js"></script>
+<script src="js/controllers/CMStatusReportNewController.js"></script>
+<script src="js/controllers/CMStatusReportTaskViewController.js"></script>
+
+<script src="js/controllers/CMNewsletterController.js"></script>
+<script src="js/controllers/CMNewsController.js"></script> -->
+
+</html>
+
