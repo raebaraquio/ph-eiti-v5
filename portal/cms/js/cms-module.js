@@ -44,26 +44,13 @@ cms.config(function($routeProvider){
 		controller:'CMSNewsController',
 		templateUrl:'./partials/News/index.html'
 	})
-	.when('/EITI-in-other-Countries',
+
+	.when('/Resources',
 	{
-		controller:'CMSNewsController',
-		templateUrl:'./partials/News/index.html'
-	})
-	.when('/Blogs',
-	{
-		controller:'CMSNewsController',
-		templateUrl:'./partials/News/index.html'
-	})
-	.when('/MSG-Member-of-the-Month',
-	{
-		controller:'CMSNewsController',
-		templateUrl:'./partials/News/index.html'
-	})
-	.when('/Documents',
-	{
-		controller:'CMSDocsController',
-		templateUrl:'./partials/Documents/index.html'
+		controller:'CMSResourcesController',
+		templateUrl:'./partials/Resources/index.html'
 	})	
+
 	.when('/Activities/add',
 	{
 		controller:'CMSActivitiesAddController',
@@ -74,16 +61,33 @@ cms.config(function($routeProvider){
 		controller:'CMSActivitiesController',
 		templateUrl:'./partials/Activities/index.html'
 	})	
-	.when('/Infographics',
+
+	.when('/Country Report',
 	{
-		controller:'CMSInfographicsController',
-		templateUrl:'./partials/Infographics/index.html'
+		controller:'CMSReportController',
+		templateUrl:'./partials/Country Report/index.html'
 	})
-	.when('/Announcements',
-	{
-		controller:'CMSAnnouncementsController',
-		templateUrl:'./partials/Announcements/index.html'
-	})	
+
+	// .when('/EITI-in-other-Countries',
+	// {
+	// 	controller:'CMSNewsController',
+	// 	templateUrl:'./partials/News/index.html'
+	// })
+	// .when('/Blogs',
+	// {
+	// 	controller:'CMSNewsController',
+	// 	templateUrl:'./partials/News/index.html'
+	// })
+	// .when('/MSG-Member-of-the-Month',
+	// {
+	// 	controller:'CMSNewsController',
+	// 	templateUrl:'./partials/News/index.html'
+	// })
+	// .when('/Announcements',
+	// {
+	// 	controller:'CMSAnnouncementsController',
+	// 	templateUrl:'./partials/Announcements/index.html'
+	// })	
 });
 
 cms.config(function($mdThemingProvider) {
