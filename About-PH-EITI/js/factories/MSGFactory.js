@@ -934,6 +934,30 @@ aboutApp.factory('MSGFactory',['$http',
 			meetings: function() {
 				return [
 					{
+						title:"41st",
+						date:"April 7, 2017 | 09:00AM-12:00PM",
+						updated: "Last updated on May 11, 2017 03:52 PM",
+						venue: "Ambassador Sala, Hotel Jen, Manila",
+						minutes: "document/msg-mtg/2017/06/11/41st/41st MSG meeting_minutes_4.7.2017.pdf",
+						annexes: []
+					},
+					{
+						title:"40th",
+						date:"February 3, 2017 | 09:00AM-12:00PM",
+						updated: "Last updated on May 11, 2017 03:51 PM",
+						venue: "Mayon Function Room, Century Park Hotel, Manila",
+						minutes: "document/msg-mtg/2017/06/11/40th/40th MSG meeting_minutes_2.3.2017.pdf",
+						annexes: []
+					},
+					{
+						title:"39th",
+						date:"January 13, 2017| 09:00AM-12:00PM",
+						updated: "Last updated on May 11, 2017 03:42 PM",
+						venue: "Mayon Function Room, Century Park Hotel, Manila",
+						minutes: "document/msg-mtg/2017/06/11/39th/39th MSG meeting_minutes_1.13.2017.pdf",
+						annexes: []
+					},
+					{
 						title:"38th",
 						date:"December 9, 2016 | 09:00AM-05:00PM",
 						updated: "Last updated on January 26, 2017 10:53 PM",
