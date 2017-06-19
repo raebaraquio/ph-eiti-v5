@@ -1,4 +1,116 @@
 var aboutApp = angular.module('about',['ngRoute','ngSanitize','ngCookies','navMod','ngMaterial','utilsModule','angular-timeline','md.data.table','secretariatContactMod']);
+    
+    angular
+        .module('about')
+        .filter('formatDate',formatDate)
+        .factory('dataFactory',dataFactory)
+        .controller('HistoryController',HistoryController)
+        .controller('SecretariatController',SecretariatController);
+    
+    function formatDate(){
+        return function(input) {
+           return moment(input).format('LL')
+        };
+    }       
+
+    dataFactory.$inject = ['$http'];
+    function dataFactory($http){
+        
+        var __baseURL__ = 'https://api.mlab.com/api/1/databases/pheiti/collections/about-pheiti/';
+        var __APIKEY__ = 'AkQtTxgkxLEYOQz9oFH85K3godWJNhtr';
+
+        var dataFactory = {
+            getHistory : getHistory,
+            getSecretariat : getSecretariat,
+            getMSGmembers : getMSGmembers,
+            getMSGmeetings : getMSGmeetings
+        };
+
+        return dataFactory;
+
+        /////////////////// 
+
+        function getHistory(){
+            return $http({
+                url:__baseURL__+'593c99a5734d1d02258f1c8a?apiKey='+__APIKEY__,
+                method:'GET'
+            });
+        }
+
+        function getSecretariat(){
+            return $http({
+                url:__baseURL__+'593caa34734d1d02258f2031?apiKey='+__APIKEY__,
+                method:'GET'
+            });
+        }
+
+        function getMSGmembers(){
+            return $http({
+                url:__baseURL__+'593cb0f1734d1d02258f218b?apiKey='+__APIKEY__,
+                method:'GET'
+            });
+        }
+
+        function getMSGmeetings(){
+            return $http({
+                url:'../rest/functions/get-msgmeetings.php',
+                method: 'GET'
+            });
+        }
+
+    }
+
+    HistoryController.$inject = ['$scope','dataFactory','utilsService']
+    function HistoryController($scope,dataFactory,utilsService){
+    
+        try {
+            ga('send', 'event', 'Pages', 'loaded', 'About PH-EITI : History');  
+        }
+        catch(gaError){
+            console.log('GA - '+gaError)
+        }
+
+        $scope.years = [];
+        $scope.getPromise = dataFactory.getHistory();
+        $scope.getPromise.then(function(response){
+            if (response.data.content) {
+                $scope.events = response.data.content;
+                for (var idx=0;idx<$scope.events.length;idx++){
+                    if (utilsService.inArr($scope.years,$scope.events[idx].year)===false) {
+                        $scope.years.push($scope.events[idx].year)
+                    }
+                }
+            }
+            delete $scope.getPromise;
+        },function(error){
+            console.log(error)
+            delete $scope.getPromise;
+        });
+
+    }
+
+    SecretariatController.$inject = ['$scope','dataFactory']
+    function SecretariatController($scope,dataFactory) {
+        
+        try {
+            ga('send', 'event', 'Pages', 'loaded', 'About PH-EITI : Secretariat'); 
+        }
+        catch(gaError){
+            console.log('GA - '+gaError)
+        }
+
+        $scope.getPromise = dataFactory.getSecretariat();
+        $scope.getPromise.then(function(response){
+            if (response.data.content) {
+                $scope.secretariat = response.data.content;
+            }
+            delete $scope.getPromise;
+        },function(error){
+            console.log(error)
+            delete $scope.getPromise;
+        });
+
+    }
 
 aboutApp.config(function($routeProvider){
  	$routeProvider
@@ -319,7 +431,6 @@ aboutApp.factory('homeNewsFactory',['$http',
 aboutApp.controller('footerController',['$scope','homeNewsFactory','$mdDialog','$mdMedia','secretariatContactDetails',
     function($scope,homeNewsFactory,$mdDialog,$mdMedia,secretariatContactDetails){
         
-    $scope.contactDetails = secretariatContactDetails.get();
     $scope.userfeedback = { message : '',  type: '' }
     $scope.user = {name : '', email: ''}
     
@@ -391,6 +502,25 @@ aboutApp.controller('footerController',['$scope','homeNewsFactory','$mdDialog','
             }
         })
     }
+
+    function getContactDetails(){
+        $scope.contactDetails = {};
+        if (!secretariatContactDetails.info) {
+            var getPromise = secretariatContactDetails.get();    
+            getPromise.then(function(response){
+                secretariatContactDetails.info = response.data.contact;
+                $scope.contactDetails = response.data.contact;
+            },function(error){
+                // Error Callback
+            });
+        }
+        else {
+            $scope.contactDetails = secretariatContactDetails.info;
+        }   
+    }
+
+    getContactDetails();
+
 }]);
 
 aboutApp.controller('menuController',['$scope','NavigationFactory','utilsService','$location','$rootScope',

@@ -1,5 +1,5 @@
-aboutApp.controller('MSGController',['$scope','MSGFactory','$location','$sce',
-	function($scope,MSGFactory,$location,$sce){
+aboutApp.controller('MSGController',['$scope','dataFactory','$location','$sce',
+	function($scope,dataFactory,$location,$sce){
 	try {
         ga('send', 'event', 'Pages', 'loaded', 'About PH-EITI : MSG Members'); 
     }
@@ -13,7 +13,7 @@ aboutApp.controller('MSGController',['$scope','MSGFactory','$location','$sce',
     $scope.alternates = []
 	$scope.selected_group = 'Government'    
     $scope.selected_idx = 0
-    $scope.dateLastUpdated = MSGFactory.get.dateLastUpdated();
+    // $scope.dateLastUpdated = MSGFactory.get.dateLastUpdated();
 
     $scope.setSelectedidx=function(){
         switch($scope.selected_group) {
@@ -32,12 +32,22 @@ aboutApp.controller('MSGController',['$scope','MSGFactory','$location','$sce',
 	
     var get = {
         members : function(group) {
-            var data = MSGFactory.get.members();
-            $scope.members = data[group].members
-            $scope.roles = data[group].roles
-            $scope.alternates = data[group].alternates
+            // var data = MSGFactory.get.members();
+            // $scope.members = data[group].members
+            // $scope.roles = data[group].roles
+            // $scope.alternates = data[group].alternates
 
-            $scope.msg = MSGFactory.get.newMembers();
+            $scope.getPromise = dataFactory.getMSGmembers();
+            $scope.getPromise.then(function(response){
+                if (response.data.content) {
+                    $scope.msg = response.data.content;
+                }
+                delete $scope.getPromise;
+            },function(error){
+                console.log(error)
+                delete $scope.getPromise;
+            });
+
         },
         memOfmonth : function(){
             $scope.articles = []

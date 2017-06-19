@@ -2,7 +2,8 @@
     <div class="mxw-80 ta-left" id="header-wrapper">
         <p>WHAT IS EITI</p>
         <h1 class="md-display-2">History</h1>
-    </div>   
+    </div>  
+    <md-progress-linear data-ng-show="getPromise" class="md-secondary" md-mode="indeterminate"></md-progress-linear>     
 </header>
 
 <div class="w-100" id="breadcrumb-wrapper">
@@ -15,31 +16,21 @@
 
 <div class="w-100">
     <div class="mxw-80">
-        <timeline >
-            <!-- can also hard-code to side="left" or side="right" -->
-            <timeline-event ng-repeat="(k,event) in events" data-ng-init="useSide = (k%2)===0 ? 'right' : 'left'" side="{{useSide}}">
-                <!-- uses angular-scroll-animate to give it some pop -->
-                <timeline-badge class="{{event.badgeClass}} timeline-hidden" when-visible="animateElementIn" when-not-visible="animateElementOut" style="z-index:1">
-                    <span class="glyphicon {{event.badgeIconClass}}" style="font-size:0.85em;"><span data-ng-show="event.start===true">{{event.year}}</span></span>
-                </timeline-badge>
-                <!-- uses angular-scroll-animate to give it some pop -->
-                <timeline-panel class="{{event.badgeClass}} timeline-hidden" when-visible="animateElementIn" when-not-visible="animateElementOut">
-                    <timeline-heading>
-                        <h4 class="mrgn-0 padd-0" align="{{(useSide==='right' ? 'left' : 'right')}}">{{event.when}}</h4>
-                        <div data-ng-class="{'ta-left': useSide==='right', 'ta-right': useSide==='left'}" class="mrgn-0 padd-0">
-                            <small class="fnt--md fnt--gray">{{event.year}}</small>    
+        <md-content flex layout="column"  style="max-height: 400px;">
+            <section ng-repeat="year in years">
+                <md-subheader class="md-primary">
+                    <h2 align="center"><img ng-src="../images/icons/svg/ic_event_eitiblue_24px.svg" class="md-avatar" alt="" /> {{year}}</h2>
+                </md-subheader>
+                <md-list flex>
+                    <md-list-item class="md-3-line" ng-repeat="event in events" ng-if="event.year===year">
+                        <div class="md-list-item-text" layout="column">
+                            <h3><strong class="md-primary fnt--eitiblue">{{ event.when }}</strong></h3>
+                            <!-- <h4>{{ event.when }}</h4> -->
+                            <p ng-bind-html="event.contentHtml"></p>
                         </div>
-                        <!-- <p ng-if="event.when">
-                            <small class="text-muted"><i class="glyphicon glyphicon-time"></i>{{event.when}}</small>
-                        </p> -->
-                        <p ng-if="event.titleContentHtml" ng-bind-html="event.titleContentHtml"></p>
-                    </timeline-heading>
-                    <p ng-bind-html="event.contentHtml"></p>
-                    <timeline-footer ng-if="event.footerContentHtml">
-                        <span ng-bind-html="event.footerContentHtml"></span>
-                    </timeline-footer>
-                </timeline-panel>
-            </timeline-event>
-        </timeline>
+                    </md-list-item>
+                </md-list>
+            </section>
+        </md-content>
     </div>
 </div>

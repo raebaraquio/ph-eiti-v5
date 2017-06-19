@@ -2,6 +2,7 @@
     <div class="mxw-80 ta-left" id="header-wrapper">
         <h1 class="md-display-2 header-title">What is EITI?</h1>
     </div>   
+    <md-progress-linear data-ng-show="getPromise" class="md-secondary" md-mode="indeterminate"></md-progress-linear>
 </header>
 
 <div class="w-100" id="breadcrumb-wrapper">
@@ -14,16 +15,7 @@
 
 <div class="w-100">
     <div class="mxw-80">
-        <p><strong>EITI</strong> is a global standard ensuring transparency of revenues from natural resources. It is a multi-stakeholder initiative led by the government, industry and civil society representatives.</p>
-        <p>EITI provides a platform to systematically report on, review, and assess what is being paid by companies and received by governments through a system of bilateral disclosures.</p>
-        <p class="ta-center">
-            <img src="../images/wie-process.png" alt=""  style="width: 620px;"/>  
-        </p>
-        <h3>Benefits of EITI</h3>
-        <p>The <strong>government</strong> benefits from following an internationally-recognized transparency standard that demonstrates commitment to reform and anti-corruption, leading to improvements to the tax collection process, and enhanced trust and stability in a volatile sector.</p>
-        <p><strong>Companies</strong> benefit from a level playing field, in which all companies are required to disclose the same information. They also benefit from an improved and more stable investment climate in which they can better engage with citizens and civil society.</p>
-        <p><strong>Filipino citizens and civil society organizations</strong> benefit from receiving reliable information about the extractives sector, and a multi-stakeholder platform where they can better hold the government and companies to account.</p>
-        <p><small>For more details on what is EITI and how it works, visit <a href="javascript:window.open('www.eiti.org')">www.eiti.org</a></small></p>
+        <div ng-bind-html="content"></div>
     </div>
 </div>
 

@@ -2,7 +2,8 @@
     <div class="mxw-80 ta-left" id="header-wrapper">
         <p>COUNTRY REPORTS - {{active_country_report}}</p>
         <h1 class="md-display-2">{{current_annex.title}}</h1>
-    </div>   
+    </div>
+    <md-progress-linear data-ng-show="getpromise" class="md-secondary" md-mode="indeterminate"></md-progress-linear>
 </header>
 
 <div class="w-100" id="breadcrumb-wrapper">
@@ -14,18 +15,18 @@
 </div>
 
 <div class="wd-100">
-    <div class="mxw-80 ta-left" data-ng-show="current_annex.file">
+    <div class="mxw-80 ta-left" data-ng-show="current_annex.file_url">
         <md-button class="md-raised md-accent">Download</md-button>
     </div>
     <div class="mxw-80 ta-left">
-        <div data-ng-show="current_annex.file && current_annex.multiple==false">
-            <iframe src="{{current_annex.file}}" style="width:600px; height:500px;" frameborder="0"></iframe>
+        <div data-ng-show="current_annex.file_url && current_annex.content_type=='document'">
+            <iframe src="{{current_annex.file_url}}" style="width:600px; height:500px;" frameborder="0"></iframe>
         </div>
     </div>
-    <div class="mxw-80 ta-left" data-ng-show="!current_annex.file && current_annex.multiple==false">
+    <div class="mxw-80 ta-left" data-ng-show="!current_annex.file_url && current_annex.content_type=='document'">
         <p>Document not yet available.</p>
     </div>
-    <div class="mxw-80" data-ng-show="current_annex.multiple==true && !current_annex.media && !current_annex.otherFiles">
+    <div class="mxw-80" data-ng-show="current_annex.content_type=='page' && current_annex.title=='Completed Reporting Templates'">
         <div class="md-inline-form">
             <md-content layout-padding>
                 <div layout-gt-sm="row">
@@ -48,14 +49,14 @@
         </div>       
         <md-content>
             <div flex="100" layout-fill layout="row" layout-wrap>   
-                <md-card flex="45" layout="row" data-ng-repeat="(k,cr) in completedTemplates | filter:filterAnnexTemplate" title="{{cr.company}}" class="card-container">
+                <md-card flex="45" layout="row" data-ng-repeat="(k,cr) in completedTemplates | filter:filterAnnexTemplate" title="{{cr.company_agency_name}}" class="card-container">
                     <md-card-title flex="70">
                         <md-card-title-text class="ta-left">
-                            <span class="md-headline" title="{{cr.company}}" style="font-size:1.25em;line-height:1em;">{{shorten(cr.company,90)}}</span>
+                            <span class="md-headline" title="{{cr.company_agency_name}}" style="font-size:1.25em;line-height:1em;">{{shorten(cr.company_agency_name,90)}}</span>
                         </md-card-title-text>
                     </md-card-title>
                     <md-card-actions flex="30" layout="row" layout-align="end center">
-                        <md-button class="md-accent" data-ng-if="cr.file" data-ng-click="open_file(cr.file,cr)" alt="Open/Download {{cr.company}} Reporting Template"  title="Open/Download {{cr.company}} Reporting Template"><strong>Download</strong></md-button>
+                        <md-button class="md-accent" data-ng-if="cr.file_url" data-ng-click="open_file(cr.file_url,cr)" alt="Open/Download {{cr.company_agency_name}} Reporting Template"  title="Open/Download {{cr.company_agency_name}} Reporting Template"><strong>Download</strong></md-button>
                     </md-card-actions>
                 </md-card>
             </div>  
@@ -64,17 +65,17 @@
             </div>
         </md-content>
     </div>
-    <div class="mxw-80" data-ng-show="current_annex.multiple==true && !current_annex.media && current_annex.otherFiles">
+    <div class="mxw-80" data-ng-show="current_annex.content_type=='page' && current_annex.title!='Completed Reporting Templates'">
         <md-content>
             <div flex="100" layout-fill layout="row" layout-wrap>   
-                <md-card flex="45" layout="row" data-ng-repeat="(k,cr) in current_annex.otherFiles" title="{{cr.company}}" class="card-container">
+                <md-card flex="45" layout="row" data-ng-repeat="(k,cr) in current_annex.otherFiles" title="{{cr.title}}" class="card-container">
                     <md-card-title flex="70">
                         <md-card-title-text class="ta-left">
                             <span class="md-headline" title="{{cr.title}}" style="font-size:1.25em;line-height:1em;">{{shorten(cr.title,90)}}</span>
                         </md-card-title-text>
                     </md-card-title>
                     <md-card-actions flex="30" layout="row" layout-align="end center">
-                        <md-button class="md-accent" data-ng-if="cr.file" data-ng-click="open_file(cr.file,cr)" alt="Open/Download {{cr.title}}"  title="Open/Download {{cr.title}}"><strong>Download</strong></md-button>
+                        <md-button class="md-accent" data-ng-if="cr.file_url" data-ng-click="open_file(cr.file_url,cr)" alt="Open/Download {{cr.title}}"  title="Open/Download {{cr.title}}"><strong>Download</strong></md-button>
                     </md-card-actions>
                 </md-card>
             </div>  

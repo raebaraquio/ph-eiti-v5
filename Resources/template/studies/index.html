@@ -2,7 +2,8 @@
     <div class="mxw-80 ta-left" id="header-wrapper">
         <p>RESOURCES</p>
         <h1 class="md-display-2">Studies</h1>  
-    </div>   
+    </div>
+    <md-progress-linear data-ng-show="getpromise" class="md-secondary" md-mode="indeterminate"></md-progress-linear>
 </header>
 
 <div class="w-100" id="breadcrumb-wrapper">
@@ -20,7 +21,7 @@
 	            <div layout-gt-sm="row">
 	                <md-input-container flex-gt-sm>
 	                    <label>Select Year</label>
-	                    <md-select data-ng-model="filterYear" data-ng-change="refreshStudies()">
+	                    <md-select data-ng-model="filterYear">
 	                    	<md-option data-ng-repeat="year in years" value="{{year}}">{{year}}</md-option>
 	                    </md-select>
 	                </md-input-container>
@@ -50,8 +51,8 @@
 	                </md-card-title-text>
 	            </md-card-title>
 	            <md-card-actions flex="30" layout="row" layout-align="end center">
-	                <md-button class="md-accent" data-ng-show="study.file!==''" data-ng-click="goto_file(study.file,study)" alt="Open/Download {{study.title}}"  title="Open/Download {{study.title}}"><strong>Open</strong></md-button>
-	                <md-button class="md-secondary" data-ng-show="study.file===''" title="{{study.title}} is unavailable"><strong>Unavailable</strong></md-button>
+	                <md-button class="md-accent" data-ng-show="study.file_url!==''" data-ng-click="goto_file(study.file_url,study)" alt="Open/Download {{study.title}}"  title="Open/Download {{study.title}}"><strong>Open</strong></md-button>
+	                <md-button class="md-secondary" data-ng-show="study.file_url===''" title="{{study.title}} is unavailable"><strong>Unavailable</strong></md-button>
 	            </md-card-actions>
 	        </md-card>
 	    </div>  

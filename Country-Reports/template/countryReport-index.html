@@ -2,7 +2,8 @@
     <div class="mxw-80 ta-left" id="header-wrapper">
         <p>COUNTRY REPORTS</p>
         <h1 class="md-display-2">{{current_report.title}}</h1>
-    </div>   
+    </div>
+    <md-progress-linear data-ng-show="getpromise" class="md-secondary" md-mode="indeterminate"></md-progress-linear>
 </header>
 
 <div class="w-100" id="breadcrumb-wrapper">
@@ -21,7 +22,7 @@
     <div class="mxw-80">
         <div flex="100" layout-fill layout="row" layout-wrap>   
             <md-card flex="45" layout="row" data-ng-repeat="(k,cr) in current_report.content" class="card-container">
-                <div flex="25" layout="left left" class="infographic-card-icon" style="background:url('{{cr.cardIcon}}')">
+                <div flex="25" layout="left left" class="infographic-card-icon" style="background:url('{{cr.card_icon_url}}')">
                 </div>              
                 <div flex="75" layout="column">
                     <md-card-title>
@@ -30,12 +31,12 @@
                         </md-card-title-text>
                     </md-card-title>
                     <md-card-actions layout="row" layout-align="end center">
-                        <md-button data-ng-if="cr.multiple==true" class="md-accent"  data-ng-click="goto_activity(current_report.id+'/'+cr.href)" alt="Go to {{cr.title}}"  title="Go to {{cr.title}}"><strong>Go to page</strong></md-button>
-                        <md-button data-ng-if="cr.media && cr.file" class="md-accent"  data-ng-click="goto_activity(current_report.id+'/'+cr.href)" alt="Go to {{cr.title}}"  title="Go to {{cr.title}}"><strong>Go to page</strong></md-button>
-                        <md-button data-ng-if="cr.media && !cr.file" class="md-secondary" alt="Material not yet available"  title="Material not yet available"><strong>Material unavailable</strong></md-button>
-                        <md-button data-ng-if="cr.multiple===false && !cr.file" class="md-secondary" alt="Material not yet available"  title="Material not yet available"><strong>Material unavailable</strong></md-button>
-                        <md-button data-ng-if="cr.multiple===false && cr.mso===undefined && cr.file" class="md-accent" data-ng-click="open_file(cr.file,cr)" alt="Open/Download {{cr.title}}"  title="Open/Download {{cr.title}}"><strong>Open</strong></md-button>
-                        <md-button data-ng-if="cr.multiple===false && cr.mso===true" class="md-accent" data-ng-click="open_file(cr.file,cr)" alt="Open/Download {{cr.title}}"  title="Open/Download {{cr.title}}"><strong>Download</strong></md-button>
+                        <md-button data-ng-if="cr.content_type=='page'" class="md-accent"  data-ng-click="openPage(current_report.title+'/'+cr.title)" alt="Go to {{cr.title}}"  title="Go to {{cr.title}}"><strong>Go to page</strong></md-button>
+                        <!-- <md-button data-ng-if="cr.media && cr.file" class="md-accent"  data-ng-click="goto_activity(current_report.id+'/'+cr.href)" alt="Go to {{cr.title}}"  title="Go to {{cr.title}}"><strong>Go to page</strong></md-button>
+                        <md-button data-ng-if="cr.media && !cr.file" class="md-secondary" alt="Material not yet available"  title="Material not yet available"><strong>Material unavailable **</strong></md-button> -->
+                        <md-button data-ng-if="cr.content_type=='document' && cr.file_url==''" class="md-secondary" alt="Material not yet available"  title="Material not yet available"><strong>Material unavailable</strong></md-button>
+                        <md-button data-ng-if="cr.content_type=='document' && cr.file_url" class="md-accent" data-ng-click="open_file(cr.file_url,cr)" alt="Open/Download {{cr.title}}"  title="Open/Download {{cr.title}}"><strong>Open</strong></md-button>
+                        <md-button data-ng-if="cr.content_type=='mso-file'" class="md-accent" data-ng-click="open_file(cr.file_url,cr)" alt="Open/Download {{cr.title}}"  title="Open/Download {{cr.title}}"><strong>Download</strong></md-button>
                     </md-card-actions>
                 </div>                
             </md-card>
@@ -45,7 +46,7 @@
 
 <div class="wd-100" data-ng-show="!current_report.title">
     <div class="mxw-80 ta-center">
-        <p>Requested data not found.</p>
+        <p>Loading data..</p>
     </div>
 </div>
 

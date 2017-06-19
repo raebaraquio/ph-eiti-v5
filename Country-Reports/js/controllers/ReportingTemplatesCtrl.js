@@ -1,5 +1,5 @@
-countryReportApp.controller('ReportingTemplatesCtrl',['$scope','CountryReportFactory','utilsService',
-	function($scope,CountryReportFactory,utilsService){
+countryReportApp.controller('ReportingTemplatesCtrl',['$scope','utilsService','dataFactory',
+	function($scope,utilsService,dataFactory){
 
 	try {
 		ga('send', 'event', 'Pages', 'loaded', 'Country Reports : Reporting Templates');	
@@ -8,39 +8,25 @@ countryReportApp.controller('ReportingTemplatesCtrl',['$scope','CountryReportFac
 		console.log('GA - '+gaError)
 	}
 
-	$scope.filterSector = 'Industry'; //'Government Agencies'
-	$scope.filterYear = 2015;
 	$scope.sectors = [];
 	$scope.years = [];
 	$scope.sectorTemplates = [];
 
-	var folder = CountryReportFactory.reportingTemplates();
-	$scope.templates = folder.subfolders;
+	$scope.getpromise = dataFactory.getReportingTemplates();
+	$scope.getpromise.then(function(response){
+		delete $scope.getpromise;
 	
-	for (var k=0;k<$scope.templates.length;k++){
-		$scope.years.push($scope.templates[k].year)
-		var perYear = $scope.templates[k].subfolders;
-		for (var kk=0;kk<perYear.length;kk++){
-			if (utilsService.inArr($scope.sectors,perYear[kk].folder_name)===false){
-				$scope.sectors.push(perYear[kk].folder_name)	
-			}
-		}
-	}
+		$scope.sectors = response.data.sectors;
+		$scope.filterSector = 'Industry';
 
-	$scope.refreshTemplates = function(){
-		for (var k=0;k<$scope.templates.length;k++){
-			if ($scope.filterYear+''===$scope.templates[k].folder_name+'') {
-				var selectedyear = $scope.templates[k].subfolders;
-				for (var kk=0;kk<selectedyear.length;kk++) {
-					if (selectedyear[kk].folder_name===$scope.filterSector) {
-						$scope.sectorTemplates = selectedyear[kk].files
-					}		
-				}
-			}
-		}
-	}
+		$scope.years = response.data.years;
+		$scope.filterYear = $scope.years[0];
 
-	$scope.refreshTemplates();
+		$scope.templates = response.data.templates;
+		
+	},function(err){
+		delete $scope.getpromise;
+	});
 
 	$scope.open_file=function(src,file){
 		try {

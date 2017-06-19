@@ -6,13 +6,17 @@ newsApp.controller('NewsletterController',['$scope','NewsFactory',
 	catch(gaError){
 		console.log('GA - '+gaError)
 	}
-	$scope.years = []	
-	var start = 2014, current = parseInt( (new Date()).getFullYear(), 10);
-	for (var idx=current;idx>=start;idx--){
-		$scope.years.push(idx);
-	}
-	$scope.filterYear = $scope.years[0];
-	$scope.newsletter = NewsFactory.newsletter();
+
+	$scope.years = [];
+    $scope.newspromise = NewsFactory.newsletter();
+    $scope.newspromise.then(function(response){
+    	$scope.years = response.data.years;
+    	$scope.filterYear = $scope.years[0];
+    	$scope.newsletter = response.data.content;
+        delete $scope.newspromise;
+    },function(error){
+        delete $scope.newspromise;
+    });
 
 	$scope.open=function(link,issue) {
 		try {

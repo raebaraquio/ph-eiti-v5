@@ -2,7 +2,8 @@
     <div class="mxw-80 ta-left" id="header-wrapper">
         <p>COUNTRY REPORTS</p>
         <h1 class="md-display-2">Reporting Templates</h1>
-    </div>   
+    </div>    
+    <md-progress-linear data-ng-show="getpromise" class="md-secondary" md-mode="indeterminate"></md-progress-linear> 
 </header>
 
 <div class="w-100" id="breadcrumb-wrapper">
@@ -20,19 +21,19 @@
                 <div layout-gt-sm="row">
                     <md-input-container flex-gt-sm>
                         <label>Select Year</label>
-                        <md-select data-ng-model="filterYear" data-ng-change="refreshTemplates()">
+                        <md-select data-ng-model="filterYear">
                             <md-option data-ng-repeat="year in years" value="{{year}}">{{year}}</md-option>
                         </md-select>
                     </md-input-container>
                     <md-input-container flex-gt-sm>
                         <label>Select Sector</label>
-                        <md-select data-ng-model="filterSector" data-ng-change="refreshTemplates()">
+                        <md-select data-ng-model="filterSector">
                             <md-option data-ng-repeat="sector in sectors" value="{{sector}}">{{sector}}</md-option>
                         </md-select>
                     </md-input-container>
-                    <!-- <md-input-container flex-gt-sm data-ng-show="activities.length">
-                        <label><strong>{{ (activities | filter:{date:filterYear}).length }} result<span data-ng-show="(activities | filter:{date:filterYear}).length > 1">s</span> found</strong></label>
-                    </md-input-container>             -->
+                    <md-input-container flex-gt-sm data-ng-show="templates.length">
+                        <label><strong>{{ (templates | filter:{year:filterYear,sector:filterSector}).length }} result<span data-ng-show="(templates | filter:{year:filterYear,sector:filterSector}).length > 1">s</span> found</strong></label>
+                    </md-input-container>            
                      <md-input-container flex-gt-sm></md-input-container>        
                     <md-input-container flex-gt-sm></md-input-container>
                     <md-input-container flex-gt-sm></md-input-container>
@@ -46,14 +47,14 @@
 <div class="wd-100">
     <div class="mxw-80">
         <div flex="100" layout-fill layout="row" layout-wrap>   
-            <md-card flex="45" layout="row" data-ng-repeat="(k,template) in sectorTemplates | filter:filterAnnexTemplate" class="card-container">
+            <md-card flex="45" layout="row" data-ng-repeat="(k,template) in templates | filter:{year:filterYear,sector:filterSector}" class="card-container">
                 <md-card-title flex="70">
                     <md-card-title-text class="ta-left">
                         <span class="md-headline" title="{{template.title}}" style="font-size:1em;line-height:1em;">{{template.title}}</span>
                     </md-card-title-text>
                 </md-card-title>
                 <md-card-actions flex="30" layout="row" layout-align="end center">
-                    <md-button class="md-accent" data-ng-if="template.source" data-ng-click="open_file(template.source,template)" alt="Download {{template.title}} Reporting Template"  title="Download {{template.title}} Reporting Template"><strong>Download</strong></md-button>
+                    <md-button class="md-accent" data-ng-if="template.file_url" data-ng-click="open_file(template.file_url,template)" alt="Download {{template.title}} Reporting Template"  title="Download {{template.title}} Reporting Template"><strong>Download</strong></md-button>
                 </md-card-actions>
             </md-card>
         </div>

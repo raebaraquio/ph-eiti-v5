@@ -1,20 +1,23 @@
-resourcesApp.controller('WorkPlanController',['$scope','ResourcesFactory',
-	function($scope,ResourcesFactory){
+resourcesApp.controller('WorkPlanController',['$scope','resourcesDataFactory',
+	function($scope,resourcesDataFactory){
 
-	$scope.filterYear = ''
-	$scope.years = [];
-	
-	$scope.workPlans = ResourcesFactory.workPlan();
-	for (var idx=0;idx<$scope.workPlans.length;idx++) {
-		$scope.years.push($scope.workPlans[idx].year);
-	}
-
-	$scope.filterYear = $scope.years[0]
-	$scope.selected_workPlan = {}
+	$scope.filterYear = '';
+	$scope.selected_workPlan = {};
 	$scope.tabSelected = 0;
+	$scope.years = [];
+
+	$scope.getpromise = resourcesDataFactory.getAll('WorkPlan');
+	$scope.getpromise.then(function(response){
+		delete $scope.getpromise;
+		$scope.years = response.data.years;
+		$scope.filterYear = $scope.years[0];
+		$scope.workPlans = response.data.workplans;
+	},function(err){
+		delete $scope.getpromise;
+	});
 
 	$scope.refresh=function(){
-		if ($scope.workPlans) {	
+		/*if ($scope.workPlans) {	
 			for (var idx=0;idx<$scope.workPlans.length;idx++) {
 				if ($scope.filterYear===$scope.workPlans[idx].year) {
 					$scope.selected_workPlan = $scope.workPlans[idx];
@@ -37,12 +40,9 @@ resourcesApp.controller('WorkPlanController',['$scope','ResourcesFactory',
 			}
 			catch(err){
 				console.log(err)
-			}
-			
-		}
+			}	
+		}*/
 	}
-
-	$scope.refresh();
 
 	$scope.preview = function(src,wplan) {
 		try {

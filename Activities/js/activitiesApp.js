@@ -188,7 +188,6 @@ activitiesApp.factory('homeNewsFactory',['$http',
 activitiesApp.controller('footerController',['$scope','homeNewsFactory','$mdDialog','$mdMedia','secretariatContactDetails',
     function($scope,homeNewsFactory,$mdDialog,$mdMedia,secretariatContactDetails){
         
-    $scope.contactDetails = secretariatContactDetails.get();
     $scope.userfeedback = { message : '',  type: '' }
     $scope.user = {name : '', email: ''}
     
@@ -260,6 +259,24 @@ activitiesApp.controller('footerController',['$scope','homeNewsFactory','$mdDial
             }
         })
     }
+
+    function getContactDetails(){
+        $scope.contactDetails = {};
+        if (!secretariatContactDetails.info) {
+            var getPromise = secretariatContactDetails.get();    
+            getPromise.then(function(response){
+                secretariatContactDetails.info = response.data.contact;
+                $scope.contactDetails = response.data.contact;
+            },function(error){
+                // Error Callback
+            });
+        }
+        else {
+            $scope.contactDetails = secretariatContactDetails.info;
+        }   
+    }
+
+    getContactDetails();
 }]);
 
 

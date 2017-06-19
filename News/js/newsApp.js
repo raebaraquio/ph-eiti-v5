@@ -243,7 +243,6 @@ newsApp.factory('homeNewsFactory',['$http',
 newsApp.controller('footerController',['$scope','homeNewsFactory','$mdDialog','$mdMedia','secretariatContactDetails',
     function($scope,homeNewsFactory,$mdDialog,$mdMedia,secretariatContactDetails){
         
-    $scope.contactDetails = secretariatContactDetails.get();
     $scope.userfeedback = { message : '',  type: '' }
     $scope.user = {name : '', email: ''}
     
@@ -315,6 +314,24 @@ newsApp.controller('footerController',['$scope','homeNewsFactory','$mdDialog','$
             }
         })
     }
+
+    function getContactDetails(){
+        $scope.contactDetails = {};
+        if (!secretariatContactDetails.info) {
+            var getPromise = secretariatContactDetails.get();    
+            getPromise.then(function(response){
+                secretariatContactDetails.info = response.data.contact;
+                $scope.contactDetails = response.data.contact;
+            },function(error){
+                // Error Callback
+            });
+        }
+        else {
+            $scope.contactDetails = secretariatContactDetails.info;
+        }   
+    }
+
+    getContactDetails();
 }]);
 
 newsApp.controller('menuController',['$scope','NavigationFactory','utilsService','$location','$rootScope',

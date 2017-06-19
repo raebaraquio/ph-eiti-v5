@@ -2,7 +2,8 @@
     <div class="mxw-80 ta-left" id="header-wrapper">
         <p>ABOUT PH-EITI</p>
         <h1 class="md-display-2">MSG Meetings</h1>  
-    </div>   
+    </div>
+    <md-progress-linear data-ng-show="getPromise" class="md-secondary" md-mode="indeterminate"></md-progress-linear>
 </header>
 
 <div class="w-100" id="breadcrumb-wrapper">
@@ -27,7 +28,7 @@
 	                <md-input-container flex="40">
 	                    <label>Select Meeting</label>
 	                    <md-select data-ng-model="filterTitle" data-ng-change="load_meeting(filterTitle)">
-	                    	<md-option data-ng-repeat="mtg in meetings" value="{{mtg.title}}">{{mtg.title}} Meeting</md-option>
+	                    	<md-option data-ng-repeat="mtg in meetings" value="{{mtg.mtg_title}}">{{mtg.mtg_title}} Meeting</md-option>
 	                    </md-select>
 	                </md-input-container>
 	                <md-input-container flex="30">
@@ -42,20 +43,20 @@
     </div>
 </div>
 
-<div class="wd-100" data-ng-show="!meeting_selected.title" >
+<div class="wd-100" data-ng-show="!meeting_selected.mtg_title" >
 	<div class="mxw-80 ta-left">
 		<h2>No meeting selected. </h2>
     </div>
 </div>
 
-<div class="wd-100" data-ng-show="meeting_selected.title" >
+<div class="wd-100" data-ng-show="meeting_selected.mtg_title" >
 	<div class="mxw-80 md-padding">
         <md-contentlayout="column">    
-        	<h1 class="mrgin-0 padd-0" style="padding:0px;margin:0px;">{{meeting_selected.title}} MSG Meeting</h1>
+        	<h1 class="mrgin-0 padd-0" style="padding:0px;margin:0px;">{{meeting_selected.mtg_title}} MSG Meeting</h1>
 
-            <p class="mrgin-0 padd-0" style="padding:0px;margin:0px;">{{meeting_selected.venue}}</p>
-            <small class="mrgin-0 padd-0 fnt--gray" style="padding:0px;margin:0px;margin-top:0.5em;">{{meeting_selected.date}}</small><br/>
-            <small class="mrgin-0 padd-0 fnt--gray" style="padding:0px;margin:0px;margin-top:0.5em;">{{meeting_selected.updated}}</small>
+            <p class="mrgin-0 padd-0" style="padding:0px;margin:0px;">{{meeting_selected.mtg_venue}}</p>
+            <small class="mrgin-0 padd-0 fnt--gray" style="padding:0px;margin:0px;margin-top:0.5em;">{{meeting_selected.mtg_date | formatDate}} | {{meeting_selected.mtg_time}}</small><br/>
+            <!-- <small class="mrgin-0 padd-0 fnt--gray" style="padding:0px;margin:0px;margin-top:0.5em;">{{meeting_selected.updated}}</small> -->
 
             <!-- <h3 data-ng-show="meeting_selected.agenda">Agenda</h3>         
 			<md-list>
@@ -67,7 +68,7 @@
 			</md-list> -->		
 
             <div layout="row" style="margin-top:10px;">
-            	<md-button class="md-raised md-accent" data-ng-click="download_minutes(meeting_selected.minutes)" title="Download Minutes of {{meeting_selected.title}} MSG Meeting">Download Minutes</md-button>			
+            	<md-button class="md-raised md-accent" data-ng-click="download_minutes(meeting_selected.minutes_url)" title="Download Minutes of {{meeting_selected.mtg_title}} MSG Meeting">Download Minutes</md-button>			
             </div>            
 
             <h3 data-ng-show="meeting_selected.annexes && meeting_selected.annexes.length > 0">Annex</h3>  
@@ -85,6 +86,8 @@
 	                </md-card>
 	            </div>
             </md-content>
+
+
         </md-content>    
     </div>
 </div>

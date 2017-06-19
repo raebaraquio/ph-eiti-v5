@@ -2,7 +2,8 @@
     <div class="mxw-80 ta-left" id="header-wrapper">
         <p>RESOURCES</p>
         <h1 class="md-display-2">Work Plan and BO Roadmap</h1>
-    </div>   
+    </div>
+    <md-progress-linear data-ng-show="getpromise" class="md-secondary" md-mode="indeterminate"></md-progress-linear>
 </header>
 
 <div class="w-100" id="breadcrumb-wrapper">
@@ -24,12 +25,12 @@
 	            <div layout-gt-sm="row">
 	                <md-input-container flex-gt-sm>
 	                    <label>Select Year</label>
-	                    <md-select data-ng-model="filterYear" data-ng-change="refresh()">
+	                    <md-select data-ng-model="filterYear">
 	                    	<md-option data-ng-repeat="year in years" value="{{year}}">{{year}}</md-option>
 	                    </md-select>
 	                </md-input-container>
 	                <md-input-container flex-gt-sm data-ng-show="workPlans.length">
-	                    <!-- <label><strong>{{ (workPlans | filter:{title:filterYear}).length }} result<span data-ng-show="(workPlans | filter:{title:filterYear}).length > 1">s</span> found</strong></label> -->
+	                    <label><strong>{{ (workPlans | filter:{year_covered:filterYear}).length }} result<span data-ng-show="(workPlans | filter:{year_covered:filterYear}).length > 1">s</span> found</strong></label>
 	                </md-input-container>            
 	                <!-- <label>Keyword filter</label><input data-ng-model="filterKeyword"/> -->
 	                 <md-input-container flex-gt-sm></md-input-container>        
@@ -39,7 +40,23 @@
 	            </div>            
 	        </md-content>
 	    </div>
-	    <md-tabs md-dynamic-height md-border-bottom data-ng-show="selected_workPlan.bo.length > 0" md-selected="tabSelected">
+
+		<md-content class="md-padding">
+			<div flex="100" layout-fill layout="row" layout-wrap>   
+	            <md-card flex="45" layout="row" data-ng-repeat="(k,wplan) in workPlans | filter:{year_covered:filterYear}" class="card-container">
+	                <md-card-title flex="70">
+	                    <md-card-title-text class="ta-left">
+	                        <span class="md-headline" title="{{wplan.title}}" style="font-size:1em;line-height:1em;">{{wplan.title}}</span>
+	                    </md-card-title-text>
+	                </md-card-title>
+	                <md-card-actions flex="30" layout="row" layout-align="end center">
+	                    <md-button class="md-accent" data-ng-if="wplan.file_url" data-ng-click="preview(wplan.file_url,wplan)" alt="Preview {{wplan.title}}"  title="Preview {{wplan.title}}"><strong>Preview</strong></md-button>
+	                </md-card-actions>
+	            </md-card>
+	        </div>
+		</md-content>
+	
+		<!-- <md-tabs md-dynamic-height md-border-bottom data-ng-show="selected_workPlan.bo.length > 0" md-selected="tabSelected">
 			<md-tab label="Work Plan" data-ng-if="selected_workPlan.bo.length > 0">
 				<md-content class="md-padding">
 					<h1 class="md-display-2 mrgn-bt-0 padd-bt-0">{{selected_workPlan.title}}</h1>
@@ -83,6 +100,6 @@
 	    			<iframe src="{{selected_workPlan.src}}" style="min-width:700px;height:550px;" frameborder="0"></iframe>
 	    		</div>
 	    	</md-content>
-	    </div>
+	    </div> -->
 	</div>
 </div>

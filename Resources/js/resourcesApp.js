@@ -1,5 +1,39 @@
 var resourcesApp = angular.module('resources',['ngRoute','ngSanitize','ngCookies','navMod','ngMaterial','utilsModule','secretariatContactMod']);
 
+angular
+    .module('resources')
+    .factory('resourcesDataFactory',resourcesDataFactory);
+
+resourcesDataFactory.$inject = ['$http'];
+function resourcesDataFactory($http){
+    var __baseURL__ = 'https://api.mlab.com/api/1/databases/pheiti/collections/resources/';
+    var __APIKEY__ = 'AkQtTxgkxLEYOQz9oFH85K3godWJNhtr';
+
+    var resourcesDataFactory = {
+        getContent : getContent,
+        getAll : getAll
+    };
+
+    return resourcesDataFactory;
+
+    /////////////////// 
+
+    function getContent(){
+        return $http({
+            url:__baseURL__+'5944f87a734d1d59b788fc08?apiKey='+__APIKEY__,
+            method:'GET'
+        });
+    }
+
+    function getAll(content){
+        return $http({
+            url:'../rest/functions/resources/getAll.php?content='+content,
+            method:'GET'
+        });
+    }
+
+}
+
 resourcesApp.config(function($routeProvider){
  	$routeProvider
 	 	.when('/',
@@ -343,7 +377,6 @@ resourcesApp.factory('homeNewsFactory',['$http',
 resourcesApp.controller('footerController',['$scope','homeNewsFactory','$mdDialog','$mdMedia','secretariatContactDetails',
     function($scope,homeNewsFactory,$mdDialog,$mdMedia,secretariatContactDetails){
         
-    $scope.contactDetails = secretariatContactDetails.get();
     $scope.userfeedback = { message : '',  type: '' }
     $scope.user = {name : '', email: ''}
     
@@ -415,6 +448,24 @@ resourcesApp.controller('footerController',['$scope','homeNewsFactory','$mdDialo
             }
         })
     }
+
+    function getContactDetails(){
+        $scope.contactDetails = {};
+        if (!secretariatContactDetails.info) {
+            var getPromise = secretariatContactDetails.get();    
+            getPromise.then(function(response){
+                secretariatContactDetails.info = response.data.contact;
+                $scope.contactDetails = response.data.contact;
+            },function(error){
+                // Error Callback
+            });
+        }
+        else {
+            $scope.contactDetails = secretariatContactDetails.info;
+        }   
+    }
+
+    getContactDetails();
 }]);
 
 resourcesApp.controller('menuController',['$scope','NavigationFactory','utilsService','$location','$rootScope',

@@ -1,13 +1,19 @@
-resourcesApp.controller('ActivityReportsController',['$scope','ResourcesFactory','$location',
-	function($scope,ResourcesFactory,$location){
+resourcesApp.controller('ActivityReportsController',['$scope','$location','resourcesDataFactory',
+	function($scope,$location,resourcesDataFactory){
 	try {
 		ga('send', 'event', 'Pages', 'loaded', 'Resources : Activity Reports');	
 	}
 	catch(gaError){
 		console.log('GA - '+gaError)
 	}
-	$scope.activityReports = ResourcesFactory.activityReports();
-	$scope.selected_folder = {}
+
+	$scope.getpromise = resourcesDataFactory.getAll('APR');
+	$scope.getpromise.then(function(response){
+		delete $scope.getpromise;
+		$scope.activityReports = response.data;
+	},function(err){
+		delete $scope.getpromise;
+	});
 
 	$scope.goto_file = function(link) {
 		if (link!=''){
@@ -25,23 +31,7 @@ resourcesApp.controller('ActivityReportsController',['$scope','ResourcesFactory'
 		catch(gaError){
 			console.log('GA - '+gaError)
 		}
-		window.open(link)
+		window.open(link);
 	}
-
-	$scope.openFolder=function(folder){
-		$location.path('/Activity-Reports/'+folder)
-	}
-
-	$scope.$on('$routeChangeSuccess', function(){
-		var loc = $location.path().split('/')
-		var currloc = $location.path();
-		if ($scope.orgdocs) {
-			for (var idx=0;idx<$scope.orgdocs.subfolders.length;idx++){
-				if ($scope.orgdocs.subfolders[idx].folder_id===loc[loc.length-1]) {
-					$scope.selected_folder = $scope.orgdocs.subfolders[idx]
-				}
-			}
-		}
-    })
 
 }]);

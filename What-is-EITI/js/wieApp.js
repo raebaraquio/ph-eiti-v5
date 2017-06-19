@@ -1,17 +1,170 @@
 var wieApp = angular.module('what-is',['ngRoute','ngSanitize','ngCookies','navMod','ngMaterial','utilsModule','angular-timeline','md.data.table','secretariatContactMod']);
 
+    angular
+        .module('what-is')
+        .factory('WIEDataFactory',WIEDataFactory)
+        .controller("WIEController",WIEController);
+
+    WIEDataFactory.$inject = ['$http'];
+    function WIEDataFactory($http){
+        
+        var __baseURL__ = 'https://api.mlab.com/api/1/databases/pheiti/collections/what-is-eiti/';
+        var __APIKEY__ = 'AkQtTxgkxLEYOQz9oFH85K3godWJNhtr';
+
+        var dataFactory = {
+            getIndexPage: getIndexPage,
+            getHistory : getHistory,
+            getEITIPrinciples : getEITIPrinciples,
+            getEITIStandard : getEITIStandard
+        };
+
+        return dataFactory;
+
+        ///// 
+
+        function getIndexPage(){
+            return $http({
+                url:__baseURL__+'593c91fe734d1d02258f1ba2?apiKey='+__APIKEY__,
+                method:'GET'
+            });
+        }
+
+        function getHistory(){
+            return $http({
+                url:__baseURL__+'593bc7af734d1d517c18a013?apiKey='+__APIKEY__,
+                method:'GET'
+            });
+        }
+
+        function getEITIPrinciples(){
+            return $http({
+                url:__baseURL__+'593bc9c8734d1d517c18a06f?apiKey='+__APIKEY__,
+                method:'GET'
+            });
+        }
+
+        function getEITIStandard(){
+            return $http({
+                url:__baseURL__+'593bcad4734d1d517c18a09c?apiKey='+__APIKEY__,
+                method:'GET'
+            });
+        }
+    }
+
+    WIEController.$inject = ['$scope','WIEDataFactory','$sce','$location','utilsService'];
+    function WIEController($scope,WIEDataFactory,$sce,$location,utilsService){
+
+        $scope.page = {};
+        $scope.content = null;
+        $scope.years = [];
+        $scope.events = [];
+
+        function getIndexPage(){
+            $scope.getPromise = WIEDataFactory.getIndexPage();
+            $scope.getPromise.then(function(response){
+                if (response.data.content) {
+                    $scope.content = $sce.trustAsHtml('<div>'+response.data.content+'</div>');
+                }
+                delete $scope.getPromise;
+            },function(error){
+                console.log(error)
+                delete $scope.getPromise;
+            });
+        }
+
+        function getHistory(){
+            $scope.years = [];
+            $scope.getPromise = WIEDataFactory.getHistory();
+            $scope.getPromise.then(function(response){
+                if (response.data.content) {
+                    $scope.events = response.data.content;
+                    for (var idx=0;idx<$scope.events.length;idx++){
+                        if (utilsService.inArr($scope.years,$scope.events[idx].year)===false) {
+                            $scope.years.push($scope.events[idx].year)
+                        }
+                    }
+                }
+                delete $scope.getPromise;
+            },function(error){
+                console.log(error)
+                delete $scope.getPromise;
+            });
+        }
+
+        function getPrinciples(){
+            $scope.page = {};
+            $scope.getPromise = WIEDataFactory.getEITIPrinciples();
+            $scope.getPromise.then(function(response){
+                if (response.data.content) {
+                    $scope.page.text = response.data.content.text
+                    $scope.page.principles = response.data.content.list;
+                }
+                delete $scope.getPromise;
+            },function(error){
+                console.log(error)
+                delete $scope.getPromise;
+            });
+        }
+
+        function getStandard(){
+            $scope.getPromise = WIEDataFactory.getEITIStandard();
+            $scope.getPromise.then(function(response){
+                if (response.data.content) {
+                    $scope.content = $sce.trustAsHtml('<div>'+response.data.content+'</div>');
+                }
+                delete $scope.getPromise;
+            },function(error){
+                console.log(error)
+                delete $scope.getPromise;
+            });
+        }
+
+        function pageLoadEvent(page){
+            try {
+                ga('send', 'event', 'Pages', 'loaded', 'What is EITI'+page); 
+            }
+            catch(gaError){
+                console.log('GA - '+gaError)
+            }
+        }
+
+        $scope.$on('$routeChangeSuccess',function(n){
+            var page = $location.path();
+            switch(page){
+                case '/':
+                    pageLoadEvent();
+                    getIndexPage();
+                    break;
+                case '/History':
+                    pageLoadEvent(' : History');
+                    getHistory();
+                    break;
+                case '/The-EITI-Principles':
+                    pageLoadEvent(' : The EITI Principles');
+                    getPrinciples();
+                    break;
+                case '/The-EITI-Standard':
+                    pageLoadEvent(' : The EITI Standard');
+                    getStandard();
+                    break;
+            }
+        });   
+    }
+
+
 wieApp.config(function($routeProvider){
  	$routeProvider
 	 	.when('/',
 	 	{
             title: 'What is EITI? | ph-eiti.org',            
-            templateUrl:'./template/index.html?v=1.03'	
+            templateUrl:'./template/index.html?v=1.03',
+            controller:'WIEController'
 	 	})
 
         .when('/History',
         {
             title: 'History | What is EITI?',
-            controller:'HistoryController',
+            controller:'WIEController',
             templateUrl:'./template/history.html?v=1.03'
         })
 
@@ -19,34 +172,21 @@ wieApp.config(function($routeProvider){
 	 	{
 	 		title: 'The EITI Standard | What is EITI?',
 	 		templateUrl:'./template/standard.html?v=1.03',
-            controller:function(){
-                try {
-                    ga('send', 'event', 'Pages', 'loaded', 'What is EITI : The EITI Standard'); 
-                }
-                catch(gaError){
-                    console.log('GA - '+gaError)
-                }
-            }
+            controller:'WIEController'
 	 	})
 
 	 	.when('/The-EITI-Principles',
 	 	{
 	 		title: 'The EITI Principles | What is EITI?',
 	 		templateUrl:'./template/principles.html?v=1.03',
-            controller:function(){
-                try {
-                    ga('send', 'event', 'Pages', 'loaded', 'What is EITI : The EITI Principles'); 
-                }
-                catch(gaError){
-                    console.log('GA - '+gaError)
-                }
-            }
+            controller:'WIEController'
 	 	})
 	 	
 	 	.otherwise({
 			redirectTo: '/'
 		});;
 }); 
+
 
 wieApp.config(function($mdThemingProvider) {
 
@@ -220,7 +360,6 @@ wieApp.factory('homeNewsFactory',['$http',
 wieApp.controller('footerController',['$scope','homeNewsFactory','$mdDialog','$mdMedia','secretariatContactDetails',
     function($scope,homeNewsFactory,$mdDialog,$mdMedia,secretariatContactDetails){
         
-    $scope.contactDetails = secretariatContactDetails.get();
     $scope.userfeedback = { message : '',  type: '' }
     $scope.user = {name : '', email: ''}
     
@@ -292,6 +431,24 @@ wieApp.controller('footerController',['$scope','homeNewsFactory','$mdDialog','$m
             }
         })
     }
+
+    function getContactDetails(){
+        $scope.contactDetails = {};
+        if (!secretariatContactDetails.info) {
+            var getPromise = secretariatContactDetails.get();    
+            getPromise.then(function(response){
+                secretariatContactDetails.info = response.data.contact;
+                $scope.contactDetails = response.data.contact;
+            },function(error){
+                // Error Callback
+            });
+        }
+        else {
+            $scope.contactDetails = secretariatContactDetails.info;
+        }   
+    }
+
+    getContactDetails();
 }]);
 
 wieApp.controller('menuController',['$scope','NavigationFactory','utilsService','$location','$rootScope',

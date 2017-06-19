@@ -1,9 +1,43 @@
-resourcesApp.controller('LawsController',['$scope','LawsFactory',
-	function($scope,LawsFactory){
+resourcesApp.controller('LawsController',['$scope','resourcesDataFactory',
+	function($scope,resourcesDataFactory){
 
-	$scope.lawsContent = LawsFactory.get();
-    $scope.filterMuniProv = 'Provinces';
-    $scope.selectedLawCategory = $scope.lawsContent[0].category;
+    $scope.lawsContent = [];
+    $scope.filterMuniProv = '';
+    $scope.selectedLawCategory = '';
+
+    function getData(){
+        $scope.getpromise = resourcesDataFactory.getAll('Laws');
+        $scope.getpromise.then(function(response){
+
+            delete $scope.getpromise;
+            var content = [];
+            var currCategory = "";
+
+            if (response.data.length) {
+                var rdata = response.data;
+                var files = [];
+                for (var idx=0;idx<rdata.length;idx++) {
+                    if (rdata[idx].category!==currCategory) {
+                        currCategory = rdata[idx].category;
+                        content.push({
+                            category : currCategory,
+                            files : []
+                        })
+                    }
+                    content[content.length-1].files.push(rdata[idx])
+                }
+            }
+            
+            $scope.lawsContent = angular.copy(content);
+            $scope.filterMuniProv = 'Provinces';
+            $scope.selectedLawCategory = $scope.lawsContent[0].category;
+            
+        },function(err){
+            delete $scope.getpromise;
+        });
+    }
+
+    getData();
 
     try {
         ga('send', 'event', 'Pages', 'loaded', 'Resources : Laws & Legal Issuances'); 

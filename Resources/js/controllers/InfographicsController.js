@@ -1,22 +1,26 @@
-resourcesApp.controller('InfographicsController',['$scope','InfographicsFactory',
-	function($scope,InfographicsFactory){
+resourcesApp.controller('InfographicsController',['$scope','resourcesDataFactory',
+	function($scope,resourcesDataFactory){
 	try {
 		ga('send', 'event', 'Pages', 'loaded', 'Resources : Infographics & Brochures');	
 	}
 	catch(gaError){
 		console.log('GA - '+gaError)
 	}
-	$scope.filterContentType = 'Infographics'
-	$scope.filterKeyword = ''
-	$scope.years = []	
+	
+	$scope.filterContentType = 'Infographics';
+	$scope.filterKeyword = '';
+	$scope.years = [];
+	$scope.infoContent = [];
 
-	var start = 2014, current = parseInt( (new Date()).getFullYear(), 10);
-	for (var idx=current;idx>=start;idx--){
-		$scope.years.push(idx);
-	}
-
-	$scope.filterYear = $scope.years[0];
-	$scope.infoContent = InfographicsFactory.get();
+	$scope.getpromise = resourcesDataFactory.getAll('Infographics');
+	$scope.getpromise.then(function(response){
+		delete $scope.getpromise;
+		$scope.years = response.data.years;
+		$scope.filterYear = $scope.years[0];
+		$scope.infoContent = response.data.content;
+	},function(err){
+		delete $scope.getpromise;
+	});
 
 	$scope.goto_file=function(link,file){
 		if (link){

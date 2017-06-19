@@ -378,7 +378,10 @@ pheiti.controller('homeInfographicController',['$scope','$mdDialog','$mdMedia',
                 { name: 'Local Government Unit', y: 0.60, yData: 'Php 320,782,806',color:'#dd1c77'},
                 { name: 'National Commission on Indigenous Peoples', y: 0.57, yData: 'Php 303,607,900',color:'#c994c7'}
             ]
-        }]
+        }],
+        credits: {
+            enabled: false
+        }
     });
 
     // Apply events to text elements (SVG) and spans within the legend (VML + modern browsers with useHTML option).
@@ -441,7 +444,6 @@ pheiti.controller('homeInfographicController',['$scope','$mdDialog','$mdMedia',
 pheiti.controller('footerController',['$scope','homeNewsFactory','$mdDialog','$mdMedia','secretariatContactDetails',
     function($scope,homeNewsFactory,$mdDialog,$mdMedia,secretariatContactDetails){
 
-    $scope.contactDetails = secretariatContactDetails.get();
     $scope.userfeedback = { message : '',  type: '' }
     $scope.user = {name : '', email: ''}
     
@@ -514,6 +516,24 @@ pheiti.controller('footerController',['$scope','homeNewsFactory','$mdDialog','$m
             }
         })
     }
+
+    function getContactDetails(){
+        $scope.contactDetails = {};
+        if (!secretariatContactDetails.info) {
+            var getPromise = secretariatContactDetails.get();    
+            getPromise.then(function(response){
+                secretariatContactDetails.info = response.data.contact;
+                $scope.contactDetails = response.data.contact;
+            },function(error){
+                // Error Callback
+            });
+        }
+        else {
+            $scope.contactDetails = secretariatContactDetails.info;
+        }   
+    }
+
+    getContactDetails();
 }]);
 
 

@@ -2,7 +2,8 @@
     <div class="mxw-80 ta-left" id="header-wrapper">
         <p>RESOURCES</p>
         <h1 class="md-display-2">General Information Sheet (GIS)</h1>
-    </div>   
+    </div>
+    <md-progress-linear data-ng-show="getpromise" class="md-secondary" md-mode="indeterminate"></md-progress-linear>  
 </header>
 
 <div class="w-100" id="breadcrumb-wrapper">
@@ -20,12 +21,12 @@
 	            <div layout-gt-sm="row">
 	                <md-input-container flex-gt-sm>
 	                    <label>Select Year</label>
-	                    <md-select data-ng-model="filterYear" data-ng-change="refreshList()">
+	                    <md-select data-ng-model="filterYear">
 	                    	<md-option data-ng-repeat="year in years" value="{{year}}">{{year}}</md-option>
 	                    </md-select>
 	                </md-input-container>
-	                <md-input-container flex-gt-sm data-ng-show="selected_folder.files.length">
-	                    <label><strong>{{ selected_folder.files.length }} result<span data-ng-show="selected_folder.files.length > 1">s</span> found</strong></label>
+	                <md-input-container flex-gt-sm data-ng-show="gis.length">
+	                    <label><strong>{{ (gis | filter:{year:filterYear}).length }} result<span data-ng-show="(gis | filter:{year:filterYear}).length > 1">s</span> found</strong></label>
 	                </md-input-container>            
 	                 <md-input-container flex-gt-sm></md-input-container>        
 	                <md-input-container flex-gt-sm></md-input-container>
@@ -40,15 +41,15 @@
 <div class="w-100">
 	<div class="mxw-80">
 		<div flex="100" layout-fill layout="row" layout-wrap>   
-	        <md-card flex="45" layout="row" data-ng-repeat="(kfolder,folderFile) in selected_folder.files"  class="card-container">
+	        <md-card flex="45" layout="row" data-ng-repeat="(kfolder,folderFile) in gis | filter:{year:filterYear}"  class="card-container">
 	            <md-card-title flex="70">
 	                <md-card-title-text class="ta-left">
 	                    <span class="md-headline" style="font-size:1.25em;line-height:1em;" title="{{folderFile.title}}">{{folderFile.title}}</span>
 	                </md-card-title-text>
 	            </md-card-title>
 	            <md-card-actions flex="30" layout="row" layout-align="end center">
-	                <md-button class="md-accent"  data-ng-show="folderFile.file!==''" data-ng-click="openFile(folderFile.file,folderFile)" alt="Preview {{folderFile.title}}}"  title="Preview {{folderFile.title}}}"><strong>Preview</strong></md-button>
-	                <md-button class="md-secondary" data-ng-show="folderFile.file===''" title="{{folderFile.title}} is unavailable"><strong>Unavailable</strong></md-button>
+	                <md-button class="md-accent"  data-ng-show="folderFile.file_url!==''" data-ng-click="openFile(folderFile.file_url,folderFile)" alt="Preview {{folderFile.title}}}"  title="Preview {{folderFile.title}}}"><strong>Preview</strong></md-button>
+	                <md-button class="md-secondary" data-ng-show="folderFile.file_url===''" title="{{folderFile.title}} is unavailable"><strong>Unavailable</strong></md-button>
 	            </md-card-actions>
 	        </md-card>
 	    </div>  

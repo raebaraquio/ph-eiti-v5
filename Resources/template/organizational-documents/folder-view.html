@@ -2,7 +2,8 @@
     <div class="mxw-80 ta-left" id="header-wrapper">
         <p>ORGANIZATIONAL DOCUMENTS</p>
         <h1 class="md-display-2">{{selected_folder.folder_name}}</h1>  
-    </div>   
+    </div>
+    <md-progress-linear data-ng-show="getpromise" class="md-secondary" md-mode="indeterminate"></md-progress-linear>
 </header>
 
 <div class="w-100" id="breadcrumb-wrapper">
@@ -20,9 +21,9 @@
 				<md-list-item  data-ng-repeat="(kfolder,folderFile) in selected_folder.files" class="md-2-line">
 					<md-icon md-svg-icon="../images/icons/svg/document9.svg" class="md-avatar" ></md-icon>
 					<div class="md-list-item-text">
-						<h3 title="{{folderFile.title}}">{{folderFile.title}}</h3>
+						<h3 title="{{folderFile.file_title}}">{{folderFile.file_title}}</h3>
 					</div>
-					<md-button class="md-secondary md-raised" data-ng-show="folderFile.src!==''" data-ng-click="openFile(folderFile.src,folderFile)" >Preview</md-button>
+					<md-button class="md-secondary md-raised" data-ng-show="folderFile.file_url!==''" data-ng-click="openFile(folderFile.file_url,folderFile)" >Preview</md-button>
 				</md-list-item>
 			</md-list>
 		</div>

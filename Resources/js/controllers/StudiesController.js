@@ -1,21 +1,26 @@
-resourcesApp.controller('StudiesController',['$scope','ResourcesFactory',
-	function($scope,ResourcesFactory){
+resourcesApp.controller('StudiesController',['$scope','resourcesDataFactory',
+	function($scope,resourcesDataFactory){
+
 	try {
 		ga('send', 'event', 'Pages', 'loaded', 'Resources : Studies');	
 	}
 	catch(gaError){
 		console.log('GA - '+gaError)
 	}
-	$scope.studies = ResourcesFactory.studies();
-	$scope.filterKeyword = ''
-	$scope.years = []	
 
-	var start = 2014, current = parseInt( (new Date()).getFullYear(), 10);
-	for (var idx=current;idx>=start;idx--){
-		$scope.years.push(idx);
-	}
+	
+	$scope.filterKeyword = '';
+	$scope.years = [];
 
-	$scope.filterYear =  2015; //$scope.years[0];
+	$scope.getpromise = resourcesDataFactory.getAll('Studies');
+	$scope.getpromise.then(function(response){
+		delete $scope.getpromise;
+		$scope.years = response.data.years;
+		$scope.filterYear = $scope.years[0];
+		$scope.studies = response.data.studies;
+	},function(err){
+		delete $scope.getpromise;
+	});
 
 	$scope.goto_file = function(link,file) {
 		if (link!=''){

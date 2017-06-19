@@ -2,7 +2,8 @@
     <div class="mxw-80 ta-left" id="header-wrapper">
         <p>NEWS</p>
         <h1 class="md-display-2">{{newsType}}</h1>
-    </div>   
+    </div>
+    <md-progress-linear data-ng-show="newspromise" class="md-secondary" md-mode="indeterminate"></md-progress-linear>
 </header>
 
 <div class="w-100" id="breadcrumb-wrapper">
@@ -23,9 +24,6 @@
 			</div>
 			<div data-ng-bind-html="article.content"></div>
 		</md-content>
-		<div class="ta-center">
-			<md-progress-circular data-ng-if="newspromise" class="md-secondary" md-mode="indeterminate"></md-progress-circular>
-		</div>
 	</div>
 </div>
 

@@ -2,7 +2,8 @@
     <div class="mxw-80 ta-left" id="header-wrapper">
         <p>RESOURCES</h5>
         <h1 class="md-display-2">Laws and Legal Issuances</h1>  
-    </div>   
+    </div> 
+    <md-progress-linear data-ng-show="getpromise" class="md-secondary" md-mode="indeterminate"></md-progress-linear>  
 </header>
 
 <div class="w-100" id="breadcrumb-wrapper">
@@ -46,19 +47,19 @@
 				            	<md-card-title flex="70">
 									<md-card-title-text class="ta-left">
 										<span class="md-headline" style="font-size:1.25em;line-height:1em;"title="{{vfile.title}}">{{vfile.title}}</span>
-										<span class="md-subhead" data-ng-show="vfile.desc" title="{{vfile.desc}}">{{shorten(vfile.desc,50)}}</span>
+										<span class="md-subhead" data-ng-show="vfile.description" title="{{vfile.description}}">{{shorten(vfile.description,50)}}</span>
 									</md-card-title-text>
 								</md-card-title>
 								<md-card-actions flex="30" layout="row" layout-align="end center">
-									<h5 data-ng-show="vfile.link==''" class="md-warn" aria-label="unavailable">Link Unavailable</h5>
-									<md-button class="md-secondary md-accent" data-ng-show="vfile.link!==''" data-ng-click="goto_link(vfile.link,vfile)">Open</md-button>
+									<h5 data-ng-show="vfile.file_url==''" class="md-warn" aria-label="unavailable">Link Unavailable</h5>
+									<md-button class="md-secondary md-accent" data-ng-show="vfile.file_url!==''" data-ng-click="goto_link(vfile.file_url,vfile)">Open</md-button>
 								</md-card-actions>
 							</md-card>
 							<md-card flex="30" layout="row" data-ng-if="vlaw.category==='Local Tax Codes'"  data-ng-repeat="(kfile,vfile) in vlaw.files | filter:{title:filterKeyword,level:filterMuniProv}"    class="card-container">
 				            	<md-card-title flex="70">
 									<md-card-title-text class="ta-left">
 										<span class="md-headline" style="font-size:1.25em;line-height:1em;"title="{{vfile.title}}">{{vfile.title}}</span>
-										<span class="md-subhead" data-ng-show="infomaterial.otherInfo" title="{{vfile.desc}}">{{shorten(vfile.desc,50)}}</span>
+										<span class="md-subhead" title="{{vfile.description}}">{{shorten(vfile.description,50)}}</span>
 									</md-card-title-text>
 								</md-card-title>
 								<md-card-actions flex="30" layout="row" layout-align="end center">
@@ -93,15 +94,15 @@
 							<md-list-item data-ng-if="vlaw.category!=='Local Tax Codes'"  data-ng-repeat="(kfile,vfile) in vlaw.files | filter:filterKeyword"  class="md-2-line"> 
 								<div class="md-list-item-text">
 									<h3 title="{{vfile.title}}">{{vfile.title}}</h3>
-									<p title="{{vfile.desc}}" class="txt-trans-title">{{vfile.desc}}</p>
+									<p title="{{vfile.description}}" class="txt-trans-title">{{vfile.description}}</p>
 								</div>
-								<md-button class="md-secondary md-raised" data-ng-show="vfile.link!==''" data-ng-click="goto_link(vfile.link)">Open</md-button>
-								<h5 data-ng-show="vfile.link==''" class="md-warn" aria-label="unavailable">Link Unavailable</h5>
+								<md-button class="md-secondary md-raised" data-ng-show="vfile.file_url!==''" data-ng-click="goto_link(vfile.file_url)">Open</md-button>
+								<h5 data-ng-show="vfile.file_url==''" class="md-warn" aria-label="unavailable">Link Unavailable</h5>
 							</md-list-item>
 							<md-list-item data-ng-if="vlaw.category==='Local Tax Codes'" data-ng-repeat="(kfile,vfile) in vlaw.files | filter:{title:filterKeyword,level:filterMuniProv}"  class="md-2-line"> 
 								<div class="md-list-item-text">
 									<h3 title="{{vfile.title}}">{{vfile.title}}</h3>
-									<p title="{{vfile.desc}}" class="txt-trans-title">{{vfile.desc}}</p>
+									<p title="{{vfile.description}}" class="txt-trans-title">{{vfile.description}}</p>
 								</div>
 								<md-button class="md-secondary md-raised" data-ng-click="goto_file(vfile.title)">Open</md-button>
 							</md-list-item>

@@ -1,5 +1,66 @@
 var countryReportApp = angular.module('country-report',['ngRoute','ngSanitize','ngCookies','navMod','ngMaterial','utilsModule','secretariatContactMod']);
 
+angular
+    .module('country-report')
+    .factory('dataFactory',dataFactory);
+
+dataFactory.$inject = ['$http'];
+function dataFactory($http){
+
+    var dataFactory = {
+        getReports : getReports,
+        getContent : getContent,
+        getContentAndTemplates : getContentAndTemplates,
+        getReportContentId : getReportContentId,
+        getReportingTemplates : getReportingTemplates
+    }
+
+    return dataFactory;
+
+    /////// 
+
+    function getReports(){
+        return $http({
+            url:'../rest/functions/country-report/get-reports.php',
+            method:'GET'
+        });
+    }
+
+    function getContent(id){
+        var id = id ? '?id='+id : '';
+        return $http({
+            url:'../rest/functions/country-report/get-report-content.php'+id,
+            method:'GET'
+        });
+    }
+
+    function getReportContentId(report,content){
+        var param_report = report ? ('?report='+report) : '';
+        var param_content = content ? ('&content='+content) : '';
+        return $http({
+            url:'../rest/functions/country-report/get-ids.php'+param_report+param_content,
+            method:'GET'
+        });
+    }
+
+    function getContentAndTemplates(ids,report,content){
+        var crid = ids.crid_fk ? '?report_id='+ids.crid_fk : '';
+        var content_id = ids.crcontent_id ? '&content_id='+ids.crcontent_id : '';
+        var content_title = content ? '&content_title='+content : '';
+        return $http({
+            url:'../rest/functions/country-report/get-content-and-reporting-templates.php'+crid+content_id+content_title,
+            method:'GET'
+        });
+    }
+
+    function getReportingTemplates(){
+        return $http({
+            url:'../rest/functions/country-report/get-reporting-templates.php',
+            method:'GET'
+        });
+    }
+}
+
 countryReportApp.config(function($routeProvider){
 	$routeProvider
  	.when('/',
@@ -296,7 +357,6 @@ countryReportApp.factory('homeNewsFactory',['$http',
 countryReportApp.controller('footerController',['$scope','homeNewsFactory','$mdDialog','$mdMedia','secretariatContactDetails',
     function($scope,homeNewsFactory,$mdDialog,$mdMedia,secretariatContactDetails){
         
-    $scope.contactDetails = secretariatContactDetails.get();
     $scope.userfeedback = { message : '',  type: '' }
     $scope.user = {name : '', email: ''}
     
@@ -368,6 +428,24 @@ countryReportApp.controller('footerController',['$scope','homeNewsFactory','$mdD
             }
         })
     }
+
+    function getContactDetails(){
+        $scope.contactDetails = {};
+        if (!secretariatContactDetails.info) {
+            var getPromise = secretariatContactDetails.get();    
+            getPromise.then(function(response){
+                secretariatContactDetails.info = response.data.contact;
+                $scope.contactDetails = response.data.contact;
+            },function(error){
+                // Error Callback
+            });
+        }
+        else {
+            $scope.contactDetails = secretariatContactDetails.info;
+        }   
+    }
+
+    getContactDetails();
 }]);
 
 countryReportApp.controller('menuController',['$scope','NavigationFactory','utilsService','$location','$rootScope',

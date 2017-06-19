@@ -1,6 +1,8 @@
 newsApp.factory('NewsFactory',['$http','$location',
 	function($http,$location){
 	var NewsFactory=null;
+	var __baseURL__ = 'https://api.mlab.com/api/1/databases/pheiti/collections/newsletter/';
+    var __APIKEY__ = 'AkQtTxgkxLEYOQz9oFH85K3godWJNhtr';
 	NewsFactory = {
 		getTypes:function(){
 			return {
@@ -41,50 +43,10 @@ newsApp.factory('NewsFactory',['$http','$location',
 	        return p;
 		},
 		newsletter: function(){
-			return [
-				{
-					year:2016,
-					month:'March',
-					title:'March 2016',
-					link:'http://us10.campaign-archive1.com/?u=0c3a14a207a8646c931c3168b&id=10ca3ee0f1&e=5db15ddfe0'
-				},
-				{
-					year:2015,
-					month:'October',
-					title:'October 2015',
-					link:'http://us10.campaign-archive1.com/?u=0c3a14a207a8646c931c3168b&id=a6ae7e667f'
-				},
-				{
-					year:2015,
-					month:'April',
-					title:'Apirl 2015',
-					link:'http://us10.campaign-archive1.com/?u=0c3a14a207a8646c931c3168b&id=88c48c585c&e=5db15ddfe0'
-				},
-				{
-					year:2015,
-					month:'January',
-					title:'January 2015',
-					link:'http://us8.campaign-archive2.com/?u=7f0ba73c23438f2647da6013b&id=d900ef0295&e=717dbe8f74'
-				},
-				{
-					year:2014,
-					month:'October',
-					title:'October 2014',
-					link:'http://us8.campaign-archive1.com/?u=7f0ba73c23438f2647da6013b&id=f4be319081&e=717dbe8f74'
-				},
-				{
-					year:2014,
-					month:'September',
-					title:'September 2014',
-					link:'http://us8.campaign-archive2.com/?u=7f0ba73c23438f2647da6013b&id=06f1c4211b&e=717dbe8f74'
-				},
-				{
-					year:2014,
-					month:'August',
-					title:'August 2014',
-					link:'http://us8.campaign-archive1.com/?u=7f0ba73c23438f2647da6013b&id=aba50c2c57&e=8f8d0c95e9'
-				}
-			]
+			return $http({
+                url:__baseURL__+'59454d31734d1d59b7891061?apiKey='+__APIKEY__,
+                method:'GET'
+            });
 		}
 	}
 	return NewsFactory;

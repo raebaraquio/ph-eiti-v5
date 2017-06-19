@@ -1,7 +1,8 @@
 <header class="wd-100">   
     <div class="mxw-80 ta-left" id="header-wrapper">
         <h1 class="md-display-2 header-title">News</h1>
-    </div>   
+    </div>
+    <md-progress-linear data-ng-show="newspromise" class="md-secondary" md-mode="indeterminate"></md-progress-linear>
 </header>
 
 <div class="w-100" id="breadcrumb-wrapper">	
@@ -18,9 +19,6 @@
 			<md-tabs md-dynamic-height md-border-bottom md-selected="selected_idx">
 				<md-tab label="PH-EITI Newsroom">
 					<h1 class="md-display-2">PH-EITI Newsroom</h1>	
-					<div flex="100" class="ta-center">
-						<md-progress-linear data-ng-show="newspromise" class="md-secondary" md-mode="indeterminate"></md-progress-linear>
-					</div>
 					<md-content	flex="100" layout-fill layout="row" layout-wrap  data-ng-show="newsandevents.length > 0">
 						<div flex="33" style="padding-top:0.5em;">
 							<md-input-container flex>
@@ -80,9 +78,6 @@
 				</md-tab>
 				<md-tab label="PH-EITI in the News">
 					<h1 class="md-display-2">PH-EITI in the News</h1>	
-					<div flex="100" class="ta-center">
-						<md-progress-linear data-ng-show="newspromise" class="md-secondary" md-mode="indeterminate"></md-progress-linear>
-					</div>
 					<md-content	flex="100" layout-fill layout="row" layout-wrap data-ng-show="newsandevents.length > 0">
 						<div flex="33" style="padding-top:0.5em;">
 							<md-input-container flex>
@@ -142,9 +137,6 @@
 				</md-tab>
 				<md-tab label="Media Releases">
 					<h1 class="md-display-2">Media releases</h1>	
-					<div flex="100" class="ta-center">
-						<md-progress-linear data-ng-show="newspromise" class="md-secondary" md-mode="indeterminate"></md-progress-linear>
-					</div>
 					<md-content	flex="100" layout-fill layout="row" layout-wrap data-ng-show="newsandevents.length > 0">
 						<div flex="33" style="padding-top:0.5em;">
 							<md-input-container flex>
@@ -204,9 +196,6 @@
 				</md-tab>
 				<md-tab label="Archive">
 					<h1 class="md-display-2">Archive</h1>	
-					<div flex="100" class="ta-center">
-						<md-progress-linear data-ng-show="newspromise" class="md-secondary" md-mode="indeterminate"></md-progress-linear>
-					</div>
 					<md-content	flex="100" layout-fill layout="row" layout-wrap data-ng-show="newsandevents.length > 0">
 						<div flex="33" style="padding-top:0.5em;">
 							<md-input-container flex>
