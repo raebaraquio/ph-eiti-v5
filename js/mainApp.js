@@ -1,102 +1,15 @@
 var pheiti = angular.module('pheiti',['ngMaterial','navMod','jkAngularCarousel','secretariatContactMod']);
 
+/* Manual boostrap for the splash screen*/
+(function(){
+    var htmlBody = document.getElementsByTagName('html')[0];
+    setTimeout(function() {
+        htmlBody.setAttribute('ng-app', 'pheiti');
+        angular.bootstrap(htmlBody, ['ng', 'pheiti']);
+    }, 1000);
+})();
+
 pheiti.config(function($mdThemingProvider) {
-	/* Yellow is primary ; Blue is accent 
-    var defaultPrimary = {
-        '50': '#fede7c',
-        '100': '#fed863',
-        '200': '#fed149',
-        '300': '#fecb30',
-        '400': '#fec416',
-        '500': '#fabc01',
-        '600': '#e1a901',
-        '700': '#c79601',
-        '800': '#ae8301',
-        '900': '#947001',
-        'A100': '#ffe495',
-        'A200': '#ffebaf',
-        'A400': '#fff1c8',
-        'A700': '#7b5c00'
-    };
-    $mdThemingProvider
-        .definePalette('defaultPrimary', 
-                        defaultPrimary);
-
-    var defaultAccent = {
-        '50': '#064475',
-        '100': '#08528d',
-        '200': '#0960a5',
-        '300': '#0a6ebd',
-        '400': '#0c7cd5',
-        '500': '#0d8aee',
-        '600': '#39a1f4',
-        '700': '#51adf6',
-        '800': '#6ab8f7',
-        '900': '#82c4f8',
-        'A100': '#39a1f4',
-        'A200': '#2196F3',
-        'A400': '#0d8aee',
-        'A700': '#9acffa'
-    };
-    $mdThemingProvider
-        .definePalette('defaultAccent', 
-                        defaultAccent);
-
-    var defaultWarn = {
-        '50': '#ffcc80',
-        '100': '#ffc166',
-        '200': '#ffb74d',
-        '300': '#ffad33',
-        '400': '#ffa21a',
-        '500': '#FF9800',
-        '600': '#e68900',
-        '700': '#cc7a00',
-        '800': '#b36a00',
-        '900': '#995b00',
-        'A100': '#ffd699',
-        'A200': '#ffe0b3',
-        'A400': '#ffeacc',
-        'A700': '#804c00'
-    };
-    $mdThemingProvider
-        .definePalette('defaultWarn', 
-                        defaultWarn);
-	
-	var defaultBackground = {
-        '50': '#ffffff',
-        '100': '#ffffff',
-        '200': '#ffffff',
-        '300': '#ffffff',
-        '400': '#fefefe',
-        '500': '#f1f1f1',
-        '600': '#e4e4e4',
-        '700': '#d7d7d7',
-        '800': '#cbcbcb',
-        '900': '#bebebe',
-        'A100': '#ffffff',
-        'A200': '#ffffff',
-        'A400': '#ffffff',
-        'A700': '#b1b1b1'
-    };
-    $mdThemingProvider
-        .definePalette('defaultBackground', 
-                        defaultBackground);
-
-	$mdThemingProvider.theme('default')
-	   .primaryPalette('defaultPrimary')
-	   .accentPalette('defaultAccent')
-	   .warnPalette('defaultWarn')
-	   .backgroundPalette('defaultBackground')
-
-
-
-	// $mdThemingProvider.theme('altTheme')
-	//    .primaryPalette('altPrimary')
-	//    .accentPalette('altAccent')
-	//    .warnPalette('altWarn')
-	//    .backgroundPalette('altBackground')
-	*/
-
 	/* Blue is primary; Yellow is accent; */
 	 var customPrimary = {
         '50': '#4c8cc7',
@@ -264,7 +177,7 @@ pheiti.controller('headerCarouselController',['$scope',
     $scope.headersArr = [
         {
             title: '',
-            image: 'images/home-main-carousel/third-country-report-transparent.png'
+            image: 'images/home-main-carousel/third-country-report-transparent-compressed.png'
         },
         {
             title: '',
@@ -325,7 +238,9 @@ pheiti.controller('homeInfographicController',['$scope','$mdDialog','$mdMedia',
             plotBorderWidth: null,
             plotShadow: false,
             type: 'pie',
-            marginLeft: 300
+            // marginLeft: 50,
+            marginTop: 0,
+            // width: 350
         },
         title: {
             text: ''
@@ -340,7 +255,9 @@ pheiti.controller('homeInfographicController',['$scope','$mdDialog','$mdMedia',
                 dataLabels: {
                     enabled: false
                 },
-                showInLegend: true
+                showInLegend: true,
+                size: '105%',
+                center: ["50%", "50%"]
             },
             series: {
                 point: {
@@ -356,11 +273,11 @@ pheiti.controller('homeInfographicController',['$scope','$mdDialog','$mdMedia',
             // labelFormat: '{name} ({percentage:.1f}%)',
             layout: 'vertical',
             align: 'left',
-            verticalAlign: 'top',
+            verticalAlign: 'middle',
             floating: false,
-            itemWidth: 100,
+            // itemWidth: 100,
             itemMarginTop: 0,
-            itemMarginBottom: 55,
+            itemMarginBottom: 10,
             useHTML: true,
             itemStyle: { "display": "block", "line-height": "1em", "height": "75px !important", "vertical-align":"text-top" },
             labelFormatter: function() {
@@ -371,7 +288,7 @@ pheiti.controller('homeInfographicController',['$scope','$mdDialog','$mdMedia',
             name: 'Total Collection',
             colorByPoint: true,
             data: [
-                { name: 'Departent of Energy', y: 50.73, yData: 'Php 27,055,539,705',color:'#3182bd'},
+                { name: 'Department of Energy', y: 50.73, yData: 'Php 27,055,539,705',color:'#3182bd'},
                 { name: 'Bureau of Internal Revenue', y: 43.22, yData: 'Php 23,047,592,223',color:'#9ecae1'},
                 { name: 'Mines and Geosciences Bureau', y: 3.81, yData: 'Php 2,029,816,208',color:'#addd8e'},
                 { name: 'Bureau of Customs', y:1.07, yData: 'Php 570,844,638',color:'#feb24c' },
@@ -569,39 +486,77 @@ pheiti.controller('menuController',['$scope','NavigationFactory','utilsService',
         $scope.showMenu = false;
         $scope.main_nav = [];
         $scope.active = {mnav: '', subnav: ''};
+        // function setupNavigation(){
+        //     var mainnav = NavigationFactory.offline;
+        //     for (var idx=0;idx<mainnav.length;idx++){
+        //         if (mainnav[idx].subnav.length > 0) {
+        //             mainnav[idx].subnav_open = false;
+        //             for (var sidx=0;sidx<mainnav[idx].subnav.length;sidx++) {
+        //                 mainnav[idx].subnav[sidx].subnav_open = false;
+        //             }
+        //         }
+        //     }
+        //     $scope.main_nav = mainnav;
+        //     if ($location.$$absUrl.match(/#/gi)){
+        //         var locs = $location.$$absUrl.split('#');
+        //         var host = locs[0].split('/');
+        //     }
+        //     else {
+        //         var host = $location.$$absUrl.split('/');
+        //     }
+        //     if (utilsService.inObj($scope.main_nav,'href',host[host.length-2])) {
+        //         $scope.active.mnav = utilsService.getObjOtherPropVal($scope.main_nav,'href',host[host.length-2],'id');
+        //     }
+        //     $scope.active.subnav = ''
+        // }
         $scope.getnavigation = function() {
             $scope.main_nav = [];
-            var mainnav = NavigationFactory.get();
-            for (var idx=0;idx<mainnav.length;idx++){
-                if (mainnav[idx].subnav.length > 0) {
-                    mainnav[idx].subnav_open = false;
-                    for (var sidx=0;sidx<mainnav[idx].subnav.length;sidx++) {
-                        mainnav[idx].subnav[sidx].subnav_open = false;
-                        try {
-                            if (mainnav[idx].subnav[sidx].subnav.length > 0) {
-                                for (var ssidx=0;ssidx<mainnav[idx].subnav[sidx].subnav.length;ssidx++){
-                                    mainnav[idx].subnav[sidx].subnav[ssidx].subnav_open = false;
-                                }
-                            }    
-                        }
-                        catch(err){
 
-                        }
-                    }
-                }
-            }
-            $scope.main_nav = mainnav;
-            if ($location.$$absUrl.match(/#/gi)){
-                var locs = $location.$$absUrl.split('#');
-                var host = locs[0].split('/');
+            if (!NavigationFactory.offline) {
+                // var p = NavigationFactory.get();
+                // p.then(function(response){
+                //     NavigationFactory.offline = response.data.content;
+                //     setupNavigation();
+                // },function(error){
+
+                // });
             }
             else {
-                var host = $location.$$absUrl.split('/');
-            }
-            if (utilsService.inObj($scope.main_nav,'href',host[host.length-2])) {
-                $scope.active.mnav = utilsService.getObjOtherPropVal($scope.main_nav,'href',host[host.length-2],'id');
-            }
-            $scope.active.subnav = ''
+                alert('offline nav')
+                setupNavigation();
+            }   
+            // $scope.main_nav = [];
+            // var mainnav = NavigationFactory.get();
+            // for (var idx=0;idx<mainnav.length;idx++){
+            //     if (mainnav[idx].subnav.length > 0) {
+            //         mainnav[idx].subnav_open = false;
+            //         for (var sidx=0;sidx<mainnav[idx].subnav.length;sidx++) {
+            //             mainnav[idx].subnav[sidx].subnav_open = false;
+            //             try {
+            //                 if (mainnav[idx].subnav[sidx].subnav.length > 0) {
+            //                     for (var ssidx=0;ssidx<mainnav[idx].subnav[sidx].subnav.length;ssidx++){
+            //                         mainnav[idx].subnav[sidx].subnav[ssidx].subnav_open = false;
+            //                     }
+            //                 }    
+            //             }
+            //             catch(err){
+
+            //             }
+            //         }
+            //     }
+            // }
+            // $scope.main_nav = mainnav;
+            // if ($location.$$absUrl.match(/#/gi)){
+            //     var locs = $location.$$absUrl.split('#');
+            //     var host = locs[0].split('/');
+            // }
+            // else {
+            //     var host = $location.$$absUrl.split('/');
+            // }
+            // if (utilsService.inObj($scope.main_nav,'href',host[host.length-2])) {
+            //     $scope.active.mnav = utilsService.getObjOtherPropVal($scope.main_nav,'href',host[host.length-2],'id');
+            // }
+            // $scope.active.subnav = ''
         }
 
         $scope.getnavigation();
@@ -649,6 +604,62 @@ pheiti.controller('menuController',['$scope','NavigationFactory','utilsService',
                 
             }
         });
+
+        $scope.$on('keywordEntered',function(evt,searchArgs){
+            console.log(searchArgs);
+            console.log('catch search args!!!! ^^^');
+            if (searchArgs) {
+                $scope.search.keyword = searchArgs.keyword;
+            }
+        });
+
+        $scope.doSearch=function(){
+            if ($scope.search.keyword==='') {
+                return false
+            }
+            window.location.href = './search/#/search?keyword='+$scope.search.keyword
+            // $location.path('/search?keyword='+$scope.search.keyword);
+            // $rootScope.$broadcast('doSearch',$scope.search)
+        }
+
+        $scope.validate=function(evt){
+            if (evt.keyCode==13) {
+                $scope.doSearch();
+            }
+        }
+
+        $scope.openSearch=function(){
+            var searchInput = document.querySelector('#search-input').value;
+            var searchElem = document.querySelector('#search-input');
+            var searchInput_wd = searchElem.style.width;            
+            var clearElem = document.querySelector('#clear-search'); 
+            if (searchInput === '') {
+                if (searchInput_wd!=='25em') {
+                    $("#search-input").focus();
+                    searchElem.style.width = '25em';
+                    clearElem.style.visibility = 'visible';
+                }
+                else {
+                    searchElem.style.width = '0';
+                    clearElem.style.visibility = 'hidden';   
+                }                
+            }
+            else {
+                $scope.doSearch();
+            }   
+        }
+
+        $scope.closeSearch=function(){
+            var searchElem = document.querySelector('#search-input');
+            var clearElem = document.querySelector('#clear-search'); 
+             if (searchElem.value === '') {
+                searchElem.style.width = '0';
+                clearElem.style.visibility = 'hidden';   
+            }
+            else {
+                searchElem.value = "";
+            }
+        }
 }]);
 
 pheiti.controller('bannerFeatureController',['$scope','$mdDialog',

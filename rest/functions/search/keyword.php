@@ -32,6 +32,9 @@ array_push($allData,$returned_search_Resources);
 $returned_search_News = $newSearch->search_News($keyword);
 array_push($allData,$returned_search_News);
 
+$returned_search_Meetings = $newSearch->search_msgMeetings($keyword);
+array_push($allData,$returned_search_Meetings);
+
 print(json_encode($allData));
 
 ?>

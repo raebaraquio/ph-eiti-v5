@@ -1,9 +1,9 @@
 <div class="ta-center">
 	<h1 class="fnt--white" data-ng-show="slideItem.title" style="padding:0px;margin:0px;margin-top:0.35em;line-height:1em;">{{slideItem.title}}</h1>
 	<div class="mxw-80 ta-enter">
-		<img ng-src="{{slideItem.image}}" data-ng-show="slideItem.title!==''" width="80%"/>	
-		<img ng-src="{{slideItem.image}}" data-ng-show="slideItem.title==='' && slideItem.image!='images/home-main-carousel/third-country-report-transparent.png'" width="100%"/>	
-		<img ng-src="{{slideItem.image}}" class="sref" title="The Third Country Report is now available. Click here to learn more about it." data-ng-show="slideItem.title==='' && slideItem.image=='images/home-main-carousel/third-country-report-transparent.png'" width="117.5%" style="margin-left:-3em !important;" onclick="window.location.href='./Country-Reports/#/Third-Country-Report/';">
+		<img ng-src="{{slideItem.image}}" data-ng-if="slideItem.title!==''" width="80%"/>	
+		<img ng-src="{{slideItem.image}}" data-ng-if="slideItem.title==='' && slideItem.image!='images/home-main-carousel/third-country-report-transparent-compressed.png'" width="100%"/>	
+		<img ng-src="{{slideItem.image}}" class="sref" title="The Third Country Report is now available. Click here to learn more about it." data-ng-if="slideItem.title==='' && slideItem.image=='images/home-main-carousel/third-country-report-transparent-compressed.png'" width="117%" style="margin-left:-3em !important;" onclick="window.location.href='./Country-Reports/#/Third-Country-Report/';">
 	</div>
 </div>
 

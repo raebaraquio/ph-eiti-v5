@@ -435,7 +435,11 @@ Class Search {
 					where
 						title like '$keyword%' or
 						title like '%$keyword' or
-						title like '%$keyword%' 
+						title like '%$keyword%' or 
+						('$keyword' like 'infographic' or 
+						'$keyword' like 'infographics' or 
+						'$keyword' like 'Infographic' or 
+						'$keyword' like 'Infographics')
 					order by title asc
 						limit 5";
 
@@ -698,7 +702,68 @@ Class Search {
 		}
 	}
 
-		
+	public function search_msgMeetings($keyword){
+		$meetingsData = array();
+
+		$query = "select
+						mtgid,
+						mtg_title,
+						mtg_date,
+						mtg_time,
+						mtg_venue,
+						minutes_url,
+						with_annex,
+						CASE 
+							when mtg_title = '$keyword' then true
+							else false
+						END as exact,
+						date_added,
+						date_last_updated
+					from msg_meetings 
+					where
+						(mtg_title like '$keyword%' or
+						mtg_title like '%$keyword' or
+						mtg_title like '%$keyword%' or 
+						'$keyword' like '%msg meeting' or 
+						'$keyword' like '%MSG Meeting' )
+					order by mtg_title asc,
+						date_added asc
+						limit 5";
+
+		$getResult = mysql_query($query);
+
+        if (!$getResult) {
+            print(json_encode(
+            	array(
+            		'success'=>false,
+                    'error'=>'database',
+                    'status'=>'selectError',
+                    'mysqlerror'=>mysql_error(),
+                    'query'=>$query)
+            	)
+            );
+            exit();
+        }
+
+        if (mysql_num_rows($getResult) > 0) {
+
+		    while ($res = mysql_fetch_assoc($getResult)) {
+		        $meetingsData[] = $res;
+		    }
+
+		  	return array('success'=>true,
+						 'data'=>$meetingsData,
+						 'hasExactMatch'=>self::checkExactResult($meetingsData),
+						 'section'=>'MSG Meetings');
+		    exit();
+		}
+		else {
+		    return array('success'=>true,
+						 'data'=> array(),
+						 'section'=>'MSG Meetings');
+		    exit();    
+		}
+	}
 }
 
 

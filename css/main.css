@@ -6,6 +6,30 @@ html {
     font-family: "proxima-nova",'Roboto','Helvetica Neue', sans-serif;    
 }
 
+/* ==placeholder == */
+@keyframes placeHolderShimmer{
+    0%{
+        background-position: -468px 0
+    }
+    100%{
+        background-position: 468px 0
+    }
+}
+
+.animated-background {
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: #fabc01;
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background-size: 800px 104px;
+    height: 7px;
+    position: relative;
+}
+/*=======*/
+
 #logo-wrapper {
 	background-color: #fff;
 }
@@ -823,4 +847,78 @@ a {
 	max-width:32.5%;
 	max-height:100%;
 	box-sizing:border-box;
+}
+
+#search-box {
+	box-sizing:border-box;
+	/*border:1px solid #f7f7f7;*/
+	/*margin-top:0.25em;*/
+}
+
+#search-box:hover {
+	/*box-shadow: 1px 1px 2px #fdfdfd;*/
+}
+
+#search-box__input {
+	background-color:#fdfdfd;
+	margin:0px;
+	padding-left:0px;
+}
+
+#search-box__input input {
+	padding-left: 0.5em;
+	appearance:none;
+	-moz-appearance:none; /* Firefox */
+	-webkit-appearance:none; /* Safari and Chrome */
+}
+
+#search-box__icon {
+	text-align:center;margin:auto;
+	/*background-color: #fabc01;*/
+	color: #fff;
+}
+
+#search-box__icon:hover {
+	/*background-color: #fabc01;*/
+	color: #fff;
+	cursor: pointer;	
+}
+
+#search-box__icon > img {
+	cursor:pointer;outline:none;margin:auto;
+	margin-top: 0.3em;
+}
+
+ 
+[ng-cloak].splash {
+	visibility: visible;
+	opacity: 1;
+	transition: opacity 2s linear;
+    display: block !important;
+}
+
+.splash {
+    display: none;
+    visibility: hidden;
+	opacity: 0;
+	transition: visibility 0s 2s, opacity 2s linear;
+}
+
+.splash {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height:100%;
+	width:100%; 
+	filter: alpha(opacity=80);
+	opacity: 0.8;
+	background: #fff;
+	text-align: center;
+	margin: auto;
+}
+
+.splash span {
+    text-align: center;
+    font-size: 1em;
+    color:#1b1b1b;            
 }

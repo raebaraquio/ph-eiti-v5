@@ -311,3 +311,34 @@ md-menu-item > a {
 img {
 	outline: none;
 }
+
+#search-form {
+	text-align: right;
+}
+
+#search-form input[type='text']{
+	width: 0;
+	height: 25px;
+	margin-left: 3em;
+	background: transparent;
+	font-size: 0.8em;
+	color: #1b1b1b;
+	transition:width 0.5s ease-in-out;
+	border: none;
+	border-bottom: 1px solid #d8d8d8;
+	outline: none;
+}
+
+#search-form input[type='text']:focus{
+	cursor: text;
+	outline: none;
+}
+
+#clear-search {
+	background: transparent;
+	border:none;
+	outline: none;
+	display: inline-block;
+	visibility: hidden;
+	transition:visibility 0.2s ease-in-out;
+}
