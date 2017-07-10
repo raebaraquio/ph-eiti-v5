@@ -29,6 +29,7 @@ Class Search {
 						title_id,
 						title,
 						coverage,
+						file_url,
 						CASE 
 							when title = '$keyword' then true
 							else false
@@ -65,13 +66,13 @@ Class Search {
 		  	return array('success'=>true,
 						 'data'=>$aprData,
 						 'hasExactMatch'=>self::checkExactResult($aprData),
-						 'section'=>'Activity Report');
+						 'section'=>'Activity Reports');
 		    exit();
 		}
 		else {
 		    return array('success'=>true,
 						 'data'=> array(),
-						 'section'=>'Activity Report');
+						 'section'=>'Activity Reports');
 		    exit();    
 		}
 	}
@@ -86,6 +87,8 @@ Class Search {
 						year,
 						month,
 						file_url,
+						newsletter_issue,
+						event_name,
 						CASE 
 							when title = '$keyword' then true
 							else false
@@ -349,13 +352,13 @@ Class Search {
 		  	return array('success'=>true,
 						 'data'=>$lawsData,
 						 'hasExactMatch'=>self::checkExactResult($lawsData),
-						 'section'=>'Work Plan');
+						 'section'=>'Laws and Legal Issuances');
 		    exit();
 		}
 		else {
 		    return array('success'=>true,
 						 'data'=> array(),
-						 'section'=>'Work Plan');
+						 'section'=>'Laws and Legal Issuances');
 		    exit();    
 		}
 	}
@@ -406,13 +409,13 @@ Class Search {
 		  	return array('success'=>true,
 						 'data'=>$orgdocsData,
 						 'hasExactMatch'=>self::checkExactResult($orgdocsData),
-						 'section'=>'Organization Documents');
+						 'section'=>'Organizational Documents');
 		    exit();
 		}
 		else {
 		    return array('success'=>true,
 						 'data'=> array(),
-						 'section'=>'Organization Documents');
+						 'section'=>'Organizational Documents');
 		    exit();    
 		}
 	}
@@ -427,6 +430,9 @@ Class Search {
 						file_url,
 						year,
 						month,
+						newsletter_issue,
+						event_name,
+						other_info,
 						CASE 
 							when title = '$keyword' then true
 							else false

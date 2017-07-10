@@ -1,0 +1,9 @@
+#header-wrapper {
+	background:url('../../images/page-headers/about-ph.png') center no-repeat;
+	height: 251px;
+}
+
+md-chips.md-default-theme md-chip, md-chips md-chip {
+	color: #1b1b1b;
+	background-color: #e5e5e5;
+}

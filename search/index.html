@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="searchApp">
+<head>
+	<meta charset="utf-8">
+    <meta name="description" content="Search">
+    <meta name="keywords" content="Search results page of ph-eiti.org">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Search | ph-eiti.org</title>
+    <link rel="icon" type="image/gif" href="../images/eitifavicon.ico">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,400italic,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../css/angular-material.min.css?v1.1.0-rc2"> 
+    <link rel="stylesheet" href="../css/font-awesome.min.css">     
+    <link rel="stylesheet" href="../css/md-data-table.css"> 
+    <link rel="stylesheet" href="../css/angular-timeline.css"> 
+    <link rel="stylesheet" href="../css/basic.css?v=1.03"> 
+    <link rel="stylesheet" href="../css/nav.css?v=1.02"> 
+    <link rel="stylesheet" href="../css/main.css?v=1.05">
+    <link rel="stylesheet" href="../css/style-table.css?v=1.02"> 
+    <link rel="stylesheet" href="css/style-search.css?v=1.02"> 
+    <!--script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-86920611-1', 'auto');
+        ga('send', 'pageview');
+    </script-->
+</head>	
+<body ng-cloak>
+    <div class="wd-100" id="logo-wrapper" data-ng-controller="menuController">
+        <div class="mxw-80" id="logo-wrapper--inner">
+            <!--<md-content layout flex layout="row" layout-md="row" layout-sm="row" layout-xs="column">
+                <md-content flex="50" flex-xs="100" flex-sm="50" flex-md="50" id="logo-wrapper__main" layout-md="row" layout-sm="row" layout-xs="row" >
+                    <img class="curs--hover" flex-md="15" flex-sm="15" flex-xs="15" src="../images/icons/svg/ic_menu_black_24px.svg" alt="PH-EITI" title="PH-EITI" width="36px" hide-lg hide-gt-lg hide-gt-xl data-ng-click="showMenu=!showMenu" /><a flex-md="50" flex-xs="50" flex-sm="50" href="../"><img class="gutters" src="../images/logo-without-text.png" alt="PH-EITI" title="PH-EITI" width="165"/></a>
+                </md-content>
+                <md-content flex="50" flex-xs="100" flex-sm="50" flex-md="50" layout="row" layout-align="end center" id="logo-wrapper__social" style="padding-top:0.4em;" hide-xs>
+                    <md-input-container flex="50" md-primary md-no-float style="margin:0px;">
+                        <input type="text" ng-model="search.keyword" placeholder="Search keyword" ng-keypress="validate($event)">
+                        <md-icon md-svg-src="../images/icons/svg/ic_search_black_24px.svg" style="cursor:pointer;outline:none;" ng-click="doSearch()" title="Seach"></md-icon>
+                    </md-input-container>
+                </md-content>
+            </md-content> -->
+            <md-content layout flex layout="row" layout-md="row" layout-sm="row" layout-xs="column">
+                <md-content flex="60" flex-xs="100" flex-sm="60" flex-md="60" id="logo-wrapper__main" layout-md="row" layout-sm="row" layout-xs="row" >
+                    <img class="curs--hover" flex-md="15" flex-sm="15" flex-xs="15" src="../images/icons/svg/ic_menu_black_24px.svg" alt="PH-EITI | Philippine Extractive Industries Transparency Initiative" title="PH-EITI  | Philippine Extractive Industries Transparency Initiative"  width="36px" hide-lg hide-gt-lg hide-gt-xl data-ng-click="showMenu=!showMenu" /><a flex-md="50" flex-xs="50" flex-sm="50" href="../"><img class="gutters" src="../images/logo-without-text.png" alt="PH-EITI | Philippine Extractive Industries Transparency Initiative" title="PH-EITI | Philippine Extractive Industries Transparency Initiative" width="165"/></a>
+                </md-content>
+                <md-content flex="40" flex-xs="100" flex-sm="40" flex-md="40" id="logo-wrapper__social" hide-xs>   
+                    <div id="search-box" layout="row" layout-align="end center">
+                        <form id="search-form">
+                            <md-button ng-click="openSearch()" style="outline:none;min-width:10px;webkit-appearance:none;appearance:none;margin-right:-3em;">
+                                <img src="../images/icons/svg/ic_search_black_24px.svg" title="Search" style="vertical-align:middle;"/>
+                            </md-button>
+                            <input id="search-input" type="text" ng-model="search.keywordTop" placeholder="Search" ng-keypress="validate($event)" autocomplete="off" />
+                            <button id="clear-search" name="reset" type="button" title="Clear text" ng-click="closeSearch($event)">
+                                <img src="../images/icons/svg/ic_close_black_24px.svg" style="vertical-align:middle" />
+                            </button>
+                        </form>    
+                    </div>
+                </md-content>
+            </md-content>
+        </div> 
+        <div id="slider-nav" data-ng-show="showMenu===true" ng-class="{'slider-nav--open': showMenu==true, 'slider-nav--close': showMenu==false}" layout="column">
+            <div class="ta-left va-mid" style="padding-top:3px;">
+                <img class="curs--hover va-mid" src="../images/icons/svg/ic_arrow_back_white_24px.svg" alt="PH-EITI" title="PH-EITI" width="40px" hide-lg data-ng-click="showMenu=!showMenu" style="margin-left:7px;outline:none;"/>
+            </div>            
+            <div>
+                <ul class="side-main-nav">
+                    <li><a href="../#" title="Home" data-ng-click="showMenu=!showMenu">Home</a></li>
+                    <li data-ng-repeat="(kmnav,vmnav) in main_nav" layout="column" data-ng-class="{'sidenav-menu__item--open':vmnav.subnav_open===true||active.mnav===vmnav.id}">
+                        <div layout="row">
+                            <a flex="90" layout-align="start center" href="../{{vmnav.href}}" title="{{vmnav.name}}" data-ng-click="showMenu=!showMenu">{{vmnav.name}}</a>    
+                            <img flex="10" layout-align="end center"  class="curs--hover"  src="../images/icons/svg/ic_keyboard_arrow_down_white_24px.svg" alt="" width="24px" data-ng-if="vmnav.subnav.length > 0 && vmnav.subnav_open===false" data-ng-click="expand(vmnav);"/>
+                            <img flex="10" layout-align="end center"  class="curs--hover"  src="../images/icons/svg/ic_keyboard_arrow_up_white_24px.svg" alt="" width="24px" data-ng-if="vmnav.subnav.length > 0 && vmnav.subnav_open===true"  data-ng-click="collapse(vmnav);"/>
+                        </div>                        
+                        <ul class="side-sub-nav" data-ng-if="vmnav.subnav.length > 0 && vmnav.subnav_open===true">
+                            <li data-ng-repeat="(ksnav,vsnav) in vmnav.subnav"  layout="column" >
+                                <div layout="row">
+                                    <a flex="90" layout-align="start center" href="../{{vmnav.href}}/#/{{vsnav.href}}" title="{{vsnav.name}}" data-ng-click="showMenu=!showMenu">{{vsnav.name}}</a>    
+                                    <img flex="10" layout-align="end center" class="curs--hover"  src="../images/icons/svg/ic_keyboard_arrow_down_white_24px.svg" alt="" width="24px" data-ng-if="vsnav.subnav.length > 0 && vsnav.subnav_open===false" data-ng-click="vsnav.subnav_open=!vsnav.subnav_open"/>
+                                    <img flex="10" layout-align="end center" class="curs--hover"   src="../images/icons/svg/ic_keyboard_arrow_up_white_24px.svg" alt="" width="24px" data-ng-if="vsnav.subnav.length > 0 && vsnav.subnav_open===true"  data-ng-click="vsnav.subnav_open=!vsnav.subnav_open"/>
+                                </div>  
+                                <ul class="side-sub-nav" data-ng-if="vsnav.subnav.length > 0 && vsnav.subnav_open===true">
+                                    <li data-ng-repeat="(ksunav,vsunav) in vsnav.subnav">
+                                        <a href="../{{vmnav.href}}/#/{{vsnav.href}}/{{vsunav.href}}" title="{{vsunav.name}}" data-ng-click="showMenu=!showMenu">{{vsunav.name}}</a>    
+                                    </li>
+                                </ul>                      
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div> 
+        <div id="overlay" data-ng-show="showMenu==true"></div>
+    </div>
+
+    <div class="wd-100" data-ng-controller="NavigationController">
+        <nav class="c-nav c-nav--main" role="navigation">
+            <div class="wd-100 md-nav-bar">
+                <md-menu-bar class="mxw-80" hide-xs hide-sm hide-md>
+                    <ul role="menubar" layout="row" style="margin: opx;margin-top: 0px;margin-bottom: 0px;padding-bottom: 0em;padding-left:0px;">
+                        <li role="menuitem" data-ng-repeat="(kmnav,vmnav) in main_nav" flex="20" class="mnav-item">
+                            <md-menu style="padding-bottom:0.3em;" md-position-mode="target-right target" data-ng-class="{'menu--active':active.mnav===vmnav.id}"> 
+                                <button class="menulevel--first">
+                                    <a href="../{{vmnav.href}}" role="menutiem" title="{{vmnav.name}}" data-ng-class="{'main--active':vmnav.subnav_open===true}" style="padding:10px;">{{vmnav.name}}</a> <!--active.mnav==vmnav.id-->
+                                    <span class="icon icon--caret icon--caret" data-ng-show="vmnav.subnav.length > 0 && vmnav.subnav_open===false" data-ng-click="$mdOpenMenu();vmnav.subnav_open=!vmnav.subnav_open">&nbsp;</span>
+                                    <span class="icon icon--caret icon--caret--isopen" data-ng-show="vmnav.subnav.length > 0 && vmnav.subnav_open===true" data-ng-click="runMe();vmnav.subnav_open=!vmnav.subnav_open;">&nbsp;</span>
+                                </button>
+                                <md-menu-content class="menucontent--first">
+                                    <md-menu-item data-ng-repeat="(ksnav,vsnav) in vmnav.subnav" >
+                                        <a href="../{{vmnav.href}}/#/{{vsnav.href}}" title="{{vsnav.name}}" data-ng-click="runMe();">{{vsnav.name}}</a>   
+                                    </md-menu-item>
+                                </md-menu-content>    
+                            </md-menu>
+                        </li>
+                    </ul>    
+                </md-menu>
+            </div>
+        </nav>
+        
+       <!--  <md-menu-bar>
+            <md-menu data-ng-repeat="(kmnav,vmnav) in main_nav"  data-ng-if="vmnav.subnav.length > 0">
+                <button ng-click="$mdOpenMenu()">{{vmnav.name}}</button>
+                <md-menu-content>
+                    <md-menu-item data-ng-repeat="(ksnav,vsnav) in vmnav.subnav">
+                        <md-button class="fnt--black" ng-click="asdf()">{{vsnav.name}}</md-button>   
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </md-menu-bar> -->
+        <!--md-nav-bar nav-bar-aria-label="navigation links" md-selected-nav-item="active.mnav">
+            <md-nav-item data-ng-repeat="(kmnav,vmnav) in main_nav" md-nav-href="{{vmnav.href}}" name="{{vmnav.id}}" class="mnav-item" data-ng-class="{'with_sub_menu':vmnav.subnav.length > 0}">{{vmnav.name}}
+                <ul class="snav" data-ng-class="{'with_sub_menu--closed':vmnav.subnav.length > 0 && vmnav.subnav_open === false,'with_sub_menu--open':vmnav.subnav.length > 0  && vmnav.subnav_open === true}" md-whiteframe="1" data-ng-if="vmnav.subnav.length > 0 && vmnav.subnav_open===true" data-ng-click="vmnav.subnav_open=!vmnav.subnav_open;return false;">
+                    <li data-ng-repeat="(ksnav,vsnav) in vmnav.subnav" data-ng-class="{'toDefaultColor':active.mnav===vmnav.id && active.subnav!==vsnav.href}"><md-button href="{{vmnav.href}}/#/{{vsnav.href}}" name="{{vsnav.id}}">{{vsnav.name}}</md-button>
+                        <!-- <md-divider data-ng-if="vsnav.subnav.length > 0"></md-divider> -->
+                        <!--ul class="sub-snav" data-ng-if="vsnav.subnav.length > 0">
+                            <li data-ng-repeat="(ksunav,vsunav) in vsnav.subnav" data-ng-class="{'toDefaultColor':active.mnav===vmnav.id}"><md-button href="{{vmnav.href}}/#/{{vsnav.href}}/{{vsunav.href}}" name="{{vsunav.id}}">{{vsunav.name}}</md-button></li>
+                        </ul>
+                    </li>
+                </ul>        
+            </md-nav-item>
+        </md-nav-bar-->
+    </div>
+    
+    
+    <div class="wd-100">   
+        <div data-ng-view></div>
+    </div>
+
+    <div class="wd-100">
+        <div class="mxw-80"><br/><br/></div>
+    </div>
+
+    <div class="w-100" id="backToTop-wrapper" data-ng-controller="returnToTopController">
+        <div class="mxw-80 ta-right">
+            <md-button data-ng-click="scrollTo('logo-wrapper')" class="md-fab md-mini md-secondary" aria-label="Return to top" title="Return to top">
+                <md-icon md-svg-src="../images/icons/svg/ic_keyboard_arrow_up_black_24px.svg"></md-icon>
+            </md-button>
+        </div>
+    </div>
+
+    <footer class="wd-100">   
+        <div class="mxw-80" class="md-padding">
+            <md-content layout="row" layout-xs="column">
+                <md-content flex="30" layout="column" flex-xs="100">
+                    <div>
+                        <a tabindex="-1" href="../"><img src="../images/white-logo-no-desc.png" alt="PH-EITI" title="PH-EITI" style="width:30%"/></a>
+                    </div>
+                    <div hide-xs>   
+                        <ul class="footer-nav-list">
+                            <li><a href="../What-is-EITI">What is EITI</a></li>
+                            <li><a href="../About-PH-EITI">About PH-EITI</a></li>
+                            <li><a href="../Resources">Resources</a></li>
+                            <li><a href="../Activities">Activities</a></li>
+                            <li><a href="../News">News</a></li>
+                            <li><a href="../Country-Reports">Country Reports</a></li>
+                        </ul>
+                    </div>
+                </md-content>
+                <md-content flex="70" layout="column" flex-xs="100" data-ng-controller="footerController" id="contact">
+                    <div id="contact-social" flex-order-xs="2" class="ta-right" layout="column">
+                        <div>
+                            <md-button class="md-accent md-raised" data-ng-click="triggerSubscribe($event)"><strong>Subscribe</strong></md-button>
+                            <a href="javascript:window.open('https://www.facebook.com/PhilippineEITI/')" title="Philippine EITI"><img src="../images/icons/facebook.png" class="va-mid" alt="" width="32px" /></a>&nbsp;&nbsp;<!--
+                            --><a href="javascript:window.open('https://twitter.com/ph_eiti')" title="@PH_EITI"><img src="../images/icons/twitter.png" class="va-mid" alt="" width="32px" /></a>
+                        </div>
+                    </div>
+                    <div id="contact-main" flex-order-xs="1" class="ta-right footer-secretariat-contact">
+                        <strong hide-xs>PH-EITI Secretariat</strong>
+                        <p>
+                            {{contactDetails.add_line1}}<br/>{{contactDetails.add_line2}}<br/>
+                            <md-icon md-svg-icon="../images/icons/svg/ic_email_white_18px.svg"></md-icon> {{contactDetails.email}}
+                            <md-icon md-svg-icon="../images/icons/svg/ic_phone_white_18px.svg"></md-icon> {{contactDetails.phone}}
+                        </p>
+                    </div>
+                </md-content>
+            </md-content>
+        </div>   
+    </footer>
+    
+	<script src="../js/vendor/angular.js?v=1.4"></script>
+    <script src="../js/vendor/angular-animate.js?v=1.01"></script>
+    <script src="../js/vendor/angular-route.js?v=1.01"></script>
+    <script src="../js/vendor/angular-aria.js"></script>
+    <script src="../js/vendor/angular-messages.js"></script>
+
+    <script src="../js/vendor/angular-resource.js?v=1.01"></script>
+    <script src="../js/vendor/angular-sanitize.js?v=1.01"></script>
+    <script src="../js/vendor/angular-cookies.js?v=1.01"></script>    
+
+    <script src="../js/vendor/angular-material.js"></script>
+    <script src="../js/vendor/angular-timeline.js"></script>
+    <script src="../js/vendor/md-data-table.js"></script>
+    
+    <!--<script src="js/vendor/moment.min.js?v1.01"></script>-->
+    <script src="../js/modules/utilsModule.js?v=1.01"></script>
+    <script src="../js/modules/navigation.js?v=1.04"></script>
+    <script src="../js/modules/secretariatContact.js?v=1.03"></script>
+
+	<script src="js/search.js?v=1.0"></script>
+    <script src="js/factories/SearchFactory.js?v=1.0"></script>
+    <script src="js/controllers/SearchController.js?v=1.0"></script>
+    
+</body>
+</html>

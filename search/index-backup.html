@@ -1,0 +1,27 @@
+    <div class="wd-100" id="logo-wrapper">
+        <div class="mxw-80" id="logo-wrapper--inner">
+            <md-content layout flex layout="row">
+                <md-content flex="50" id="logo-wrapper__main" >
+                    <a href="../"><img class="gutters" src="../images/logo-without-text.png" alt="PH-EITI" title="PH-EITI" width="165"/></a>
+                </md-content>
+                <md-content flex="50" class="ta-right" id="logo-wrapper__social" style="padding-top:0.4em;">
+                    <a href="javascript:window.open('https://www.facebook.com/PhilippineEITI/')" title="Philippine EITI"><img src="../images/icons/facebook.png" class="va-mid" alt="" width="30px" /></a> <!--
+                            --><a href="javascript:window.open('https://twitter.com/ph_eiti')" title="@PH_EITI"><img src="../images/icons/twitter.png" class="va-mid" alt="" width="30px" /></a>
+                </md-content>
+            </md-content>
+        </div>  
+    </div>
+    <div class="wd-100" data-ng-controller="NavigationController">
+        <md-nav-bar nav-bar-aria-label="navigation links" md-selected-nav-item="active.mnav">
+            <md-nav-item data-ng-repeat="(kmnav,vmnav) in main_nav" md-nav-href="../{{vmnav.href}}" name="{{vmnav.id}}" class="mnav-item">{{vmnav.name}}
+                <ul class="snav" md-whiteframe="1" data-ng-if="vmnav.subnav.length > 0">
+                    <li data-ng-repeat="(ksnav,vsnav) in vmnav.subnav" data-ng-class="{'toDefaultColor':active.mnav===vmnav.id && active.subnav!==vsnav.href}"><md-button href="../{{vmnav.href}}/#/{{vsnav.href}}" name="{{vsnav.id}}">{{vsnav.name}}</md-button>
+                        <md-divider data-ng-if="vsnav.subnav.length > 0"></md-divider>
+                        <ul class="sub-snav" data-ng-if="vsnav.subnav.length > 0">
+                            <li data-ng-repeat="(ksunav,vsunav) in vsnav.subnav" data-ng-class="{'toDefaultColor':active.mnav===vmnav.id}"><md-button href="../{{vmnav.href}}/#/{{vsnav.href}}/{{vsunav.href}}" name="{{vsunav.id}}">{{vsunav.name}}</md-button></li>
+                        </ul>
+                    </li>
+                </ul>
+            </md-nav-item>
+        </md-nav-bar>
+    </div>
