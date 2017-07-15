@@ -28,12 +28,14 @@
 	                    <md-select data-ng-model="filterYear">
 	                    	<md-option data-ng-repeat="year in years" value="{{year}}">{{year}}</md-option>
 	                    </md-select>
+	                </md-input-container>	                
+	                <md-input-container flex-gt-sm >
+	                	<label>Keyword filter</label><input data-ng-model="filterKeyword"/>
 	                </md-input-container>
 	                <md-input-container flex-gt-sm data-ng-show="workPlans.length">
-	                    <label><strong>{{ (workPlans | filter:{year_covered:filterYear}).length }} result<span data-ng-show="(workPlans | filter:{year_covered:filterYear}).length > 1">s</span> found</strong></label>
+	                    <label><strong>{{ (workPlans | filter:{title:filterKeyword,year_covered:filterYear}).length }} result<span data-ng-show="(workPlans | filter:{title:filterKeyword,year_covered:filterYear}).length > 1">s</span> found</strong></label>
 	                </md-input-container>            
-	                <!-- <label>Keyword filter</label><input data-ng-model="filterKeyword"/> -->
-	                 <md-input-container flex-gt-sm></md-input-container>        
+	                <md-input-container flex-gt-sm></md-input-container>        
 	                <md-input-container flex-gt-sm></md-input-container>
 	                <md-input-container flex-gt-sm></md-input-container>
 	                <md-input-container flex-gt-sm></md-input-container>
@@ -43,7 +45,7 @@
 
 		<md-content class="md-padding">
 			<div flex="100" layout-fill layout="row" layout-wrap>   
-	            <md-card flex="45" layout="row" data-ng-repeat="(k,wplan) in workPlans | filter:{year_covered:filterYear}" class="card-container">
+	            <md-card flex="45" layout="row" data-ng-repeat="(k,wplan) in workPlans | filter:{title:filterKeyword,year_covered:filterYear}" class="card-container">
 	                <md-card-title flex="70">
 	                    <md-card-title-text class="ta-left">
 	                        <span class="md-headline" title="{{wplan.title}}" style="font-size:1em;line-height:1em;">{{wplan.title}}</span>

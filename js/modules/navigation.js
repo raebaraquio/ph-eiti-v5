@@ -43,7 +43,7 @@
 			subnav : ''
 		}
 		function setupNavigation(){
-			var mainnav = NavigationFactory.offline;
+			var mainnav = NavigationFactory.offline ? NavigationFactory.offline : JSON.parse(localStorage.getItem('navigation'));
 			for (var idx=0;idx<mainnav.length;idx++){
 				if (mainnav[idx].subnav.length > 0) {
 					mainnav[idx].subnav_open = false;
@@ -68,10 +68,11 @@
 
 		$scope.getnavigation = function() {
 			$scope.main_nav = [];
-			if (!NavigationFactory.offline) {
+			if (!NavigationFactory.offline && !localStorage.getItem('navigation')) {
 				var p = NavigationFactory.get();
 				p.then(function(response){
 					NavigationFactory.offline = response.data.content;
+					localStorage.setItem('navigation',JSON.stringify(response.data.content));
 					setupNavigation();
 				},function(error){});
 			}

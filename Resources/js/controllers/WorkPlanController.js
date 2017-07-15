@@ -1,10 +1,21 @@
-resourcesApp.controller('WorkPlanController',['$scope','resourcesDataFactory',
-	function($scope,resourcesDataFactory){
+resourcesApp.controller('WorkPlanController',['$scope','resourcesDataFactory','$routeParams',
+	function($scope,resourcesDataFactory,$routeParams){
 
 	$scope.filterYear = '';
 	$scope.selected_workPlan = {};
 	$scope.tabSelected = 0;
 	$scope.years = [];
+	$scope.filterKeyword = "";
+	
+	try {
+		if ($routeParams) {
+			if ($routeParams.q!==undefined) {
+				$scope.filterKeyword = $routeParams.q;
+			}
+		}
+	}
+	catch(e){}
+	
 
 	$scope.getpromise = resourcesDataFactory.getAll('WorkPlan');
 	$scope.getpromise.then(function(response){

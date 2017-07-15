@@ -317,17 +317,18 @@ newsApp.controller('footerController',['$scope','homeNewsFactory','$mdDialog','$
 
     function getContactDetails(){
         $scope.contactDetails = {};
-        if (!secretariatContactDetails.info) {
+        if (!secretariatContactDetails.info && !localStorage.getItem('secretariatContactDetails')) {
             var getPromise = secretariatContactDetails.get();    
             getPromise.then(function(response){
                 secretariatContactDetails.info = response.data.contact;
+                localStorage.setItem('secretariatContactDetails',JSON.stringify(secretariatContactDetails.info));
                 $scope.contactDetails = response.data.contact;
             },function(error){
                 // Error Callback
             });
         }
         else {
-            $scope.contactDetails = secretariatContactDetails.info;
+            $scope.contactDetails = secretariatContactDetails.info ? secretariatContactDetails.info : JSON.parse(localStorage.getItem('secretariatContactDetails'));
         }   
     }
 
@@ -339,9 +340,15 @@ newsApp.controller('menuController',['$scope','NavigationFactory','utilsService'
         $scope.showMenu = false;
         $scope.main_nav = [];
         $scope.active = {mnav: '', subnav: ''};
+        $scope.search = {keyword: ''}
         $scope.getnavigation = function() {
             $scope.main_nav = [];
-            var mainnav = NavigationFactory.get();
+            if (!NavigationFactory.offline && !localStorage.getItem('navigation')) {
+                var mainnav = NavigationFactory.get();
+            }
+            else {
+                var mainnav = NavigationFactory.offline ? NavigationFactory.offline : JSON.parse(localStorage.getItem('navigation'));
+            }
             for (var idx=0;idx<mainnav.length;idx++){
                 if (mainnav[idx].subnav.length > 0) {
                     mainnav[idx].subnav_open = false;
@@ -419,4 +426,56 @@ newsApp.controller('menuController',['$scope','NavigationFactory','utilsService'
                 
             }
         });
+
+        $scope.$on('keywordEntered',function(evt,searchArgs){
+            if (searchArgs) {
+                $scope.search.keyword = searchArgs.keyword;
+            }
+        });
+
+        $scope.doSearch=function(){
+            if ($scope.search.keyword==='') {
+                return false
+            }
+            window.location.href = '../search/#/search?keyword='+$scope.search.keyword;
+        }
+
+        $scope.validate=function(evt){
+            if (evt.keyCode==13) {
+                $scope.doSearch();
+            }
+        }
+
+        $scope.openSearch=function(){
+            var searchInput = document.querySelector('#search-input').value;
+            var searchElem = document.querySelector('#search-input');
+            var searchInput_wd = searchElem.style.width;            
+            var clearElem = document.querySelector('#clear-search'); 
+            if (searchInput === '') {
+                if (searchInput_wd!=='25em') {
+                    searchElem.focus();
+                    searchElem.style.width = '25em';
+                    clearElem.style.visibility = 'visible';
+                }
+                else {
+                    searchElem.style.width = '0';
+                    clearElem.style.visibility = 'hidden';   
+                }                
+            }
+            else {
+                $scope.doSearch();
+            }   
+        }
+
+        $scope.closeSearch=function(){
+            var searchElem = document.querySelector('#search-input');
+            var clearElem = document.querySelector('#clear-search'); 
+             if (searchElem.value === '') {
+                searchElem.style.width = '0';
+                clearElem.style.visibility = 'hidden';   
+            }
+            else {
+                searchElem.value = "";
+            }
+        }
 }]);

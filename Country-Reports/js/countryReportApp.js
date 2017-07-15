@@ -93,100 +93,7 @@ countryReportApp.config(function($routeProvider){
 }); 
 
 countryReportApp.config(function($mdThemingProvider) {
-	/* Yellow is primary ; Blue is accent 
-    var defaultPrimary = {
-        '50': '#fede7c',
-        '100': '#fed863',
-        '200': '#fed149',
-        '300': '#fecb30',
-        '400': '#fec416',
-        '500': '#fabc01',
-        '600': '#e1a901',
-        '700': '#c79601',
-        '800': '#ae8301',
-        '900': '#947001',
-        'A100': '#ffe495',
-        'A200': '#ffebaf',
-        'A400': '#fff1c8',
-        'A700': '#7b5c00'
-    };
-    $mdThemingProvider
-        .definePalette('defaultPrimary', 
-                        defaultPrimary);
-
-    var defaultAccent = {
-        '50': '#064475',
-        '100': '#08528d',
-        '200': '#0960a5',
-        '300': '#0a6ebd',
-        '400': '#0c7cd5',
-        '500': '#0d8aee',
-        '600': '#39a1f4',
-        '700': '#51adf6',
-        '800': '#6ab8f7',
-        '900': '#82c4f8',
-        'A100': '#39a1f4',
-        'A200': '#2196F3',
-        'A400': '#0d8aee',
-        'A700': '#9acffa'
-    };
-    $mdThemingProvider
-        .definePalette('defaultAccent', 
-                        defaultAccent);
-
-    var defaultWarn = {
-        '50': '#ffcc80',
-        '100': '#ffc166',
-        '200': '#ffb74d',
-        '300': '#ffad33',
-        '400': '#ffa21a',
-        '500': '#FF9800',
-        '600': '#e68900',
-        '700': '#cc7a00',
-        '800': '#b36a00',
-        '900': '#995b00',
-        'A100': '#ffd699',
-        'A200': '#ffe0b3',
-        'A400': '#ffeacc',
-        'A700': '#804c00'
-    };
-    $mdThemingProvider
-        .definePalette('defaultWarn', 
-                        defaultWarn);
 	
-	var defaultBackground = {
-        '50': '#ffffff',
-        '100': '#ffffff',
-        '200': '#ffffff',
-        '300': '#ffffff',
-        '400': '#fefefe',
-        '500': '#f1f1f1',
-        '600': '#e4e4e4',
-        '700': '#d7d7d7',
-        '800': '#cbcbcb',
-        '900': '#bebebe',
-        'A100': '#ffffff',
-        'A200': '#ffffff',
-        'A400': '#ffffff',
-        'A700': '#b1b1b1'
-    };
-    $mdThemingProvider
-        .definePalette('defaultBackground', 
-                        defaultBackground);
-
-	$mdThemingProvider.theme('default')
-	   .primaryPalette('defaultPrimary')
-	   .accentPalette('defaultAccent')
-	   .warnPalette('defaultWarn')
-	   .backgroundPalette('defaultBackground')
-
-	// $mdThemingProvider.theme('altTheme')
-	//    .primaryPalette('altPrimary')
-	//    .accentPalette('altAccent')
-	//    .warnPalette('altWarn')
-	//    .backgroundPalette('altBackground')
-	*/
-
 	/* Blue is primary; Yellow is accent; */
 	 var customPrimary = {
         '50': '#4c8cc7',
@@ -431,17 +338,18 @@ countryReportApp.controller('footerController',['$scope','homeNewsFactory','$mdD
 
     function getContactDetails(){
         $scope.contactDetails = {};
-        if (!secretariatContactDetails.info) {
+        if (!secretariatContactDetails.info && !localStorage.getItem('secretariatContactDetails')) {
             var getPromise = secretariatContactDetails.get();    
             getPromise.then(function(response){
                 secretariatContactDetails.info = response.data.contact;
+                localStorage.setItem('secretariatContactDetails',JSON.stringify(secretariatContactDetails.info));
                 $scope.contactDetails = response.data.contact;
             },function(error){
                 // Error Callback
             });
         }
         else {
-            $scope.contactDetails = secretariatContactDetails.info;
+            $scope.contactDetails = secretariatContactDetails.info ? secretariatContactDetails.info : JSON.parse(localStorage.getItem('secretariatContactDetails'));
         }   
     }
 
@@ -453,9 +361,16 @@ countryReportApp.controller('menuController',['$scope','NavigationFactory','util
         $scope.showMenu = false;
         $scope.main_nav = [];
         $scope.active = {mnav: '', subnav: ''};
+        $scope.search = {keyword: ''}
+
         $scope.getnavigation = function() {
             $scope.main_nav = [];
-            var mainnav = NavigationFactory.get();
+            if (!NavigationFactory.offline && !localStorage.getItem('navigation')) {
+                var mainnav = NavigationFactory.get();
+            }
+            else {
+                var mainnav = NavigationFactory.offline ? NavigationFactory.offline : JSON.parse(localStorage.getItem('navigation'));
+            }
             for (var idx=0;idx<mainnav.length;idx++){
                 if (mainnav[idx].subnav.length > 0) {
                     mainnav[idx].subnav_open = false;
@@ -533,4 +448,56 @@ countryReportApp.controller('menuController',['$scope','NavigationFactory','util
                 
             }
         });
+
+        $scope.$on('keywordEntered',function(evt,searchArgs){
+            if (searchArgs) {
+                $scope.search.keyword = searchArgs.keyword;
+            }
+        });
+
+        $scope.doSearch=function(){
+            if ($scope.search.keyword==='') {
+                return false
+            }
+            window.location.href = '../search/#/search?keyword='+$scope.search.keyword;
+        }
+
+        $scope.validate=function(evt){
+            if (evt.keyCode==13) {
+                $scope.doSearch();
+            }
+        }
+
+        $scope.openSearch=function(){
+            var searchInput = document.querySelector('#search-input').value;
+            var searchElem = document.querySelector('#search-input');
+            var searchInput_wd = searchElem.style.width;            
+            var clearElem = document.querySelector('#clear-search'); 
+            if (searchInput === '') {
+                if (searchInput_wd!=='25em') {
+                    searchElem.focus();
+                    searchElem.style.width = '25em';
+                    clearElem.style.visibility = 'visible';
+                }
+                else {
+                    searchElem.style.width = '0';
+                    clearElem.style.visibility = 'hidden';   
+                }                
+            }
+            else {
+                $scope.doSearch();
+            }   
+        }
+
+        $scope.closeSearch=function(){
+            var searchElem = document.querySelector('#search-input');
+            var clearElem = document.querySelector('#clear-search'); 
+             if (searchElem.value === '') {
+                searchElem.style.width = '0';
+                clearElem.style.visibility = 'hidden';   
+            }
+            else {
+                searchElem.value = "";
+            }
+        }
 }]);

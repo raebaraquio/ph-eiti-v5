@@ -11,16 +11,17 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>News | ph-eiti.org</title>
     <link rel="icon" type="image/gif" href="../images/eitifavicon.ico">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic|Roboto+Mono:400|Material+Icons" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'> -->
     <link rel="stylesheet" href="../css/angular-material.min.css?v1.1.0-rc2"> 
     <link rel="stylesheet" href="../css/font-awesome.min.css"> 
     <link rel="stylesheet" href="../css/basic.css?v=1.02"> 
     <link rel="stylesheet" href="../css/nav.css?v=1.02"> 
     <link rel="stylesheet" href="../css/main.css?v=1.05">
     <link rel="stylesheet" href="css/style-news.css?v=1.02"> 
-    <script>
+    <!--script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -28,7 +29,7 @@
 
         ga('create', 'UA-86920611-1', 'auto');
         ga('send', 'pageview');
-    </script>
+    </script-->
 </head>	
 <body ng-cloak>
     <!-- <div class="wd-100" id="logo-wrapper">
@@ -61,12 +62,21 @@
     <div class="wd-100" id="logo-wrapper" data-ng-controller="menuController">
         <div class="mxw-80" id="logo-wrapper--inner">
             <md-content layout flex layout="row" layout-md="row" layout-sm="row" layout-xs="column">
-                <md-content flex="50" flex-xs="100" flex-sm="50" flex-md="50" id="logo-wrapper__main" layout-md="row" layout-sm="row" layout-xs="row" >
-                    <img class="curs--hover" flex-md="15" flex-sm="15" flex-xs="15" src="../images/icons/svg/ic_menu_black_24px.svg" alt="PH-EITI" title="PH-EITI" width="36px" hide-lg hide-gt-lg hide-gt-xl data-ng-click="showMenu=!showMenu" /><a flex-md="50" flex-xs="50" flex-sm="50" href="../"><img class="gutters" src="../images/logo-without-text.png" alt="PH-EITI" title="PH-EITI" width="165"/></a>
+                <md-content flex="60" flex-xs="100" flex-sm="60" flex-md="60" id="logo-wrapper__main" layout-md="row" layout-sm="row" layout-xs="row" >
+                    <img class="curs--hover" flex-md="15" flex-sm="15" flex-xs="15" src="../images/icons/svg/ic_menu_black_24px.svg" alt="PH-EITI | Philippine Extractive Industries Transparency Initiative" title="PH-EITI  | Philippine Extractive Industries Transparency Initiative"  width="36px" hide-lg hide-gt-lg hide-gt-xl data-ng-click="showMenu=!showMenu" /><a flex-md="50" flex-xs="50" flex-sm="50" href="../"><img class="gutters" src="../images/logo-without-text.png" alt="PH-EITI | Philippine Extractive Industries Transparency Initiative" title="PH-EITI | Philippine Extractive Industries Transparency Initiative" width="165"/></a>
                 </md-content>
-                <md-content flex="50" flex-xs="100" flex-sm="50" flex-md="50" class="ta-right" id="logo-wrapper__social" style="padding-top:0.4em;" hide-xs>
-                    <a href="javascript:window.open('https://www.facebook.com/PhilippineEITI/')" title="Philippine EITI"><img src="../images/icons/facebook.png" class="va-mid" alt="" width="32px" /></a>&nbsp;&nbsp;<!--
-                            --><a href="javascript:window.open('https://twitter.com/ph_eiti')" title="@PH_EITI"><img src="../images/icons/twitter.png" class="va-mid" alt="" width="32px" /></a>
+                <md-content flex="40" flex-xs="100" flex-sm="40" flex-md="40" id="logo-wrapper__social" hide-xs>   
+                    <div id="search-box" layout="row" layout-align="end center">
+                        <form id="search-form">
+                            <md-button aria-label="Search" ng-click="openSearch()" style="outline:none;min-width:10px;webkit-appearance:none;appearance:none;margin-right:-3em;">
+                                <img src="../images/icons/svg/ic_search_black_24px.svg" title="Search" style="vertical-align:middle;"/>
+                            </md-button>
+                            <input id="search-input" type="text" ng-model="search.keyword" placeholder="Search" ng-keypress="validate($event)" autocomplete="off" />
+                            <button aria-label="Clear" id="clear-search" name="reset" type="button" title="Clear text" ng-click="closeSearch($event)">
+                                <img src="../images/icons/svg/ic_close_black_24px.svg" style="vertical-align:middle" />
+                            </button>
+                        </form>    
+                    </div>
                 </md-content>
             </md-content>
         </div> 

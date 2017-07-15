@@ -32,8 +32,9 @@
                             <md-radio-button value="Article" class="md-primary"> Article </md-radio-button>
                         </md-radio-group>
                     </md-card-content>
-                    <md-card-actions layout="column" layout-align="start">
-                        <md-button class="md-primary" ng-click="applyFilter($event)">Apply Filter</md-button>
+                    <md-card-actions layout="row" layout-align="end center">
+                        <md-button class="md-primary" ng-click="applyFilter($event,1)">Apply Filter</md-button>                        
+                        <md-button class="md-default" ng-click="applyFilter($event,0)">Remove Filter</md-button>
                     </md-card-actions>
                 </md-card>
             </section>
@@ -41,8 +42,8 @@
                 <md-content style="padding:1em 0 1em 1em;margin-bottom:0.5em;position:relative">
                     <label for="search-main-keyword"><strong>Search for:</strong></label>
                     <input id="search-main-keyword" type="text" ng-model="search.keyword" placeholder="Enter keyword to search" ng-keypress="validate($event)" autocomplete="off" style="width: 67.5%;padding: 0.65em;font-size: 0.9em;border: 1px solid #ececec;box-shadow:0px 0px 1px #969696;margin-left: 0.5em;outline:none;border-radius:4px;"/>
-                    <md-button ng-show="search.keyword!==''" style="min-width:25px;margin-left:-3.5em;border-radius:50%" ng-click="search.keyword='';"><img src="../images/icons/svg/ic_close_black_24px.svg" style="vertical-align:middle" /></md-button>
-                    <md-button class="md-raised md-primary" style="min-width: 55px;padding: 0.1em 0.2em 0.1em 0.2em;" ng-click="doSearch()"><img src="../images/icons/svg/ic_search_white_24px.svg" title="Search"/></md-button>
+                    <md-button aria-label="Clear" ng-show="search.keyword!==''" style="min-width:25px;margin-left:-3.5em;border-radius:50%" ng-click="clearSearch($event)"><img src="../images/icons/svg/ic_close_black_24px.svg" style="vertical-align:middle" /></md-button>
+                    <md-button aria-label="Search" class="md-raised md-primary" style="min-width: 55px;padding: 0.1em 0.2em 0.1em 0.2em;" ng-click="doSearch()"><img src="../images/icons/svg/ic_search_white_24px.svg" title="Search"/></md-button>
                 </md-content>
                 
                 <md-card>
@@ -50,7 +51,7 @@
                     <md-card-title>
                         <md-card-title-text>
                             <span class="md-headline" ng-if="search.keyword!=='' && resultsCount===0 && searchPromise">Searching ..</span>
-                            <span class="md-headline" ng-if="search.keywordCopy!=='' && resultsCount > 0 && !searchPromise">Showing {{resultsCount}} results for '{{search.keywordCopy}}'</span>
+                            <span class="md-headline" ng-if="search.keywordCopy!=='' && resultsCount > 0 && !searchPromise">Showing {{resultsCount}} result<span ng-if="resultsCount > 1">s</span> for '{{search.keywordCopy}}'</span>
                             <span class="md-headline" ng-if="search.keywordCopy!=='' && resultsCount===0 && !searchPromise">No match found for '{{search.keywordCopy}}'</span>
                         </md-card-title-text>
                     </md-card-title>
@@ -64,15 +65,31 @@
                             </md-subheader>
 
                             <md-list-item ng-repeat="(kv,vv) in v" style="min-height:33px;text-align:left !important;" ng-href="{{vv.href}}" layout="row" layout-align="space-around start">
-                                <p ng-if="k=='Page' && vv.href" align="left"><a class="global-link">{{vv.name}}</a></p>
-                                <p ng-if="k=='MSG Meetings'" align="left"><a class="global-link">{{vv.mtg_title}}</a></p>
+                                <p ng-if="k=='Page' && vv.href && !vv.reportTitle" align="left"><a class="global-link">{{vv.name}}</a></p>
+                                <p ng-if="k=='MSG Meetings'" align="left"><a class="global-link">{{vv.mtg_title}} MSG Meeting</a></p>
+                                <p ng-if="k=='Reporting Templates'">
+                                    <small> {{vv.year}} <br /></small>
+                                    <a class="global-link">{{vv.title}}</a>
+                                    <span ng-if="vv.sector" style="margin-left:1em;font-size:0.65em;padding: 3px 9px 3px 9px;border-radius: 3px;font-weight: 500;background-color: #5ea7f3;text-transform: uppercase;color: #fff;">{{vv.sector}}</span>
+                                </p>
+                                <p ng-if="vv.countryReportContent || vv.crContent">
+                                    <small ng-if="vv.countryReportContent"> {{vv.countryReportContent}} <br /></small>
+                                    <a class="global-link">{{vv.title}}</a>
+                                    <span ng-if="vv.reportTitle" style="margin-left:1em;font-size:0.65em;padding: 3px 9px 3px 9px;border-radius: 3px;font-weight: 500;background-color: #5ea7f3;text-transform: uppercase;color: #fff;">{{vv.reportTitle}}</span>
+                                </p>
+                                <p ng-if="k=='Page' && vv.reportTitle">
+                                    <small> {{vv.coverage}} <br /></small>
+                                    <a class="global-link">{{vv.title}}</a>
+                                    <span ng-if="vv.reportTitle" style="margin-left:1em;font-size:0.65em;padding: 3px 9px 3px 9px;border-radius: 3px;font-weight: 500;background-color: #5ea7f3;text-transform: uppercase;color: #fff;">{{vv.reportTitle}}</span>
+                                </p>
                                 <p ng-if="k=='Resources' && vv.title==='Annual Progress Report'">
                                     <small ng-if="k=='Resources' && vv.title==='Annual Progress Report'"> {{ vv.title }} </small><br />
                                     <a class="global-link">{{ vv.coverage }}</a> 
                                     <span ng-if="vv.tags[1]" style="margin-left:1em;font-size:0.65em;padding: 3px 9px 3px 9px;border-radius: 3px;font-weight: 500;background-color: #5ea7f3;text-transform: uppercase;color: #fff;">{{vv.tags[1] ? vv.tags[1] : ''}}</span>
                                 </p>
-                                <p ng-if="k!=='Resources' || (k=='Resources' && vv.tags[1]!=='Activity Reports')">
+                                <p ng-if="(k!=='Resources' && k!=='MSG Meetings' && k!=='Reporting Templates' && k!=='Page' && k!=='Completed Reporting Templates' && !vv.countryReportContent && !vv.crContent) || (k=='Resources' && vv.tags[1]!=='Activity Reports')">
                                     <small ng-if="k=='Resources' && vv.event_name && vv.tags[1]=='Brochures'"> {{ vv.event_name }} <br /></small>
+                                    <small ng-if="k=='Resources' && vv.year && vv.tags[1]=='General Information Sheet'"> {{ vv.year }} <br /></small>
                                     <small ng-if="k=='Resources' && (vv.event_name || vv.other_info) && vv.tags[1]=='Infographics'"> {{ vv.event_name ? vv.event_name : ''}} {{ (vv.event_name && vv_other_info) ? '- ' : '' }} {{ vv.other_info ? vv.other_info : ''}} <br /></small>
                                     <small ng-if="k=='Resources' && vv.newsletter_issue && vv.tags[1]=='Infographics'">{{ vv.month }} {{vv.year}} Newsletter Issue<br /></small>
                                     <a class="global-link" ng-if="vv.title">{{vv.title}}</a>

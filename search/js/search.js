@@ -358,17 +358,18 @@ searchApp.controller('footerController',['$scope','homeNewsFactory','$mdDialog',
 
     function getContactDetails(){
         $scope.contactDetails = {};
-        if (!secretariatContactDetails.info) {
+        if (!secretariatContactDetails.info && !localStorage.getItem('secretariatContactDetails')) {
             var getPromise = secretariatContactDetails.get();    
             getPromise.then(function(response){
                 secretariatContactDetails.info = response.data.contact;
+                localStorage.setItem('secretariatContactDetails',JSON.stringify(secretariatContactDetails.info));
                 $scope.contactDetails = response.data.contact;
             },function(error){
                 // Error Callback
             });
         }
         else {
-            $scope.contactDetails = secretariatContactDetails.info;
+            $scope.contactDetails = secretariatContactDetails.info ? secretariatContactDetails.info : JSON.parse(localStorage.getItem('secretariatContactDetails'));
         }   
     }
 
@@ -384,7 +385,12 @@ searchApp.controller('menuController',['$scope','NavigationFactory','utilsServic
 
         $scope.getnavigation = function() {
             $scope.main_nav = [];
-            var mainnav = NavigationFactory.get();
+            if (!NavigationFactory.offline && !localStorage.getItem('navigation')) {
+                var mainnav = NavigationFactory.get();
+            }
+            else {
+                var mainnav = NavigationFactory.offline ? NavigationFactory.offline : JSON.parse(localStorage.getItem('navigation'));
+            }
             for (var idx=0;idx<mainnav.length;idx++){
                 if (mainnav[idx].subnav.length > 0) {
                     mainnav[idx].subnav_open = false;
@@ -464,8 +470,6 @@ searchApp.controller('menuController',['$scope','NavigationFactory','utilsServic
         });
 
         $scope.$on('keywordEntered',function(evt,searchArgs){
-            console.log(searchArgs);
-            console.log('catch search args!!!! ^^^');
             if (searchArgs) {
                 $scope.search.keyword = searchArgs.keyword;
             }
@@ -475,9 +479,7 @@ searchApp.controller('menuController',['$scope','NavigationFactory','utilsServic
             if ($scope.search.keyword==='') {
                 return false
             }
-            window.location.href = '../search/#/search?keyword='+$scope.search.keyword
-            // $location.path('/search?keyword='+$scope.search.keyword);
-            // $rootScope.$broadcast('doSearch',$scope.search)
+            window.location.href = '../search/#/search?keyword='+$scope.search.keyword;
         }
 
         $scope.validate=function(evt){

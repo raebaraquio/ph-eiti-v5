@@ -17,7 +17,7 @@
 
 		function byKeyword(param){
 			return $http({
-				url : '../rest/functions/search/keyword.php?page='+param.page+'&keyword='+param.keyword,
+				url : '../rest/functions/search/keyword.php?page='+param.page+'&keyword='+param.keyword+'&contentType='+param.contentType,
 				method: 'GET'
 			});
 		}

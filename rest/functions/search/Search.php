@@ -97,7 +97,9 @@ Class Search {
 					where
 						title like '$keyword%' or
 						title like '%$keyword' or
-						title like '%$keyword%' 
+						title like '%$keyword%' or 
+						'$keyword' like 'brochure' or
+						'$keyword' like 'brochures'
 					order by title asc
 						limit 5";
 
@@ -611,7 +613,9 @@ Class Search {
 					where
 						title like '$keyword%' or
 						title like '%$keyword' or
-						title like '%$keyword%' 
+						title like '%$keyword%' or 
+						'$keyword' like 'country report%' or 
+						'$keyword' like 'country report'
 					order by title asc
 						limit 5";
 
@@ -730,8 +734,8 @@ Class Search {
 						(mtg_title like '$keyword%' or
 						mtg_title like '%$keyword' or
 						mtg_title like '%$keyword%' or 
-						'$keyword' like '%msg meeting' or 
-						'$keyword' like '%MSG Meeting' )
+						'$keyword' like CONCAT(mtg_title, ' msg meeting') or
+						'$keyword' like CONCAT(mtg_title, ' MSG Meeting') )
 					order by mtg_title asc,
 						date_added asc
 						limit 5";
@@ -767,6 +771,398 @@ Class Search {
 		    return array('success'=>true,
 						 'data'=> array(),
 						 'section'=>'MSG Meetings');
+		    exit();    
+		}
+	}
+
+
+	public function search_msgMeetingAnnex($keyword){
+		$meetingsData = array();
+
+		$query = "select
+						msg_meetings_file_annexes.annex_id,
+						msg_meetings_file_annexes.mtgid_fk,
+						msg_meetings_file_annexes.title,
+						msg_meetings_file_annexes.file_url,						
+						msg_meetings.mtg_title,
+						CASE 
+							when msg_meetings_file_annexes.title = '$keyword' then true
+							else false
+						END as exact,
+						msg_meetings_file_annexes.date_added,
+						msg_meetings_file_annexes.date_last_updated
+					from msg_meetings_file_annexes
+						LEFT JOIN msg_meetings ON msg_meetings.mtgid = msg_meetings_file_annexes.mtgid_fk
+					where
+						title like '$keyword%' or
+						title like '%$keyword' or
+						title like '%$keyword%'
+					order by title asc,
+						date_added asc
+						limit 5";
+
+		$getResult = mysql_query($query);
+
+        if (!$getResult) {
+            print(json_encode(
+            	array(
+            		'success'=>false,
+                    'error'=>'database',
+                    'status'=>'selectError',
+                    'mysqlerror'=>mysql_error(),
+                    'query'=>$query)
+            	)
+            );
+            exit();
+        }
+
+        if (mysql_num_rows($getResult) > 0) {
+
+		    while ($res = mysql_fetch_assoc($getResult)) {
+		        $meetingsData[] = $res;
+		    }
+
+		  	return array('success'=>true,
+						 'data'=>$meetingsData,
+						 'hasExactMatch'=>self::checkExactResult($meetingsData),
+						 'section'=>'MSG Meetings - File Annexes');
+		    exit();
+		}
+		else {
+		    return array('success'=>true,
+						 'data'=> array(),
+						 'section'=>'MSG Meetings - File Annexes');
+		    exit();    
+		}
+	}
+
+	public function search_reportingTemplates($keyword){
+		$reportingTemplatesData = array();
+
+		$query = "select
+						rtid,
+						year,
+						sector,
+						sub_sector,
+						title,
+						company_agency_name,
+						file_url,
+						CASE 
+							when title = '$keyword' then true
+							else false
+						END as exact,
+						date_added,
+						date_last_updated
+					from reporting_templates
+					where
+						title like '$keyword%' or
+						title like '%$keyword' or
+						title like '%$keyword%' or 
+						'$keyword' like CONCAT(title, ' reporting template') or
+						'$keyword' like CONCAT(title, ' Reporting Templates')
+					order by title asc,
+						date_added asc
+						limit 5";
+
+		$getResult = mysql_query($query);
+
+        if (!$getResult) {
+            print(json_encode(
+            	array(
+            		'success'=>false,
+                    'error'=>'database',
+                    'status'=>'selectError',
+                    'mysqlerror'=>mysql_error(),
+                    'query'=>$query)
+            	)
+            );
+            exit();
+        }
+
+        if (mysql_num_rows($getResult) > 0) {
+
+		    while ($res = mysql_fetch_assoc($getResult)) {
+		        $reportingTemplatesData[] = $res;
+		    }
+
+		  	return array('success'=>true,
+						 'data'=>$reportingTemplatesData,
+						 'hasExactMatch'=>self::checkExactResult($reportingTemplatesData),
+						 'section'=>'Reporting Templates');
+		    exit();
+		}
+		else {
+		    return array('success'=>true,
+						 'data'=> array(),
+						 'section'=>'Reporting Templates');
+		    exit();    
+		}
+	}
+
+	public function searchpage_completedReportingTemplates($keyword){
+		$creportingTemplatesData = array();
+
+		$query = "select
+						country_reports_content.crcontent_id,
+						country_reports_content.crid_fk,
+						country_reports_content.title,
+						country_reports_content.content_type,
+						country_reports.title as reportTitle,
+						country_reports.coverage,
+						CASE 
+							when country_reports_content.title = '$keyword' then true
+							else false
+						END as exact,
+						country_reports_content.date_added,
+						country_reports_content.date_last_updated
+					from country_reports_content
+						LEFT JOIN country_reports ON country_reports.crid = country_reports_content.crid_fk
+					where
+						country_reports_content.content_type = 'page' and (
+						country_reports_content.title like '$keyword%' or
+						country_reports_content.title like '%$keyword' or
+						country_reports_content.title like '%$keyword%' or 
+						'$keyword' like CONCAT(country_reports.title, ' reporting template') or
+						'$keyword' like CONCAT(country_reports.title, ' completed reporting template') or
+						'$keyword' like CONCAT(country_reports.title, ' Reporting Template') or 
+						'$keyword' like CONCAT(country_reports.title, ' Completed Reporting Template') )
+					order by country_reports_content.title asc,
+						country_reports.title asc,
+						country_reports_content.date_added asc
+						limit 5";
+
+		$getResult = mysql_query($query);
+
+        if (!$getResult) {
+            print(json_encode(
+            	array(
+            		'success'=>false,
+                    'error'=>'database',
+                    'status'=>'selectError',
+                    'mysqlerror'=>mysql_error(),
+                    'query'=>$query)
+            	)
+            );
+            exit();
+        }
+
+        if (mysql_num_rows($getResult) > 0) {
+
+		    while ($res = mysql_fetch_assoc($getResult)) {
+		        $creportingTemplatesData[] = $res;
+		    }
+
+		  	return array('success'=>true,
+						 'data'=>$creportingTemplatesData,
+						 'hasExactMatch'=>self::checkExactResult($creportingTemplatesData),
+						 'section'=>'Page');
+		    exit();
+		}
+		else {
+		    return array('success'=>true,
+						 'data'=> array(),
+						 'section'=>'Page');
+		    exit();    
+		}
+	}
+
+	public function search_completedReportingTemplates($keyword){
+		$creportingTemplatesData = array();
+
+		$query = "select
+						completed_reporting_templates.crtid,
+						completed_reporting_templates.crcontent_id_fk,
+						completed_reporting_templates.crid_fk,
+						completed_reporting_templates.sector,
+						completed_reporting_templates.title,
+						completed_reporting_templates.company_agency_name,
+						completed_reporting_templates.file_url,
+						country_reports.title as reportTitle,
+						country_reports.coverage,
+						CASE 
+							when completed_reporting_templates.title = '$keyword' then true
+							else false
+						END as exact,
+						completed_reporting_templates.date_added,
+						completed_reporting_templates.date_last_updated,
+						'Completed Reporting Templates' as countryReportContent
+					from completed_reporting_templates
+						LEFT JOIN country_reports ON country_reports.crid = completed_reporting_templates.crid_fk
+					where
+						completed_reporting_templates.title like '$keyword%' or
+						completed_reporting_templates.title like '%$keyword' or
+						completed_reporting_templates.title like '%$keyword%' or 
+						'$keyword' like CONCAT(completed_reporting_templates.title, ' reporting template') or
+						'$keyword' like CONCAT(completed_reporting_templates.title, ' completed reporting template') or
+						'$keyword' like CONCAT(completed_reporting_templates.title, ' Reporting Template') or 
+						'$keyword' like CONCAT(completed_reporting_templates.title, ' Completed Reporting Template')
+					order by completed_reporting_templates.title asc,
+						country_reports.title asc,
+						completed_reporting_templates.date_added asc
+						limit 5";
+
+		$getResult = mysql_query($query);
+
+        if (!$getResult) {
+            print(json_encode(
+            	array(
+            		'success'=>false,
+                    'error'=>'database',
+                    'status'=>'selectError',
+                    'mysqlerror'=>mysql_error(),
+                    'query'=>$query)
+            	)
+            );
+            exit();
+        }
+
+        if (mysql_num_rows($getResult) > 0) {
+
+		    while ($res = mysql_fetch_assoc($getResult)) {
+		        $creportingTemplatesData[] = $res;
+		    }
+
+		  	return array('success'=>true,
+						 'data'=>$creportingTemplatesData,
+						 'hasExactMatch'=>self::checkExactResult($creportingTemplatesData),
+						 'section'=>'Country Reports');
+		    exit();
+		}
+		else {
+		    return array('success'=>true,
+						 'data'=> array(),
+						 'section'=>'Country Reports');
+		    exit();    
+		}
+	}
+
+	public function search_countryReportsOtherContent($keyword){
+		$crepoContentData = array();
+
+		$query = "select
+						country_report_otherfiles.file_id,
+						country_report_otherfiles.crcontent_id_fk,
+						country_report_otherfiles.crid_fk,
+						country_report_otherfiles.title,
+						country_report_otherfiles.file_url,
+						country_reports.title as reportTitle,
+						country_reports.coverage,
+						CASE 
+							when country_report_otherfiles.title = '$keyword' then true
+							else false
+						END as exact,
+						country_report_otherfiles.date_added,
+						country_report_otherfiles.date_last_updated,
+						'Computation of LGU Shares in National Wealth' as countryReportContent
+					from country_report_otherfiles
+						LEFT JOIN country_reports ON country_reports.crid = country_report_otherfiles.crid_fk
+					where
+						country_report_otherfiles.title like '$keyword%' or
+						country_report_otherfiles.title like '%$keyword' or
+						country_report_otherfiles.title like '%$keyword%' or 
+						'$keyword' like CONCAT(country_report_otherfiles.title, ' LGU Shares in National Wealth') or
+						'$keyword' like CONCAT(country_report_otherfiles.title, ' lgu shares in national wealth')
+					order by country_report_otherfiles.title asc,
+						country_reports.title asc,
+						country_report_otherfiles.date_added asc
+						limit 5";
+
+		$getResult = mysql_query($query);
+
+        if (!$getResult) {
+            print(json_encode(
+            	array(
+            		'success'=>false,
+                    'error'=>'database',
+                    'status'=>'selectError',
+                    'mysqlerror'=>mysql_error(),
+                    'query'=>$query)
+            	)
+            );
+            exit();
+        }
+
+        if (mysql_num_rows($getResult) > 0) {
+
+		    while ($res = mysql_fetch_assoc($getResult)) {
+		        $crepoContentData[] = $res;
+		    }
+
+		  	return array('success'=>true,
+						 'data'=>$crepoContentData,
+						 'hasExactMatch'=>self::checkExactResult($crepoContentData),
+						 'section'=>'Country Reports');
+		    exit();
+		}
+		else {
+		    return array('success'=>true,
+						 'data'=> array(),
+						 'section'=>'Country Reports');
+		    exit();    
+		}
+	}
+
+	public function search_countryReportsContent($keyword){
+		$creportContentData = array();
+
+		$query = "select
+						country_reports_content.crcontent_id,
+						country_reports_content.crid_fk,
+						country_reports_content.title,
+						country_reports_content.content_type,
+						country_reports_content.file_url,
+						country_reports.title as reportTitle,
+						country_reports.coverage,
+						'Country Reports Content' as crContent,
+						CASE 
+							when country_reports_content.title = '$keyword' then true
+							else false
+						END as exact,
+						country_reports_content.date_added,
+						country_reports_content.date_last_updated
+					from country_reports_content
+						LEFT JOIN country_reports ON country_reports.crid = country_reports_content.crid_fk
+					where
+						country_reports_content.content_type != 'page' and (
+						country_reports_content.title like '$keyword%' or
+						country_reports_content.title like '%$keyword' or
+						country_reports_content.title like '%$keyword%' )
+					order by country_reports_content.title asc,
+						country_reports.title asc,
+						country_reports_content.date_added asc
+						limit 5";
+
+		$getResult = mysql_query($query);
+
+        if (!$getResult) {
+            print(json_encode(
+            	array(
+            		'success'=>false,
+                    'error'=>'database',
+                    'status'=>'selectError',
+                    'mysqlerror'=>mysql_error(),
+                    'query'=>$query)
+            	)
+            );
+            exit();
+        }
+
+        if (mysql_num_rows($getResult) > 0) {
+
+		    while ($res = mysql_fetch_assoc($getResult)) {
+		        $creportContentData[] = $res;
+		    }
+
+		  	return array('success'=>true,
+						 'data'=>$creportContentData,
+						 'hasExactMatch'=>self::checkExactResult($creportContentData),
+						 'section'=>'Country Reports');
+		    exit();
+		}
+		else {
+		    return array('success'=>true,
+						 'data'=> array(),
+						 'section'=>'Country Reports');
 		    exit();    
 		}
 	}
