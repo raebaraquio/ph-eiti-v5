@@ -99,77 +99,150 @@ pheiti.config(function($mdThemingProvider) {
 	
 });
 
-pheiti.factory('homeNewsFactory',['$http',
-    function($http){
-    var homeNewsFactory = null;
-    homeNewsFactory = {
-        getnews : function(data) {
-            var p = $http({
-                url:'./rest/functions/news-get-pagination.php',
-                method: 'POST',
-                data:data
-            });
-            return p;
-        },
-        subscribe : function(data) {
-            var promise = $http({
-                url:'./rest/functions/newsletter-subscribe.php',
-                method: 'POST',
-                data:data
-            })
-            return promise;
-        }
-    }
-    return homeNewsFactory;
-}]);
+pheiti.controller('menuController',['$scope','NavigationFactory','utilsService','$location','$rootScope',
+    function($scope,NavigationFactory,utilsService,$location,$rootScope){
+        $scope.showMenu = false;
+        $scope.main_nav = [];
+        $scope.active = {mnav: '', subnav: ''};
+        $scope.search = {keyword: ''};
 
-pheiti.controller('homeNewsController',['$scope','homeNewsFactory','$sce','$location',
-    function($scope,homeNewsFactory,$sce,$location){
-
-    function getNews() {
-        $scope.homenews = []
-        $scope.lastUpdated = ""
-        var obj = {
-            id:'',
-            section:'PH-EITI Newsroom',
-            published:true,
-            page:'index',
-            pageLimit:6,
-            pageNum:1
-        }
-        $scope.newspromise = homeNewsFactory.getnews(obj);
-        $scope.newspromise.then(function(data){
-            if (typeof(data.data) == 'string') {
+        $scope.getnavigation = function() {   
+            $scope.main_nav = [];
+            if (!NavigationFactory.offline && !localStorage.getItem('navigation')) {
+                var mainnav = NavigationFactory.get();
             }
-            else {  
-                $scope.homenews = data.data
-                for (var i in $scope.homenews) { 
-                    if ($scope.homenews[i].brief != null && $scope.homenews[i].brief != '') {
-                        $scope.homenews[i].brief = $sce.trustAsHtml('<div style="font-size:13px;">'+shorten($scope.homenews[i].brief,300)+'</div>');
-                    }
-                    if (i==0) {
-                        $scope.lastUpdated = $scope.homenews[i].dateposted
+            else {
+                var mainnav = NavigationFactory.offline ? NavigationFactory.offline : JSON.parse(localStorage.getItem('navigation'));
+            }
+            for (var idx=0;idx<mainnav.length;idx++){
+                if (mainnav[idx].subnav.length > 0) {
+                    mainnav[idx].subnav_open = false;
+                    for (var sidx=0;sidx<mainnav[idx].subnav.length;sidx++) {
+                        mainnav[idx].subnav[sidx].subnav_open = false;
+                        try {
+                            if (mainnav[idx].subnav[sidx].subnav.length > 0) {
+                                for (var ssidx=0;ssidx<mainnav[idx].subnav[sidx].subnav.length;ssidx++){
+                                    mainnav[idx].subnav[sidx].subnav[ssidx].subnav_open = false;
+                                }
+                            }    
+                        }
+                        catch(err){
+
+                        }
                     }
                 }
             }
-            delete $scope.newspromise
-        })
-    }
-
-    function shorten(text, maxLength) {
-        var ret = text;
-        if (ret.length > maxLength) {
-            ret = ret.substr(0,maxLength-3) + "...";
+            $scope.main_nav = mainnav;
+            if ($location.$$absUrl.match(/#/gi)){
+                var locs = $location.$$absUrl.split('#');
+                var host = locs[0].split('/');
+            }
+            else {
+                var host = $location.$$absUrl.split('/');
+            }
+            if (utilsService.inObj($scope.main_nav,'href',host[host.length-2])) {
+                $scope.active.mnav = utilsService.getObjOtherPropVal($scope.main_nav,'href',host[host.length-2],'id');
+            }
+            $scope.active.subnav = ''
         }
-        return ret;
-    }
 
-    getNews();
+        $scope.getnavigation();
 
-    $scope.goTo=function(link){
-        window.location.href = link;
-    }
+        $scope.expand=function(nav){
+            nav.subnav_open = !nav.subnav_open;
+            for (var idx=0;idx<$scope.main_nav.length;idx++){
+                if ($scope.main_nav[idx].subnav.length > 0) {
+                    if ($scope.main_nav[idx].subnav_open===true && $scope.main_nav[idx].id!==nav.id){
+                        $scope.main_nav[idx].subnav_open = false;
+                    }
+                }
+            }
+        }
 
+        $scope.collapse=function(nav){
+            nav.subnav_open = !nav.subnav_open;
+        }
+
+        $rootScope.$on('$routeChangeSuccess', function(next, current) { 
+            try {
+                $scope.active.subnav = $location.path().split('/')[1];
+                for (var idx=0;idx<$scope.main_nav.length;idx++){
+                    if ($scope.main_nav[idx].subnav.length > 0) {
+                        for (var sidx=0;sidx<$scope.main_nav[idx].subnav.length;sidx++){
+                            $scope.main_nav[idx].subnav_open = false;
+                        }
+                    }
+                }
+                for (var idx=0;idx<$scope.main_nav.length;idx++){
+                    if ($scope.main_nav[idx].subnav.length > 0) {
+                        for (var sidx=0;sidx<$scope.main_nav[idx].subnav.length;sidx++){
+                            if ($scope.main_nav[idx].subnav[sidx].href === $scope.active.subnav && $scope.main_nav[idx].id===$scope.active.mnav) {
+                                $scope.main_nav[idx].subnav_open = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if ($route.current.title) {
+                    document.title = $route.current.title;  
+                }
+            }
+            catch(err)  {
+                
+            }
+        });
+
+        $scope.$on('keywordEntered',function(evt,searchArgs){
+            if (searchArgs) {
+                $scope.search.keyword = searchArgs.keyword;
+            }
+        });
+
+        $scope.doSearch=function(){
+            if ($scope.search.keyword==='') {
+                return false
+            }
+            window.location.href = './search/#/search?keyword='+$scope.search.keyword;
+        }
+
+        $scope.validate=function(evt){
+            if (evt.keyCode==13) {
+                $scope.doSearch();
+            }
+        }
+
+        $scope.openSearch=function(){
+            var searchInput = document.querySelector('#search-input').value;
+            var searchElem = document.querySelector('#search-input');
+            var searchInput_wd = searchElem.style.width;            
+            var clearElem = document.querySelector('#clear-search'); 
+            if (searchInput === '') {
+                if (searchInput_wd!=='25em') {
+                    $("#search-input").focus();
+                    searchElem.style.width = '25em';
+                    clearElem.style.visibility = 'visible';
+                }
+                else {
+                    searchElem.style.width = '0';
+                    clearElem.style.visibility = 'hidden';   
+                }                
+            }
+            else {
+                $scope.doSearch();
+            }   
+        }
+
+        $scope.closeSearch=function(){
+            var searchElem = document.querySelector('#search-input');
+            var clearElem = document.querySelector('#clear-search'); 
+             if (searchElem.value === '') {
+                searchElem.style.width = '0';
+                clearElem.style.visibility = 'hidden';   
+            }
+            else {
+                searchElem.value = "";
+            }
+        }
 }]);
 
 pheiti.controller('headerCarouselController',['$scope',
@@ -197,36 +270,6 @@ pheiti.controller('headerCarouselController',['$scope',
         }
     ]
 }]);
-
-pheiti.controller('statementCarouselController',['$scope','$sce',
-    function($scope,$sce){
-    $scope.openStatement=function(link){
-        window.open('./'+link)
-    }
-    $scope.statements = [
-        /*{
-            statedBy: 'Statement of Benigno S. Aquino III, Former President of the Republic of the Philippines',
-            pullquote: 'We will implement the Extractive Industries Transparency Initiative (EITI) in order to improve transparency in the collection and payment of government taxes and other revenues from extractive industries.',
-            link: 'document/Statement/Statement-of-the-President.pdf'
-        },
-        {
-            statedBy: 'Message from Cesar V. Purisima, Former Secretary, Department of Finance',
-            pullquote: 'Our work does not stop with the release and publication of the first PH-EITI country report. From here, the PH-EITI MSG will begin the challenging task of formulating policies for reforming governance of the extractive sector and enhancing government systems to promote transparency and improve EITI implementation in the country.',
-            link: 'document/Statement/Message-from-the-Secretary-of-Finance.pdf'
-        }*/
-        {
-            statedBy: $sce.trustAsHtml('<div><span style="display:block;line-height:1.25em;">Foreword to the Third Country Report</span><strong style="display:block;line-height:1.25em;">President Rodrigo Roa Duterte</strong><span style="display:block;line-height:1.25em;">Republic of the Philippines</span></div>'),
-            pullquote: 'Together with the PH-EITI Multi Sectoral Group, it is my hope that this report will ensure that all extractive activities will provide meaningful and impactful opportunities and benefits not just for the economy, but for everyone concerned. I trust that we will continue to abide with the principles that led to its establishment and use it to usher in the just, equitable, and prosperous future we envision for all Filipinos.',
-            link: 'document/Statement/2017/03/09/Signed Foreword - 3rd Country Report.pdf'
-        },
-        {
-            statedBy: $sce.trustAsHtml('<div><span style="display:block;line-height:1.25em;">Message from </span><strong style="display:block;line-height:1.25em;">Sec. Carlos G. Dominguez</strong><span style="display:block;line-height:1.25em;">Department of Finance</span></div>'),
-            pullquote: '…DOF sees the Philippine EITI as aligned with at least three goals in the Duterte Administration’s ten-point socioeconomic agenda: institute more effective tax collection, increase competitiveness and the ease of doing business, and promote rural and value chain development, as to a critical albeit specific sector.',
-            link: 'document/Statement/2017/03/09/DOF Message Signed.pdf'
-        }
-    ];
-}]);
-
 
 pheiti.controller('homeInfographicController',['$scope','$mdDialog','$mdMedia',
     function($scope,$mdDialog,$mdMedia){
@@ -358,6 +401,108 @@ pheiti.controller('homeInfographicController',['$scope','$mdDialog','$mdMedia',
     }
 }]);
 
+pheiti.factory('homeNewsFactory',['$http',
+    function($http){
+    var homeNewsFactory = null;
+    homeNewsFactory = {
+        getnews : function(data) {
+            var p = $http({
+                url:'./rest/functions/news-get-pagination.php',
+                method: 'POST',
+                data:data
+            });
+            return p;
+        },
+        subscribe : function(data) {
+            var promise = $http({
+                url:'./rest/functions/newsletter-subscribe.php',
+                method: 'POST',
+                data:data
+            })
+            return promise;
+        }
+    }
+    return homeNewsFactory;
+}]);
+
+pheiti.controller('homeNewsController',['$scope','homeNewsFactory','$sce','$location',
+    function($scope,homeNewsFactory,$sce,$location){
+
+    function getNews() {
+        $scope.homenews = []
+        $scope.lastUpdated = ""
+        var obj = {
+            id:'',
+            section:'PH-EITI Newsroom',
+            published:true,
+            page:'index',
+            pageLimit:6,
+            pageNum:1
+        }
+        $scope.newspromise = homeNewsFactory.getnews(obj);
+        $scope.newspromise.then(function(data){
+            if (typeof(data.data) == 'string') {
+            }
+            else {  
+                $scope.homenews = data.data
+                for (var i in $scope.homenews) { 
+                    if ($scope.homenews[i].brief != null && $scope.homenews[i].brief != '') {
+                        $scope.homenews[i].brief = $sce.trustAsHtml('<div style="font-size:13px;">'+shorten($scope.homenews[i].brief,300)+'</div>');
+                    }
+                    if (i==0) {
+                        $scope.lastUpdated = $scope.homenews[i].dateposted
+                    }
+                }
+            }
+            delete $scope.newspromise
+        })
+    }
+
+    function shorten(text, maxLength) {
+        var ret = text;
+        if (ret.length > maxLength) {
+            ret = ret.substr(0,maxLength-3) + "...";
+        }
+        return ret;
+    }
+
+    getNews();
+
+    $scope.goTo=function(link){
+        window.location.href = link;
+    }
+
+}]);
+
+pheiti.controller('statementCarouselController',['$scope','$sce',
+    function($scope,$sce){
+    $scope.openStatement=function(link){
+        window.open('./'+link)
+    }
+    $scope.statements = [
+        /*{
+            statedBy: 'Statement of Benigno S. Aquino III, Former President of the Republic of the Philippines',
+            pullquote: 'We will implement the Extractive Industries Transparency Initiative (EITI) in order to improve transparency in the collection and payment of government taxes and other revenues from extractive industries.',
+            link: 'document/Statement/Statement-of-the-President.pdf'
+        },
+        {
+            statedBy: 'Message from Cesar V. Purisima, Former Secretary, Department of Finance',
+            pullquote: 'Our work does not stop with the release and publication of the first PH-EITI country report. From here, the PH-EITI MSG will begin the challenging task of formulating policies for reforming governance of the extractive sector and enhancing government systems to promote transparency and improve EITI implementation in the country.',
+            link: 'document/Statement/Message-from-the-Secretary-of-Finance.pdf'
+        }*/
+        {
+            statedBy: $sce.trustAsHtml('<div><span style="display:block;line-height:1.25em;">Foreword to the Third Country Report</span><strong style="display:block;line-height:1.25em;">President Rodrigo Roa Duterte</strong><span style="display:block;line-height:1.25em;">Republic of the Philippines</span></div>'),
+            pullquote: 'Together with the PH-EITI Multi Sectoral Group, it is my hope that this report will ensure that all extractive activities will provide meaningful and impactful opportunities and benefits not just for the economy, but for everyone concerned. I trust that we will continue to abide with the principles that led to its establishment and use it to usher in the just, equitable, and prosperous future we envision for all Filipinos.',
+            link: 'document/Statement/2017/03/09/Signed Foreword - 3rd Country Report.pdf'
+        },
+        {
+            statedBy: $sce.trustAsHtml('<div><span style="display:block;line-height:1.25em;">Message from </span><strong style="display:block;line-height:1.25em;">Sec. Carlos G. Dominguez</strong><span style="display:block;line-height:1.25em;">Department of Finance</span></div>'),
+            pullquote: '…DOF sees the Philippine EITI as aligned with at least three goals in the Duterte Administration’s ten-point socioeconomic agenda: institute more effective tax collection, increase competitiveness and the ease of doing business, and promote rural and value chain development, as to a critical albeit specific sector.',
+            link: 'document/Statement/2017/03/09/DOF Message Signed.pdf'
+        }
+    ];
+}]);
+
 pheiti.controller('footerController',['$scope','homeNewsFactory','$mdDialog','$mdMedia','secretariatContactDetails',
     function($scope,homeNewsFactory,$mdDialog,$mdMedia,secretariatContactDetails){
 
@@ -436,23 +581,23 @@ pheiti.controller('footerController',['$scope','homeNewsFactory','$mdDialog','$m
 
     function getContactDetails(){
         $scope.contactDetails = {};
-        if (!secretariatContactDetails.info) {
+        if (!secretariatContactDetails.info && !localStorage.getItem('secretariatContactDetails')) {
             var getPromise = secretariatContactDetails.get();    
             getPromise.then(function(response){
                 secretariatContactDetails.info = response.data.contact;
+                localStorage.setItem('secretariatContactDetails',JSON.stringify(secretariatContactDetails.info));
                 $scope.contactDetails = response.data.contact;
             },function(error){
                 // Error Callback
             });
         }
         else {
-            $scope.contactDetails = secretariatContactDetails.info;
+            $scope.contactDetails = secretariatContactDetails.info ? secretariatContactDetails.info : JSON.parse(localStorage.getItem('secretariatContactDetails'));
         }   
     }
 
     getContactDetails();
 }]);
-
 
 pheiti.controller('compareReportsController',['$scope','$mdDialog',
     function($scope,$mdDialog){
@@ -481,186 +626,6 @@ pheiti.controller('compareReportsController',['$scope','$mdDialog',
 
 }]);
 
-pheiti.controller('menuController',['$scope','NavigationFactory','utilsService','$location','$rootScope',
-    function($scope,NavigationFactory,utilsService,$location,$rootScope){
-        $scope.showMenu = false;
-        $scope.main_nav = [];
-        $scope.active = {mnav: '', subnav: ''};
-        // function setupNavigation(){
-        //     var mainnav = NavigationFactory.offline;
-        //     for (var idx=0;idx<mainnav.length;idx++){
-        //         if (mainnav[idx].subnav.length > 0) {
-        //             mainnav[idx].subnav_open = false;
-        //             for (var sidx=0;sidx<mainnav[idx].subnav.length;sidx++) {
-        //                 mainnav[idx].subnav[sidx].subnav_open = false;
-        //             }
-        //         }
-        //     }
-        //     $scope.main_nav = mainnav;
-        //     if ($location.$$absUrl.match(/#/gi)){
-        //         var locs = $location.$$absUrl.split('#');
-        //         var host = locs[0].split('/');
-        //     }
-        //     else {
-        //         var host = $location.$$absUrl.split('/');
-        //     }
-        //     if (utilsService.inObj($scope.main_nav,'href',host[host.length-2])) {
-        //         $scope.active.mnav = utilsService.getObjOtherPropVal($scope.main_nav,'href',host[host.length-2],'id');
-        //     }
-        //     $scope.active.subnav = ''
-        // }
-        $scope.getnavigation = function() {
-            $scope.main_nav = [];
-
-            if (!NavigationFactory.offline) {
-                // var p = NavigationFactory.get();
-                // p.then(function(response){
-                //     NavigationFactory.offline = response.data.content;
-                //     setupNavigation();
-                // },function(error){
-
-                // });
-            }
-            else {
-                alert('offline nav')
-                setupNavigation();
-            }   
-            // $scope.main_nav = [];
-            // var mainnav = NavigationFactory.get();
-            // for (var idx=0;idx<mainnav.length;idx++){
-            //     if (mainnav[idx].subnav.length > 0) {
-            //         mainnav[idx].subnav_open = false;
-            //         for (var sidx=0;sidx<mainnav[idx].subnav.length;sidx++) {
-            //             mainnav[idx].subnav[sidx].subnav_open = false;
-            //             try {
-            //                 if (mainnav[idx].subnav[sidx].subnav.length > 0) {
-            //                     for (var ssidx=0;ssidx<mainnav[idx].subnav[sidx].subnav.length;ssidx++){
-            //                         mainnav[idx].subnav[sidx].subnav[ssidx].subnav_open = false;
-            //                     }
-            //                 }    
-            //             }
-            //             catch(err){
-
-            //             }
-            //         }
-            //     }
-            // }
-            // $scope.main_nav = mainnav;
-            // if ($location.$$absUrl.match(/#/gi)){
-            //     var locs = $location.$$absUrl.split('#');
-            //     var host = locs[0].split('/');
-            // }
-            // else {
-            //     var host = $location.$$absUrl.split('/');
-            // }
-            // if (utilsService.inObj($scope.main_nav,'href',host[host.length-2])) {
-            //     $scope.active.mnav = utilsService.getObjOtherPropVal($scope.main_nav,'href',host[host.length-2],'id');
-            // }
-            // $scope.active.subnav = ''
-        }
-
-        $scope.getnavigation();
-
-        $scope.expand=function(nav){
-            nav.subnav_open = !nav.subnav_open;
-            for (var idx=0;idx<$scope.main_nav.length;idx++){
-                if ($scope.main_nav[idx].subnav.length > 0) {
-                    if ($scope.main_nav[idx].subnav_open===true && $scope.main_nav[idx].id!==nav.id){
-                        $scope.main_nav[idx].subnav_open = false;
-                    }
-                }
-            }
-        }
-
-        $scope.collapse=function(nav){
-            nav.subnav_open = !nav.subnav_open;
-        }
-
-        $rootScope.$on('$routeChangeSuccess', function(next, current) { 
-            try {
-                $scope.active.subnav = $location.path().split('/')[1];
-                for (var idx=0;idx<$scope.main_nav.length;idx++){
-                    if ($scope.main_nav[idx].subnav.length > 0) {
-                        for (var sidx=0;sidx<$scope.main_nav[idx].subnav.length;sidx++){
-                            $scope.main_nav[idx].subnav_open = false;
-                        }
-                    }
-                }
-                for (var idx=0;idx<$scope.main_nav.length;idx++){
-                    if ($scope.main_nav[idx].subnav.length > 0) {
-                        for (var sidx=0;sidx<$scope.main_nav[idx].subnav.length;sidx++){
-                            if ($scope.main_nav[idx].subnav[sidx].href === $scope.active.subnav && $scope.main_nav[idx].id===$scope.active.mnav) {
-                                $scope.main_nav[idx].subnav_open = true;
-                                break;
-                            }
-                        }
-                    }
-                }
-                if ($route.current.title) {
-                    document.title = $route.current.title;  
-                }
-            }
-            catch(err)  {
-                
-            }
-        });
-
-        $scope.$on('keywordEntered',function(evt,searchArgs){
-            console.log(searchArgs);
-            console.log('catch search args!!!! ^^^');
-            if (searchArgs) {
-                $scope.search.keyword = searchArgs.keyword;
-            }
-        });
-
-        $scope.doSearch=function(){
-            if ($scope.search.keyword==='') {
-                return false
-            }
-            window.location.href = './search/#/search?keyword='+$scope.search.keyword
-            // $location.path('/search?keyword='+$scope.search.keyword);
-            // $rootScope.$broadcast('doSearch',$scope.search)
-        }
-
-        $scope.validate=function(evt){
-            if (evt.keyCode==13) {
-                $scope.doSearch();
-            }
-        }
-
-        $scope.openSearch=function(){
-            var searchInput = document.querySelector('#search-input').value;
-            var searchElem = document.querySelector('#search-input');
-            var searchInput_wd = searchElem.style.width;            
-            var clearElem = document.querySelector('#clear-search'); 
-            if (searchInput === '') {
-                if (searchInput_wd!=='25em') {
-                    $("#search-input").focus();
-                    searchElem.style.width = '25em';
-                    clearElem.style.visibility = 'visible';
-                }
-                else {
-                    searchElem.style.width = '0';
-                    clearElem.style.visibility = 'hidden';   
-                }                
-            }
-            else {
-                $scope.doSearch();
-            }   
-        }
-
-        $scope.closeSearch=function(){
-            var searchElem = document.querySelector('#search-input');
-            var clearElem = document.querySelector('#clear-search'); 
-             if (searchElem.value === '') {
-                searchElem.style.width = '0';
-                clearElem.style.visibility = 'hidden';   
-            }
-            else {
-                searchElem.value = "";
-            }
-        }
-}]);
 
 pheiti.controller('bannerFeatureController',['$scope','$mdDialog',
     function($scope,$mdDialog){

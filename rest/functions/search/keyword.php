@@ -4,7 +4,7 @@ include_once('../classes/mysql_connect.php');
 
 $keyword = htmlspecialchars($_GET["keyword"]);
 $page = htmlspecialchars($_GET["page"]);
-$contentType = htmlspecialchars($_GET["contentType"]); // Document, Article
+$contentType = htmlspecialchars($_GET["contentType"]);
 
 if (!isset($keyword)) {
     print(json_encode(
@@ -13,6 +13,7 @@ if (!isset($keyword)) {
             'success' => false
         )
     ));
+   	exit();
 }
 
 $newSearch = new Search();
@@ -26,57 +27,56 @@ if ($contentType=="") {
 	array_push($allData,$returned_search_Activities);
 }
 
-if ($contentType=="" || $contentType=="Document") {
-	$returned_search_CountryReports = $newSearch->search_CountryReports($keyword);
-	array_push($allData,$returned_search_CountryReports);	
-}
-
-if ($contentType=="" || $contentType=="Document") {
-	$returned_search_Resources = $newSearch->search_Resources($keyword);
-	array_push($allData,$returned_search_Resources);	
-}
-
 if ($contentType=="" || $contentType=="Article") {
 	$returned_search_News = $newSearch->search_News($keyword);
 	array_push($allData,$returned_search_News);	
 }
 
-if ($contentType=="") {
+if ($contentType!=="Article") {
 	$returned_search_Meetings = $newSearch->search_msgMeetings($keyword);
 	array_push($allData,$returned_search_Meetings);	
 }
 
+/* If Content Type is Document or unspecified, run the following search: 
+	Country Reports
+	Country Reports - Completed Reporting Templates
+	Country Reports - Computation of LGU Shares in National Wealth
+	Resources
+	MSG Meetings - File Annexes
+	Reporting Templates
+*/
 if ($contentType=="" || $contentType=="Document") {
+	$returned_search_Resources = $newSearch->search_Resources($keyword);
+	array_push($allData,$returned_search_Resources);	
+
 	$returned_search_MeetingsAnnexes = $newSearch->search_msgMeetingAnnex($keyword);
-	array_push($allData,$returned_search_MeetingsAnnexes);		
-}
+	array_push($allData,$returned_search_MeetingsAnnexes);	
 
-if ($contentType=="" || $contentType=="Document") {
 	$returned_search_reportingTemplates = $newSearch->search_reportingTemplates($keyword);
-	array_push($allData,$returned_search_reportingTemplates);		
+	array_push($allData,$returned_search_reportingTemplates);	
+
+	$returned_search_CountryReports = $newSearch->search_CountryReports($keyword);
+	array_push($allData,$returned_search_CountryReports);	
+
+	$returned_search_completedReportingTemplates = $newSearch->search_completedReportingTemplates($keyword);
+	array_push($allData,$returned_search_completedReportingTemplates);		
+
+	/* For Country Report Content - Other Files */
+	$returned_search_countryReportsOther = $newSearch->search_countryReportsOtherContent($keyword);
+	array_push($allData,$returned_search_countryReportsOther);
+
+	/* For Country Report Content - where content type != 'Page' */
+	$returned_search_countryReportsContent = $newSearch->search_countryReportsContent($keyword);
+	array_push($allData,$returned_search_countryReportsContent);
 }
 
+/* For Country Report Content - where content type == 'Page' */
 if ( $contentType=="Page" || ( $contentType=="" && (strtolower($keyword)=='reporting templates' || strtolower($keyword)=='completed reporting templates' || 
 												    strtolower($keyword)=='completed reporting template') )
 						  || ( $contentType=="" && (strtolower($keyword)=='lgu share' || strtolower($keyword)=='lgu shares' || strtolower($keyword)=='computation of lgu shares' || 
 												    strtolower($keyword)=='computation of lgu shares in national wealth') ) ) {
 	$returned_search_completedReportingTemplatesPage = $newSearch->searchpage_completedReportingTemplates($keyword);
 	array_push($allData,$returned_search_completedReportingTemplatesPage);
-}
-
-if ($contentType=="" || $contentType=="Document") {
-	$returned_search_completedReportingTemplates = $newSearch->search_completedReportingTemplates($keyword);
-	array_push($allData,$returned_search_completedReportingTemplates);
-}
-
-if ($contentType=="" || $contentType=="Document") {
-	$returned_search_countryReportsOther = $newSearch->search_countryReportsOtherContent($keyword);
-	array_push($allData,$returned_search_countryReportsOther);
-}
-
-if ($contentType=="" || $contentType=="Document") {
-	$returned_search_countryReportsContent = $newSearch->search_countryReportsContent($keyword);
-	array_push($allData,$returned_search_countryReportsContent);
 }
 
 print(json_encode($allData));

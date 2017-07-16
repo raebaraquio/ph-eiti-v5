@@ -203,179 +203,6 @@ resourcesApp.config(function($mdThemingProvider) {
 	
 });
 
-resourcesApp.service('anchorSmoothScroll', function(){
-    this.scrollTo = function(eID) {
-
-        // This scrolling function 
-        // is from http://www.itnewb.com/tutorial/Creating-the-Smooth-Scroll-Effect-with-JavaScript
-        
-        var startY = currentYPosition();
-        var stopY = elmYPosition(eID);
-        var distance = stopY > startY ? stopY - startY : startY - stopY;
-        if (distance < 100) {
-            scrollTo(0, stopY); return;
-        }
-        var speed = Math.round(distance / 100);
-        if (speed >= 20) speed = 20;
-        var step = Math.round(distance / 25);
-        var leapY = stopY > startY ? startY + step : startY - step;
-        var timer = 0;
-        if (stopY > startY) {
-            for ( var i=startY; i<stopY; i+=step ) {
-                setTimeout("window.scrollTo(0, "+leapY+")", timer * speed);
-                leapY += step; if (leapY > stopY) leapY = stopY; timer++;
-            } return;
-        }
-        for ( var i=startY; i>stopY; i-=step ) {
-            setTimeout("window.scrollTo(0, "+leapY+")", timer * speed);
-            leapY -= step; if (leapY < stopY) leapY = stopY; timer++;
-        }
-        
-        function currentYPosition() {
-            // Firefox, Chrome, Opera, Safari
-            if (self.pageYOffset) return self.pageYOffset;
-            // Internet Explorer 6 - standards mode
-            if (document.documentElement && document.documentElement.scrollTop)
-                return document.documentElement.scrollTop;
-            // Internet Explorer 6, 7 and 8
-            if (document.body.scrollTop) return document.body.scrollTop;
-            return 0;
-        }
-        
-        function elmYPosition(eID) {
-            var elm = document.getElementById(eID);
-            var y = elm.offsetTop;
-            var node = elm;
-            while (node.offsetParent && node.offsetParent != document.body) {
-                node = node.offsetParent;
-                y += node.offsetTop;
-            } return y;
-        }
-
-    };
-});
-
-resourcesApp.controller('returnToTopController',['$scope','$location', 'anchorSmoothScroll',
-    function($scope,$location,anchorSmoothScroll){
-
-    $scope.scrollTo=function(eID){
-        // $location.hash('logo-wrapper');
-        anchorSmoothScroll.scrollTo(eID);
-    }
-
-}]);
-
-resourcesApp.factory('homeNewsFactory',['$http',
-    function($http){
-    var homeNewsFactory = null;
-    homeNewsFactory = {
-        subscribe : function(data) {
-            var promise = $http({
-                url:'../rest/functions/newsletter-subscribe.php',
-                method: 'POST',
-                data:data
-            })
-            return promise;
-        }
-    }
-    return homeNewsFactory;
-}]);
-
-resourcesApp.controller('footerController',['$scope','homeNewsFactory','$mdDialog','$mdMedia','secretariatContactDetails',
-    function($scope,homeNewsFactory,$mdDialog,$mdMedia,secretariatContactDetails){
-        
-    $scope.userfeedback = { message : '',  type: '' }
-    $scope.user = {name : '', email: ''}
-    
-    $scope.resetFeedback=function(){
-        $scope.userfeedback.message = '';
-        $scope.userfeedback.type = ''; 
-    }
-
-    $scope.resetForm=function(mode){
-        $scope.user.name = '';
-        $scope.user.email = '';
-        if (mode===true){
-            $scope.userfeedback.message = '';
-            $scope.userfeedback.type = '';
-        }
-    }
-
-    $scope.closeDialog = function() {
-        $mdDialog.hide();
-    };
-
-    $scope.triggerSubscribe=function(ev){
-        $scope.resetForm(true);
-        // var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
-        $mdDialog.show({
-            templateUrl: '../template/subscribe-innerpage.html?v=1.02', 
-            parent: angular.element(document.getElementById('logo-wrapper')),
-            targetEvent: ev,
-            clickOutsideToClose:true,
-            fullscreen: true,
-            controller:'footerController'
-        })
-    }
-
-    $scope.subscribe = function() {
-        $scope.resetFeedback();
-        if ($scope.signupForm.$invalid){
-            $scope.userfeedback.message = 'Unable to proceed. Please check the required field.';
-            $scope.userfeedback.type = 'error';     
-            return false
-        }
-
-        if (!$scope.user.email) {
-            $scope.userfeedback.message = 'Unable to proceed. Email Address is required.';
-            $scope.userfeedback.type = 'error';     
-            return false
-        }
-
-        $scope.subscribePromise = homeNewsFactory.subscribe($scope.user);
-        $scope.subscribePromise.then(function(data){
-            if (data.status==200) {
-                delete $scope.subscribePromise
-                $scope.userfeedback.message = 'Confirmation email sent. Kindly check your inbox and confirm your subscription please.';
-                $scope.userfeedback.type = 'success';
-                $scope.resetForm();
-            }
-        })
-        .then(null,function(response){
-            delete $scope.subscribePromise
-            switch(response.status) {
-                case 409:
-                    $scope.userfeedback.message = 'Error: Email address is already taken.';
-                    $scope.userfeedback.type = 'error';     
-                    break;
-                case 400:
-                    $scope.userfeedback.message = 'Unable to process your request. Please try again.';
-                    $scope.userfeedback.type = 'error';     
-                    break;
-            }
-        })
-    }
-
-    function getContactDetails(){
-        $scope.contactDetails = {};
-        if (!secretariatContactDetails.info && !localStorage.getItem('secretariatContactDetails')) {
-            var getPromise = secretariatContactDetails.get();    
-            getPromise.then(function(response){
-                secretariatContactDetails.info = response.data.contact;
-                localStorage.setItem('secretariatContactDetails',JSON.stringify(secretariatContactDetails.info));
-                $scope.contactDetails = response.data.contact;
-            },function(error){
-                // Error Callback
-            });
-        }
-        else {
-            $scope.contactDetails = secretariatContactDetails.info ? secretariatContactDetails.info : JSON.parse(localStorage.getItem('secretariatContactDetails'));
-        }   
-    }
-
-    getContactDetails();
-}]);
-
 resourcesApp.controller('menuController',['$scope','NavigationFactory','utilsService','$location','$rootScope',
     function($scope,NavigationFactory,utilsService,$location,$rootScope){
         $scope.showMenu = false;
@@ -522,3 +349,177 @@ resourcesApp.controller('menuController',['$scope','NavigationFactory','utilsSer
             }
         }
 }]);
+
+resourcesApp.service('anchorSmoothScroll', function(){
+    this.scrollTo = function(eID) {
+
+        // This scrolling function 
+        // is from http://www.itnewb.com/tutorial/Creating-the-Smooth-Scroll-Effect-with-JavaScript
+        
+        var startY = currentYPosition();
+        var stopY = elmYPosition(eID);
+        var distance = stopY > startY ? stopY - startY : startY - stopY;
+        if (distance < 100) {
+            scrollTo(0, stopY); return;
+        }
+        var speed = Math.round(distance / 100);
+        if (speed >= 20) speed = 20;
+        var step = Math.round(distance / 25);
+        var leapY = stopY > startY ? startY + step : startY - step;
+        var timer = 0;
+        if (stopY > startY) {
+            for ( var i=startY; i<stopY; i+=step ) {
+                setTimeout("window.scrollTo(0, "+leapY+")", timer * speed);
+                leapY += step; if (leapY > stopY) leapY = stopY; timer++;
+            } return;
+        }
+        for ( var i=startY; i>stopY; i-=step ) {
+            setTimeout("window.scrollTo(0, "+leapY+")", timer * speed);
+            leapY -= step; if (leapY < stopY) leapY = stopY; timer++;
+        }
+        
+        function currentYPosition() {
+            // Firefox, Chrome, Opera, Safari
+            if (self.pageYOffset) return self.pageYOffset;
+            // Internet Explorer 6 - standards mode
+            if (document.documentElement && document.documentElement.scrollTop)
+                return document.documentElement.scrollTop;
+            // Internet Explorer 6, 7 and 8
+            if (document.body.scrollTop) return document.body.scrollTop;
+            return 0;
+        }
+        
+        function elmYPosition(eID) {
+            var elm = document.getElementById(eID);
+            var y = elm.offsetTop;
+            var node = elm;
+            while (node.offsetParent && node.offsetParent != document.body) {
+                node = node.offsetParent;
+                y += node.offsetTop;
+            } return y;
+        }
+
+    };
+});
+
+resourcesApp.controller('returnToTopController',['$scope','$location','anchorSmoothScroll',
+    function($scope,$location,anchorSmoothScroll){
+
+    $scope.scrollTo=function(eID){
+        // $location.hash('logo-wrapper');
+        anchorSmoothScroll.scrollTo(eID);
+    }
+
+}]);
+
+resourcesApp.factory('homeNewsFactory',['$http',
+    function($http){
+    var homeNewsFactory = null;
+    homeNewsFactory = {
+        subscribe : function(data) {
+            var promise = $http({
+                url:'../rest/functions/newsletter-subscribe.php',
+                method: 'POST',
+                data:data
+            })
+            return promise;
+        }
+    }
+    return homeNewsFactory;
+}]);
+
+resourcesApp.controller('footerController',['$scope','homeNewsFactory','$mdDialog','$mdMedia','secretariatContactDetails',
+    function($scope,homeNewsFactory,$mdDialog,$mdMedia,secretariatContactDetails){
+        
+    $scope.userfeedback = { message : '',  type: '' }
+    $scope.user = {name : '', email: ''}
+
+    function getContactDetails(){
+        $scope.contactDetails = {};
+        if (!secretariatContactDetails.info && !localStorage.getItem('secretariatContactDetails')) {
+            var getPromise = secretariatContactDetails.get();    
+            getPromise.then(function(response){
+                secretariatContactDetails.info = response.data.contact;
+                localStorage.setItem('secretariatContactDetails',JSON.stringify(secretariatContactDetails.info));
+                $scope.contactDetails = response.data.contact;
+            },function(error){
+                // Error Callback
+            });
+        }
+        else {
+            $scope.contactDetails = secretariatContactDetails.info ? secretariatContactDetails.info : JSON.parse(localStorage.getItem('secretariatContactDetails'));
+        }   
+    }
+
+    getContactDetails();
+    
+    $scope.resetFeedback=function(){
+        $scope.userfeedback.message = '';
+        $scope.userfeedback.type = ''; 
+    }
+
+    $scope.resetForm=function(mode){
+        $scope.user.name = '';
+        $scope.user.email = '';
+        if (mode===true){
+            $scope.userfeedback.message = '';
+            $scope.userfeedback.type = '';
+        }
+    }
+
+    $scope.closeDialog = function() {
+        $mdDialog.hide();
+    };
+
+    $scope.triggerSubscribe=function(ev){
+        $scope.resetForm(true);
+        // var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+        $mdDialog.show({
+            templateUrl: '../template/subscribe-innerpage.html?v=1.02', 
+            parent: angular.element(document.getElementById('logo-wrapper')),
+            targetEvent: ev,
+            clickOutsideToClose:true,
+            fullscreen: true,
+            controller:'footerController'
+        })
+    }
+
+    $scope.subscribe = function() {
+        $scope.resetFeedback();
+        if ($scope.signupForm.$invalid){
+            $scope.userfeedback.message = 'Unable to proceed. Please check the required field.';
+            $scope.userfeedback.type = 'error';     
+            return false
+        }
+
+        if (!$scope.user.email) {
+            $scope.userfeedback.message = 'Unable to proceed. Email Address is required.';
+            $scope.userfeedback.type = 'error';     
+            return false
+        }
+
+        $scope.subscribePromise = homeNewsFactory.subscribe($scope.user);
+        $scope.subscribePromise.then(function(data){
+            if (data.status==200) {
+                delete $scope.subscribePromise
+                $scope.userfeedback.message = 'Confirmation email sent. Kindly check your inbox and confirm your subscription please.';
+                $scope.userfeedback.type = 'success';
+                $scope.resetForm();
+            }
+        })
+        .then(null,function(response){
+            delete $scope.subscribePromise
+            switch(response.status) {
+                case 409:
+                    $scope.userfeedback.message = 'Error: Email address is already taken.';
+                    $scope.userfeedback.type = 'error';     
+                    break;
+                case 400:
+                    $scope.userfeedback.message = 'Unable to process your request. Please try again.';
+                    $scope.userfeedback.type = 'error';     
+                    break;
+            }
+        })
+    }
+}]);
+

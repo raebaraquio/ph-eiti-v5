@@ -41,7 +41,7 @@
             <section flex="70">
                 <md-content style="padding:1em 0 1em 1em;margin-bottom:0.5em;position:relative">
                     <label for="search-main-keyword"><strong>Search for:</strong></label>
-                    <input id="search-main-keyword" type="text" ng-model="search.keyword" placeholder="Enter keyword to search" ng-keypress="validate($event)" autocomplete="off" style="width: 67.5%;padding: 0.65em;font-size: 0.9em;border: 1px solid #ececec;box-shadow:0px 0px 1px #969696;margin-left: 0.5em;outline:none;border-radius:4px;"/>
+                    <input id="search-main-keyword" type="text" ng-model="search.keyword" placeholder="Type keyword here" ng-keypress="validate($event)" autocomplete="off" style="width: 67.5%;padding: 0.65em;font-size: 0.9em;border: 1px solid #ececec;box-shadow:0px 0px 1px #969696;margin-left: 0.5em;outline:none;border-radius:4px;"/>
                     <md-button aria-label="Clear" ng-show="search.keyword!==''" style="min-width:25px;margin-left:-3.5em;border-radius:50%" ng-click="clearSearch($event)"><img src="../images/icons/svg/ic_close_black_24px.svg" style="vertical-align:middle" /></md-button>
                     <md-button aria-label="Search" class="md-raised md-primary" style="min-width: 55px;padding: 0.1em 0.2em 0.1em 0.2em;" ng-click="doSearch()"><img src="../images/icons/svg/ic_search_white_24px.svg" title="Search"/></md-button>
                 </md-content>
@@ -51,6 +51,7 @@
                     <md-card-title>
                         <md-card-title-text>
                             <span class="md-headline" ng-if="search.keyword!=='' && resultsCount===0 && searchPromise">Searching ..</span>
+                            <span class="md-headline" ng-if="entered===false && resultsCount===0 || (search.keyword=='' && !searchPromise && resultsCount===0)">No keyword found.</span>
                             <span class="md-headline" ng-if="search.keywordCopy!=='' && resultsCount > 0 && !searchPromise">Showing {{resultsCount}} result<span ng-if="resultsCount > 1">s</span> for '{{search.keywordCopy}}'</span>
                             <span class="md-headline" ng-if="search.keywordCopy!=='' && resultsCount===0 && !searchPromise">No match found for '{{search.keywordCopy}}'</span>
                         </md-card-title-text>

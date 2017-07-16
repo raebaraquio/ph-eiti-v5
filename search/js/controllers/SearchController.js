@@ -13,6 +13,7 @@
 		$scope.pageResults = [];
 		$scope.results = {};
 		$scope.resultsCount = 0;
+		$scope.entered = false;
 		$scope.pages = NavigationFactory.offline ? NavigationFactory.offline : JSON.parse(localStorage.getItem('navigation'));
 		
 		$scope.$on('$routeChangeSuccess', function(next, current) {
@@ -31,6 +32,12 @@
 			}
 		});
 
+		$scope.$watch('search.keyword',function(v){
+			if (v==='') {
+				$scope.entered = false;
+			}
+		});
+
 		////////////////////
 
 		function runSearch(contentType){
@@ -39,6 +46,8 @@
 			if ($scope.search.keyword===''){
 				return false;
 			}			
+
+			$scope.entered = true;
 
 			$scope.search.keywordCopy = angular.copy($scope.search.keyword);
 			$scope.searchPromise = SearchFactory.byKeyword($scope.search);
@@ -195,7 +204,7 @@
             if (contentType) {
             	cType = '&contentType='+contentType;
             }
-            else if ($scope.filterContentType!=="") {
+            else if ($scope.filterContentType!=="" && $scope.filterContentType!==null) {
             	cType = '&contentType='+$scope.filterContentType;	
             }
             window.location.href = '../search/#/search?keyword='+$scope.search.keyword+cType;
