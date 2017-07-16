@@ -1,4 +1,4 @@
-cms.controller('CMSAnnouncementsController',['$scope','sessionService',
+cms.controller('CMSReportController',['$scope','sessionService',
 	function($scope,sessionService){
 
 	if (sessionService.inSession()===false) {
@@ -17,7 +17,7 @@ cms.controller('CMSAnnouncementsController',['$scope','sessionService',
 		$scope.user.mobile = ''	
 	}
 
-	$scope.contentTypes = ["Home","News","Documents","Activities","Announcements","Infographics"]
-	$scope.selectedContent = "Announcements"
+	// $scope.contentTypes = ["Home","News","Documents","Activities","Announcements","Infographics"]
+	// $scope.selectedContent = "Documents"
 
 }])

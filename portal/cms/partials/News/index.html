@@ -1,5 +1,5 @@
 <md-content layout-padding>
-    <h1>Add/Edit/Publish News</h1>
+    <h1>Manage News</h1>
     <div layout="row" layout-align="space-between center">
         <div flex="40" layout="row" layout-align="start center">
            <md-input-container flex="65">
@@ -71,7 +71,7 @@
         <md-content layout-padding>
             <md-list ng-cloak data-ng-show="newsandevents.length > 0">
                 <md-list-item class="secondary-button-padding" data-ng-repeat="(neidx,ne) in newsandevents | filter:keywordFilterNews">
-                    <p><a href="#/{{sectionCategory}}/Article/{{ne.id}}" style="font-size:15px !important;">{{ne.title}}</a></p>
+                    <p><a class="resetLink" href="#/{{sectionCategory}}/Article/{{ne.id}}" style="font-size:15px !important;">{{ne.title}}</a></p>
                     <!-- <md-button class="md-secondary" ng-href="#/{{sectionCategory}}/Article/{{ne.id}}">Preview</md-button> -->                    
                     <md-button class="md-secondary md-raised" data-ng-show="ne.archived=='0'" data-ng-click="confirmAction('archive',ne)">Archive</md-button>
                     <md-button class="md-secondary md-raised" data-ng-show="ne.archived=='1'" data-ng-click="confirmAction('unarchive',ne)">Unarchive</md-button>
