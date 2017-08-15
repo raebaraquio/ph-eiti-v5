@@ -1,0 +1,59 @@
+<style>
+	.thumbnail_wrapper {
+		margin: 20px auto;
+		width: 100%;
+	}
+	
+	.thumbnail_wrapper pdf-thumbnail {
+		display: block;
+		width: 100%;
+	}
+	
+	.thumbnail_wrapper pdf-thumbnail img {
+		width: 25%;
+	}
+</style>
+<md-content layout-padding style="min-width:550px;min-height:465px;">
+	<!-- <md-content> -->
+	<h1>New Activity Report</h1>
+	<!-- </md-content> -->
+	<md-content>
+		<iframe id="newapr-iframe" name="newapr-iframe" style="width:0px;height:0px;border:none" border="0" onload="newAPRreturn()"></iframe>
+		<form name="newAPRform" id="newAPRform" enctype="multipart/form-data" method="POST" autocomplete="off" action="../../rest/functions/resources/add-apr.php" target="newapr-iframe">		
+			<input type="hidden" name="apr-thumbdata" id="apr-thumbdata"/>
+			<table>
+				<tr>
+					<td>File</td>
+					<td>
+						<input id="file_input" name="file_input" type="file" ng-required="true" onchange="angular.element(this).scope().onFileChanged()" accept=".pdf" />
+					</td>
+				</tr>
+				<tr ng-show="newapr.file && newapr.thumbnail_data">
+					<td>Thumbnail</td>
+					<td>
+						<div class="thumbnail_wrapper">
+							<pdf-thumbnail data-file="newapr.file" data-thumbnail="newapr.thumbnail_data" data-thumb-width="500"></pdf-thumbnail>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td width="25%" style="vertical-align:top;">Coverage</td>
+					<td width="75%" style="vertical-align:top;">
+						<input type="text" name="apr-coverage" ng-model="newapr.coverage" ng-required="true"/> <em ng-if="errorMessage!==''" style="font-size:0.8em;color:red;">{{errorMessage}}</em>
+						<br/><small>E.g. July 2015 - June 2016</small>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"><br /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<md-button type="reset" ng-click="resetForm($event)">Reset</md-button>
+						<md-button class="md-raised md-primary fnt--white" type="submit" name="apr-submit" ng-disabled="newAPRform.$invalid">Submit</md-button>	
+					</td>
+				</tr>
+			</table>			
+		</form>
+	</md-content>
+</md-content>

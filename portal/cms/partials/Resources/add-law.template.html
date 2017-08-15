@@ -1,0 +1,58 @@
+<md-content layout-padding style="min-width:700px;min-height:465px;">
+	<md-content layout="row" layout-align="space-between center">
+		<h1 style="margin-bottom:0px;padding-bottom:0px;margin-top:0px;">Add Law</h1>
+		<a href="" ng-click="close()" title="Dismiss"><img src="../../images/icons/svg/ic_close_silver_24px.svg" alt="" width="24px"/></a>
+	</md-content>
+	<!-- <div style="display:block;width:100%;text-align:right;">
+	</div> -->	
+	<iframe id="newlaw-iframe" name="newlaw-iframe" style="width:0px;height:0px;border:none" border="0" onload="newLawReturn()"></iframe>
+	<form name="newLawForm" id="newLawForm" enctype="multipart/form-data" method="POST" autocomplete="off" action="../../rest/functions/resources/add-law.php" target="newlaw-iframe"  style="margin-bottom:0px;padding-bottom:0px;">
+		<md-table-container>
+			<table md-table>
+				<tbody md-body>
+					<tr md-row>
+						<td md-cell>Category</td>
+						<td md-cell>
+							<select name="law-category" id="law-category" ng-model="law.category" ng-options="category as category for category in categories" required="true">
+								<option value=""></option>
+							</select>
+						</td>
+					</tr>
+					<tr md-row ng-if="law.category==='Local Tax Codes'">
+						<td md-cell>Level</td>
+						<td md-cell>
+							<select name="law-level" id="law-level" ng-model="law.level" ng-options="level as level for level in levels" ng-required="law.category=='Local Tax Codes'">
+								<option value=""></option>
+							</select>
+						</td>
+					</tr>
+					<tr md-row>
+						<td md-cell>File</td>
+						<td md-cell>
+							<input id="law-fileinput" name="law-fileinput" type="file" onchange="angular.element(this).scope().onFileChanged(event)" required="true"/>
+						</td>
+					</tr>
+					<tr md-row>
+						<td md-cell>Title</td>						
+						<td md-cell>
+							<input id="law-filetitle" name="law-filetitle" type="text" ng-required="law.file!==null" ng-model="law.title" size="65" />
+						</td>
+					</tr>
+					<tr md-row>
+						<td md-cell>Description</td>						
+						<td md-cell>
+							<textarea id="law-description" name="law-description" rows="3" ng-model="law.description" cols="65" style="resize:none;margin-top:4px;margin-bottom:4px;"></textarea>
+						</td>
+					</tr>
+					<tr md-row>
+						<td md-cell></td>						
+						<td md-cell style="text-align:right">
+							<md-button id="law-btn-reset" type="reset" ng-click="resetForm($event)">Reset</md-button>
+							<md-button class="md-raised md-primary fnt--white" ng-disabled="newLawForm.$invalid" type="submit" name="law-submit">Submit</md-button>	
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</md-table-container>	
+	</form>
+</md-content>

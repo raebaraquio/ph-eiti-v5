@@ -1,0 +1,74 @@
+<style>
+	.thumbnail_wrapper {
+		margin: 20px auto;
+		width: 100%;
+	}
+	
+	.thumbnail_wrapper pdf-thumbnail {
+		display: block;
+		width: 100%;
+	}
+	
+	.thumbnail_wrapper pdf-thumbnail img {
+		width: 25%;
+	}
+</style>
+<md-content layout-padding style="min-width:550px;min-height:465px;">
+	<md-content layout="row" layout-align="space-between center">
+		<h1 style="margin-bottom:0px;padding-bottom:0px;margin-top:0px;">Add New Brochure</h1>
+		<a href="" ng-click="close()" title="Dismiss"><img src="../../images/icons/svg/ic_close_silver_24px.svg" alt="" width="24px"/></a>
+	</md-content>
+	<md-content>
+		<iframe id="newbrochure-iframe" name="newbrochure-iframe" style="width:0px;height:0px;border:none" border="0" onload="newBrochureReturn()"></iframe>
+		<form name="newBrochureForm" id="newBrochureForm" enctype="multipart/form-data" method="POST" autocomplete="off" action="../../rest/functions/resources/add-brochure.php" target="newbrochure-iframe">		
+			<input type="hidden" name="brochure-thumbdata" id="brochure-thumbdata"/>
+			<md-table-container>
+				<table md-table>
+					<tbody md-body>						
+						<tr md-row>
+							<td md-cell>File</td>
+							<td md-cell>
+								<input id="brochure-fileinput" name="brochure-fileinput" type="file" onchange="angular.element(this).scope().onFileChanged(event)" required="true" accept=".pdf" />
+							</td>
+						</tr>
+						<tr md-row ng-show="newBrochure.file && newBrochure.thumbnail_data">
+							<td md-cell>Thumbnail</td>
+							<td md-cell>
+								<div class="thumbnail_wrapper">
+									<pdf-thumbnail data-file="newBrochure.file" data-thumbnail="newBrochure.thumbnail_data" data-thumb-width="500"></pdf-thumbnail>
+								</div>
+							</td>
+						</tr>
+						<tr md-row>
+							<td md-cell>Title</td>						
+							<td md-cell>
+								<input id="brochure-filetitle" name="brochure-filetitle" type="text" ng-required="newBrochure.file!==null || newBrochure.year!==''" ng-model="newBrochure.title" size="65" />
+							</td>
+						</tr>
+						<tr md-row>
+							<td md-cell>Year</td>
+							<td md-cell>
+								<select name="brochure-year" id="brochure-year" ng-model="newBrochure.year" ng-options="year as year for year in years">
+									<option value=""></option>
+								</select>
+							</td>
+						</tr>
+						<tr md-row >
+							<td md-cell title="Event/Activity Name where this brochure was used">Event/Activity Name</td>						
+							<td md-cell>
+								<input id="brochure-eventname" name="brochure-eventname" type="text" ng-required="newBrochure.file!==null || newBrochure.year!==''" ng-model="newBrochure.event_name" size="65" />
+							</td>
+						</tr>
+						<tr md-row>
+							<td md-cell></td>						
+							<td md-cell style="text-align:right">
+								<md-button id="brochure-btn-reset" type="reset" ng-click="resetForm($event)">Reset</md-button>
+								<md-button class="md-raised md-primary fnt--white" ng-disabled="newBrochureForm.$invalid" type="submit" name="brochure-submit">Submit</md-button>	
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</md-table-container>		
+		</form>
+	</md-content>
+</md-content>

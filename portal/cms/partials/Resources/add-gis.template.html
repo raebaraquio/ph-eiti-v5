@@ -1,0 +1,38 @@
+<md-content layout-padding style="min-width:700px;min-height:465px;">
+	<h1 style="margin-bottom:0px;padding-bottom:0px;">Add GIS File</h1>
+	<iframe id="newgis-iframe" name="newgis-iframe" style="width:0px;height:0px;border:none" border="0" onload="newGISreturn()"></iframe>
+	<form name="newGISform" id="newGISform" enctype="multipart/form-data" method="POST" autocomplete="off" action="../../rest/functions/resources/add-gis.php" target="newgis-iframe"  style="margin-bottom:0px;padding-bottom:0px;">		
+		<md-table-container>
+			<table md-table>					
+				<thead md-head>
+					<tr md-row>
+						<th md-column>Year</th>
+						<th md-column>File</th>
+						<th md-column>Title</th>
+					</tr>
+				</thead>
+				<tbody md-body>
+					<tr md-row ng-repeat="(fidx,fval) in newgisfiles">
+						<td md-cell>
+							<select name="year-{{fidx}}" id="year-{{fidx}}" ng-model="fval.year" ng-options="year as year for year in years">
+								<option value=""></option>
+							</select>
+						</td>
+						<td md-cell>
+							<input id="fileinput-{{fidx}}" name="fileinput-{{fidx}}" type="file" onchange="angular.element(this).scope().onFileChanged(event)" />
+						</td>
+						<td md-cell>
+							<input id="filetitle-{{fidx}}" name="filetitle-{{fidx}}" type="text" ng-model="fval.title" ng-required="fval.year!=='' && fval.file!==null" size="65" />
+						</td>
+					</tr>
+					<tr md-row>
+						<td md-cell colspan="3" style="text-align:right">
+							<md-button id="gis-btn-reset" type="reset" ng-click="resetForm($event)">Reset</md-button>
+							<md-button class="md-raised md-primary fnt--white" type="submit" name="gis-submit">Submit</md-button>	
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</md-table-container>	
+	</form>
+</md-content>

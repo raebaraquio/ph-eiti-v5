@@ -1,14 +1,24 @@
 (function(){
 	angular
 		.module('cms')
+		.filter('formatDate',formatDate)
 		.factory('ActivitiesDataFactory',ActivitiesDataFactory)
 		.controller('CMSActivitiesController',CMSActivitiesController);
+
+	function formatDate(){
+        return function(input) {
+           return moment(input).format('LL')
+        };
+    } 
 
 	ActivitiesDataFactory.$inject = ['$http']
 	function ActivitiesDataFactory($http){
 
 		var ActivitiesDataFactory = {
-			get: get
+			get: get,
+			getOne: getOne,
+			getAll: getAll,
+			getYears: getYears
 		};
 		return ActivitiesDataFactory;
 		
@@ -19,6 +29,29 @@
 	            url:'../../rest/functions/cms-activities/get.php',
 	            method: 'GET'
 	        });
+		}
+
+		function getAll(year){
+			var year = year ? '?year='+year : '';
+			return $http({
+				url:'../../rest/functions/activities/getAll.php'+year,
+				method:'GET'
+			});
+		}
+
+		function getOne(id){
+			var id = id ? '?id='+id : '';
+			return $http({
+				url:'../../rest/functions/activities/getOne.php'+id,
+				method:'GET'
+			});
+		}
+
+		function getYears(){
+			return $http({
+				url:'../../rest/functions/activities/getYears.php',
+				method:'GET'
+			});
 		}
 	}
 
@@ -41,22 +74,43 @@
 		}
 
 		$scope.activities = [];
-		$scope.years = [];
-		var start = 2013, current = parseInt( (new Date()).getFullYear(), 10);
-		for (var idx=current;idx>=start;idx--){
-			$scope.years.push(idx);
-		}
-
-		$scope.filterYear = $scope.years[0];
 		$scope.filterKeyword = '';
 
-		$scope.promise = ActivitiesDataFactory.get();
-		$scope.promise.then(function(response){
-			console.log(response)
-			$scope.activities = response.data.data;
-			delete $scope.promise
-		},function(err){
-			delete $scope.promise
-		});
+		function getYears(){
+			$scope.years = [];
+			$scope.getpromise = ActivitiesDataFactory.getYears();
+			$scope.getpromise.then(function(response){
+				delete $scope.getpromise;
+				$scope.years = response.data.years;
+				$scope.filterYear = $scope.years[0];
+				// getActivities(true);
+			},function(err){
+				delete $scope.getpromise;
+			});
+		}
+
+		function getActivities(mode){
+			if (mode===true) {
+				$scope.getpromise = ActivitiesDataFactory.getAll($scope.filterYear);	
+			}
+			else {
+				var id = $location.path().split('/')[1];
+				$scope.getpromise = ActivitiesDataFactory.getOne(id);
+			}
+			$scope.getpromise.then(function(response){
+				$scope.activities = response.data;
+				console.log($scope.activities)
+				delete $scope.getpromise;
+			},function(err){
+				delete $scope.getpromise;
+			});
+		}
+		$scope.$watch('filterYear',function(v){
+			if (v) {
+				getActivities(true)
+			}
+		})
+		
+		getYears(true);
 	}
 })();

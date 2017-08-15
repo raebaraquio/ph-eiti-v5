@@ -1,0 +1,44 @@
+<md-content layout-padding style="min-width:700px;min-height:465px;">
+	<md-content layout="row" layout-align="space-between center">
+		<h1 style="margin-bottom:0px;padding-bottom:0px;margin-top:0px;">Add New Study</h1>
+		<a href="" ng-click="close()" title="Dismiss"><img src="../../images/icons/svg/ic_close_silver_24px.svg" alt="" width="24px"/></a>
+	</md-content>
+	<!-- <div style="display:block;width:100%;text-align:right;">
+	</div> -->	
+	<iframe id="newstudy-iframe" name="newstudy-iframe" style="width:0px;height:0px;border:none" border="0" onload="newStudyReturn()"></iframe>
+	<form name="newStudyForm" id="newStudyForm" enctype="multipart/form-data" method="POST" autocomplete="off" action="../../rest/functions/resources/add-study.php" target="newstudy-iframe"  style="margin-bottom:0px;padding-bottom:0px;">
+		<md-table-container>
+			<table md-table>
+				<tbody md-body>
+					<tr md-row>
+						<td md-cell>Year</td>
+						<td md-cell>
+							<select name="study-year" id="study-year" ng-model="study.year" ng-options="year as year for year in years">
+								<option value=""></option>
+							</select>
+						</td>
+					</tr>
+					<tr md-row>
+						<td md-cell>File</td>
+						<td md-cell>
+							<input id="study-fileinput" name="study-fileinput" type="file" onchange="angular.element(this).scope().onFileChanged(event)" required="true"/>
+						</td>
+					</tr>
+					<tr md-row ng-if="wplanType!=='Work Plan'">
+						<td md-cell>Title</td>						
+						<td md-cell>
+							<input id="study-filetitle" name="study-filetitle" type="text" ng-required="study.file!==null || study.year!==''" ng-model="study.title" size="65" />
+						</td>
+					</tr>
+					<tr md-row>
+						<td md-cell></td>						
+						<td md-cell style="text-align:right">
+							<md-button id="study-btn-reset" type="reset" ng-click="resetForm($event)">Reset</md-button>
+							<md-button class="md-raised md-primary fnt--white" ng-disabled="newStudyForm.$invalid" type="submit" name="study-submit">Submit</md-button>	
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</md-table-container>	
+	</form>
+</md-content>

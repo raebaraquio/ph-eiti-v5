@@ -22,7 +22,7 @@ Class Resources{
 						date_added,
 						date_last_updated
 					from resources_activity_reports 
-					order by date_added desc";
+					order by date_added asc";
 
 		$getResult = mysql_query($query);
 
@@ -85,11 +85,11 @@ Class Resources{
 		    }
 
 		  	return $brochureData;
-		    exit();
+		    // exit();
 		}
 		else {
 		    return array();
-		    exit();    
+		    // exit();    
 		}
 	}
 

@@ -1,5 +1,4 @@
-// ,'utilsModule','sessionModule'
-var cms = angular.module('cms', ['ngCookies','ngSanitize','ngRoute','navigationDirective','userprofile','ngAnimate','cgBusy','ui.tinymce','ngMaterial'])
+var cms = angular.module('cms', ['ngCookies','ngSanitize','ngRoute','navigationDirective','userprofile','ngAnimate','cgBusy','ui.tinymce','ngMaterial','inputfileupload','angular-pdf-thumbnail','utilsModule','angular-thumbnails','md.data.table'])
 cms.config(function($routeProvider){
 	$routeProvider
 	.when('/',
@@ -60,39 +59,46 @@ cms.config(function($routeProvider){
 	{
 		controller:'CMSActivitiesController',
 		templateUrl:'./partials/Activities/index.html'
-	})	
-
+	})
+	.when('/MSG Meetings',
+	{
+		controller:'CMSMSGMeetingsController',
+		templateUrl:'./partials/MSG Meetings/index.html'
+	})
+	.when('/Reporting Templates',
+	{
+		controller:'CMSReportingTemplatesController',
+		templateUrl:'./partials/Reporting Templates/index.html'
+	})
 	.when('/Country Report',
 	{
 		controller:'CMSReportController',
 		templateUrl:'./partials/Country Report/index.html'
 	})
-
-	// .when('/EITI-in-other-Countries',
-	// {
-	// 	controller:'CMSNewsController',
-	// 	templateUrl:'./partials/News/index.html'
-	// })
-	// .when('/Blogs',
-	// {
-	// 	controller:'CMSNewsController',
-	// 	templateUrl:'./partials/News/index.html'
-	// })
-	// .when('/MSG-Member-of-the-Month',
-	// {
-	// 	controller:'CMSNewsController',
-	// 	templateUrl:'./partials/News/index.html'
-	// })
-	// .when('/Announcements',
-	// {
-	// 	controller:'CMSAnnouncementsController',
-	// 	templateUrl:'./partials/Announcements/index.html'
-	// })	
 });
 
-cms.config(function($mdThemingProvider) {
-	
+// .when('/EITI-in-other-Countries',
+// {
+// 	controller:'CMSNewsController',
+// 	templateUrl:'./partials/News/index.html'
+// })
+// .when('/Blogs',
+// {
+// 	controller:'CMSNewsController',
+// 	templateUrl:'./partials/News/index.html'
+// })
+// .when('/MSG-Member-of-the-Month',
+// {
+// 	controller:'CMSNewsController',
+// 	templateUrl:'./partials/News/index.html'
+// })
+// .when('/Announcements',
+// {
+// 	controller:'CMSAnnouncementsController',
+// 	templateUrl:'./partials/Announcements/index.html'
+// })	
 
+cms.config(function($mdThemingProvider) {
 	/* Blue is primary; Yellow is accent; */
 	 var customPrimary = {
         '50': '#4c8cc7',

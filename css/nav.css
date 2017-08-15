@@ -323,7 +323,7 @@ img {
 	background: transparent;
 	font-size: 0.8em;
 	color: #1b1b1b;
-	transition:width 0.5s ease-in-out;
+	transition:width 0.2s ease-in-out;
 	border: none;
 	border-bottom: 1px solid #d8d8d8;
 	outline: none;

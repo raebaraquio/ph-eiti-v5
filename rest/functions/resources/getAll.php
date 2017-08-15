@@ -36,7 +36,11 @@ switch ($content) {
 
 	case 'Infographics':
 		$year_arr = array_merge($resources->get_brochures_yr(),$resources->get_infographics_yr());
-		$return_data['years'] = array_unique($year_arr, SORT_REGULAR);
+		$sortedYears = array_unique($year_arr, SORT_REGULAR);
+		$return_data['years'] = array();
+		foreach ($sortedYears as $key => $value) {
+			array_push($return_data['years'],$sortedYears[$key]);
+		}
 		$return_data['content'] = array_merge($resources->get_infographics(),$resources->get_brochures());
 		break;
 	

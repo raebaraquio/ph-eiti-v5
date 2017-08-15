@@ -1,0 +1,35 @@
+<md-content layout-padding>
+    <h1>Manage Reporting Templates</h1>
+    <div layout="column">
+        <md-content layout="row" layout-align="start center">
+            <md-input-container flex="45" style="width:300px">
+                <label>Select Sector</label>
+                    <md-select data-ng-model="filterSector">
+                        <md-option data-ng-repeat="sector in sectors" value="{{sector}}">{{sector}}</md-option>
+                    </md-select>
+            </md-input-container>
+            <md-input-container flex="35">                    
+                <label>Select Year</label>
+                <md-select data-ng-model="filterYear">
+                    <md-option data-ng-repeat="year in years" value="{{year}}">{{year}}</md-option>
+                </md-select>
+            </md-input-container>
+            <md-button ng-disabled="!filterYear" class="md-primary fnt--white md-raised" ng-click="addRepTemp($event)">Add</md-button> 
+               
+        </md-content>
+    </div>
+    <div layout="row" layout-align="space-between center">
+        <md-content flex="100" layout-fill layout="row" layout-wrap>
+            <md-card flex="45" layout="row" data-ng-repeat="(k,template) in templates | filter:{year:filterYear,sector:filterSector}" class="card-container">
+                <md-card-title flex="70">
+                    <md-card-title-text class="ta-left">
+                        <span class="md-headline" title="{{template.title}}" style="font-size:1em;line-height:1em;">{{template.title}}</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-actions flex="30" layout="row" layout-align="end center">
+                    <md-button class="md-accent" data-ng-if="template.file_url" data-ng-click="open_file(template.file_url,template)" alt="Download {{template.title}} Reporting Template"  title="Download {{template.title}} Reporting Template"><strong>Download</strong></md-button>
+                </md-card-actions>
+            </md-card>
+        </md-content> 
+    </div>
+</md-content>

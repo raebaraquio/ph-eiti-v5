@@ -1,6 +1,189 @@
 <md-content layout-padding>
-    <h1>Manage Documents</h1>
-    <div layout="row" layout-align="space-between center">
-       
+    <h1>Manage Resources - {{selectedResourceType}}</h1>
+    <div layout="column">
+       	<md-content layout="row" layout-align="start center">
+            <md-input-container flex="45" style="width:300px">
+                <label>Select Resource Type</label>
+                <md-select data-ng-model="selectedResourceType">
+                	<md-option data-ng-repeat="rtype in resourceTypes" value="{{rtype.name}}">{{rtype.name}}</md-option>
+                </md-select>
+            </md-input-container>
+            <md-button ng-disabled="!selectedResourceType" class="md-primary fnt--white md-raised" ng-click="addResources($event)">Add</md-button> 
+            <md-content flex="35" layout="row" layout-align="end center">
+                <md-input-container flex="75" ng-show="years.length">
+                    <label>Select Year</label>
+                    <md-select data-ng-model="filterYear">
+                        <md-option data-ng-repeat="year in years" value="{{year}}">{{year}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container flex="75" ng-show="lawTypes.length">
+                    <label>Select Type</label>
+                    <md-select data-ng-model="filterContentType">
+                        <md-option data-ng-repeat="lawtype in lawTypes" value="{{lawtype}}">{{lawtype}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container flex="75" ng-show="allfolders.length">
+                    <label>Select Folder</label>
+                    <md-select data-ng-model="filterContentType">
+                        <md-option data-ng-repeat="folder in allfolders" value="{{folder.folder_id}}">{{folder.folder_name}}</md-option>
+                    </md-select>
+                </md-input-container>
+            </md-content>            
+        </md-content>
     </div>
+    <md-content flex="100" layout-fill layout-padding layout="row" layout-align="center center">
+        <md-progress-circular data-ng-show="getpromise" class="md-secondary" md-mode="indeterminate"></md-progress-circular>
+    </md-content>
+    <md-content ng-if="!getpromise">
+
+        <!-- Activity Reports -->
+        <md-content flex="100" layout-fill layout="row" layout-wrap ng-if="selectedResourceType==='Activity Reports'">
+            <div flex="33" data-ng-repeat="(aprk,apr) in contentData" class="card-container">
+                <md-card>
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-subhead" title="{{apr.title}}">{{apr.title}}</span>
+                            <span class="md-headline" data-ng-if="apr.coverage" style="word-wrap:break-word;">{{apr.coverage}}</span>
+                        </md-card-title-text>
+                        <md-card-title-media>
+                            <div class="md-media-md card-media">
+                                <img data-ng-src="../{{apr.card_icon_url}}" class="md-card-image" alt="{{apr.title}}"/>
+                            </div>
+                        </md-card-title-media>
+                    </md-card-title>
+                    <md-card-actions layout="row" layout-align="center center">                        
+                        <md-button aria-label="Open File" class="md-default" data-ng-show="apr.file_url!==''" data-ng-click="openAR(apr.file_url,apr)"><strong>Open</strong></md-button>
+                        <!-- <md-menu md-offset="0 -5">
+                            <md-button class="md-default" aria-label="Open Edit Menu" ng-click="openMenu($mdOpenMenu, $event)">Edit</md-button>
+                            <md-menu-content width="4">
+                                <md-menu-item>
+                                    <md-button aria-label="Change File" class="md-primary" ng-click="changeFile(apr,$event)">Change File</md-button>
+                                </md-menu-item>                                
+                                <md-menu-item>
+                                    <md-button aria-label="Edit Thumbnail" class="md-primary" ng-click="editThumbnail(apr,$event)">Change Thumbnail</md-button>
+                                </md-menu-item>
+                                <md-menu-item>
+                                    <md-button aria-label="Edit Month/Yr Coverage" class="md-primary" ng-click="editAPRCoverage(apr,$event)">Edit Month/Yr Coverage</md-button>
+                                </md-menu-item>
+                            </md-menu-content>
+                        </md-menu> -->
+                    </md-card-actions>
+                </md-card>            
+            </div>
+        </md-content>    
+        <!-- End: Activity Reports -->
+
+        <!-- Infographics -->
+        <md-content flex="100" layout-fill layout="row" layout-wrap ng-if="selectedResourceType==='Infographics' || selectedResourceType==='Brochures'">
+            <div flex="100" layout-fill layout="row" layout-wrap>   
+                <md-card flex="45" layout="row" data-ng-repeat="(k,infomaterial) in contentData | filter:{contentType:filterContentType,file_url:filterKeyword,year:filterYear}"  class="card-container">
+                    <div flex="25" layout="left left" class="infographic-card-icon" style="background:url('../../{{infomaterial.cardicon_url}}')">
+                    </div>              
+                    <md-card-title flex="50">
+                        <md-card-title-text class="ta-left">
+                            <span class="md-headline" style="font-size:1.25em;line-height:1em;">{{infomaterial.title}}</span>
+                            <span class="md-subhead" data-ng-show="infomaterial.other_info || infomaterial.event_name || infomaterial.newsletter_issue">{{infomaterial.other_info  || infomaterial.event_name || infomaterial.newsletter_issue }}</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-actions flex="25" layout="row" layout-align="end center">
+                        <md-button class="md-accent" data-ng-click="openFile(infomaterial.file_url,infomaterial)"><strong>Open</strong></md-button>
+                    </md-card-actions>
+                </md-card>
+            </div>
+        </md-content>  
+        <!-- End: Infographics -->
+        
+        <!-- GIS -->
+        <md-content flex="100" layout-fill layout="row" layout-wrap ng-if="selectedResourceType==='General Information Sheet'">
+            <div flex="100" layout-fill layout="row" layout-wrap>   
+                <md-card flex="45" layout="row" data-ng-repeat="(kfolder,folderFile) in contentData | filter:{year:filterYear}"  class="card-container">
+                    <md-card-title flex="70">
+                        <md-card-title-text class="ta-left">
+                            <span class="md-headline" style="font-size:1.25em;line-height:1em;" title="{{folderFile.title}}">{{folderFile.title}}</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-actions flex="30" layout="row" layout-align="end center">
+                        <md-button class="md-accent"  data-ng-show="folderFile.file_url!==''" data-ng-click="openFile(folderFile.file_url,folderFile)" alt="Open {{folderFile.title}}}"  title="Open {{folderFile.title}}}"><strong>Open</strong></md-button>
+                        <md-button class="md-secondary" data-ng-show="folderFile.file_url===''" title="{{folderFile.title}} is unavailable"><strong>Unavailable</strong></md-button>
+                    </md-card-actions>
+                </md-card>
+            </div>
+        </md-content>
+        <!-- End: GIS -->
+
+        <!-- BO Roadmap / Work Plan -->
+        <md-content flex="100" layout-fill layout="row" layout-wrap ng-if="selectedResourceType==='BO Roadmap' || selectedResourceType==='Work Plan'">
+            <div flex="100" layout-fill layout="row" layout-wrap>   
+                <md-card flex="45" layout="row" data-ng-repeat="(kfolder,wplan) in contentData | filter:{workplan_type:filterContentType,year_covered:filterYear}"  class="card-container">
+                    <md-card-title flex="70">
+                        <md-card-title-text class="ta-left">
+                            <span class="md-headline" style="font-size:1.25em;line-height:1em;" title="{{wplan.title}}">{{wplan.title}}</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-actions flex="30" layout="row" layout-align="end center">
+                        <md-button class="md-accent"  data-ng-show="wplan.file_url!==''" data-ng-click="openAR(wplan.file_url,wplan)" alt="Open {{wplan.title}}}"  title="Open {{wplan.title}}}"><strong>Open</strong></md-button>
+                        <md-button class="md-secondary" data-ng-show="wplan.file_url===''" title="{{wplan.title}} is unavailable"><strong>Unavailable</strong></md-button>
+                    </md-card-actions>
+                </md-card>
+            </div>
+        </md-content>  
+        <!-- End: BO Roadmap / Work Plan -->
+
+
+        <!-- Studies -->
+        <md-content flex="100" layout-fill layout="row" layout-wrap ng-if="selectedResourceType==='Studies'">
+            <div flex="100" layout-fill layout="row" layout-wrap>   
+                <md-card flex="45" layout="row" data-ng-repeat="(kfolder,study) in contentData | filter:{year:filterYear}"  class="card-container">
+                    <md-card-title flex="70">
+                        <md-card-title-text class="ta-left">
+                            <span class="md-headline" style="font-size:1.25em;line-height:1em;" title="{{study.title}}">{{study.title}}</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-actions flex="30" layout="row" layout-align="end center">
+                        <md-button class="md-accent"  data-ng-show="study.file_url!==''" data-ng-click="openFile(study.file_url,study)" alt="Open {{study.title}}}"  title="Open {{study.title}}}"><strong>Open</strong></md-button>
+                        <md-button class="md-secondary" data-ng-show="study.file_url===''" title="{{study.title}} is unavailable"><strong>Unavailable</strong></md-button>
+                    </md-card-actions>
+                </md-card>
+            </div>
+        </md-content>  
+        <!-- End: Studies -->
+
+        <!-- Laws and Legal Issuances -->
+        <md-content flex="100" layout-fill layout="row" layout-wrap layout-wrap ng-if="selectedResourceType==='Laws and Legal Issuances'">
+            <div flex="100" layout-fill layout="row" layout-wrap>   
+                <md-card flex="45" layout="row" data-ng-repeat="(kfolder,law) in contentData | filter:{category:filterContentType}"  class="card-container">
+                    <md-card-title flex="70">
+                        <md-card-title-text class="ta-left">
+                            <span class="md-headline" style="font-size:1.25em;line-height:1em;" title="{{law.title}}">{{law.title}}</span><br/>
+                            <em class="md-truncate" ng-if="law.description"><small>{{law.description}}</small></em>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-actions flex="30" layout="row" layout-align="end center">
+                        <md-button class="md-accent"  data-ng-show="law.file_url!==''" data-ng-click="openLawFile(law.file_url,law)" alt="Open {{law.title}}}"  title="Open {{law.title}}}"><strong>Open</strong></md-button>
+                        <md-button class="md-secondary" data-ng-show="law.file_url===''" title="{{law.title}} is unavailable"><strong>Unavailable</strong></md-button>
+                    </md-card-actions>
+                </md-card>
+            </div>         
+        </md-content>  
+        <!-- End: Laws and Legal Issuances -->
+
+        <!-- Organizational Documents -->
+        <md-content flex="100" layout-fill layout="row" layout-wrap layout-wrap ng-if="selectedResourceType==='Organizational Documents'">
+            <div flex="100" layout-fill layout="row" layout-wrap>   
+                <md-card flex="45" layout="row" data-ng-repeat="(kfolder,orgdocfile) in contentData | filter:{folder_id:filterContentType}"  class="card-container">
+                    <md-card-title flex="70">
+                        <md-card-title-text class="ta-left">
+                            <span class="md-headline" style="font-size:1.25em;line-height:1em;" title="{{orgdocfile.file_title}}">{{orgdocfile.file_title}}</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-actions flex="30" layout="row" layout-align="end center">
+                        <md-button class="md-accent"  data-ng-show="orgdocfile.file_url!==''" data-ng-click="openAR(orgdocfile.file_url,orgdocfile)" alt="Open {{orgdocfile.file_title}}}"  title="Open {{orgdocfile.file_title}}}"><strong>Open</strong></md-button>
+                        <md-button class="md-secondary" data-ng-show="orgdocfile.file_url===''" title="{{orgdocfile.file_title}} is unavailable"><strong>Unavailable</strong></md-button>
+                    </md-card-actions>
+                </md-card>
+            </div>         
+        </md-content>  
+        <!-- End: Organizational Documents -->
+        
+    </md-content>
 </md-content>

@@ -1,0 +1,58 @@
+<md-content layout-padding>
+    <h1>Manage MSG Meetings</h1>
+    <div layout="column">
+        <md-content layout="row" layout-align="start center">
+            <md-input-container flex="45" style="width:300px">
+                <label>Select Meeting</label>
+                <md-select data-ng-model="filterTitle" data-ng-change="load_meeting(filterTitle)">
+                    <md-option data-ng-repeat="mtg in meetings" value="{{mtg.mtg_title}}">{{mtg.mtg_title}} Meeting</md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container flex="30">
+                <md-button class="md-raised md-default" data-ng-disabled="selectedIdx == meetings.length-1" data-ng-click="getPrevMtg()">Prev</md-button><md-button class="md-raised md-default" data-ng-disabled="selectedIdx == 0"  data-ng-click="getNexMtg()">Next</md-button>
+            </md-input-container>
+            <md-button class="md-primary fnt--white md-raised" ng-click="addMSGMeeting($event)">Add New MSG Meeting</md-button> 
+               
+        </md-content>
+    </div>
+    <div layout="row" layout-align="space-between center">
+        <md-content layout="column" data-ng-show="meeting_selected.mtg_title">    
+            <h1 class="mrgin-0 padd-0" style="padding:0px;margin:0px;">{{meeting_selected.mtg_title}} MSG Meeting</h1>
+
+            <p class="mrgin-0 padd-0" style="padding:0px;margin:0px;">{{meeting_selected.mtg_venue}}</p>
+            <small class="mrgin-0 padd-0 fnt--gray" style="padding:0px;margin:0px;margin-top:0.5em;">{{meeting_selected.mtg_date | formatDate}} | {{meeting_selected.mtg_time}}</small><br/>
+            <!-- <small class="mrgin-0 padd-0 fnt--gray" style="padding:0px;margin:0px;margin-top:0.5em;">{{meeting_selected.updated}}</small> -->
+
+            <!-- <h3 data-ng-show="meeting_selected.agenda">Agenda</h3>         
+            <md-list>
+                <md-list-item data-ng-repeat="(idx,agenda) in meeting_selected.agenda" style="height:auto;min-height:1.5em;">
+                    <div class="md-list-item-text" style="padding:0px;margin:0px;">
+                        <p class="ww-breakword" style="padding:0px;margin:0px;">{{idx+1}}. {{agenda}}</p>
+                    </div>
+                </md-list-item>
+            </md-list> -->      
+
+            <div layout="row" style="margin-top:10px;">
+                <md-button class="md-raised md-accent" data-ng-click="download_minutes(meeting_selected.minutes_url)" title="Download Minutes of {{meeting_selected.mtg_title}} MSG Meeting">Download Minutes</md-button>           
+            </div>            
+
+            <h3 data-ng-show="meeting_selected.annexes && meeting_selected.annexes.length > 0">Annex</h3>  
+            <md-content data-ng-show="meeting_selected.annexes && meeting_selected.annexes.length > 0">
+                <div flex="100" layout-fill layout="row" layout-wrap>   
+                    <md-card flex="45" layout="row" data-ng-repeat="(idx,annex) in meeting_selected.annexes" title="{{annex.title}}" class="card-container">
+                        <md-card-title flex="70">
+                            <md-card-title-text class="ta-left">
+                                <span class="md-headline" title="{{annex.title}}" style="font-size:1.25em;line-height:1em;">{{annex.title}}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-actions flex="30" layout="row" layout-align="end center">
+                            <md-button class="md-accent" data-ng-if="annex.file" title="{{annex.title}}" data-ng-click="download_minutes(annex.file)"><strong>Download</strong></md-button>
+                        </md-card-actions>
+                    </md-card>
+                </div>
+            </md-content>
+
+
+        </md-content>    
+    </div>
+</md-content>

@@ -1,5 +1,5 @@
-cms.controller('CMSController',['$scope','sessionService',
-	function($scope,sessionService){
+cms.controller('CMSController',['$scope','sessionService','$location','$rootScope',
+	function($scope,sessionService,$location,$rootScope){
 	
 	if (sessionService.inSession()===false) {
 		window.location.href = '../../portal/';
@@ -22,27 +22,39 @@ cms.controller('CMSController',['$scope','sessionService',
 	$scope.selectedContent = "Home";
 	$scope.tasks = [
 		{
-			task:'Manage News',
+			task:'News',
 			href:'#/News',
 			desc:'Create news articles here',
 			icon: '../../images/icons/svg/ic_local_library_black_24px.svg'
 			// You may publish the article right away or just save it as a draft.'
 		},
 		{
-			task:'Manage Resources',
+			task:'Resources',
 			href:'#/Resources',
-			desc:'Lets you upload documents under Resources',
+			desc:'Upload documents under Resources',
 			icon: '../../images/icons/svg/ic_insert_drive_file_black_24px.svg'
 			// like Work Plan, Activity Reports, Laws, Infographics & Brochures, Organizational Documents, and General Information Sheet.'
 		},
 		{
-			task:'Manage Activities',
+			task:'Activities',
 			href:'#/Activities',
 			desc:'Create a new or update existing activity',
 			icon: '../../images/icons/svg/ic_event_black_24px.svg'
 		},
 		{
-			task:'Manage Country Report',
+			task:'MSG Meetings',
+			href:'#/MSG Meetings',
+			desc:'Add and/or Update MSG Meetings',
+			icon: '../../images/icons/svg/ic_event_black_24px.svg'
+		},
+		{
+			task:'Reporting Templates',
+			href:'#/Reporting Templates',
+			desc:'Upload Reporting Templates',
+			icon: '../../images/icons/svg/ic_class_black_24px.svg'
+		},
+		{
+			task:'Country Report',
 			href:'#/Country Report',
 			desc:'Update content or documents of Country Reports',
 			icon: '../../images/icons/svg/ic_class_black_24px.svg'
@@ -52,7 +64,19 @@ cms.controller('CMSController',['$scope','sessionService',
 			href:'../../login',
 			desc:'Exit Content Manager Portal',
 			icon: '../../images/icons/svg/ic_power_settings_new_black_24px.svg'
+		},
+		{
+			task:'Go to PH-EITI webite',
+			href:'../../',
+			desc:'',
+			icon: '../../images/icons/svg/ic_home_black_24px.svg'
 		}
 	]
+
+	$rootScope.$on('$routeChangeSuccess', function(next, current) { 
+		console.log(next)
+		console.log('here!!!!')
+		// ... you could trigger something here ...	
+	});
 
 }]);

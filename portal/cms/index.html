@@ -4,17 +4,20 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Content Management | PH-EITI</title>
     <link rel="icon" type="image/gif" href="../../images/eitifavicon.ico">
-    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/nstyle.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/basic.css"/>
+    <!-- <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/nstyle.css"/> -->
     <link rel="stylesheet" type="text/css" href="../css/portal-style.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/angular-busy.css"/>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/md-data-table.min.css"> 
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic|Roboto+Mono:400|Material+Icons" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'> -->
     <link rel="stylesheet" href="../../css/angular-material.min.css?v1.1.0-rc2"> 
 </head>
 
-<body> 
+<body id="cms-content-placeholder"> 
 	<md-content ng-cloak ng-controller="CMSController">
 		<md-toolbar class="md-accent" layout="row" layout-align="space-between center">
 			<div flex="25" layout="column" style="padding-left:1em;box-sizing:border-box;">
@@ -28,18 +31,18 @@
 		<md-content id="content-manager-box">
 			<md-content layout="row" style="overflow-x:hidden">
 				<md-content flex="25" layout="column" style="background-color:#fefefe">
-					<md-list flex>
-						<md-list-item class="md-3-line" ng-repeat="item in todos" ng-click="null">
+					<md-list class="md-dense" flex>
+						<!-- <md-list-item class="md-3-line" ng-repeat="item in todos" ng-click="null">
 							<img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />
 							<div class="md-list-item-text" layout="column">
 								<h3>{{ item.who }}</h3>
 								<h4>{{ item.what }}</h4>
 								<p>{{ item.notes }}</p>
 							</div>
-						</md-list-item>
+						</md-list-item> -->
 						<!-- <md-subheader class="md-no-sticky">3 line item (with hover)</md-subheader> -->
-						<md-list-item class="md-3-line" ng-repeat="(k,cr) in tasks" title="{{cr.task}}">
-							<img ng-src="{{cr.icon}}" class="md-avatar" />
+						<md-list-item class="md-2-line" ng-repeat="(k,cr) in tasks" title="{{cr.task}}">
+							<!-- <img ng-src="{{cr.icon}}" class="md-avatar" /> -->
 							<div class="md-list-item-text" layout="column">
 								<h3><a class="resetLink" href="{{cr.href}}">{{cr.task}}</a></h3>
 								<h4>{{ cr.desc }}</h4>
@@ -80,6 +83,11 @@
 <script src="../js/modules/sessionService.js"></script>
 <script src="../js/modules/portal-directives.js"></script>
 <script src="js/lib/tinymce.js"></script>
+<script src="js/lib/pdf/pdf.js"></script>
+<script src="js/lib/md-data-table.min.js"></script>
+<script src="js/lib/angular-thumbnails.js"></script>
+<script src="js/lib/angular-pdf-thumbnail.js"></script>
+<script src="js/inputfileupload.js"></script>
 <script src="js/cms-module.js"></script>
 
 <script src="js/factories/NewsFactory.js"></script>
@@ -92,10 +100,12 @@
 <script src="js/controllers/CMSAddNewsController.js"></script>
 <script src="js/controllers/CMSEditNewsController.js"></script>
 
-<script src="js/controllers/CMSActivitiesAddController.js"></script>
 <script src="js/controllers/CMSActivitiesController.js"></script>
+<script src="js/controllers/CMSActivitiesAddController.js"></script>
 <script src="js/controllers/CMSResourcesController.js"></script>
+<script src="js/controllers/CMSReportingTemplatesController.js"></script>
 <script src="js/controllers/CMSReportController.js"></script>
+<script src="js/controllers/CMSMSGMeetingsController.js"></script>
 
 <!-- <script src="js/factories/ProfileFactory.js"></script>
 <script src="js/controllers/ProfileController.js"></script>

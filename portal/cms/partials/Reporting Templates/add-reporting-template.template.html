@@ -1,0 +1,75 @@
+<style>
+	.thumbnail_wrapper {
+		margin: 20px auto;
+		width: 100%;
+	}
+	
+	.thumbnail_wrapper pdf-thumbnail {
+		display: block;
+		width: 100%;
+	}
+	
+	.thumbnail_wrapper pdf-thumbnail img {
+		width: 25%;
+	}
+</style>
+<md-content layout-padding style="min-width:550px;min-height:465px;">
+	<md-content layout="row" layout-align="space-between center">
+		<h1 style="margin-bottom:0px;padding-bottom:0px;margin-top:0px;">Add Reporting Template</h1>
+		<a href="" ng-click="close()" title="Dismiss"><img src="../../images/icons/svg/ic_close_silver_24px.svg" alt="" width="24px"/></a>
+	</md-content>
+	<md-content>
+		<iframe id="newreptemplate-iframe" name="newreptemplate-iframe" style="width:0px;height:0px;border:none" border="0" onload="newRepTemplateReturn()"></iframe>
+		<form name="newRepTemplateForm" id="newRepTemplateForm" enctype="multipart/form-data" method="POST" autocomplete="off" action="../../rest/functions/reporting-templates/add-reporting-templates.php" target="newreptemplate-iframe">		
+			<md-table-container>
+				<table md-table>
+					<tbody md-body>
+						<tr md-row>
+							<td md-cell>File</td>
+							<td md-cell>
+								<input id="rt-fileinput" name="rt-fileinput" type="file" ng-required="true" onchange="angular.element(this).scope().onFileChanged()" />
+							</td>
+						</tr>
+						<tr md-row>
+							<td md-cell>Year</td>
+							<td md-cell>
+								<select name="rt-year" id="rt-year" ng-model="study.year" ng-options="year as year for year in years" required="true">
+									<option value=""></option>
+								</select>
+							</td>
+						</tr>
+						<tr md-row>
+							<td md-cell>Sector</td>
+							<td md-cell>
+								<select name="rt-sector" id="rt-sector" ng-model="newreptemp.sector" required="true"  ng-options="sector as sector for sector in sectors" >
+									<option value=""></option>
+								</select>
+							</td>
+						</tr>						
+						<tr md-row ng-show="newreptemp.sector!=='Industry'">
+							<td md-cell>Agency Name</td>						
+							<td md-cell>
+								<input type="text" name="rt-agency" id="rt-agency" ng-model="newreptemp.agency" size="30" ng-required="newreptemp.sector!=='Industry'"/> <em ng-if="errorMessage!==''" style="font-size:0.8em;color:red;">{{errorMessage}}</em>
+							</td>
+						</tr>
+						<tr md-row ng-show="newreptemp.sector=='Industry'">
+							<td md-cell>Industry</td>						
+							<td md-cell>
+								<select name="rt-industry" id="rt-industry" ng-model="newreptemp.industry" ng-options="industry as industry for industry in industries" ng-required="newreptemp.sector=='Industry'">
+									<option value=""></option>
+								</select>
+							</td>
+						</tr>
+						<tr md-row>
+							<td md-cell></td>						
+							<td md-cell style="text-align:right">
+								<md-button type="reset" ng-click="resetForm($event)">Reset</md-button>
+								<md-button class="md-raised md-primary fnt--white" type="submit" name="rt-submit" ng-disabled="newRepTemplateForm.$invalid">Submit</md-button>	
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</md-table-container>				
+		</form>
+	</md-content>
+</md-content>

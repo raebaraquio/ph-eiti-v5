@@ -29,25 +29,32 @@ class Upload {
 		return date('d');
 	}
 
-	public function createfilepath($uploadType,$contentSection,$filename){
+	public function createfilepath($uploadType,$contentSection,$filename,$fromCMS){
 		$domain = $_SERVER["HTTP_ORIGIN"];
 		$host = $_SERVER["HTTP_HOST"];
 		/*if ($host=='localhost') {*/
 			$domain = "../..";
 		/*}*/
+		if (isset($fromCMS) && $fromCMS==TRUE) {
+			$domain = "../../..";
+		}
 		$targetDirectory = array('picture'=>array('Newsletter'=>$domain.'/app/News/images/newsletter-inlines',
 												 'ActivityCover'=>$domain.'/images/_activities/cp/',
 												 'HomeBanner'=>$domain.'/images/',
 												 'Infographic'=>$domain.'/images/infographic',
 												 'RelatedLink'=>$domain.'/images/related',
 												 'Secretariat'=>$domain.'/images/secretariat'),
-									 'document'=>array('Document'=>$domain.'/document/',
+									 'document'=>array('Document'=>$domain.'/document',
 												 'EITIReport'=>$domain.'/document/EITI-Report',
 												 'Laws'=>$domain.'/document/Laws',
 												 'MSGMeeting'=>$domain.'/document/msg-mtg',
 												 'TWGMeeting'=>$domain.'/document/twg',
-												 'WorkPlan'=>$domain.'/document/msg-mtg',
-												 'REeportingTemplate'=>$domain.'/document/teporting-template'));	
+												 'Work-Plan'=>$domain.'/document/Work-Plan',
+												 'GIS'=>$domain.'/filerepo/GIS',
+												 'Brochure'=>$domain.'/filerepo/Brochures',
+												 'Infographic'=>$domain.'/filerepo/Infographics',
+												 'Reporting-Template'=>$domain.'/document/reporting-template',
+												 'BO-Roadmap'=>$domain.'/document/BO-Roadmap'));	
 
 		$path = $targetDirectory[$uploadType][$contentSection].'/'.self::getCurrYear().'/'.self::getCurrMonth().'/'.self::getCurrDate();
 		$status = "";

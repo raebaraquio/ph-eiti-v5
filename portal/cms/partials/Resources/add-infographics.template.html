@@ -1,0 +1,86 @@
+<style>
+	.thumbnail_wrapper {
+		margin: 20px auto;
+		width: 100%;
+	}
+	
+	.thumbnail_wrapper pdf-thumbnail {
+		display: block;
+		width: 100%;
+	}
+	
+	.thumbnail_wrapper pdf-thumbnail img {
+		width: 25%;
+	}
+</style>
+<md-content layout-padding style="min-width:550px;min-height:465px;">
+	<md-content layout="row" layout-align="space-between center">
+		<h1 style="margin-bottom:0px;padding-bottom:0px;margin-top:0px;">Add New Infographic</h1>
+		<a href="" ng-click="close()" title="Dismiss"><img src="../../images/icons/svg/ic_close_silver_24px.svg" alt="" width="24px"/></a>
+	</md-content>
+	<md-content>
+		<iframe id="newinfo-iframe" name="newinfo-iframe" style="width:0px;height:0px;border:none" border="0" onload="newInfoReturn()"></iframe>
+		<form name="newInfoForm" id="newInfoForm" enctype="multipart/form-data" method="POST" autocomplete="off" action="../../rest/functions/resources/add-infographic.php" target="newinfo-iframe">		
+			<input type="hidden" name="info-thumbdata" id="info-thumbdata"/>
+			<md-table-container>
+				<table md-table>
+					<tbody md-body>						
+						<tr md-row>
+							<td md-cell>File</td>
+							<td md-cell>
+								<input id="info-fileinput" name="info-fileinput" type="file" onchange="angular.element(this).scope().onFileChanged(event)" required="true" accept=".pdf" />
+							</td>
+						</tr>
+						<tr md-row ng-show="newInfographic.file && newInfographic.thumbnail_data">
+							<td md-cell>Thumbnail</td>
+							<td md-cell>
+								<div class="thumbnail_wrapper">
+									<pdf-thumbnail data-file="newInfographic.file" data-thumbnail="newInfographic.thumbnail_data" data-thumb-width="500"></pdf-thumbnail>
+								</div>
+							</td>
+						</tr>
+						<tr md-row>
+							<td md-cell>Title</td>						
+							<td md-cell>
+								<input id="info-filetitle" name="info-filetitle" type="text" ng-required="newInfographic.file!==null" ng-model="newInfographic.title" size="65" />
+							</td>
+						</tr>
+						<tr md-row>
+							<td md-cell>Year</td>
+							<td md-cell>
+								<select name="info-year" id="info-year" ng-model="newInfographic.year" ng-options="year as year for year in years" ng-required="newInfographic.file!==null">
+									<option value=""></option>
+								</select>
+							</td>
+						</tr>
+						<tr md-row >
+							<td md-cell title="Event/Activity Name where this Infographic was used">Event/Activity Name</td>						
+							<td md-cell>
+								<input id="info-eventname" name="info-eventname" type="text" ng-model="newInfographic.event_name" size="65" />
+							</td>
+						</tr>
+						<tr md-row >
+							<td md-cell title="Newsletter Issue (Month Year) where this Infographic was used">Newsletter Issue</td>						
+							<td md-cell>
+								<input id="info-newsletterissue" name="info-newsletterissue" type="text" ng-model="newInfographic.newsletter_issue" size="65" />
+							</td>
+						</tr>
+						<tr md-row >
+							<td md-cell>Other info</td>						
+							<td md-cell>
+								<input id="info-otherinfo" name="info-otherinfo" type="text" ng-model="newInfographic.other_info" size="65" />
+							</td>
+						</tr>
+						<tr md-row>
+							<td md-cell></td>						
+							<td md-cell style="text-align:right">
+								<md-button id="info-btn-reset" type="reset" ng-click="resetForm($event)">Reset</md-button>
+								<md-button class="md-raised md-primary fnt--white" ng-disabled="newInfoForm.$invalid" type="submit" name="info-submit">Submit</md-button>	
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</md-table-container>		
+		</form>
+	</md-content>
+</md-content>

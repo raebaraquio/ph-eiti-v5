@@ -1,29 +1,56 @@
 <md-content layout-padding>
     <h1>Manage Activities</h1>
-    <div class="wd-100">
-		<div class="mxw-80" layout="row">
-	        <md-input-container flex=>
-	            <label>Select Year</label>
-	            <md-select data-ng-model="filterYear" data-ng-change="refreshActivites()">
+    <div layout="column">
+       	<md-content layout="row" layout-align="start center">
+            <md-input-container flex="45" style="width:300px">
+                <label>Select Year</label>
+	            <md-select ng-model="filterYear">
 	            	<md-option data-ng-repeat="year in years" value="{{year}}">{{year}}</md-option>
 	            </md-select>
-	        </md-input-container>
-	        <md-input-container flex data-ng-show="activities.length">
-	            <label><strong>{{ (activities | filter:{date:filterYear}).length }} result<span data-ng-show="(activities | filter:{date:filterYear}).length > 1">s</span> found</strong></label>
-	        </md-input-container>
-	        <md-content flex="20">
-	        	<md-button class="md-raised md-accent">ADD</md-button>
-	    	</md-content>
-		</div>    
-	</div>
-
-    <md-progress-linear data-ng-show="promise" class="md-secondary" md-mode="indeterminate"></md-progress-linear>
-    <div style="max-height:250px;overflow-y:scroll;">
-    	<div layout="row" layout-align="space-between center">
-	       <ul>
-	           <li ng-repeat="(k,v) in activities track by $index">{{v.title}}</li>
-	       </ul>
-	    </div>
+            </md-input-container>
+            <md-button class="md-primary fnt--white md-raised" ng-click="addActivity($event)">Add</md-button> 
+            <!-- <md-content flex="35" layout="row" layout-align="end center">
+                <md-input-container flex="75" ng-show="years.length">
+                    <label>Select Year</label>
+                    <md-select data-ng-model="filterYear">
+                        <md-option data-ng-repeat="year in years" value="{{year}}">{{year}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container flex="75" ng-show="lawTypes.length">
+                    <label>Select Type</label>
+                    <md-select data-ng-model="filterContentType">
+                        <md-option data-ng-repeat="lawtype in lawTypes" value="{{lawtype}}">{{lawtype}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container flex="75" ng-show="allfolders.length">
+                    <label>Select Folder</label>
+                    <md-select data-ng-model="filterContentType">
+                        <md-option data-ng-repeat="folder in allfolders" value="{{folder.folder_id}}">{{folder.folder_name}}</md-option>
+                    </md-select>
+                </md-input-container>
+            </md-content> -->            
+        </md-content>
     </div>
-   
+    <md-content flex="100" layout-fill layout-padding layout="row" layout-align="center center">
+        <md-progress-circular data-ng-show="getpromise" class="md-secondary" md-mode="indeterminate"></md-progress-circular>
+    </md-content>
+    <md-content ng-if="!getpromise">
+        <md-content flex="100" layout-fill layout="row" >
+            <div flex="100" layout-fill layout="row" layout-wrap>   
+                <md-card flex="30" data-ng-repeat="(k,activity) in activities"  class="card-container">
+					<img data-ng-src="../../{{activity.coverphoto_url}}" class="md-card-image" style="height:70px !important;" />
+	            	<md-card-title>
+						<md-card-title-text class="ta-center">
+							<span class="md-headline" style="font-size:1.2em !important;line-height:1.05em;">{{activity.title}}</span>
+							<span class="md-subhead"><strong>{{activity.activity_start_date | formatDate}}</strong></span>
+						</md-card-title-text>
+					</md-card-title>
+					<md-card-actions layout="row" layout-align="end center">
+						<md-button class="md-accent" href="#/{{activity.id}}"><strong>Open</strong></md-button>
+					</md-card-actions>
+				</md-card>
+            </div>
+        </md-content>  
+    </md-content>
+
 </md-content>
