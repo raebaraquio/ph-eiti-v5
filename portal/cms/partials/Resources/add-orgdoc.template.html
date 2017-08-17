@@ -1,0 +1,49 @@
+<md-content layout-padding style="min-width:700px;min-height:465px;">
+	<md-content layout="row" layout-align="space-between center">
+		<h1 style="margin-bottom:0px;padding-bottom:0px;margin-top:0px;">Add Organizational Document</h1>
+		<a href="" ng-click="close()" title="Dismiss"><img src="../../images/icons/svg/ic_close_silver_24px.svg" alt="" width="24px"/></a>
+	</md-content>
+	<iframe id="neworgdoc-iframe" name="neworgdoc-iframe" style="width:0px;height:0px;border:none" border="0" onload="newOrgDocReturn()"></iframe>
+	<form name="newOrgDocForm" id="newOrgDocForm" enctype="multipart/form-data" method="POST" autocomplete="off" action="../../rest/functions/resources/add-orgdoc.php" target="neworgdoc-iframe"  style="margin-bottom:0px;padding-bottom:0px;">
+		<input type="hidden" name="orgdoc-usefolder" id="orgdoc-usefolder" value="{{ (orgdoc.folder===null || orgdoc.folder=='') ? orgdoc.newfoldername : orgdoc.folder.folder_name }}" />
+		<md-table-container>
+			<table md-table>
+				<tbody md-body>
+					<tr md-row>	
+						<td md-cell>Folder Name</td>
+						<td md-cell>
+							<select name="orgdoc-folder" id="orgdoc-folder" ng-model="orgdoc.folder" ng-options="folder as folder.folder_name for folder in folders">
+								<option value="">New Folder</option>
+							</select>
+						</td>
+					</tr>
+					<tr md-row ng-show="orgdoc.folder===null || orgdoc.folder==''">
+						<td md-cell>New Folder Name</td>						
+						<td md-cell>
+							<input id="orgdoc-newfoldername" name="orgdoc-newfoldername" type="text" ng-required="orgdoc.folder===null || orgdoc.folder==''" ng-model="orgdoc.newfoldername" size="65" />
+						</td>
+					</tr>
+					<tr md-row>
+						<td md-cell>File</td>
+						<td md-cell>
+							<input id="orgdoc-fileinput" name="orgdoc-fileinput" type="file" onchange="angular.element(this).scope().onFileChanged(event)" required="true"/>
+						</td>
+					</tr>
+					<tr md-row>
+						<td md-cell>Title</td>						
+						<td md-cell>
+							<input id="orgdoc-filetitle" name="orgdoc-filetitle" type="text" ng-required="orgdoc.file!==null" ng-model="orgdoc.title" size="65" />
+						</td>
+					</tr>
+					<tr md-row>
+						<td md-cell></td>						
+						<td md-cell style="text-align:right">
+							<md-button id="orgdoc-btn-reset" type="reset" ng-click="resetForm($event)">Reset</md-button>
+							<md-button class="md-raised md-primary fnt--white" ng-disabled="newOrgDocForm.$invalid" type="submit" name="orgdoc-submit">Submit</md-button>	
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</md-table-container>	
+	</form>
+</md-content>

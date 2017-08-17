@@ -994,3 +994,17 @@ a.btn-gray {
 .resetLink:hover {
     cursor: pointer;
 }
+
+
+.md-calendar.md-default-theme, .md-calendar {
+    color: rgba(27, 26, 26, 0.87);
+}
+
+.md-default-theme .md-calendar-day-header, .md-calendar-day-header {
+    color: rgba(27, 26, 26, 0.87);   
+}
+
+.md-datepicker-input-container {
+    vertical-align: top;
+    margin-top:0.65em;
+}

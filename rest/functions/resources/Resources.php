@@ -450,8 +450,7 @@ Class Resources{
 						count(*) as files
 					from resources_organizational_documents
 					where folder_name != ''
-					group by folder_name and 
-						folder_id";
+					group by folder_name";
 
 		$getResult = mysql_query($query);
 

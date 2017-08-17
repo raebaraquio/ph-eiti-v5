@@ -1,0 +1,73 @@
+<md-content layout-padding style="min-width:1000px;min-height:465px;">
+	<md-content layout="row" layout-align="space-between center">
+		<h1 style="margin-bottom:0px;padding-bottom:0px;margin-top:0px;">New MSG Meeting</h1>
+		<a href="" ng-click="close()" title="Dismiss"><img src="../../images/icons/svg/ic_close_silver_24px.svg" alt="" width="24px"/></a>
+	</md-content>
+	<div layout="column" style="width:100%;margin-top:1em;">
+		<iframe id="newmsgmtg-iframe" name="newmsgmtg-iframe" style="width:0px;height:0px;border:none" border="0" onload="newMsgReturn()"></iframe>
+		<form name="newMSGmtgForm" id="newMSGmtgForm" enctype="multipart/form-data" method="POST" autocomplete="on" action="../../rest/functions/msg-meetings/add-msg-meeting.php" target="newmsgmtg-iframe"  style="margin-bottom:0px;padding-bottom:0px;">
+			<input type="hidden" name="newmsg-usedate" id="newmsg-usedate" value="{{useDate}}"/>
+			<input type="hidden" name="newmsg-withannex" id="newmsg-withannex" value="{{with_annex}}"/>
+			<input type="hidden" name="newmsg-numannex" id="newmsg-numannex" value="{{numAnnex}}"/>
+			<md-content layout="row">			
+				<md-table-container flex="45">
+					<table md-table>
+						<tbody md-body>
+							<tr md-row>
+								<td md-cell width="30%">Meeting #</td>						
+								<td md-cell width="70%"> 
+									<input id="newmsg-msgtitle" name="newmsg-msgtitle" placeholder="E.g. 1st, 2nd, 3rd..40th" title="E.g. 1st, 2nd, 3rd..40th" type="text" required="true" ng-model="newmsg.title" size="20" />&nbsp;&nbsp;&nbsp;<strong>Last Meeting: {{lastMeeting}}</strong>
+								</td>
+							</tr>
+							<tr md-row>
+								<td md-cell>Date</td>						
+								<td md-cell style="color:#000;vertical-align:middle;" layout-padding>  
+									<md-datepicker class="md-accent" ng-model="newmsg.date" md-placeholder="Enter date"></md-datepicker>
+								</td>
+							</tr>
+							<tr md-row>
+								<td md-cell>Time</td>						
+								<td md-cell style="color:#000;">  
+									<input id="newmsg-time" name="newmsg-time" type="text" placeholder="E.g. 09:30AM-12:30PM" title="E.g. 09:30AM-12:30PM" ng-required="newmsg.date!==null" ng-model="newmsg.time" size="25" />
+								</td>
+							</tr>
+							<tr md-row>
+								<td md-cell>Venue</td>						
+								<td md-cell> 
+									<input id="newmsg-venue" name="newmsg-venue" type="text" ng-required="newmsg.title!==''" ng-model="newmsg.venue" size="45" />
+								</td>
+							</tr>
+							<tr md-row>
+								<td md-cell>Minutes</td>
+								<td md-cell>
+									<input id="newmsg-minutesfile" name="newmsg-minutesfile" type="file" onchange="angular.element(this).scope().onFileChanged(event)" required="true"/>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</md-table-container>	
+			
+				<md-table-container flex="55" >
+					<table md-table style="width:100%;">
+						<tbody md-body>
+							<tr md-row ng-repeat="(ak,av) in mtgAnnexes">
+								<td md-cell width="15%">
+									<input id="newmsg-fileinputannex-{{ak}}" name="newmsg-fileinputannex-{{ak}}" type="file" onchange="angular.element(this).scope().onFileChanged(event)"/>
+								</td>
+								<td md-cell width="85%"> 
+									<textarea id="newmsg-filetitleannex-{{ak}}" name="newmsg-filetitleannex-{{ak}}" ng-required="av.file!==null" ng-model="av.title" rows="2" cols="30" style="resize:none" placeholder="Annex {{ak+1}}">
+									</textarea>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</md-table-container>	
+			</md-content>
+			<md-content layout="row" layout-align="start center" style="margin-top:2em;">
+				<md-button id="newmsg-btn-reset" type="reset" ng-click="resetForm($event)">Reset</md-button>
+				<md-button class="md-raised md-primary fnt--white" ng-disabled="newMSGmtgForm.$invalid" type="submit" name="newmsg-submit">Submit</md-button>	
+			</md-content>			
+		</form>	
+	</div>
+	
+</md-content>

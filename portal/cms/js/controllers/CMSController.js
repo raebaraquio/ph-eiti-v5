@@ -61,7 +61,7 @@ cms.controller('CMSController',['$scope','sessionService','$location','$rootScop
 		},
 		{
 			task:'Log out',
-			href:'../../login',
+			href:'../../portal/login',
 			desc:'Exit Content Manager Portal',
 			icon: '../../images/icons/svg/ic_power_settings_new_black_24px.svg'
 		},

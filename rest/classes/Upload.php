@@ -54,7 +54,8 @@ class Upload {
 												 'Brochure'=>$domain.'/filerepo/Brochures',
 												 'Infographic'=>$domain.'/filerepo/Infographics',
 												 'Reporting-Template'=>$domain.'/document/reporting-template',
-												 'BO-Roadmap'=>$domain.'/document/BO-Roadmap'));	
+												 'BO-Roadmap'=>$domain.'/document/BO-Roadmap',
+												 'OrgDoc'=>$domain.'/filerepo/Org-Docs'));	
 
 		$path = $targetDirectory[$uploadType][$contentSection].'/'.self::getCurrYear().'/'.self::getCurrMonth().'/'.self::getCurrDate();
 		$status = "";

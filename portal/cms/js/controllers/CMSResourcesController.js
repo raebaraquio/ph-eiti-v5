@@ -1,4 +1,4 @@
-var aprscope,giscope,infoscope,brochurescope,wplanscope,studiesscope,lawscope;
+var aprscope,giscope,infoscope,brochurescope,wplanscope,studiesscope,lawscope,orgdocscope;
 (function(){
 	'use strict';
 
@@ -12,7 +12,8 @@ var aprscope,giscope,infoscope,brochurescope,wplanscope,studiesscope,lawscope;
 		.controller('addInfographicsController',addInfographicsController)
 		.controller('addWplanController',addWplanController)
 		.controller('addStudiesController',addStudiesController)
-		.controller('addLawController',addLawController);
+		.controller('addLawController',addLawController)
+		.controller('addOrgDocController',addOrgDocController);
 
 	ResourcesDataFactory.$inject = ['$http'];
 	function ResourcesDataFactory($http){
@@ -70,7 +71,7 @@ var aprscope,giscope,infoscope,brochurescope,wplanscope,studiesscope,lawscope;
 
 	}
 
-	CMSResourcesController.$inject = ['$scope','ResourcesDataFactory','$mdDialog']
+	CMSResourcesController.$inject = ['$scope','ResourcesDataFactory','$mdDialog'];
 	function CMSResourcesController($scope,ResourcesDataFactory,$mdDialog){
 		// if (!sessionStorage.getItem('id')) {
 		// 	window.location.href = '../../portal/';
@@ -222,6 +223,7 @@ var aprscope,giscope,infoscope,brochurescope,wplanscope,studiesscope,lawscope;
 							var files = response.data.files;
 							for (var idx=0;idx<files.length;idx++) {
 								if (files[idx].folder_name=="") {
+									files[idx].folder_id = '/';
 									rootfilesnum++;
 								}
 							}
@@ -230,14 +232,15 @@ var aprscope,giscope,infoscope,brochurescope,wplanscope,studiesscope,lawscope;
 						if (rootfilesnum > 0) {
 							subfolders.push({
 								files: rootfilesnum,
-								folder_id: "",
+								folder_id: "/",
 								folder_name: "/"
 							});
 						}
 
 						var allfolders = subfolders.concat(response.data.subfolders);
 						$scope.allfolders = allfolders;
-						
+						console.log(allfolders)
+						localStorage.setItem('folders',JSON.stringify(allfolders));
 						try {
 							$scope.filterContentType = $scope.allfolders[0].folder_id;
 						}
@@ -312,7 +315,9 @@ var aprscope,giscope,infoscope,brochurescope,wplanscope,studiesscope,lawscope;
 					mdDialogObj.fullscreen = true;
 					break;
 				case 'Organizational Documents':
-					template = 'add-orgdocs.template.html';
+					template = 'add-orgdoc.template.html';
+					mdDialogObj.controller = addOrgDocController;
+					mdDialogObj.fullscreen = true;
 					break;
 				case 'Work Plan':
 					mdDialogObj.controller = addWplanController;
@@ -372,6 +377,9 @@ var aprscope,giscope,infoscope,brochurescope,wplanscope,studiesscope,lawscope;
 					getContentPerType('Laws and Legal Issuances');
 					break;
 				case 'Organizational Documents':
+					localStorage.removeItem('addResourceType');
+					localStorage.removeItem('folders');
+					getContentPerType('Organizational Documents');
 					break;
 				case 'Work Plan':
 					localStorage.removeItem('addResourceType');
@@ -553,7 +561,7 @@ var aprscope,giscope,infoscope,brochurescope,wplanscope,studiesscope,lawscope;
 		brochurescope = $scope;
 	}
 
-	/* Add Brochure */
+	/* Add Infographic */
 	addInfographicsController.$inject = ['$scope','ResourcesDataFactory','$mdDialog','utilsService'];
 	function addInfographicsController($scope,ResourcesDataFactory,$mdDialog,utilsService){
 		$scope.resourceType = localStorage.getItem('addResourceType');
@@ -664,6 +672,7 @@ var aprscope,giscope,infoscope,brochurescope,wplanscope,studiesscope,lawscope;
 		wplanscope = $scope;
 	}
 
+	/* Add Study */
 	addStudiesController.$inject = ['$scope','ResourcesDataFactory','$mdDialog','utilsService'];
 	function addStudiesController($scope,ResourcesDataFactory,$mdDialog,utilsService){
 		$scope.errorMessage = "";		
@@ -708,6 +717,7 @@ var aprscope,giscope,infoscope,brochurescope,wplanscope,studiesscope,lawscope;
 		studiesscope = $scope;
 	}
 
+	/* Add Law */
 	addLawController.$inject = ['$scope','ResourcesDataFactory','$mdDialog','utilsService'];
 	function addLawController($scope,ResourcesDataFactory,$mdDialog,utilsService){
 		$scope.errorMessage = "";		
@@ -756,6 +766,57 @@ var aprscope,giscope,infoscope,brochurescope,wplanscope,studiesscope,lawscope;
 		}		
 
 		lawscope = $scope;
+	}
+
+	/* Add Org Doc */
+	addOrgDocController.$inject = ['$scope','ResourcesDataFactory','$mdDialog','utilsService'];
+	function addOrgDocController($scope,ResourcesDataFactory,$mdDialog,utilsService){
+		$scope.errorMessage = "";		
+		$scope.uploadReturnData = {};
+		$scope.folders = JSON.parse(localStorage.getItem('folders'));//.split(',');
+		$scope.orgdoc = {
+			file : null,
+			folder: '',
+			title: '',
+			newfoldername: ''
+		}
+
+		$scope.onFileChanged = function (evt) {
+			$scope.$apply(function() {
+				$scope.orgdoc.file = document.getElementById(evt.target.id).files[0];
+			});
+		};
+
+		$scope.resetForm = function(evt) {
+		}
+
+		$scope.$watch('uploadReturnData', function(v){
+			if (v) {
+				try {
+					if (v.success===true) {
+						$scope.orgdoc = {
+							file : null,
+							folder: '',
+							title: ''
+						}
+						$scope.close();
+					}
+				}
+				catch(e){}
+			}
+		});
+
+		$scope.close=function(){
+			$mdDialog.hide();	
+		}		
+
+		$scope.$watch('orgdoc.folder', function(v){
+			console.log(v);
+			console.log('^^^^^^')
+
+		});
+
+		orgdocscope = $scope;
 	}
 
 })();
@@ -924,6 +985,23 @@ function newLawReturn() {
 				var responseData = JSON.parse(returnData);
 				lawscope.uploadReturnData = responseData;
 				lawscope.$apply();	
+			}
+		}
+		catch(e){
+			console.log(e)
+		}		
+	}
+}
+
+function newOrgDocReturn(){
+	var iframe = document.getElementById('neworgdoc-iframe')
+	var returnData = iframe.contentDocument.body.innerHTML;
+	if (orgdocscope) {
+		try {
+			if (returnData!=="unsubmitted" && returnData!=="") {
+				var responseData = JSON.parse(returnData);
+				orgdocscope.uploadReturnData = responseData;
+				orgdocscope.$apply();	
 			}
 		}
 		catch(e){
