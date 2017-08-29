@@ -1,0 +1,35 @@
+<md-content layout-padding style="min-width:700px;min-height:465px;">
+	<md-content layout="row" layout-align="space-between center">
+		<h1 style="margin-bottom:0px;padding-bottom:0px;margin-top:0px;">New PH-EITI Report</h1>
+		<a href="" ng-click="close()" title="Dismiss"><img src="../../images/icons/svg/ic_close_silver_24px.svg" alt="" width="24px"/></a>
+	</md-content>
+	<div layout="column" style="width:100%;margin-top:1em;">
+		<form name="newCreportForm" id="newCreportForm" style="margin-bottom:0px;padding-bottom:0px;">
+			<md-table-container>
+				<table md-table>
+					<tbody md-body>
+						<tr md-row>
+							<td md-cell width="40%">Title</td>						
+							<td md-cell width="60%"> 
+								<input id="newcreport-reporttitle" name="newcreport-reporttitle" placeholder="E.g. Third PH-EITI Report" title="" type="text" required="true" ng-model="newreport.title" size="30" />
+							</td>
+						</tr>
+						<tr md-row>
+							<td md-cell>Coverage</td>						
+							<td md-cell> 
+								<input id="newcreport-coverage" name="newcreport-coverage" type="text" ng-required="newreport.title!==''" ng-model="newreport.coverage" size="30"/>
+							</td>
+						</tr>
+						<tr md-row>
+							<td md-cell></td>
+							<td md-cell>
+								<md-button id="newcreport-btn-reset" type="reset" ng-click="resetForm($event)">Reset</md-button>
+								<md-button class="md-raised md-primary fnt--white" ng-disabled="newCreportForm.$invalid" type="submit" name="newcreport-submit" ng-click="submitNewReport()">Submit</md-button>					
+							</td>
+						</tr>
+				</table>
+			</md-table-container>	
+		</form>	
+	</div>
+	
+</md-content>

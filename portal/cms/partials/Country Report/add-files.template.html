@@ -1,0 +1,84 @@
+<style>
+	.thumbnail_wrapper {
+		margin: 20px auto;
+		width: 100%;
+	}
+	
+	.thumbnail_wrapper pdf-thumbnail {
+		display: block;
+		width: 100%;
+	}
+	
+	.thumbnail_wrapper pdf-thumbnail img {
+		width: 25%;
+	}
+</style>
+<md-content layout-padding style="min-width:1000px;min-height:465px;">
+	<md-content layout="row" layout-align="space-between center">
+		<h1 style="margin-bottom:0px;padding-bottom:0px;margin-top:0px;">Add Files ({{selectedReport.title}})</h1>
+		<a href="" ng-click="close()" title="Dismiss"><img src="../../images/icons/svg/ic_close_silver_24px.svg" alt="" width="24px"/></a>
+	</md-content>
+	<div layout="column" style="width:100%;margin-top:1em;">
+		<iframe id="newcrepcontent-iframe" name="newcrepcontent-iframe" style="width:0px;height:0px;border:none" border="0" onload="newCreportReturn()"></iframe>
+		<form name="newReportContentForm" id="newReportContentForm" enctype="multipart/form-data" method="POST" autocomplete="on" action="../../rest/functions/country-report/add-reportcontent-files.php" target="newcrepcontent-iframe"  style="margin-bottom:0px;padding-bottom:0px;">
+			<input type="hidden" id="newrepcontent-crid" name="newrepcontent-crid"  value="{{selectedReport.crid}}"/>
+			<input type="hidden" id="newrepcontent-reporttitle" name="newrepcontent-reporttitle" value="{{selectedReport.title}}"/>
+			<input type="hidden" id="newrepcontent-type" name="newrepcontent-type"  value="{{reportContent.type}}"/>
+			<input type="hidden" id="newrepcontent-sector" name="newrepcontent-sector"  value="{{reportContent.sector}}"/>
+			<!-- <input type="hidden" /> -->
+			<input type="hidden" id="newrepcontent-filecount" name="newrepcontent-filecount"/>
+			<div id="hidden-elem-container"></div>
+			<md-content layout="row">
+				<md-input-container flex="45">
+                    <label>Content Type</label>
+                    <md-select data-ng-model="reportContent.type">
+                        <md-option data-ng-repeat="contentType in contentTypes" value="{{contentType}}">{{contentType}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container flex="25" ng-show="reportContent.type==='Completed Reporting Templates'">
+                    <label>Sector</label>
+                    <md-select data-ng-model="reportContent.sector">
+                        <md-option data-ng-repeat="sector in sectors" value="{{sector}}">{{sector}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container flex="25" ng-show="reportContent.type==='New Folder'">
+                    <label>New Folder</label>
+                    <input type="text" ng-model="reportContent.newfolder" size="30" placeholder="Folder Name" id="newrepcontent-newfolder" name="newrepcontent-newfolder"  value="{{reportContent.newfolder}}"/>
+                </md-input-container>
+			</md-content>
+			<md-content style="max-height:275px;overflow-y:scroll;">			
+				<md-table-container>
+					<table md-table style="width:100%;">
+						<thead md-head>
+							<tr md-row>
+								<th md-column>File</th>
+								<th md-column>Title</th>
+								<th md-column>Thumbnail</th>
+							</tr>
+						</thead>
+						<tbody md-body>
+							<tr md-row ng-repeat="(ak,av) in reportContent.files">
+								<td md-cell width="15%">
+									<input id="newrepcontent-file-{{ak}}" name="newrepcontent-file-{{ak}}" type="file" onchange="angular.element(this).scope().onFileChanged(event)" accept=".pdf,application/vnd.ms-excel"/>
+								</td>
+								<td md-cell width="70%"> 
+									<input type="text" id="newrepcontent-filetitle-{{ak}}" name="newrepcontent-filetitle-{{ak}}" ng-required="av.file!==null" ng-model="av.title" size="50" style="resize:none" placeholder="File {{ak+1}} Title" />
+								</td>
+								<td md-cell width="15%">
+									<div class="thumbnail_wrapper" ng-show="reportContent.type!=='Data Summary Template' && reportContent.type!=='Completed Reporting Templates' && av.thumbnail_data">
+										<pdf-thumbnail data-file="av.file" data-thumbnail="av.thumbnail_data" data-thumb-width="500"></pdf-thumbnail>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</md-table-container>	
+			</md-content>
+			<md-content layout="row" layout-align="end center" style="margin-top:2em;">
+				<md-button id="newrepcontent-btn-reset" type="reset" ng-click="resetForm($event)">Reset</md-button>
+				<md-button class="md-raised md-primary fnt--white" ng-disabled="newReportContentForm.$invalid" type="submit" name="newrepcontent-submit">Submit</md-button>	
+			</md-content>			
+		</form>	
+	</div>
+	
+</md-content>

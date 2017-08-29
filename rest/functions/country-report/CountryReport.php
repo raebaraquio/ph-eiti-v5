@@ -377,6 +377,64 @@ Class CountryReport{
 		    return array();
 		}
 	}
+
+	function add_one_content($crid,$type,$title) {
+		$defualt_card_icon = '../document/EITI-Report/card-icon-none.png';
+
+		$query = "insert into country_reports_content
+						(crid_fk,
+						title,
+						content_type,
+						file_url,
+						card_icon_url)
+					values
+						(".$crid.",
+						'".$title."',
+						'".$type."',
+						'',
+						'".$defualt_card_icon."');";
+
+		$insert = mysql_query($query);
+
+        if (!$insert) {
+            return NULL;
+        }
+        
+		return intval(mysql_insert_id());
+	}
+
+	function get_page_content_id($crid,$pageTitle){
+		$query = "select
+						crcontent_id
+					from country_reports_content 
+					where crid_fk = $crid and
+						title = '".$pageTitle."'";
+
+		$getResult = mysql_query($query);
+
+        if (!$getResult) {
+            print(json_encode(
+            	array(
+            		'success'=>false,
+                    'error'=>'database',
+                    'status'=>'selectError',
+                    'mysqlerror'=>mysql_error(),
+                    'query'=>$query)
+            	)
+            );
+            exit();
+        }
+
+        if (mysql_num_rows($getResult) > 0) {
+		    while ($res = mysql_fetch_assoc($getResult)) {
+		        $crcontent_id = $res['crcontent_id'];
+		    }
+		  	return $crcontent_id;
+		}
+		else {
+		    return self::add_one_content($crid,'page',$pageTitle);
+		}
+	}
 }
 
 ?>

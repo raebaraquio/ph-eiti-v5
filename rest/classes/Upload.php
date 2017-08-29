@@ -29,7 +29,7 @@ class Upload {
 		return date('d');
 	}
 
-	public function createfilepath($uploadType,$contentSection,$filename,$fromCMS){
+	public function createfilepath($uploadType,$contentSection,$filename,$fromCMS,$specFolder){
 		$domain = $_SERVER["HTTP_ORIGIN"];
 		$host = $_SERVER["HTTP_HOST"];
 		/*if ($host=='localhost') {*/
@@ -56,8 +56,15 @@ class Upload {
 												 'Reporting-Template'=>$domain.'/document/reporting-template',
 												 'BO-Roadmap'=>$domain.'/document/BO-Roadmap',
 												 'OrgDoc'=>$domain.'/filerepo/Org-Docs'));	
-
-		$path = $targetDirectory[$uploadType][$contentSection].'/'.self::getCurrYear().'/'.self::getCurrMonth().'/'.self::getCurrDate();
+		
+		if ($contentSection=='EITIReport') {
+			if (isset($specFolder) && !(empty($specFolder))) {
+				$path = $targetDirectory[$uploadType][$contentSection].'/'.$specFolder;
+			}
+		}
+		else {
+			$path = $targetDirectory[$uploadType][$contentSection].'/'.self::getCurrYear().'/'.self::getCurrMonth().'/'.self::getCurrDate();
+		}
 		$status = "";
 
 		if ( file_exists($path) ) { }
