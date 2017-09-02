@@ -1,0 +1,111 @@
+<style>
+	.md-dialog-fullscreen {
+		max-height: 95% !important;
+		max-width: 95% !important;
+	}
+</style>
+<md-content layout-padding style="min-width:700px;min-height:auto;">
+	<md-content layout="row" layout-align="space-between center">
+		<h1 style="margin-bottom:0px;padding-bottom:0px;margin-top:0px;">New Activity</h1>
+		<a href="" ng-click="close()" title="Dismiss"><img src="../../images/icons/svg/ic_close_silver_24px.svg" alt="" width="24px"/></a>
+	</md-content>
+	<div layout="column" style="width:100%;margin-top:1em;">
+		<iframe id="newactivitycontent-iframe" name="newactivitycontent-iframe" style="width:0px;height:0px;border:none" border="0" onload="newActivityReturn()"></iframe>
+		<form name="newActivityForm" id="newActivityForm" enctype="multipart/form-data" method="POST" autocomplete="on" action="../../rest/functions/activities/add-activity.php" target="newactivitycontent-iframe"  style="margin-bottom:0px;padding-bottom:0px;">
+			<input type="hidden" name="newactivity-startdate" id="newactivity-startdate" value="{{use_startdate}}"/>
+			<input type="hidden" name="newactivity-enddate" id="newactivity-enddate" value="{{use_enddate}}"/>
+			<input type="hidden" name="newactivity-numofeventdays" id="newactivity-numofeventdays" value="{{num_of_days}}"/>
+			<input type="hidden" name="newactivity-filestocheck" id="newactivity-filestocheck" value="{{fileIDsString}}"/>
+			<input type="hidden" name="datesString" id="datesString" value="{{datesString}}"/>
+			<input type="hidden" name="titlesString" id="titlesString" value="{{titlesString}}"/>
+			<md-content layout="row">
+				<md-table-container flex="55">
+					<table md-table>
+						<tbody md-body>
+							<tr md-row>
+								<td md-cell width="40%">Title</td>						
+								<td md-cell width="60%"> 
+									<input id="newactivity-title" name="newactivity-title" placeholder="" title="" type="text" required="true" ng-model="newactivity.title" size="45" />
+								</td>
+							</tr>
+							<tr md-row>
+								<td md-cell width="40%">Date</td>						
+								<td md-cell width="60%"> 
+									<md-datepicker class="md-accent" id="start-date" name="start-date" ng-model="newactivity.start_date" md-placeholder="Enter date" ng-required="true"  ></md-datepicker> &nbsp;&nbsp;&nbsp;&nbsp; <a class="resetLink" ng-click="clearDate('start')" title="Clear Date">Clear</a>
+								</td>
+							</tr>
+							<tr md-row>
+								<td md-cell width="40%">End Date</td>						
+								<td md-cell width="60%"> 
+									<md-datepicker class="md-accent" id="end-date" name="end-date" ng-model="newactivity.end_date" md-placeholder="Enter date" ng-required="false"></md-datepicker> &nbsp;&nbsp;&nbsp;&nbsp; <a class="resetLink" ng-click="clearDate('end')" title="Clear Date">Clear</a>
+								</td>
+							</tr>
+							<tr md-row>
+								<td md-cell width="40%">Venue</td>						
+								<td md-cell width="60%"> 
+									<input id="newactivity-venue" name="newactivity-venue" placeholder="" title="" type="text" required="true" ng-model="newactivity.venue" size="30" />
+								</td>
+							</tr>
+							<tr md-row>
+								<td md-cell>Program</td>						
+								<td md-cell> 
+									<input id="newactivity-0" name="newactivity-0" type="file" onchange="angular.element(this).scope().onFileChanged(event)" accept=".pdf"/>
+								</td>
+							</tr>
+							<tr md-row>
+								<td md-cell>Documentation</td>						
+								<td md-cell> 
+									<input id="newactivity-1" name="newactivity-1" type="file" onchange="angular.element(this).scope().onFileChanged(event)" accept=".pdf"/>
+								</td>
+							</tr>
+							<tr md-row>
+								<td md-cell>Cover Photo</td>						
+								<td md-cell> 
+									<input id="newactivity-2" name="newactivity-2" type="file" onchange="angular.element(this).scope().onFileChanged(event)"/>
+								</td>
+							</tr>
+							<tr md-row>
+								<td md-cell>Facebook Photo Album URL</td>						
+								<td md-cell> 
+									<input id="newactivity-fb_photoAlbum_url" name="newactivity-fb_photoAlbum_url" type="text" ng-required="false" ng-model="newactivity.fb_photoAlbum_url" size="40"/>
+								</td>
+							</tr>
+							<tr md-row>
+								<td md-cell></td>
+								<td md-cell>
+									<md-button id="newactivity-btn-reset" type="reset" ng-click="resetForm($event)">Reset</md-button>
+									<!--  ng-disabled="newActivityForm.$invalid"  -->
+									<md-button class="md-raised md-primary fnt--white" type="submit" name="newactivity-submit" ng-click="submitNewReport()">Submit</md-button>			
+								</td>
+							</tr>
+					</table>
+				</md-table-container>
+				<md-table-container flex="45" style="max-height:380px;overflow-y:scroll;">
+					<table md-table>
+						<thead md-head>
+							<tr md-row style="height:48px;">
+								<th md-column width="15%">Date</th>
+								<th md-column width="85%">Event Day Title</th>
+							</tr>
+						</thead>
+						<tbody md-body>
+							<tr md-row ng-repeat="(i,evday) in newactivity.eventDays">
+								<td md-cell>
+									<input type="text" disabled="true" ng-model="evday.date" size="10"/>
+								</td>						
+								<td md-cell> 
+									<input type="text" ng-model="evday.title" placeholder="{{evday.title}}" size="30"/>
+								</td>
+							</tr>
+							<tr md-row ng-show="newactivity.eventDays.length === 0">
+								<td md-cell colspan="2">No date selected.</td>
+							</tr>
+						</tbody>						
+					</table>
+				</md-table-container>	
+			</md-content>
+						
+		</form>	
+	</div>
+	
+</md-content>

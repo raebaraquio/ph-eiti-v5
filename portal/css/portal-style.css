@@ -1008,3 +1008,15 @@ a.btn-gray {
     vertical-align: top;
     margin-top:0.65em;
 }
+
+.infographic-card-icon {
+    height:2.25em;
+}
+
+.infographic-card-icon--pdf {
+    background-color: rgb(161, 161, 161); /*rgb(254,196,22);*/
+    color: #fff;
+    text-align: center;
+    line-height: 3em;
+    padding-left: 0.5em;
+}

@@ -133,7 +133,7 @@
 
 							if ($scope.activity.documentation_url) {
 								if (typeof($scope.activity.documentation_url)==='string') {
-									$scope.activity.documentation_url = '../'+$scope.activity.documentation	; // '../../'	
+									$scope.activity.documentation_url = '../'+$scope.activity.documentation_url; // '../../'	
 								}
 								// else {
 								// 	if ($scope.activity.documentation.length) {

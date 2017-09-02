@@ -1,0 +1,90 @@
+<style>
+	.md-dialog-fullscreen {
+		max-height: 95% !important;
+		max-width: 95% !important;
+	}
+</style>
+<md-content layout-padding style="min-width:700px;min-height:auto;">
+	<md-content layout="row" layout-align="space-between center">
+		<h1 style="margin-bottom:0px;padding-bottom:0px;margin-top:0px;">Add Activity Content</h1>
+		<a href="" ng-click="close()" title="Dismiss"><img src="../../images/icons/svg/ic_close_silver_24px.svg" alt="" width="24px"/></a>
+	</md-content>
+	<div layout="column" style="width:100%;margin-top:1em;">
+		<md-content layout="row" layout-align="start center">
+            <md-input-container flex="45" style="width:300px">
+                <label>Select Content Type</label>
+	            <md-select ng-model="contentType">
+	            	<md-option data-ng-repeat="ctype in contentTypes" value="{{ctype}}">{{ctype}}</md-option>
+	            </md-select>
+            </md-input-container>            
+            <md-content flex="35" layout="row" layout-align="end center">
+                <md-input-container flex="75" ng-show="contentType == 'Presentations'">
+                    <label>Select Event Day</label>
+                    <md-select data-ng-model="selectedDay">
+                        <md-option data-ng-repeat="day in eventDays" value="{{day.event_day}}">{{day.event_day}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <!-- <md-input-container flex="75" ng-show="allfolders.length">
+                    <label>Select Folder</label>
+                    <md-select data-ng-model="filterContentType">
+                        <md-option data-ng-repeat="folder in allfolders" value="{{folder.folder_id}}">{{folder.folder_name}}</md-option>
+                    </md-select>
+                </md-input-container> -->
+            </md-content>            
+		</md-content>
+		<iframe id="addactivitycontent-iframe" name="addactivitycontent-iframe" style="width:0px;height:0px;border:none" border="0" onload="newActivityContentReturn()"></iframe>
+		<form name="addActivityContentForm-writeup" id="addActivityContentForm-writeup" ng-show="contentType !== 'Presentations'" style="margin-bottom:0px;padding-bottom:0px;">
+			<div flex>
+				<textarea id="about-writeup" cols="30" rows="15" ui-tinymce="tinymceopts" ng-model="writeup_content"></textarea>
+			</div>
+			<md-content layout="row" layout-align="end center" style="margin-top:2em;">
+				<md-button id="addnewactcontent-btn-reset" type="reset" ng-click="resetForm($event)">Reset</md-button>
+				<md-button class="md-raised md-primary fnt--white" type="submit" name="addnewactcontent-submit" ng-click="submitWriteUp()">Submit</md-button>			
+			</md-content>
+		</form>
+		<form name="addActivityContentForm" id="addActivityContentForm" ng-show="contentType == 'Presentations'" enctype="multipart/form-data" method="POST" autocomplete="on" action="../../rest/functions/activities/add-activity-content.php" target="addactivitycontent-iframe"  style="margin-bottom:0px;padding-bottom:0px;">
+			<input type="hidden" id="presfiles-activityidfk" name="presfiles-activityidfk" value="{{activity.id}}" />
+			<input type="hidden" id="presfiles-hreftitle" name="presfiles-hreftitle" value="{{activity.href}}" />
+			<input type="hidden" id="presfiles-count" name="presfiles-count"/>
+			<input type="hidden" id="presfiles-daystr" name="presfiles-daystr" value="{{selected_ev_daystr}}" />
+			<input type="hidden" id="presfiles-dayidfk" name="presfiles-dayidfk" value="{{selected_ev_dayidfk}}" />
+			<md-table-container flex ng-show="contentType == 'Presentations'" style="max-height:380px;overflow-y:scroll;">
+				<table md-table>
+					<thead md-head>
+						<tr md-row style="height:48px;">
+							<th md-column>File</th>
+							<th md-column>Title</th>
+							<th md-column>Presenter</th>
+						</tr>
+					</thead>
+					<tbody md-body>
+						<tr md-row ng-repeat="(i,file) in presentationfiles">
+							<td md-cell>
+								<input type="file" name="presentationfile-{{i}}" id="presentationfile-{{i}}" type="file" onchange="angular.element(this).scope().onFileChanged(event)"
+							</td>
+							<td md-cell>
+								<input type="text" name="presentationtitle-{{i}}" id="presentationtitle-{{i}}" ng-model="file.title" size="45" ng-required="file.file!==null" value="{{file.title}}"/>
+							</td>						
+							<td md-cell> 
+								<input type="text" name="presentationauthor-{{i}}" id="presentationauthor-{{i}}" ng-model="file.author" size="45" ng-required="file.file!==null"  value="{{file.author}}" />
+							</td>
+						</tr>
+						<tr md-row ng-show="presentationfiles.length === 0">
+							<td md-cell colspan="3">No files added.</td>
+						</tr>
+						<tr md-row>
+							<td md-cell></td>
+							<td md-cell></td>
+							<td md-cell style="text-align:right;">	
+								<md-button id="presfilescontent-btn-reset" type="reset" ng-click="resetForm($event)">Reset</md-button>
+								<md-button class="md-raised md-primary fnt--white" ng-disbaled="addActivityContentForm.$invalid" type="submit" name="presfilescontent-submit">Submit</md-button>			
+							</td>
+						</tr>
+					</tbody>						
+				</table>
+			</md-table-container>	
+				
+		</form>	
+	</div>
+	
+</md-content>

@@ -47,7 +47,7 @@
 										<md-icon md-svg-src="../images/icons/svg/ic_open_in_new_white_24px.svg"></md-icon>
 									</md-button>
 								</div>
-								<iframe data-ng-if="type_of_doc(activity.documentation_url)==='string'" src="{{activity.documentation}}" style="width:900px; height:600px;" frameborder="0"></iframe>
+								<iframe data-ng-if="type_of_doc(activity.documentation_url)==='string'" src="{{activity.documentation_url}}" style="width:900px; height:600px;" frameborder="0"></iframe>
 							</div>
 							<div layout="column" data-ng-if="type_of_doc(activity.documentation_url)!='string' && activity.documentation[0]">
 								<md-button class="md-fab md-mini md-primary" data-ng-if="type_of_doc(activity.documentation_url)!=='string' && activity.documentation[0]" data-ng-click="download_documentation(activity.documentation[0])" title="Open in new window"  aria-label="Open in new window">

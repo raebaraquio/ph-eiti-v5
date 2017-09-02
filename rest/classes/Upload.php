@@ -46,6 +46,7 @@ class Upload {
 												 'Secretariat'=>$domain.'/images/secretariat'),
 									 'document'=>array('Document'=>$domain.'/document',
 												 'EITIReport'=>$domain.'/document/EITI-Report',
+												 'Activities'=>$domain.'/document',
 												 'Laws'=>$domain.'/document/Laws',
 												 'MSGMeeting'=>$domain.'/document/msg-mtg',
 												 'TWGMeeting'=>$domain.'/document/twg',
@@ -61,6 +62,11 @@ class Upload {
 			if (isset($specFolder) && !(empty($specFolder))) {
 				$path = $targetDirectory[$uploadType][$contentSection].'/'.$specFolder;
 			}
+		}
+		else if ($contentSection=='Activities'){
+			if (isset($specFolder) && !(empty($specFolder))) {
+				$path = $targetDirectory[$uploadType][$contentSection].'/'.self::getCurrYear().'/'.self::getCurrMonth().'/'.self::getCurrDate().'/'.$specFolder;
+			}	
 		}
 		else {
 			$path = $targetDirectory[$uploadType][$contentSection].'/'.self::getCurrYear().'/'.self::getCurrMonth().'/'.self::getCurrDate();

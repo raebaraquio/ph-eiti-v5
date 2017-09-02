@@ -47,6 +47,12 @@ cms.controller('CMSController',['$scope','sessionService','$location','$rootScop
 			desc:'Add and/or Update MSG Meetings',
 			icon: '../../images/icons/svg/ic_event_black_24px.svg'
 		},
+		/*{
+			task:'MSG Members',
+			href:'#/MSG Members',
+			desc:'Add and/or Update MSG Members',
+			icon: '../../images/icons/svg/ic_event_black_24px.svg'
+		},*/
 		{
 			task:'Reporting Templates',
 			href:'#/Reporting Templates',
@@ -59,6 +65,12 @@ cms.controller('CMSController',['$scope','sessionService','$location','$rootScop
 			desc:'Update content or documents of Country Reports',
 			icon: '../../images/icons/svg/ic_class_black_24px.svg'
 		},
+		/*{
+			task:'Secretariat',
+			href:'#/Secretariat',
+			desc:'Add and/or update secretariat info/accounts',
+			icon: '../../images/icons/svg/ic_event_black_24px.svg'
+		},*/
 		{
 			task:'Log out',
 			href:'../../portal/login',

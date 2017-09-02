@@ -99,7 +99,7 @@ Class Activities{
 		}
 	}
 
-	function get_daysofactivity($id){
+	function get_daysofactivity($id,$daysFlag){
 		$days_data = array();
 
 		$query = "select
@@ -143,7 +143,13 @@ Class Activities{
 					$days_id_list .= $value['day_id'];
 				}
 				$days_id_list .= ")";
-				return self::get_presentations($id,$days_id_list,$days_data);
+
+				if (!(isset($daysFlag))) {
+					return self::get_presentations($id,$days_id_list,$days_data);	
+				}
+				else if (isset($daysFlag) && $daysFlag==TRUE) {
+					return $days_data;
+				}
 		    }
 		    return $days_data;
 		}
@@ -199,6 +205,31 @@ Class Activities{
 		}
 	}
 
+
+	function add_days($activity_id_fk,$eventDates,$eventDayTitles){
+
+		$values_query = "";
+		for ($i=0;$i<count($eventDates);$i++) {
+			if ($i > 0) {
+				$values_query .= ",";
+			}
+			$values_query .= " (".$activity_id_fk.", '".$eventDayTitles[$i]."', '".$eventDates[$i]."') ";	
+		}
+
+		$query = "insert into day_of_activities
+						(activities_id_fk,
+						event_day,
+						event_date)
+					values ".$values_query.";";
+
+		$insertResult = mysql_query($query);
+
+        if (!$insertResult) {
+            return NULL;
+        }
+        
+		return intval(mysql_insert_id());
+	}
 }
 
 ?>

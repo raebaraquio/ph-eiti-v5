@@ -2,24 +2,22 @@
     <h1>Manage Activities</h1>
     <div layout="column">
        	<md-content layout="row" layout-align="start center">
-            <md-input-container flex="45" style="width:300px">
+            <md-input-container flex="45" style="width:300px" ng-show="!activity.id" >
                 <label>Select Year</label>
 	            <md-select ng-model="filterYear">
 	            	<md-option data-ng-repeat="year in years" value="{{year}}">{{year}}</md-option>
 	            </md-select>
             </md-input-container>
-            <md-button class="md-primary fnt--white md-raised" ng-click="addActivity($event)">Add</md-button> 
+            <md-button ng-show="!activity.id" class="md-accent fnt--white md-raised" ng-click="addActivity($event)">Add New Activity</md-button> 
+            <md-button ng-show="activity.id" ng-click="selectActivity(null,null)" class="md-mini md-raised md-default" aria-label="Back to Activities list" title="Back to Activities list">
+                <md-icon md-svg-src="../../images/icons/svg/ic_navigate_before_black_24px.svg"></md-icon>
+            </md-button>
+            <md-button ng-show="activity.id" class="md-accent fnt--white md-raised" ng-click="addContent($event)" aria-label="Add Content" title="Add Content">Add Content</md-button> 
             <!-- <md-content flex="35" layout="row" layout-align="end center">
                 <md-input-container flex="75" ng-show="years.length">
                     <label>Select Year</label>
                     <md-select data-ng-model="filterYear">
                         <md-option data-ng-repeat="year in years" value="{{year}}">{{year}}</md-option>
-                    </md-select>
-                </md-input-container>
-                <md-input-container flex="75" ng-show="lawTypes.length">
-                    <label>Select Type</label>
-                    <md-select data-ng-model="filterContentType">
-                        <md-option data-ng-repeat="lawtype in lawTypes" value="{{lawtype}}">{{lawtype}}</md-option>
                     </md-select>
                 </md-input-container>
                 <md-input-container flex="75" ng-show="allfolders.length">
@@ -35,7 +33,7 @@
         <md-progress-circular data-ng-show="getpromise" class="md-secondary" md-mode="indeterminate"></md-progress-circular>
     </md-content>
     <md-content ng-if="!getpromise">
-        <md-content flex="100" layout-fill layout="row" >
+        <md-content flex="100" layout-fill layout="row" ng-show="!currentActivity.id">
             <div flex="100" layout-fill layout="row" layout-wrap>   
                 <md-card flex="30" data-ng-repeat="(k,activity) in activities"  class="card-container">
 					<img data-ng-src="../../{{activity.coverphoto_url}}" class="md-card-image" style="height:70px !important;" />
@@ -46,11 +44,129 @@
 						</md-card-title-text>
 					</md-card-title>
 					<md-card-actions layout="row" layout-align="end center">
-						<md-button class="md-accent" href="#/{{activity.id}}"><strong>Open</strong></md-button>
+						<md-button class="md-accent" ng-click="selectActivity(k,activity)"><strong>Open</strong></md-button>
 					</md-card-actions>
 				</md-card>
             </div>
         </md-content>  
+    
+        <md-content ng-show="activity.id">
+            <h1 class="md-display-2" style="margin:0px auto;">{{activity.title}}</h1>  
+            <h4>{{activity.activity_start_date | formatDate}} <span ng-if="activity.activity_venue">| {{activity.activity_venue}}</span></h4>            
+            <md-tabs md-dynamic-height md-border-bottom data-ng-show="no_content_elem===false">
+                <md-tab label="About" data-ng-if="activity.writeup_content!==null && activity.writeup_content !== null">
+                    <md-content class="md-padding">
+                        <h1 class="md-display-2">About</h1>
+                        <p><div data-ng-bind-html="activity.writeup_content"></div></p>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Program" data-ng-if="activity.program_url!==null">
+                    <md-content class="md-padding">
+                        <h1 class="md-display-2">Program</h1>
+                        <div layout="column">
+                            <iframe data-ng-if="activity.program_url != null" src="{{activity.program_url}}" style="min-width:850px;min-height:600px;" frameborder="0"></iframe>
+                        </div>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Documentation" data-ng-if="activity.documentation_url!==null">
+                    <md-content>
+                        <h1 class="md-display-2">Documentation</h1>
+                        <div layout="column">
+                            <div layout="column">
+                                <div layout="row">
+                                    <md-button class="md-fab md-mini md-accent" data-ng-if="activity.workshop_output_url && activity.workshop_output_url!==undefined" data-ng-click="download_documentation(activity.workshop_output_url)" title="Download Workshop Output - Accomplished Reporting Templates" aria-label="Download Workshop Output - Accomplished Reporting Templates">
+                                        <md-icon md-svg-src="../../images/icons/svg/ic_file_download_black_24px.svg"></md-icon>
+                                    </md-button>
+                                    <md-button class="md-fab md-mini md-primary" data-ng-if="type_of_doc(activity.documentation_url)==='string'" data-ng-click="download_documentation(activity.documentation_url)" title="Open in new window" aria-label="Open in new window">
+                                        <md-icon md-svg-src="../../images/icons/svg/ic_open_in_new_white_24px.svg"></md-icon>
+                                    </md-button>
+                                </div>
+                                <iframe data-ng-if="type_of_doc(activity.documentation_url)==='string'" src="{{activity.documentation_url}}" style="width:900px; height:600px;" frameborder="0"></iframe>
+                            </div>
+                            <div layout="column" data-ng-if="type_of_doc(activity.documentation_url)!='string' && activity.documentation[0]">
+                                <md-button class="md-fab md-mini md-primary" data-ng-if="type_of_doc(activity.documentation_url)!=='string' && activity.documentation[0]" data-ng-click="download_documentation(activity.documentation[0])" title="Open in new window"  aria-label="Open in new window">
+                                    <md-icon md-svg-src="../../images/icons/svg/ic_open_in_new_white_24px.svg"></md-icon>
+                                </md-button>
+                                <iframe data-ng-if="type_of_doc(activity.documentation_url)!='string'" src="{{activity.documentation[0]}}" style="width:900px; height:600px;" frameborder="0"></iframe>
+                            </div>                          
+                            <div layout="column" data-ng-if="type_of_doc(activity.documentation_url)!='string' && activity.documentation[1]" style="margin-top:1.5em;">
+                                <md-button class="md-fab md-mini md-primary" data-ng-if="type_of_doc(activity.documentation_url)!=='string' && activity.documentation[1]" data-ng-click="download_documentation(activity.documentation[1])" title="Open in new window"  aria-label="Open in new window">
+                                    <md-icon md-svg-src="../../images/icons/svg/ic_open_in_new_white_24px.svg"></md-icon>
+                                </md-button>                                    
+                                <iframe data-ng-if="type_of_doc(activity.documentation_url)!='string'" src="{{activity.documentation[1]}}" style="width:900px;height:600px;" frameborder="0"></iframe>
+                            </div>
+                        </div>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Presentations" data-ng-if="activity.presentations.length>0">
+                    <md-content class="md-padding">
+                        <h1 class="md-display-2">Presentations</h1>
+                        <p>
+                            <div flex="100" layout-fill layout="row" layout-wrap>   
+                                <md-content layout-fill layout="column" layout-wrap data-ng-repeat="(idx,presentation) in activity.presentations" data-ng-if="presentation.eventDay">
+                                    <h2>{{presentation.eventDay}}</h2> 
+                                    <div flex="100" layout-fill layout="row" layout-wrap>
+                                        <md-card flex="45" layout="row" data-ng-repeat="(pidx,pval) in presentation.presentations" class="card-container">
+                                            <div flex="10" layout="center center" title="File type: PDF" class="infographic-card-icon infographic-card-icon--pdf"><!-- <img src="../../images/file-icon/pdf-icon.png" class="md-avatar" style="width:100%;height:auto;"/> --><!--
+                                            -->.pdf<!--
+                                            --></div>       
+                                            <div flex="90" layout="column">
+                                                <md-card-title>
+                                                    <md-card-title-text class="ta-left">
+                                                        <span class="md-headline" style="font-size:1.25em;line-height:1em;">{{pval.title}}</span>
+                                                        <span class="md-subhead" title="{{pval.author}}" style="line-height:1em;">{{pval.author}}</span>
+                                                    </md-card-title-text>
+                                                </md-card-title>
+                                                <md-card-actions layout="row" layout-align="end center">
+                                                    <md-button class="md-accent" data-ng-click="download_documentation(pval.src)"><strong>Open</strong></md-button>
+                                                </md-card-actions>  
+                                            </div>                                          
+                                        </md-card>
+                                    </div>
+                                </md-content>
+                                <md-card flex="45" layout="row" data-ng-repeat="(idx,presentation) in activity.presentations" data-ng-if="!presentation.eventDay"  class="card-container">
+                                    <div flex="10" layout="center center" title="File type: PDF" class="infographic-card-icon infographic-card-icon--pdf"><!-- <img src="../../images/file-icon/pdf-icon.png" class="md-avatar" style="width:100%;height:auto;"/> --><!--
+                                    -->.pdf<!--
+                                    --></div>       
+                                    <div flex="90" layout="column">
+                                        <md-card-title>
+                                            <md-card-title-text class="ta-left">
+                                                <span class="md-headline" style="font-size:1.25em;line-height:1em;" title="{{presentation.title}}">{{presentation.title}}</span>
+                                                <span class="md-subhead" title="{{presentation.author}}" style="line-height:1em;">{{presentation.author}}</span>
+                                            </md-card-title-text>
+                                        </md-card-title>
+                                        <md-card-actions layout="row" layout-align="end center">
+                                            <md-button class="md-accent" data-ng-click="download_documentation(presentation.src)"><strong>Open</strong></md-button>
+                                        </md-card-actions>  
+                                    </div>      
+                                </md-card>
+                            </div>  
+                        </p>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Gallery" data-ng-if="activity.gallery.length>0">
+                    <md-content class="md-padding">
+                        <h1 class="md-display-2">Gallery</h1>
+                        <div data-ng-show="activity.withOfflineGallery==='1'" flex="100" layout-fill layout="row" layout-wrap>  
+                            <md-card flex="30"  data-ng-repeat="(i,tile) in activity.gallery">
+                                <img ng-src="../{{tile.img_url}}" class="md-card-image" alt="{{tile.img_url}}" title="{{tile.img_url}}">
+                            </md-card>
+                        </div>
+                        <div data-ng-show="activity.fbPhotoAlbum!==null" class="ta-left">
+                            <div data-ng-show="activity.withOfflineGallery===false" class="ta-left" layout="row">
+                                <p style="margin-top:0.75em;">No offline photos found.</p> <md-button data-ng-show="activity.withOfflineGallery==='0'" class="md-primary" data-ng-href="{{activity.fbPhotoAlbum_url}}" title="" target="_blank">Click here to view photo album on Facebook.</md-button>
+                            </div>
+                            <md-button data-ng-show="activity.withOfflineGallery==='1'" class="md-primary" data-ng-href="{{activity.fbPhotoAlbum_url}}" title="" target="_blank">Click here for more photos</md-button>
+                        </div>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+            <div class="ta-left" data-ng-show="no_content_elem==true">
+            </div>
+        </md-content>
+        <div>
+            <br/><br/>
+        </div>
     </md-content>
 
 </md-content>
