@@ -51,6 +51,7 @@
     	$scope.selectedGroup = "";
     	$scope.selectedGroupMembers = null;
     	$scope.original_document = {};
+    	$scope.addMode = false;
 
     	function processData(content,group,firstload){
     		if (content) {
@@ -76,7 +77,7 @@
     								subposition: memlist[l].subposition
     							};
     							if (content[idx].group==="Government") {
-    								 memdetails.agency = currMembers[m].office;
+    								memdetails.agency = currMembers[m].office;
     							}
     							else {
     								memdetails.agency = memlist[l].office;
@@ -141,54 +142,61 @@
     	}
 
     	$scope.addMsgMember=function(evt){
+    		$scope.addMode = true;
     		$scope.msgmembers[$scope.selectedGroup].push({
     			agency: '',
 				membership: 'Full',
 				name: '',
 				position: '',
-				subposition: ''
+				subposition: '',
+				newFlag: true
     		});
     	}
 
     	function doDelete(member,listIdx){
     		// Delete from display
-    		var roster = angular.copy($scope.selectedGroupMembers);
-    		for (var i=0;i<roster.length;i++) {
-    			if (roster[i].name===member.name &&
-    				roster[i].agency===member.agency &&
-    				roster[i].position===member.position ) {
-    				$scope.selectedGroupMembers.splice(i,1);
-    			}
-    		}
+    		if (!member.newFlag) {
+    			var roster = angular.copy($scope.selectedGroupMembers);
+	    		for (var i=0;i<roster.length;i++) {
+	    			if (roster[i].name===member.name &&
+	    				roster[i].agency===member.agency &&
+	    				roster[i].position===member.position ) {
+	    				$scope.selectedGroupMembers.splice(i,1);
+	    			}
+	    		}
 
-    		// Delete from Mlab document
-    		var contentDoc = angular.copy($scope.original_document.content);
-    		var indexGroup = utilsService.indexInObj(contentDoc,'group',$scope.selectedGroup);
-    		if (indexGroup!==null) {
-    			if ($scope.selectedGroup==='Government') {
-    				var idxMembers = utilsService.indexInObj(contentDoc[indexGroup].members,'office',member.agency);
-    			}
-    			else {
-    				var idxMembers = Math.floor(listIdx/2);
-    			}
-    			if (idxMembers!==null) {
-					var searchHere = contentDoc[indexGroup].members[idxMembers].members.primary;
-					if (member.membership==='Alternate') {
-						searchHere = contentDoc[indexGroup].members[idxMembers].members.alternate;
-					}
-					var idxForDeletion = utilsService.indexInObj(searchHere,'name',member.name);
-					if (idxForDeletion!==null) {
+	    		// Delete from Mlab document
+	    		var contentDoc = angular.copy($scope.original_document.content);
+	    		var indexGroup = utilsService.indexInObj(contentDoc,'group',$scope.selectedGroup);
+	    		if (indexGroup!==null) {
+	    			if ($scope.selectedGroup==='Government') {
+	    				var idxMembers = utilsService.indexInObj(contentDoc[indexGroup].members,'office',member.agency);
+	    			}
+	    			else {
+	    				var idxMembers = Math.floor(listIdx/2);
+	    			}
+	    			if (idxMembers!==null) {
+						var searchHere = contentDoc[indexGroup].members[idxMembers].members.primary;
 						if (member.membership==='Alternate') {
-							contentDoc[indexGroup].members[idxMembers].members.alternate.splice(idxForDeletion,1);
+							searchHere = contentDoc[indexGroup].members[idxMembers].members.alternate;
 						}
-						else {
-							contentDoc[indexGroup].members[idxMembers].members.primary.splice(idxForDeletion,1);
+						var idxForDeletion = utilsService.indexInObj(searchHere,'name',member.name);
+						if (idxForDeletion!==null) {
+							if (member.membership==='Alternate') {
+								contentDoc[indexGroup].members[idxMembers].members.alternate.splice(idxForDeletion,1);
+							}
+							else {
+								contentDoc[indexGroup].members[idxMembers].members.primary.splice(idxForDeletion,1);
+							}
 						}
 					}
-				}
-    		}
+	    		}
 
-    		updateDocument(contentDoc);
+	    		updateDocument(contentDoc);
+    		}
+    		else {
+    			$scope.selectedGroupMembers.splice(listIdx,1);
+    		}
     	}
 
 		$scope.deleteMember = function(ev,member,listIdx) {
@@ -211,14 +219,15 @@
 		function updateDocument(updatedContent){
 			var updatedDocument = $scope.original_document;
 			updatedDocument.content = updatedContent;
-			//// 
+			////
+			$scope.addMode = false; 
 			$scope.getmemspromise = MSGMembersDataFactory.update(updatedDocument);
     		$scope.getmemspromise.then(function(response){
     			delete $scope.getmemspromise;
     			var content = response.data.content;
     			$scope.original_document = angular.copy(response.data);
     			$scope.groups = [];
-		    	$scope.govOffices = [];	
+		    	$scope.govOffices = [];			    	
     			processData(content,$scope.selectedGroup,true);
     		},function(error){
     			delete $scope.getmemspromise;
@@ -228,6 +237,10 @@
 		$scope.saveMSG=function(ev) {
 			var changed = [];
 			var changedIdx = [];
+			var newlyAdded = [];
+			var newIdx = [];
+			var contentDoc = angular.copy($scope.original_document.content);
+
 			angular.forEach($scope.msgmembersform, function (field) {
 				try {
 					if (angular.isObject(field)) {
@@ -235,8 +248,12 @@
 							field.hasOwnProperty('$modelValue') ) {
 							if (field.$dirty===true && field.$touched===true) {
 								var idx = field.$name.split('-')[1];
-								changedIdx.push(idx);
-								changed.push($scope.selectedGroupMembers[idx]);
+								if (!$scope.selectedGroupMembers[idx].newFlag) {
+									if (utilsService.inArr(changedIdx,idx)===false) {
+										changedIdx.push(idx);
+										changed.push($scope.selectedGroupMembers[idx]);	
+									}	
+								}
 							}
 						}
 					}
@@ -247,83 +264,170 @@
 			});
 
 			if (changed.length > 0) {
-				var contentDoc = angular.copy($scope.original_document.content);
-
+				
 				for (var cidx=0;cidx<changed.length;cidx++) {
 					var member = changed[cidx];
-					
-		    		var indexGroup = utilsService.indexInObj(contentDoc,'group',$scope.selectedGroup);
-		    		if (indexGroup!==null) {
-		    			if ($scope.selectedGroup==='Government') {
-		    				var idxMembers = utilsService.indexInObj(contentDoc[indexGroup].members,'office',member.original.agency);
-		    			}
-		    			else {
-		    				var idxMembers = Math.floor(changedIdx[cidx]/2);
-		    			}
-		    			if (idxMembers!==null) {
-							var searchHere = contentDoc[indexGroup].members[idxMembers].members.primary;
-							var changedMemtype = false;
-							if (member.original.membership==='Alternate') {
-								searchHere = contentDoc[indexGroup].members[idxMembers].members.alternate;
-							}
-							
-							var idxForDeletion = utilsService.indexInObj(searchHere,'name',member.original.name);
+					if (!member.newFlag) {						
+			    		var indexGroup = utilsService.indexInObj(contentDoc,'group',$scope.selectedGroup);
+			    		if (indexGroup!==null) {
+			    			if ($scope.selectedGroup==='Government') {
+			    				var idxMembers = utilsService.indexInObj(contentDoc[indexGroup].members,'office',member.original.agency);
+			    			}
+			    			else {
+			    				var idxMembers = Math.floor(changedIdx[cidx]/2);
+			    			}
+			    			if (idxMembers!==null) {
+								var searchHere = contentDoc[indexGroup].members[idxMembers].members.primary;
+								var changedMemtype = false;
+								if (member.original.membership==='Alternate') {
+									searchHere = contentDoc[indexGroup].members[idxMembers].members.alternate;
+								}
+								
+								var idxForDeletion = utilsService.indexInObj(searchHere,'name',member.original.name);
 
-							if (member.membership!==member.original.membership) {
-								var forPushing = angular.copy(member);
-								delete forPushing.original;
-								// Add to new list + remove to old list
-								if (member.membership==='Alternate') { 
-									// if new type is alternate, get from primary, add to alternate	
-									contentDoc[indexGroup].members[idxMembers].members.alternate.push(forPushing);
-									contentDoc[indexGroup].members[idxMembers].members.primary.splice(idxForDeletion,1);
-								}
-								else {
-									// if new type is primary, get from alternate, add to primary
-									contentDoc[indexGroup].members[idxMembers].members.primary.push(forPushing);
-									contentDoc[indexGroup].members[idxMembers].members.alternate.splice(idxForDeletion,1);
-								}
-							}
-							else {
-								// Membership is not changed
-								if (idxForDeletion!==null) {
-									if (member.membership==='Alternate') {
-										if ($scope.selectedGroup!=='Government') {
-											contentDoc[indexGroup].members[idxMembers].members.alternate[idxForDeletion].office = member.agency;
-										}
-										else {
-											contentDoc[indexGroup].members[idxMembers].office = member.agency;
-										}
-										contentDoc[indexGroup].members[idxMembers].members.alternate[idxForDeletion].name = member.name;
-										contentDoc[indexGroup].members[idxMembers].members.alternate[idxForDeletion].position = member.position;
-										
-										if (contentDoc[indexGroup].members[idxMembers].members.alternate[idxForDeletion].subposition) {
-											contentDoc[indexGroup].members[idxMembers].members.alternate[idxForDeletion].subposition = member.subposition;
-										} 
+								if (member.membership!==member.original.membership) {
+									var forPushing = angular.copy(member);
+									delete forPushing.original;
+									// Add to new list + remove to old list
+									if (member.membership==='Alternate') { 
+										// if new type is alternate, get from primary, add to alternate	
+										contentDoc[indexGroup].members[idxMembers].members.alternate.push(forPushing);
+										contentDoc[indexGroup].members[idxMembers].members.primary.splice(idxForDeletion,1);
 									}
 									else {
-										if ($scope.selectedGroup!=='Government') {
-											contentDoc[indexGroup].members[idxMembers].members.primary[idxForDeletion].office = member.agency;
+										// if new type is primary, get from alternate, add to primary
+										contentDoc[indexGroup].members[idxMembers].members.primary.push(forPushing);
+										contentDoc[indexGroup].members[idxMembers].members.alternate.splice(idxForDeletion,1);
+									}
+								}
+								else {
+									// Membership is not changed
+									if (idxForDeletion!==null) {
+										if (member.membership==='Alternate') {
+											if ($scope.selectedGroup!=='Government') {
+												contentDoc[indexGroup].members[idxMembers].members.alternate[idxForDeletion].office = member.agency;
+											}
+											else {
+												contentDoc[indexGroup].members[idxMembers].office = member.agency;
+											}
+											contentDoc[indexGroup].members[idxMembers].members.alternate[idxForDeletion].name = member.name;
+											contentDoc[indexGroup].members[idxMembers].members.alternate[idxForDeletion].position = member.position;
+											
+											if (contentDoc[indexGroup].members[idxMembers].members.alternate[idxForDeletion].subposition) {
+												contentDoc[indexGroup].members[idxMembers].members.alternate[idxForDeletion].subposition = member.subposition;
+											} 
 										}
 										else {
-											contentDoc[indexGroup].members[idxMembers].office = member.agency;
+											if ($scope.selectedGroup!=='Government') {
+												contentDoc[indexGroup].members[idxMembers].members.primary[idxForDeletion].office = member.agency;
+											}
+											else {
+												contentDoc[indexGroup].members[idxMembers].office = member.agency;
+											}
+											contentDoc[indexGroup].members[idxMembers].members.primary[idxForDeletion].name = member.name;
+											contentDoc[indexGroup].members[idxMembers].members.primary[idxForDeletion].position = member.position;
+											
+											if (contentDoc[indexGroup].members[idxMembers].members.primary[idxForDeletion].subposition) {
+												contentDoc[indexGroup].members[idxMembers].members.primary[idxForDeletion].subposition = member.subposition;
+											} 
 										}
-										contentDoc[indexGroup].members[idxMembers].members.primary[idxForDeletion].name = member.name;
-										contentDoc[indexGroup].members[idxMembers].members.primary[idxForDeletion].position = member.position;
-										
-										if (contentDoc[indexGroup].members[idxMembers].members.primary[idxForDeletion].subposition) {
-											contentDoc[indexGroup].members[idxMembers].members.primary[idxForDeletion].subposition = member.subposition;
-										} 
-									}
-								}	
+									}	
+								}
 							}
-						}
-		    		}
+			    		}
+					}
 				}
 
-				updateDocument(contentDoc);
-			}
-		}
+				
+				
+			} // End: if changed > 0
+			
+			if ($scope.addMode===true) {
+				for (var cnt=0;cnt<$scope.selectedGroupMembers.length;cnt++) {
+					if ($scope.selectedGroupMembers[cnt].newFlag===true) {
+						if ($scope.selectedGroupMembers[cnt].name==="") {
+							alert('Name is required.');
+							return false;
+						}
+
+						if ($scope.selectedGroupMembers[cnt].position==="") {
+							alert('Position is required.');
+							return false;
+						}
+
+						if ($scope.selectedGroupMembers[cnt].agency==="") {
+							alert('Office/agency is required.');
+							return false;
+						}
+
+						newIdx.push(cnt);
+						newlyAdded.push($scope.selectedGroupMembers[cnt]);
+					}
+				}
+				
+				if (newlyAdded.length > 0) {
+					
+					for (var cidx=0;cidx<newlyAdded.length;cidx++) {
+						var newmember = newlyAdded[cidx];
+						delete newmember.newFlag;
+
+						var indexGroup = utilsService.indexInObj(contentDoc,'group',$scope.selectedGroup);
+
+			    		if (indexGroup!==null) {
+			    			if ($scope.selectedGroup==='Government') {
+			    				var idxMembers = utilsService.indexInObj(contentDoc[indexGroup].members,'office',newmember.agency);
+			    				if (idxMembers!==null) {
+			    					if (newmember.membership==='Alternate') {
+			    						delete newmember.membership;
+			    						if (newmember.hasOwnProperty('$$hashKey')){
+			    							delete newmember.$$hashKey;
+			    						}
+			    						contentDoc[indexGroup].members[idxMembers].members.alternate.push(newmember);
+				    				}
+				    				else {
+				    					delete newmember.membership;
+				    					if (newmember.hasOwnProperty('$$hashKey')){
+			    							delete newmember.$$hashKey;
+			    						}
+										contentDoc[indexGroup].members[idxMembers].members.primary.push(newmember);
+				    				}
+			    				}		    				
+			    			}
+			    			else {
+			    				var idxMembers = Math.ceil($scope.selectedGroupMembers.length/2);
+			    				if (!contentDoc[indexGroup].members[idxMembers]) {
+			    					contentDoc[indexGroup].members.push({
+			    						members: {
+			    							primary: [],
+			    							alternate: []
+			    						}
+			    					});
+			    				}
+			    				if (newmember.membership==='Alternate') {
+			    					delete newmember.membership;
+			    					if (newmember.hasOwnProperty('$$hashKey')){
+		    							delete newmember.$$hashKey;
+		    						}
+		    						contentDoc[indexGroup].members[idxMembers-1].members.alternate.push(newmember);
+			    				}
+			    				else {
+			    					delete newmember.membership;
+			    					if (newmember.hasOwnProperty('$$hashKey')){
+		    							delete newmember.$$hashKey;
+		    						}
+									contentDoc[indexGroup].members[idxMembers-1].members.primary.push(newmember);
+			    				}	
+			    			}
+			    		}
+					} // End: for newlyAdded-loop
+				}
+
+			} // End: else if add mode is ON
+		
+			// console.log(contentDoc[indexGroup]);
+			updateDocument(contentDoc);
+
+		} // End: saveMSG
 
     }
 

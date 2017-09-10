@@ -88,6 +88,21 @@ angular.module('utilsModule',[])
 		}
 		return false
 	}
+	this.getObjOtherPropVal = function(ArrayObj,prop1,val,prop2){
+		if (ArrayObj) {
+			/////////////////////////////////////
+			// ArrayObj is an array of Objects //
+			/////////////////////////////////////	
+			for (var k in ArrayObj) {
+				if (ArrayObj[k][prop1]!==undefined) {
+					if (ArrayObj[k][prop1]==val) { // hasOwnProperty
+						return ArrayObj[k][prop2];
+					}	
+				}
+			}
+		}
+		return false
+	}
 	this.sortObjKeyVal = function(obj,prop){
 		////////////////////////////////////////////////////////////////
 		// Pass "-property name" / prefix dash '-' to reverse sorting //

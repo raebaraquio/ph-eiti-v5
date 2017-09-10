@@ -20,6 +20,7 @@ cms.controller('CMSController',['$scope','sessionService','$location','$rootScop
 
 	// $scope.contentTypes = ["Home","News","Documents","Activities","Announcements","Infographics"]
 	$scope.selectedContent = "Home";
+	$scope.activeNav = "";
 	$scope.tasks = [
 		{
 			task:'News',
@@ -65,12 +66,12 @@ cms.controller('CMSController',['$scope','sessionService','$location','$rootScop
 			desc:'Update content or documents of Country Reports',
 			icon: '../../images/icons/svg/ic_class_black_24px.svg'
 		},
-		/*{
+		{
 			task:'Secretariat',
 			href:'#/Secretariat',
 			desc:'Add and/or update secretariat info/accounts',
 			icon: '../../images/icons/svg/ic_event_black_24px.svg'
-		},*/
+		},
 		{
 			task:'Log out',
 			href:'../../portal/login',
@@ -86,9 +87,9 @@ cms.controller('CMSController',['$scope','sessionService','$location','$rootScop
 	]
 
 	$rootScope.$on('$routeChangeSuccess', function(next, current) { 
-		// console.log(next)
-		// console.log('here!!!!')
-		// ... you could trigger something here ...	
+		if (current) {
+			$scope.activeNav = current.$$route.activenav;	
+		}
 	});
 
 }]);

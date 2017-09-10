@@ -7,16 +7,13 @@ $userid = mysql_escape_string(trim(strip_tags($data->id)));
 $name = mysql_escape_string(trim(strip_tags($data->name)));
 $position = mysql_escape_string(trim(strip_tags($data->position)));
 $email = mysql_escape_string(trim(strip_tags($data->email))); 
-$mobile = mysql_escape_string(trim(strip_tags($data->mobile))); 
-
 
 $query = "update users
-            set 
-                name = '$name',
-                email = '$email',
-                position = '$position',
-                mobile = '$mobile'
-        where id = '$userid' ";
+		        set 
+		            name = '".$name."',
+		            email = '".$email."',
+		            position = '".$position."'
+		    where id = '".$userid."' ";
 
 
 $get = mysql_query($query);

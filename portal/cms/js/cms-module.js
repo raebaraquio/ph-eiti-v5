@@ -9,76 +9,102 @@ cms.config(function($routeProvider){
 	{
 		title: 'Add - News | PH-EITI',
 		controller:'CMSAddNewsController',
-		templateUrl:'./partials/News/add.html'
+		templateUrl:'./partials/News/add.html',
+		activenav: 'News'
 	})
 	.when('/:category/Article/:id',
 	{
 		title: 'Article | PH-EITI',
 		controller:'CMSViewNewsController',
-		templateUrl:'./partials/News/article.html'
+		templateUrl:'./partials/News/article.html',
+		activenav: 'News'
 	})
 	.when('/:category/Article/Edit/:pk/:id',
 	{
 		title: 'Edit - News | PH-EITI',
 		controller:'CMSEditNewsController',
-		templateUrl:'./partials/News/edit.html'
+		templateUrl:'./partials/News/edit.html',
+		activenav: 'News'
 	})
 	.when('/News',
 	{
 		controller:'CMSNewsController',
-		templateUrl:'./partials/News/index.html'
+		templateUrl:'./partials/News/index.html',
+		activenav: 'News'
 	})
 	.when('/PH-EITI in the News',
 	{
 		controller:'CMSNewsController',
-		templateUrl:'./partials/News/index.html'
+		templateUrl:'./partials/News/index.html',
+		activenav: 'News'
 	})
 	.when('/PH-EITI Newsroom',
 	{
 		controller:'CMSNewsController',
-		templateUrl:'./partials/News/index.html'
+		templateUrl:'./partials/News/index.html',
+		activenav: 'News'
 	})
 	.when('/Media Releases',
 	{
 		controller:'CMSNewsController',
-		templateUrl:'./partials/News/index.html'
+		templateUrl:'./partials/News/index.html',
+		activenav: 'News'
 	})
 
 	.when('/Resources',
 	{
 		controller:'CMSResourcesController',
-		templateUrl:'./partials/Resources/index.html'
+		templateUrl:'./partials/Resources/index.html',
+		activenav: 'Resources'
 	})	
 
 	.when('/Activities/add',
 	{
 		controller:'CMSActivitiesAddController',
-		templateUrl:'./partials/Activities/add.html'
+		templateUrl:'./partials/Activities/add.html',
+		activenav: 'Activities'
 	})	
 	.when('/Activities',
 	{
 		controller:'CMSActivitiesController',
-		templateUrl:'./partials/Activities/index.html'
+		templateUrl:'./partials/Activities/index.html',
+		activenav: 'Activities'
 	})
 	.when('/MSG Meetings',
 	{
 		controller:'CMSMSGMeetingsController',
-		templateUrl:'./partials/MSG Meetings/index.html'
+		templateUrl:'./partials/MSG Meetings/index.html',
+		activenav: 'MSG Meetings'
 	})
 	.when('/MSG Members',
 	{
 		controller:'CMSMSGMembersController',
-		templateUrl:'./partials/MSG Members/index.html'
+		templateUrl:'./partials/MSG Members/index.html',
+		activenav: 'MSG Members'
 	})
 	.when('/Reporting Templates',
 	{
 		controller:'CMSReportingTemplatesController',
-		templateUrl:'./partials/Reporting Templates/index.html'
+		templateUrl:'./partials/Reporting Templates/index.html',
+		activenav: 'Reporting Templates'
 	})
 	.when('/Country Report',
 	{
 		controller:'CMSReportController',
-		templateUrl:'./partials/Country Report/index.html'
+		templateUrl:'./partials/Country Report/index.html',
+		activenav: 'Country Report'
+	})	
+	.when('/Secretariat?accound=:account',
+	{
+		controller:'CMSSecretariatController',
+		templateUrl:'./partials/Secretariat/index.html',
+		activenav: 'Secretariat'
+	})
+	.when('/Secretariat',
+	{
+		controller:'CMSSecretariatController',
+		templateUrl:'./partials/Secretariat/index.html',
+		activenav: 'Secretariat'
 	})
 });
 

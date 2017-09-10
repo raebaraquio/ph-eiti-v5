@@ -4,7 +4,7 @@ include_once('../classes/mysql_connect.php');
 $data = json_decode(file_get_contents("php://input"));
 
 $email = mysql_escape_string(trim(strip_tags($data->username)));
-$password = md5(mysql_escape_string(trim(strip_tags($data->password))));
+$password = mysql_escape_string(trim(strip_tags($data->password))); //md5();
 
 $query = "select 
                 id,
@@ -16,7 +16,8 @@ $query = "select
                 mobile,
                 piclocation
             from users 
-            where email = '$email'";
+            where email = '$email'
+                and disabled = 0";
 
 $get = mysql_query($query);
 

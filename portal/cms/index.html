@@ -20,17 +20,17 @@
 <body id="cms-content-placeholder"> 
 	<md-content ng-cloak ng-controller="CMSController">
 		<md-toolbar class="md-accent" layout="row" layout-align="space-between center">
-			<div flex="25" layout="column" style="padding-left:1em;box-sizing:border-box;">
+			<div flex="20" layout="column" style="padding-left:1em;box-sizing:border-box;">
 				<p style="margin:0px;padding:0px">Hi {{user.name}},</p>
 				<h4 style="margin:0px;padding:0px;color:#fff;"> what do you want to do?</h4>
 			</div>
-			<div flex="75" layout="row" layout-align="end center" style="padding-right:1em;box-sizing:border-box;background-color:#ffc822;">
+			<div flex="80" layout="row" layout-align="end center" style="padding-right:1em;box-sizing:border-box;background-color:#ffc822;">
 				<h2 style="color:#fff;">PH-EITI Content Manager</h2>
 			</div>
 		</md-toolbar>
 		<md-content id="content-manager-box">
 			<md-content layout="row" style="overflow-x:hidden">
-				<md-content flex="25" layout="column" style="background-color:#fefefe">
+				<md-content flex="20" layout="column" style="background-color:#fefefe">
 					<md-list class="md-dense" flex>
 						<!-- <md-list-item class="md-3-line" ng-repeat="item in todos" ng-click="null">
 							<img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />
@@ -41,17 +41,17 @@
 							</div>
 						</md-list-item> -->
 						<!-- <md-subheader class="md-no-sticky">3 line item (with hover)</md-subheader> -->
-						<md-list-item class="md-2-line" ng-repeat="(k,cr) in tasks" title="{{cr.task}}">
+						<md-list-item class="md-2-line" ng-repeat="(k,cr) in tasks" title="{{cr.task}}" style="min-height:40px;" ng-class="{'active-side-nav':activeNav===cr.task}">
 							<!-- <img ng-src="{{cr.icon}}" class="md-avatar" /> -->
 							<div class="md-list-item-text" layout="column">
 								<h3><a class="resetLink" href="{{cr.href}}">{{cr.task}}</a></h3>
-								<h4>{{ cr.desc }}</h4>
+								<!-- <h4>{{ cr.desc }}</h4> -->
 								<!-- <p><a href="{{cr.href}}">{{cr.task}}</a></p> -->
 							</div>
 						</md-list-item>
 					</md-list>
 				</md-content>
-				<md-content flex="75" layout="column">
+				<md-content flex="80" layout="column">
 					<md-content ng-view ng-cloak layout-padding style="max-height:590px;overflow-x:hidden;overflow-y:scroll;">
 					</md-content>
 				</md-content>
@@ -107,6 +107,7 @@
 <script src="js/controllers/CMSReportController.js"></script>
 <script src="js/controllers/CMSMSGMeetingsController.js"></script>
 <script src="js/controllers/CMSMSGMembersController.js"></script>
+<script src="js/controllers/CMSSecretariatController.js"></script>
 <!-- <script src="js/factories/ProfileFactory.js"></script>
 <script src="js/controllers/ProfileController.js"></script>
 <script src="js/controllers/EditProfileController.js"></script>

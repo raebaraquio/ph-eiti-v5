@@ -1,0 +1,176 @@
+<md-content layout-padding>
+    <h1>{{ showMyAccount==false ? 'Manage Secretariat Info' : 'My Account Info'}}</h1>
+    <div>
+        <md-button class="md-accent" ng-click="showMyAccount = !showMyAccount;">{{ showMyAccount==false ? 'View My Account' : 'Back to Secretariat Info' }}</md-button>     
+    </div>
+    <div ng-show="!showMyAccount">
+        <md-progress-linear data-ng-show="getpromise" class="md-secondary" md-mode="indeterminate"></md-progress-linear>
+        <form name="secretariatForm" id="secretariatForm">
+            <div layout="row" layout-align="space-around start">
+                <md-table-container flex="62">
+                    <!-- style="max-height:350px;overflow-y:scroll;"> -->
+                    <table md-table>
+                        <thead md-head>
+                            <tr md-row>
+                                <th md-column>Position</th>
+                                <th md-column>Name</th>
+                                <th md-column>Reset</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr md-row ng-repeat="(memk,mem) in members" class="cms-msgmember" style="height:52px;">
+                                <td md-cell>
+                                    <input type="text" name="memname-{{memk}}" required="true" ng-model="mem.name" size="25"/>
+                                </td>                        
+                                <td md-cell>
+                                    <input type="text" name="position-{{memk}}" required="true" ng-model="mem.position"  size="30"/>
+                                </td>
+                                <td md-cell>
+                                    <img class="cms-action" src="../images/icons/ic_lock_open_black_24px.svg" alt="Reset Password" title="Reset Password" ng-click="resetPassword($event,mem,memk)"/>
+                                </td>
+                            </tr>
+                            <tr md-row ng-show="members.length===0">
+                                <td md-cell colspan="3"> No data available </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </md-table-container>
+                <md-table-container flex="40">
+                    <table md-table>
+                        <thead md-head>
+                            <tr md-row>
+                                <th md-column colspan="2">Contact Information</th>
+                            </tr>
+                        </thead>
+                        <tbody md-body>
+                            <tr md-row style="height:52px">
+                                <td md-cell>Address Line 1</td>
+                                <td md-cell>
+                                    <input type="text" name="addline-1" required="true" ng-model="contact.add_line1" size="30"/>
+                                </td>
+                            </tr>
+                            <tr md-row style="height:52px">
+                                <td md-cell>Address Line 2</td>
+                                <td md-cell>
+                                    <input type="text" name="addline-2" required="true" ng-model="contact.add_line2" size="30"/>
+                                </td>
+                            </tr>
+                            <tr md-row style="height:52px">
+                                <td md-cell>Email Address</td>
+                                <td md-cell>
+                                    <input type="text" name="email" required="true" ng-model="contact.email"/>
+                                </td>
+                            </tr>
+                            <tr md-row style="height:52px">
+                                <td md-cell>Phone</td>
+                                <td md-cell>
+                                    <input type="text" name="phone" required="true" ng-model="contact.phone"/>
+                                </td>
+                            </tr>
+                            <tr md-row style="height:52px">
+                                <td md-cell>
+                                    <md-button type="submit" ng-disabled="!secretariatForm.$dirty" class="md-accent fnt--white md-raised" ng-click="save($event)">Save</md-button> 
+                                </td>
+                                <td md-cell></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </md-table-container>
+            </div>
+        </form>
+    </div>
+    <div ng-show="showMyAccount" layout="row">
+        <form  flex="55" name="accountForm" id="accountForm">
+            <md-table-container>
+                <table md-table>
+                    <thead md-head>
+                        <tr md-row>
+                            <th md-column colspan="2">Account Information</th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                        <tr md-row style="height:52px">
+                            <td md-cell>ID</td>
+                            <td md-cell>
+                                <strong>{{userAccount.id}}</strong>
+                            </td>
+                        </tr>
+                        <tr md-row style="height:52px">
+                            <td md-cell>Name</td>
+                            <td md-cell>
+                                <input type="text" name="acct-name" required="true" ng-model="userAccount.name" size="30"/>
+                            </td>
+                        </tr>
+                        <tr md-row style="height:52px">
+                            <td md-cell>Position</td>
+                            <td md-cell>
+                                <input type="text" name="acct-position" required="true" ng-model="userAccount.position" size="30"/>
+                            </td>
+                        </tr>
+                        <tr md-row style="height:52px">
+                            <td md-cell>Email Address</td>
+                            <td md-cell>
+                                <input type="text" name="acct-email" required="true" ng-model="userAccount.email" size="30"/>
+                            </td>
+                        </tr>
+                        <tr md-row style="height:52px">
+                            <td md-cell></td>
+                            <td md-cell>
+                                <md-button type="submit" ng-disabled="!accountForm.$dirty || accountForm.$invalid" class="md-accent fnt--white md-raised" ng-click="updateAccount($event)">Save Changes</md-button> 
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>    
+        </form>
+        <form  flex="45" name="changePwdForm" id="changePwdForm">
+            <md-table-container>
+                <table md-table>
+                    <thead md-head>
+                        <tr md-row>
+                            <th md-column>Change Password</th>
+                            <th md-column>
+                                <input type="checkbox" id="showpwd" ng-model="showPwd"/><label for="showpwd">Show password</label>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                        <tr md-row style="height:52px">
+                            <td md-cell>Password</td>
+                            <td md-cell>
+                                <input ng-if="!showPwd" type="password" name="acct-password" required="true" ng-model="userAccount.password" size="10"/>
+                                <input ng-if="showPwd" type="text" name="acct-password" required="true" ng-model="userAccount.password" size="10"/>
+                            </td>
+                        </tr>
+                        <tr md-row style="height:52px">
+                            <td md-cell>New Password</td>
+                            <td md-cell>
+                                <input ng-if="!showPwd" type="password" name="acct-newpassword" required="true" ng-model="userAccount.newpassword" size="15"/>
+                                <input ng-if="showPwd" type="text" name="acct-newpassword" required="true" ng-model="userAccount.newpassword" size="15"/>
+                            </td>
+                        </tr>
+                        <tr md-row style="height:52px">
+                            <td md-cell>Re-type New Password</td>
+                            <td md-cell>
+                                <input ng-if="!showPwd" type="password" name="acct-retypepassword" required="true" ng-model="userAccount.retype" size="15"/>
+                                <input ng-if="showPwd" type="text" name="acct-retypepassword" required="true" ng-model="userAccount.retype" size="15"/>
+                            </td>
+                        </tr>
+                        <tr md-row style="height:52px">
+                            <td md-cell></td>
+                            <td md-cell>
+                                <md-button type="submit" ng-disabled="!changePwdForm.$dirty" class="md-accent fnt--white md-raised" ng-click="updatePassword($event)">Save New Password</md-button> 
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+        </form>
+    </div>
+    <div>
+        <br />
+        <br />
+        <br />
+    </div>
+</md-content>
+

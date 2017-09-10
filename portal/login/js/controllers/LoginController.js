@@ -18,7 +18,8 @@ login.controller('LoginController',['$scope','LoginFactory','$cookies',
 	// Check if logged in
 
     $scope.loading = false;
-	$scope.login = {}
+	$scope.login = {};
+	$scope.userpassword = null;
 
 	$scope.log_on = function() {
 		$scope.userfeedback.message = ''
@@ -43,12 +44,12 @@ login.controller('LoginController',['$scope','LoginFactory','$cookies',
 		if ($cookies.get('email')) {
 		  $cookies.remove('email')
 		}
-		if ($cookies.get('mobile')) {
-		  $cookies.remove('mobile')
-		}
-		if ($cookies.get('piclocation')) {
-		  $cookies.remove('piclocation')
-		}
+		// if ($cookies.get('mobile')) {
+		//   $cookies.remove('mobile')
+		// }
+		// if ($cookies.get('piclocation')) {
+		//   $cookies.remove('piclocation')
+		// }
 
 		$scope.loading = true;		
 		$scope.loginPromise = LoginFactory.login($scope.login);
@@ -56,13 +57,15 @@ login.controller('LoginController',['$scope','LoginFactory','$cookies',
 			if (typeof(data.data[0]) != 'string') {				
 				var user = data.data[0];
 				
+				$scope.userpassword = $scope.login.password;
+
 				if (localStorage) {
 					localStorage.setItem('id',user.id)
 					localStorage.setItem('name',user.name)
 					localStorage.setItem('position',user.position)
 					localStorage.setItem('email',user.email)
-					localStorage.setItem('mobile',user.mobile)
-					localStorage.setItem('piclocation',user.piclocation)
+					// localStorage.setItem('mobile',user.mobile)
+					// localStorage.setItem('piclocation',user.piclocation)
 				}
 			    
 				/////////////////////////
@@ -72,11 +75,10 @@ login.controller('LoginController',['$scope','LoginFactory','$cookies',
 				$cookies.put('name',user.name)
 				$cookies.put('position',user.position)
 				$cookies.put('email',user.email)
-				$cookies.put('mobile',user.mobile)
-				$cookies.put('piclocation',user.piclocation)
+				// $cookies.put('mobile',user.mobile)
+				// $cookies.put('piclocation',user.piclocation)
 
-			    $scope.loading = false;
-			    // alert('redirect to cms')
+			    $scope.loading = false;			    
 				window.location.href = '../cms/';
 			}
 			else {

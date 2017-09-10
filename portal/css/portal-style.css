@@ -1033,3 +1033,12 @@ a.btn-gray {
 .cms-action:hover {
     cursor:pointer;
 }
+
+.active-side-nav {
+    background-color: #f1f1f1;
+}
+
+.active-side-nav a,
+.active-side-nav h3 {
+    font-weight: 600;   
+}
