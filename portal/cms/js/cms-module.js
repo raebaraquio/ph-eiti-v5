@@ -65,6 +65,11 @@ cms.config(function($routeProvider){
 		controller:'CMSMSGMeetingsController',
 		templateUrl:'./partials/MSG Meetings/index.html'
 	})
+	.when('/MSG Members',
+	{
+		controller:'CMSMSGMembersController',
+		templateUrl:'./partials/MSG Members/index.html'
+	})
 	.when('/Reporting Templates',
 	{
 		controller:'CMSReportingTemplatesController',

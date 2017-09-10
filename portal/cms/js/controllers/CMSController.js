@@ -47,12 +47,12 @@ cms.controller('CMSController',['$scope','sessionService','$location','$rootScop
 			desc:'Add and/or Update MSG Meetings',
 			icon: '../../images/icons/svg/ic_event_black_24px.svg'
 		},
-		/*{
+		{
 			task:'MSG Members',
 			href:'#/MSG Members',
 			desc:'Add and/or Update MSG Members',
 			icon: '../../images/icons/svg/ic_event_black_24px.svg'
-		},*/
+		},
 		{
 			task:'Reporting Templates',
 			href:'#/Reporting Templates',
@@ -86,8 +86,8 @@ cms.controller('CMSController',['$scope','sessionService','$location','$rootScop
 	]
 
 	$rootScope.$on('$routeChangeSuccess', function(next, current) { 
-		console.log(next)
-		console.log('here!!!!')
+		// console.log(next)
+		// console.log('here!!!!')
 		// ... you could trigger something here ...	
 	});
 

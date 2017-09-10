@@ -1,0 +1,111 @@
+<md-content layout-padding>
+    <h1>Manage MSG Members</h1>
+    <form name="msgmembersform" id="msgmembersform">
+        <div layout="column">
+            <md-content layout="row" layout-align="start center">
+                <md-input-container flex="45" style="width:300px">
+                    <label>Select Group</label>
+                    <md-select data-ng-model="selectedGroup" data-ng-change="loadMembers(selectedGroup)">
+                        <md-option data-ng-repeat="grp in groups track by $index" value="{{grp}}">{{grp}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <!-- <md-input-container flex="30">
+                    <md-button class="md-raised md-default" data-ng-disabled="selectedIdx == meetings.length-1" data-ng-click="getPrevMtg()">Prev</md-button><md-button class="md-raised md-default" data-ng-disabled="selectedIdx == 0"  data-ng-click="getNexMtg()">Next</md-button>
+                </md-input-container> -->
+                <md-button ng-disabled="!selectedGroup" class="md-primary fnt--white md-raised" ng-click="addMsgMember($event)">Add New MSG Member</md-button> 
+                <md-button type="submit" ng-disabled="!selectedGroup || !msgmembersform.$dirty" class="md-accent fnt--white md-raised" ng-click="saveMSG($event)">Save</md-button> 
+                   
+            </md-content>
+        </div>
+        <div>
+            <md-progress-linear data-ng-show="getmemspromise" class="md-secondary" md-mode="indeterminate"></md-progress-linear>
+            <md-table-container>
+                <table md-table>
+                    <thead md-head>
+                        <tr md-row>
+                            <th md-column>Options</th>
+                            <th md-column>Full/Alternate</th>
+                            <th md-column>Name</th>
+                            <th md-column>Position</th>
+                            <th md-column>Office/Agency</th>
+                            <th md-column>Other Info</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr md-row ng-repeat="(memk,mem) in selectedGroupMembers" class="cms-msgmember" style="height:52px;">
+                            <td md-cell>
+                                <img class="cms-action" src="../images/icons/ic_delete_black_24px.svg" alt="Delete {{mem.name}}" title="Delete {{mem.name}}" ng-click="deleteMember($event,mem,memk)"/>
+                            </td>
+                            <td md-cell>
+                                <select name="memtype-{{memk}}"  ng-model="mem.membership" required="true">
+                                    <option value="Full">Full</option>
+                                    <option value="Alternate">Alternate</option>
+                                </select>
+                            </td>
+                            <td md-cell>
+                                <textarea name="memname-{{memk}}" required="true" rows="2" type="text" ng-model="mem.name" cols="30" style="resize:none">
+                                </textarea>
+                            </td>                        
+                            <td md-cell>
+                                <textarea name="position-{{memk}}" required="true"  rows="2" ng-model="mem.position" cols="35" style="resize:none">
+                                </textarea>
+                            </td>
+                            <td md-cell>
+                                <select name="office-{{memk}}"  required="true" ng-if="selectedGroup=='Government'" ng-model="mem.agency" ng-options="office as office for office in govOffices" style="width:350px;">
+                                    <option value=""></option>
+                                </select>
+                                <textarea name="agency-{{memk}}"  required="true" rows="2" ng-if="selectedGroup!=='Government'" ng-model="mem.agency" cols="35" style="resize:none">
+                                </textarea>
+                            </td>
+                            <td md-cell>
+                                <textarea name="subpos-{{memk}}" rows="2" ng-model="mem.subposition" cols="35" style="resize:none">
+                                </textarea>
+                            </td>
+                        </tr>
+                        <tr md-row ng-show="selectedGroupMembers.length===0">
+                            <td md-cell colspan="6"> No data available </td>
+                        </tr>
+                    </tbody>
+                    <!-- <thead md-head>
+                        <tr md-row>
+                            <th width="50%" md-column class="ta-left"><span>Full Members</span></th>
+                            <th width="50%" md-column class="ta-left"><span>Alternate Members</span></th>
+                        </tr>
+                    </thead>
+                    <tbody md-body ng-repeat="mem in selectedGroupMembers">
+                        <tr md-row ng-if="mem.office" style="height:22px;">
+                            <td colspan="2" class="ta-left" style="font-weight:600;font-size:0.95em;border-bottom:1px solid #f0f0f0;">{{mem.office}}</td>
+                        </tr>
+                        <tr md-row>
+                            <td md-cell class="te-left">
+                                <md-list-item class="md-3-line" data-ng-repeat="(kipm,vipm) in mem.members.primary">
+                                    <div class="md-list-item-text">
+                                        <h3>{{vipm.name}}</h3>
+                                        <p class="ww-breakword">{{vipm.position}}</p>
+                                        <p class="ww-breakword" ng-if="vipm.subposition">{{vipm.subposition}}</p>
+                                        <p class="ww-breakword" ng-if="vipm.office">{{vipm.office}}</p>
+                                    </div>
+                                </md-list-item>
+                            </td>
+                            <td md-cell class="te-left">
+                                <md-list-item class="md-3-line" data-ng-repeat="(kiam,viam) in mem.members.alternate">
+                                    <div class="md-list-item-text">
+                                        <h3>{{viam.name}}</h3>
+                                        <p class="ww-breakword">{{viam.position}}</p>
+                                        <p class="ww-breakword" ng-if="viam.subposition">{{viam.subposition}}</p>
+                                        <p class="ww-breakword" ng-if="viam.office">{{viam.office}}</p>
+                                    </div>
+                                </md-list-item>
+                            </td>
+                        </tr>
+                    </tbody> -->
+                </table>
+            </md-table-container>
+        </div>
+    </form>
+    <div>
+        <br />
+        <br />
+        <br />
+    </div>
+</md-content>

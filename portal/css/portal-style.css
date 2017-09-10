@@ -1020,3 +1020,16 @@ a.btn-gray {
     line-height: 3em;
     padding-left: 0.5em;
 }
+
+
+.cms-msgmember:hover {
+    background-color: #f1f1f1;
+}
+
+.cms-action {
+    outline: none;
+}
+
+.cms-action:hover {
+    cursor:pointer;
+}
