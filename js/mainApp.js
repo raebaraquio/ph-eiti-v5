@@ -250,8 +250,12 @@ pheiti.controller('headerCarouselController',['$scope',
     $scope.headersArr = [
         {
             title: '',
-            image: 'images/home-main-carousel/third-country-report-transparent-compressed.png'
+            image: 'images/home-main-carousel/Banner A.png'
         },
+        /*{
+            title: '',
+            image: 'images/home-main-carousel/third-country-report-transparent-compressed.png'
+        },*/
         {
             title: '',
             image: 'images/home-main-carousel/eiti-steps-1-transparent.png'
