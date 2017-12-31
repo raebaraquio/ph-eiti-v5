@@ -190,7 +190,8 @@
       if (that.currentSlideItem.image) {
         var headerElement = angular.element(document.getElementById('home-slider'));
         try {
-          if (that.currentIndex == 0 || that.currentIndex == 5) {
+          console.log(that.currentIndex+" <===== ")
+          if (that.currentIndex == 0 || that.currentIndex == 1 || that.currentIndex == 2 || that.currentIndex == 3) {
             $(headerElement).css({'background-color':'#1D92DE','transition':'background-color 0.5s fade-in'});
             // $(headerElement).css({'background-color':'#1D92DE','transition':'ease-in'});
           }
@@ -233,7 +234,8 @@
       if (that.currentSlideItem.image) {
         var headerElement = angular.element(document.getElementById('home-slider'));
         try {
-          if (that.currentIndex == 0 || that.currentIndex == 5) {
+          // if (that.currentIndex == 0 || that.currentIndex == 5) {
+          if (that.currentIndex == 0 || that.currentIndex == 1 || that.currentIndex == 2 || that.currentIndex == 3) {
             $(headerElement).css({'background-color':'#1D92DE','transition':'background-color 0.5s fade-in'});
           }
           else {

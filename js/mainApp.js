@@ -250,29 +250,33 @@ pheiti.controller('headerCarouselController',['$scope',
     $scope.headersArr = [
         {
             title: '',
+            image: 'images/home-main-carousel/4th Report Web Banner.png'
+        },
+        {
+            title: '',
             image: 'images/home-main-carousel/Banner A.png'
-        },
-        /*{
-            title: '',
-            image: 'images/home-main-carousel/third-country-report-transparent-compressed.png'
-        },*/
-        {
-            title: '',
-            image: 'images/home-main-carousel/eiti-steps-1-transparent.png'
-        },
-        {
-            title: '',
-            image: 'images/home-main-carousel/eiti-steps-2b-transparent.png'
-        },
-        {
-            title: '',
-            image: 'images/home-main-carousel/eiti-steps-3b-transparent.png'
         },
         {
             title: '',
             image: 'images/home-main-carousel/main-2-transparent.png'
         }
-    ]
+    ];
+    /*{
+        title: '',
+        image: 'images/home-main-carousel/third-country-report-transparent-compressed.png'
+    },
+    {
+        title: '',
+        image: 'images/home-main-carousel/eiti-steps-1-transparent.png'
+    },
+    {
+        title: '',
+        image: 'images/home-main-carousel/eiti-steps-2b-transparent.png'
+    },
+    {
+        title: '',
+        image: 'images/home-main-carousel/eiti-steps-3b-transparent.png'
+    },*/
 }]);
 
 pheiti.controller('homeInfographicController',['$scope','$mdDialog','$mdMedia',
