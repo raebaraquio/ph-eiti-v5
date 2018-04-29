@@ -64,7 +64,6 @@ var msgmtgscope;
         function getMtgs(){
             $scope.getPromise = msgMtgDataFactory.getMSGmeetings();
             $scope.getPromise.then(function(response){
-                console.log(response.data)
                 var meetings = response.data.meetings;
                 var newMeetings = []
                 if (meetings.length > 0) {
@@ -74,27 +73,29 @@ var msgmtgscope;
                         if (mtg) {
                             if (mtg.with_annex=='1') {
                                 var temp_annexes = mtg.meeting_annexes;
-                                if (temp_annexes.match(/---/gi)) {
-                                    var a = temp_annexes.split('---');
-                                    for (var idx=0;idx<a.length;idx++) {
-                                        if (a[idx].match(/~~~/gi)) { // With File
-                                            var b = a[idx].split('~~~');
+                                if (temp_annexes!=null) {
+                                    if (temp_annexes.match(/---/gi)) {
+                                        var a = temp_annexes.split('---');
+                                        for (var idx=0;idx<a.length;idx++) {
+                                            if (a[idx].match(/~~~/gi)) { // With File
+                                                var b = a[idx].split('~~~');
+                                                annexes.push({
+                                                    annex_id : b[0],
+                                                    title : b[1],
+                                                    file : b[2]
+                                                });
+                                            }
+                                        }
+                                    }
+                                    else { // One File
+                                        if (temp_annexes.match(/~~~/gi)) { // With File
+                                            var b = temp_annexes.split('~~~');
                                             annexes.push({
                                                 annex_id : b[0],
                                                 title : b[1],
                                                 file : b[2]
                                             });
                                         }
-                                    }
-                                }
-                                else { // One File
-                                    if (temp_annexes.match(/~~~/gi)) { // With File
-                                        var b = temp_annexes.split('~~~');
-                                        annexes.push({
-                                            annex_id : b[0],
-                                            title : b[1],
-                                            file : b[2]
-                                        });
                                     }
                                 }
                             }
