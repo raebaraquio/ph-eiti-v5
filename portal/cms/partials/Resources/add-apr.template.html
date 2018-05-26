@@ -15,8 +15,12 @@
 </style>
 <md-content layout-padding style="min-width:550px;min-height:465px;">
 	<!-- <md-content> -->
-	<h1>New Activity Report</h1>
+	<!-- <h1>New Activity Report</h1> -->
 	<!-- </md-content> -->
+	<md-content layout="row" layout-align="space-between center">
+		<h1 style="margin-bottom:0px;padding-bottom:0px;margin-top:0px;">New Activity Report</h1>
+		<a href="" ng-click="close()" title="Dismiss"><img src="../../images/icons/svg/ic_close_silver_24px.svg" alt="" width="24px"/></a>
+	</md-content>
 	<md-content>
 		<iframe id="newapr-iframe" name="newapr-iframe" style="width:0px;height:0px;border:none" border="0" onload="newAPRreturn()"></iframe>
 		<form name="newAPRform" id="newAPRform" enctype="multipart/form-data" method="POST" autocomplete="off" action="../../rest/functions/resources/add-apr.php" target="newapr-iframe">		

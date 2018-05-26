@@ -617,6 +617,39 @@ Class Resources{
 		}
 	}
 
+
+	// Delete
+
+	function delete_apr($id){
+	
+		$query = "delete 
+					from resources_activity_reports 
+					where arid = ".$id;
+
+		$deleteResult = mysql_query($query);
+
+        if (!$deleteResult) {
+            print(json_encode(
+            	array(
+            		'success'=>false,
+                    'error'=>'database',
+                    'status'=>'selectError',
+                    'mysqlerror'=>mysql_error(),
+                    'query'=>$query)
+            	)
+            );
+            exit();
+        }
+
+        print(json_encode(
+        	array(
+        		'success'=>true,
+        		'query'=>$query,
+                'status'=>'ok')
+        	)
+        );
+        exit();
+	}
 }
 
 ?>

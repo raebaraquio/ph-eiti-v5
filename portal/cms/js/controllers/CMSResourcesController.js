@@ -24,7 +24,8 @@ var aprscope,giscope,infoscope,brochurescope,wplanscope,studiesscope,lawscope,or
 			getContent: getContent,
 			getTypes : getTypes,
 			getAll : getAll,
-			addAPR : addAPR
+			addAPR : addAPR,
+			deleteContent : deleteContent
 		};
 		return ResourcesDataFactory;
 		
@@ -69,6 +70,12 @@ var aprscope,giscope,infoscope,brochurescope,wplanscope,studiesscope,lawscope,or
 	        });
 	    }
 
+	    function deleteContent(contentType,contentId) {
+	    	return $http({
+	            url:'../../rest/functions/resources/delete-resource.php?resourceType='+contentType+'&id='+contentId,
+	            method:'GET'
+	        });
+	    }
 	}
 
 	CMSResourcesController.$inject = ['$scope','ResourcesDataFactory','$mdDialog'];
@@ -393,6 +400,39 @@ var aprscope,giscope,infoscope,brochurescope,wplanscope,studiesscope,lawscope,or
 					break;
 			}
 		}
+
+		$scope.confirmDelete=function(evt,resourceType,data){
+			console.log(data)
+			var resourceName = "", rType="", rId=null;
+			switch(resourceType) {
+				case 'Activity Report': 
+					resourceName = data.coverage;
+					rType = "APR";
+					rId = data.arid;
+					break;
+			}
+
+			var confirm = $mdDialog.confirm()
+				.title('Delete '+resourceType+'?')
+				.textContent('This action will permanently delete the selected '+resourceType+' ('+resourceName+'). What would you like to do?')
+				.targetEvent(evt)
+				.ok('Yes, Delete '+resourceType)
+				.cancel("No, Don't Delete "+resourceType);
+
+			$mdDialog.show(confirm).then(function() {
+				$scope.deletePromise = ResourcesDataFactory.deleteContent(rType,rId);
+				$scope.deletePromise.then(function(response){
+					if (response.data.success) {
+						triggerFetch($scope.selectedResourceType);
+					}
+					delete $scope.deletePromise;
+				},function(err){
+					delete $scope.deletePromise;
+				});		
+			}, function() {
+				// do nothing
+			});
+		}
 	}
 
 	/* Add APR */
@@ -452,6 +492,10 @@ var aprscope,giscope,infoscope,brochurescope,wplanscope,studiesscope,lawscope,or
 			}
 		});
 
+		$scope.close=function(){
+			$mdDialog.hide();	
+		}
+
 		aprscope = $scope;
 	}
 
@@ -500,6 +544,10 @@ var aprscope,giscope,infoscope,brochurescope,wplanscope,studiesscope,lawscope,or
 				catch(e){}
 			}
 		});
+
+		$scope.close=function(){
+			$mdDialog.hide();	
+		}
 
 		giscope = $scope;
 	}
