@@ -401,14 +401,77 @@ var aprscope,giscope,infoscope,brochurescope,wplanscope,studiesscope,lawscope,or
 			}
 		}
 
-		$scope.confirmDelete=function(evt,resourceType,data){
+		$scope.confirmDelete=function(evt,resourceType,data,folder){
 			console.log(data)
+			console.log(resourceType)
 			var resourceName = "", rType="", rId=null;
 			switch(resourceType) {
 				case 'Activity Report': 
 					resourceName = data.coverage;
 					rType = "APR";
 					rId = data.arid;
+					break;
+				case 'BO Roadmap':
+					resourceName = data.title;
+					rType = 'WorkPlan';
+					rId = data.wpid;
+					break;
+				case 'Work Plan':
+					resourceName = data.title;
+					rType = 'WorkPlan';
+					rId = data.wpid;
+					break;
+				case 'Infographic':	
+					resourceName = data.title;
+					rType = 'Infographics';
+					if (data.brochures_id!=undefined) {
+						resourceType = 'Brochure';
+						rType = 'Brochures';
+						rId = data.brochures_id;
+					}
+					if (data.infographics_id!=undefined) {
+						rId = data.infographics_id;
+					}
+					break;
+				case 'Studies':
+					resourceType = 'Study';
+					resourceName = data.title;
+					rId = data.stid;
+					rType = 'Studies';
+					break;
+				case 'General Information Sheet':
+					resourceName = data.title_id;
+					rId = data.gisid;
+					rType = 'GIS';
+					break;
+				case 'Laws and Legal Issuances':
+					resourceType = $scope.filterContentType;
+					switch($scope.filterContentType) {
+						case 'Laws':
+							resourceType = 'Law';
+							break;
+						case 'Presidential Decrees':
+							resourceType = 'Presidential Decree';
+							break;
+						case 'Proclamations':
+							resourceType = 'Proclamation';
+							break;
+						case 'Administrative Issuances':
+							resourceType = 'Administrative Issuance';
+							break;
+						case 'Local Tax Codes':
+							resourceType = 'Local Tax Code';
+							break;
+					}
+					rId = data.lliid;
+					rType = 'Laws';
+					resourceName = data.title;
+					break;
+				case 'Organizational Documents':
+					resourceType = 'Organization Document';
+					resourceName = data.file_title;
+					rId = data.orgdocid;
+					rType = 'OrgDocs';
 					break;
 			}
 
@@ -420,6 +483,7 @@ var aprscope,giscope,infoscope,brochurescope,wplanscope,studiesscope,lawscope,or
 				.cancel("No, Don't Delete "+resourceType);
 
 			$mdDialog.show(confirm).then(function() {
+				// console.log(resourceType+' -- '+rType+' --- '+rId);
 				$scope.deletePromise = ResourcesDataFactory.deleteContent(rType,rId);
 				$scope.deletePromise.then(function(response){
 					if (response.data.success) {

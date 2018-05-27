@@ -17,8 +17,7 @@ $return_data = NULL;
 
 switch ($resourceType) {
 	case 'Studies':
-		// $return_data['studies'] = $resources->get_studies();
-		// $return_data['years'] = $resources->get_studies_yr();
+		$return_data = $resources->delete_study($id);
 		break;
 
 	case 'APR':
@@ -26,32 +25,27 @@ switch ($resourceType) {
 		break;
 
 	case 'GIS':
-		// $return_data['gis'] = $resources->get_gis();
-		// $return_data['years'] = $resources->get_gis_yr();
+		$return_data = $resources->delete_gis($id);
 		break;
 
 	case 'OrgDocs':
-		// $return_data['subfolders'] = $resources->get_orgdocs_folders();
-		// $return_data['files'] = $resources->get_orgdocs_files();
+		$return_data = $resources->delete_orgdoc($id);
 		break;
 
 	case 'Laws':
-		// $return_data = $resources->get_laws();
+		$return_data = $resources->delete_law($id);
 		break;
 
 	case 'Infographics':
-		// $year_arr = array_merge($resources->get_brochures_yr(),$resources->get_infographics_yr());
-		// $sortedYears = array_unique($year_arr, SORT_REGULAR);
-		// $return_data['years'] = array();
-		// foreach ($sortedYears as $key => $value) {
-		// 	array_push($return_data['years'],$sortedYears[$key]);
-		// }
-		// $return_data['content'] = array_merge($resources->get_infographics(),$resources->get_brochures());
+		$return_data = $resources->delete_infographic($id);
+		break;
+	
+	case 'Brochures':
+		$return_data = $resources->delete_brochure($id);
 		break;
 	
 	case 'WorkPlan':
-		// $return_data['years'] = $resources->get_wplan_yrs();
-		// $return_data['workplans'] = $resources->get_wplan();
+		$return_data = $resources->delete_workplan($id);
 		break;
 }
 
