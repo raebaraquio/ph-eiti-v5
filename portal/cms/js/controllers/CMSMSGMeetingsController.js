@@ -19,7 +19,8 @@ var msgmtgscope;
 	function msgMtgDataFactory($http){
 
 	    var msgMtgDataFactory = {
-	        getMSGmeetings : getMSGmeetings
+            getMSGmeetings : getMSGmeetings,
+            deleteMeeting : deleteMeeting
 	    }
 
 	    return msgMtgDataFactory;
@@ -29,6 +30,13 @@ var msgmtgscope;
 	    function getMSGmeetings(){
             return $http({
                 url:'../../rest/functions/get-msgmeetings.php',
+                method: 'GET'
+            });
+        }
+
+        function deleteMeeting(id){
+            return $http({
+                url:'../../rest/functions/msg-meetings/delete-msg-meeting.php?id='+id,
                 method: 'GET'
             });
         }
@@ -195,7 +203,34 @@ var msgmtgscope;
             });
         }
 
-        
+        $scope.confirmDelete=function(evt,resourceType,data) {
+            console.log(data)
+			var resourceName = data.mtg_title;
+			var mid = data.mtgid;
+			var confirm = $mdDialog.confirm()
+				.title('Delete '+resourceType+'?')
+				.textContent('This action will permanently delete the selected '+resourceType+' ('+resourceName+'). What would you like to do?')
+				.targetEvent(evt)
+				.ok('Yes, Delete '+resourceType)
+				.cancel("No, Don't Delete "+resourceType);
+
+			$mdDialog.show(confirm).then(function() {
+				$scope.deletePromise = msgMtgDataFactory.deleteMeeting(mid);
+				$scope.deletePromise.then(function(response){
+					console.log(response)
+					if (response.data.success) {
+                        getMtgs();
+					}
+					delete $scope.deletePromise;
+				},function(err){
+					console.log(err)
+                    getMtgs();
+					delete $scope.deletePromise;
+				});		
+			}, function() {
+				// do nothing
+			});
+		}
 	}
 
     addMSGmeetingController.$inject = ['$scope','$mdDialog'];
