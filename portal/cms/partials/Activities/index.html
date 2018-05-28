@@ -61,7 +61,7 @@
                         <p><div data-ng-bind-html="activity.writeup_content"></div></p>
                     </md-content>
                 </md-tab>
-                <md-tab label="Program" data-ng-if="activity.program_url!==null">
+                <md-tab label="Program" data-ng-if="activity.program_url!==null && activity.program_url!==''">
                     <md-content class="md-padding">
                         <h1 class="md-display-2">Program</h1>
                         <div layout="column">
@@ -69,7 +69,7 @@
                         </div>
                     </md-content>
                 </md-tab>
-                <md-tab label="Documentation" data-ng-if="activity.documentation_url!==null">
+                <md-tab label="Documentation" data-ng-if="activity.documentation_url!==null && activity.documentation_url!==''">
                     <md-content>
                         <h1 class="md-display-2">Documentation</h1>
                         <div layout="column">
@@ -163,6 +163,7 @@
                 </md-tab>
             </md-tabs>
             <div class="ta-left" data-ng-show="no_content_elem==true">
+                No content available.
             </div>
         </md-content>
         <div>

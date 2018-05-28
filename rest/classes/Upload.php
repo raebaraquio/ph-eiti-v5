@@ -67,6 +67,9 @@ class Upload {
 			if (isset($specFolder) && !(empty($specFolder))) {
 				$path = $targetDirectory[$uploadType][$contentSection].'/'.self::getCurrYear().'/'.self::getCurrMonth().'/'.self::getCurrDate().'/'.$specFolder;
 			}	
+			else { // For program and documentation
+				$path = $targetDirectory[$uploadType][$contentSection].'/'.self::getCurrYear().'/'.self::getCurrMonth().'/'.self::getCurrDate();
+			}
 		}
 		else {
 			$path = $targetDirectory[$uploadType][$contentSection].'/'.self::getCurrYear().'/'.self::getCurrMonth().'/'.self::getCurrDate();

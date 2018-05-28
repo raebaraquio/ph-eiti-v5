@@ -150,15 +150,15 @@ var activityscope,activitycontentscope;
 					try {
 						$scope.activity = response.data;
 						
-						if ($scope.activity.writeup_content == null && 
-							$scope.activity.program_url == null && 
-							$scope.activity.documentation_url == null  && 
+						if ( ($scope.activity.writeup_content == null || $scope.activity.writeup_content=='') &&
+							($scope.activity.program_url == null || $scope.activity.program_url=='' ) && 
+							($scope.activity.documentation_url == null || $scope.activity.documentation_url=='') && 
 							$scope.activity.presentations.length == 0  &&
 							$scope.activity.gallery.length == 0) {
 							$scope.no_content_elem = true;
 						}
 
-						if ($scope.activity.writeup_content != null) {
+						if ($scope.activity.writeup_content != null && $scope.activity.writeup_content != '') {
 							$scope.activity.writeup_content = $sce.trustAsHtml('<div>'+$scope.activity.writeup_content+'</div>');		
 						}
 
@@ -208,17 +208,17 @@ var activityscope,activitycontentscope;
 
 						delete $scope.getpromise;
 
-						if ($scope.activity.writeup_content !== null) {
+						if ($scope.activity.writeup_content !== null && $scope.activity.writeup_content !== '') {
 							$scope.select_act_tab('About')
 							return
 						}
 
-						if ($scope.activity.program_url !== null) {
+						if ($scope.activity.program_url !== null && $scope.activity.program_url !== '') {
 							$scope.select_act_tab('Program')
 							return
 						}
 
-						if ($scope.activity.documentation_url !== null) {
+						if ($scope.activity.documentation_url !== null && $scope.activity.documentation_url!=='') {
 							$scope.select_act_tab('Documentation')
 							return
 						}
@@ -573,6 +573,9 @@ var activityscope,activitycontentscope;
 		$scope.selected_ev_daystr = "";
 		$scope.selected_ev_dayidfk = "";
 
+		$scope.programFile = null;
+		$scope.documentationFile = null;
+
 		var maxNum = 5;
 		var totalFiles = 0;
 
@@ -591,10 +594,19 @@ var activityscope,activitycontentscope;
 
 		function init(){
 			$scope.activity = JSON.parse(localStorage.getItem('activity'));
+			if ($scope.activity.program_url=="" || $scope.activity.program_url==null) {
+				$scope.programFile = null;
+				$scope.contentTypes.push('Program');
+			}
+			if ($scope.activity.documentation_url=="" || $scope.activity.documentation_url==null) {
+				$scope.documentationFile = null;
+				$scope.contentTypes.push('Documentation');
+			}
+
 			var totalFiles = 0;
 			$scope.writeup_content = "";
 			$scope.contentType = $scope.contentTypes[0];
-
+			
 			var p = ActivitiesDataFactory.getDays($scope.activity.id);
 			p.then(function(response){
 				var returnData = response.data;
@@ -612,7 +624,8 @@ var activityscope,activitycontentscope;
                     title: '',
                     author: ''
                 });         
-            }
+			}
+
 		}
 
 		function inArr(arr,needle){
@@ -639,15 +652,36 @@ var activityscope,activitycontentscope;
 
 		$scope.onFileChanged = function (evt) {
             $scope.$apply(function() {
-            	var id = evt.target.id;
-            	var field_idx = evt.target.id.split('presentationfile-')[1];
-                if (document.getElementById(evt.target.id).files[0]===undefined) {
-                    $scope.presentationfiles[field_idx].file = null;   
-                }
-                else {
-                    $scope.presentationfiles[field_idx].file = document.getElementById(evt.target.id).files[0];
-                }
-                checkFile();
+				var id = evt.target.id;
+	
+				if (evt.target.id=='programfile') {
+					if (document.getElementById(evt.target.id).files[0]===undefined) {
+						$scope.programFile = null;   
+					}
+					else {
+						$scope.programFile = document.getElementById(evt.target.id).files[0];
+					}
+				}
+				else if (evt.target.id=='documentationfile') {
+					if (document.getElementById(evt.target.id).files[0]===undefined) {
+						$scope.documentationFile = null;   
+					}
+					else {
+						$scope.documentationFile = document.getElementById(evt.target.id).files[0];
+					}
+				}
+				else {
+					var field_idx = evt.target.id.split('presentationfile-')[1];
+					if (document.getElementById(evt.target.id).files[0]===undefined) {
+						$scope.presentationfiles[field_idx].file = null;   
+					}
+					else {
+						$scope.presentationfiles[field_idx].file = document.getElementById(evt.target.id).files[0];
+					}
+					checkFile();
+				}
+
+            	
             });
         };
 
