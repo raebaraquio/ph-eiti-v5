@@ -23,7 +23,8 @@ var activityscope,activitycontentscope;
 			getAll: getAll,
 			getYears: getYears,
 			getDays: getDays,
-			addWriteUp: addWriteUp
+			addWriteUp: addWriteUp,
+			deleteActivity : deleteActivity
 		};
 		return ActivitiesDataFactory;
 		
@@ -75,6 +76,16 @@ var activityscope,activitycontentscope;
 					'id': id,
 					'content' : content
 				}
+			});
+		}
+
+		function deleteActivity(id){
+			if (!id) {
+				return false;
+			}
+			return $http({
+				url:'../../rest/functions/activities/delete-activity.php?id='+id,
+				method:'GET'
 			});
 		}
 	}
@@ -318,6 +329,33 @@ var activityscope,activitycontentscope;
             });
         }
 
+		$scope.confirmDelete=function(evt,resourceType,data) {
+			var resourceName = data.title;
+			var aid = data.id;
+			var confirm = $mdDialog.confirm()
+				.title('Delete '+resourceType+'?')
+				.textContent('This action will permanently delete the selected '+resourceType+' ('+resourceName+'). What would you like to do?')
+				.targetEvent(evt)
+				.ok('Yes, Delete '+resourceType)
+				.cancel("No, Don't Delete "+resourceType);
+
+			$mdDialog.show(confirm).then(function() {
+				$scope.deletePromise = ActivitiesDataFactory.deleteActivity(aid);
+				$scope.deletePromise.then(function(response){
+					console.log(response)
+					if (response.data.success) {
+						getYears(true);
+					}
+					delete $scope.deletePromise;
+				},function(err){
+					console.log(err)
+					getYears(true);
+					delete $scope.deletePromise;
+				});		
+			}, function() {
+				// do nothing
+			});
+		}
 	}
 
 

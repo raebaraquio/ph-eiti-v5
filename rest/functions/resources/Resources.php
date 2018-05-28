@@ -621,7 +621,7 @@ Class Resources{
 	// Delete
 
 	function delete_apr($id){
-		if ($id==NULL || isEmpty($id)){
+		if ($id==NULL || empty($id)){
 			print(json_encode(
             		array(
             		'success'=>false,
@@ -662,7 +662,7 @@ Class Resources{
 	}
 
 	function delete_workplan($id){
-		if ($id==NULL || isEmpty($id)){
+		if ($id==NULL || empty($id)){
 			print(json_encode(
             		array(
             		'success'=>false,
@@ -703,7 +703,7 @@ Class Resources{
 	}
 
 	function delete_infographic($id){
-		if ($id==NULL || isEmpty($id)){
+		if ($id==NULL || empty($id)){
 			print(json_encode(
             		array(
             		'success'=>false,
@@ -744,7 +744,7 @@ Class Resources{
 	}
 
 	function delete_brochure($id){
-		if ($id==NULL || isEmpty($id)){
+		if ($id==NULL || empty($id)){
 			print(json_encode(
             		array(
             		'success'=>false,
@@ -785,7 +785,7 @@ Class Resources{
 	}
 
 	function delete_law($id) {
-		if ($id==NULL || isEmpty($id)){
+		if ($id==NULL || empty($id)){
 			print(json_encode(
             		array(
             		'success'=>false,
@@ -826,7 +826,7 @@ Class Resources{
 	}
 
 	function delete_study($id){
-		if ($id==NULL || isEmpty($id)){
+		if ($id==NULL || empty($id)){
 			print(json_encode(
             		array(
             		'success'=>false,
@@ -867,7 +867,7 @@ Class Resources{
 	}
 
 	function delete_gis($id){
-		if ($id==NULL || isEmpty($id)){
+		if ($id==NULL || empty($id)){
 			print(json_encode(
             		array(
             		'success'=>false,
@@ -908,7 +908,7 @@ Class Resources{
 	}
 
 	function delete_orgdoc($id){
-		if ($id==NULL || isEmpty($id)){
+		if ($id==NULL || empty($id)){
 			print(json_encode(
             		array(
             		'success'=>false,

@@ -43,7 +43,8 @@
 							<span class="md-subhead"><strong>{{activity.activity_start_date | formatDate}}</strong></span>
 						</md-card-title-text>
 					</md-card-title>
-					<md-card-actions layout="row" layout-align="end center">
+					<md-card-actions layout="row" layout-align="space-around center">
+                        <md-button class="md-warn" data-ng-click="confirmDelete($event,'Activity',activity)"><strong>Delete</strong></md-button>
 						<md-button class="md-accent" ng-click="selectActivity(k,activity)"><strong>Open</strong></md-button>
 					</md-card-actions>
 				</md-card>

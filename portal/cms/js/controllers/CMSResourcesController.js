@@ -483,7 +483,6 @@ var aprscope,giscope,infoscope,brochurescope,wplanscope,studiesscope,lawscope,or
 				.cancel("No, Don't Delete "+resourceType);
 
 			$mdDialog.show(confirm).then(function() {
-				// console.log(resourceType+' -- '+rType+' --- '+rId);
 				$scope.deletePromise = ResourcesDataFactory.deleteContent(rType,rId);
 				$scope.deletePromise.then(function(response){
 					if (response.data.success) {
