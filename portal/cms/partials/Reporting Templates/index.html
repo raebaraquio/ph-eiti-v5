@@ -21,12 +21,13 @@
     <div layout="row" layout-align="space-between center">
         <md-content flex="100" layout-fill layout="row" layout-wrap>
             <md-card flex="45" layout="row" data-ng-repeat="(k,template) in templates | filter:{year:filterYear,sector:filterSector}" class="card-container">
-                <md-card-title flex="70">
+                <md-card-title flex="60">
                     <md-card-title-text class="ta-left">
                         <span class="md-headline" title="{{template.title}}" style="font-size:1em;line-height:1em;">{{template.title}}</span>
                     </md-card-title-text>
                 </md-card-title>
-                <md-card-actions flex="30" layout="row" layout-align="end center">
+                <md-card-actions flex="40" layout="row" layout-align="space-around end">
+                    <md-button class="md-warn" data-ng-if="template.file_url" data-ng-click="confirmDelete($event,'Reporting Template',template)" alt="Download {{template.title}} Reporting Template"  title="Delete {{template.title}} Reporting Template"><strong>Delete</strong></md-button>
                     <md-button class="md-accent" data-ng-if="template.file_url" data-ng-click="open_file(template.file_url,template)" alt="Download {{template.title}} Reporting Template"  title="Download {{template.title}} Reporting Template"><strong>Download</strong></md-button>
                 </md-card-actions>
             </md-card>

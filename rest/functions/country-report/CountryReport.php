@@ -336,7 +336,7 @@ Class CountryReport{
 		}
 	}
 
-	function get_templates($crid,$contentid){
+	function get_templates(){
 		$reportingTemplates = array();
 
 		$query = "select
