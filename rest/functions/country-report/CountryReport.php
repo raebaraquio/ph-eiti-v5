@@ -336,7 +336,7 @@ Class CountryReport{
 		}
 	}
 
-	function get_templates($crid,$contentid){
+	function get_templates(){
 		$reportingTemplates = array();
 
 		$query = "select
@@ -434,6 +434,129 @@ Class CountryReport{
 		else {
 		    return self::add_one_content($crid,'page',$pageTitle);
 		}
+	}
+
+	// Delete
+	function delete_completed_reporting_template($crid_fk,$crtid){
+		if ($crid_fk==NULL || empty($crid_fk)){
+			return 0;
+		}
+		
+		$cond = "";
+		if (isset($crtid) && !(empty($crtid)) && $crtid!=NULL) {
+			$cond .= " and crtid=".$crtid;
+		}
+        
+		$query = "delete from completed_reporting_templates where crid_fk=".$crid_fk."".$cond;
+
+        $deleteResult = mysql_query($query);
+
+        if (!$deleteResult) {
+            return 0;
+        }
+
+        return 1;
+	}
+
+	function delete_other_files($crid_fk,$fileid){
+		if ($crid_fk==NULL || empty($crid_fk)){
+			return 0;
+		}
+		
+		$cond = "";
+		if (isset($fileid) && !(empty($fileid)) && $fileid!=NULL) {
+			$cond .= " and file_id=".$fileid;
+		}
+        
+		$query = "delete from country_report_otherfiles where crid_fk=".$crid_fk."".$cond;
+
+        $deleteResult = mysql_query($query);
+
+        if (!$deleteResult) {
+            return 0;
+        }
+
+        return 1;
+	}
+
+	function delete_content($crid_fk,$crcontent_id){
+		if ($crid_fk==NULL || empty($crid_fk)){
+			return 0;
+		}
+		
+		$cond = "";
+		if (isset($crcontent_id) && !(empty($crcontent_id)) && $crcontent_id!=NULL) {
+			$cond .= " and crcontent_id=".$crcontent_id;
+		}
+        
+		$query = "delete from country_reports_content where crid_fk=".$crid_fk."".$cond;
+
+        $deleteResult = mysql_query($query);
+
+        if (!$deleteResult) {
+            return 0;
+        }
+
+        return 1;
+	}
+
+	function delete_report($id){
+
+		if ($id==NULL || empty($id)){
+			print(json_encode(
+            		array(
+            		'success'=>false,
+                    'error'=>'no id found',
+                    'status'=>'',
+                    'query'=>'')
+            	)
+            );
+            exit();
+        }
+
+		$deleted_crt = self::delete_completed_reporting_template($id,NULL);
+		$deleted_other_files = self::delete_other_files($id,NULL);
+		$deleted_report_content = self::delete_content($id,NULL);
+
+		if ($deleted_crt==0 || $deleted_other_files==0 || $deleted_report_content==0){
+			print(json_encode(
+					array(
+						'success'=>false,
+						'error'=>'db delete error',
+						'status'=>'',
+						'query'=>''
+					)
+				)
+			);
+			exit();
+		}
+
+		$query = "delete from country_reports where crid =".$id;
+
+        $deleteResult = mysql_query($query);
+
+        if (!$deleteResult) {
+            print(json_encode(
+                array(
+                    'success'=>false,
+                    'error'=>'database',
+                    'status'=>'selectError',
+                    'mysqlerror'=>mysql_error(),
+                    'query'=>$query)
+                )
+            );
+            exit();
+        }
+
+        print(json_encode(
+            array(
+                'success'=>true,
+                'query'=>$query,
+                'status'=>'ok')
+            )
+        );
+        exit();
+
 	}
 }
 

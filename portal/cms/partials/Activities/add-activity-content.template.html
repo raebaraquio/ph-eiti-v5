@@ -23,7 +23,7 @@
                     <md-select data-ng-model="selectedDay">
                         <md-option data-ng-repeat="day in eventDays" value="{{day.event_day}}">{{day.event_day}}</md-option>
                     </md-select>
-                </md-input-container>
+				</md-input-container>
                 <!-- <md-input-container flex="75" ng-show="allfolders.length">
                     <label>Select Folder</label>
                     <md-select data-ng-model="filterContentType">
@@ -33,7 +33,7 @@
             </md-content>            
 		</md-content>
 		<iframe id="addactivitycontent-iframe" name="addactivitycontent-iframe" style="width:0px;height:0px;border:none" border="0" onload="newActivityContentReturn()"></iframe>
-		<form name="addActivityContentForm-writeup" id="addActivityContentForm-writeup" ng-show="contentType !== 'Presentations'" style="margin-bottom:0px;padding-bottom:0px;">
+		<form name="addActivityContentForm-writeup" id="addActivityContentForm-writeup" ng-show="contentType == 'Write-up (About Section)'" style="margin-bottom:0px;padding-bottom:0px;">
 			<div flex>
 				<textarea id="about-writeup" cols="30" rows="15" ui-tinymce="tinymceopts" ng-model="writeup_content"></textarea>
 			</div>
@@ -84,6 +84,62 @@
 				</table>
 			</md-table-container>	
 				
+		</form>
+		<form name="addActivityProgramDocForm" id="addActivityProgramDocForm" ng-show="contentType == 'Program' " enctype="multipart/form-data" method="POST" autocomplete="on" action="../../rest/functions/activities/add-activity-program.php" target="addactivitycontent-iframe"  style="margin-bottom:0px;padding-bottom:0px;">
+			<!-- <input type="hidden" id="presfiles-activityidfk" name="presfiles-activityidfk" value="{{activity.id}}" />
+			<input type="hidden" id="presfiles-hreftitle" name="presfiles-hreftitle" value="{{activity.href}}" /> -->
+			<input type="hidden" id="programFile-activityidfk" name="programFile-activityidfk" value="{{activity.id}}" />
+			<input type="hidden" id="programFile-hreftitle" name="programFile-hreftitle" value="{{activity.href}}" />
+			<md-table-container flex ng-show="contentType == 'Program'" style="max-height:380px;overflow-y:scroll;">
+				<table md-table>
+					<tbody md-body>
+						<tr md-row>
+							<td md-cell>
+								<label for="programfile">Select file:</label>
+							</td>
+							<td md-cell>
+								<input type="file" name="programfile" id="programfile" type="file" onchange="angular.element(this).scope().onFileChanged(event)" required="true"/>
+							</td>
+						</tr>
+						<tr md-row>
+							<td md-cell></td>
+							<td md-cell></td>
+							<td md-cell style="text-align:right;">	
+								<md-button id="programform-btn-reset" type="reset" ng-click="resetForm($event)">Reset</md-button>
+								<md-button class="md-raised md-primary fnt--white" ng-disbaled="addActivityProgramDocForm.$invalid" type="submit" name="programform-submit">Submit</md-button>			
+							</td>
+						</tr>
+					</tbody>						
+				</table>
+			</md-table-container>	
+		</form>	
+		<form name="addActivityDocumentationForm" id="addActivityDocumentationForm" ng-show="contentType == 'Documentation' " enctype="multipart/form-data" method="POST" autocomplete="on" action="../../rest/functions/activities/add-activity-documentation.php" target="addactivitycontent-iframe"  style="margin-bottom:0px;padding-bottom:0px;">
+			<!-- <input type="hidden" id="presfiles-activityidfk" name="presfiles-activityidfk" value="{{activity.id}}" />
+			<input type="hidden" id="presfiles-hreftitle" name="presfiles-hreftitle" value="{{activity.href}}" /> -->
+			<input type="hidden" id="documentationFile-activityidfk" name="documentationFile-activityidfk" value="{{activity.id}}" />
+			<input type="hidden" id="documentationFile-hreftitle" name="documentationFile-hreftitle" value="{{activity.href}}" />
+			<md-table-container flex ng-show="contentType == 'Documentation'" style="max-height:380px;overflow-y:scroll;">
+				<table md-table>
+					<tbody md-body>
+						<tr md-row>
+							<td md-cell>
+								<label for="documentationfile">Select file:</label>
+							</td>
+							<td md-cell>
+								<input type="file" name="documentationfile" id="documentationfile" type="file" onchange="angular.element(this).scope().onFileChanged(event)" required="true"/>
+							</td>
+						</tr>
+						<tr md-row>
+							<td md-cell></td>
+							<td md-cell></td>
+							<td md-cell style="text-align:right;">	
+								<md-button id="documentationform-btn-reset" type="reset" ng-click="resetForm($event)">Reset</md-button>
+								<md-button class="md-raised md-primary fnt--white" ng-disbaled="addActivityDocumentationForm.$invalid" type="submit" name="documentationform-submit">Submit</md-button>			
+							</td>
+						</tr>
+					</tbody>						
+				</table>
+			</md-table-container>	
 		</form>	
 	</div>
 	

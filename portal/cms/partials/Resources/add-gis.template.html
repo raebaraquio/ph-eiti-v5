@@ -1,5 +1,8 @@
 <md-content layout-padding style="min-width:700px;min-height:465px;">
-	<h1 style="margin-bottom:0px;padding-bottom:0px;">Add GIS File</h1>
+	<md-content layout="row" layout-align="space-between center">
+		<h1 style="margin-bottom:0px;padding-bottom:0px;">Add GIS File</h1>
+		<a href="" ng-click="close()" title="Dismiss"><img src="../../images/icons/svg/ic_close_silver_24px.svg" alt="" width="24px"/></a>
+	</md-content>
 	<iframe id="newgis-iframe" name="newgis-iframe" style="width:0px;height:0px;border:none" border="0" onload="newGISreturn()"></iframe>
 	<form name="newGISform" id="newGISform" enctype="multipart/form-data" method="POST" autocomplete="off" action="../../rest/functions/resources/add-gis.php" target="newgis-iframe"  style="margin-bottom:0px;padding-bottom:0px;">		
 		<md-table-container>

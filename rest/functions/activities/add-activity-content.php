@@ -41,7 +41,7 @@ if (isset($_POST['presfilescontent-submit'])) {
 
     $href = "";
     if (isset($_POST['presfiles-hreftitle']) && !(empty($_POST['presfiles-hreftitle']))) {
-        $href = intval(mysql_escape_string(trim(strip_tags($_POST['presfiles-hreftitle']))));
+        $href = mysql_escape_string(trim(strip_tags($_POST['presfiles-hreftitle'])));
     }
 
     $numfiles = 0;

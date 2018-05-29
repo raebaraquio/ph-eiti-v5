@@ -32,7 +32,8 @@
                 </md-list-item>
             </md-list> -->      
 
-            <div layout="row" style="margin-top:10px;">
+            <div layout="row" style="margin-top:10px;" layout-align="space-around center">
+                <md-button class="md-warn" data-ng-click="confirmDelete($event,'MSG Meeting',meeting_selected)" title="Delete MSG Minutes">Delete</md-button>
                 <md-button class="md-raised md-accent" data-ng-click="download_minutes(meeting_selected.minutes_url)" title="Download Minutes of {{meeting_selected.mtg_title}} MSG Meeting">Download Minutes</md-button>           
             </div>            
 

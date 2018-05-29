@@ -51,22 +51,9 @@
                             </div>
                         </md-card-title-media>
                     </md-card-title>
-                    <md-card-actions layout="row" layout-align="center center">                        
-                        <md-button aria-label="Open File" class="md-default" data-ng-show="apr.file_url!==''" data-ng-click="openAR(apr.file_url,apr)"><strong>Open</strong></md-button>
-                        <!-- <md-menu md-offset="0 -5">
-                            <md-button class="md-default" aria-label="Open Edit Menu" ng-click="openMenu($mdOpenMenu, $event)">Edit</md-button>
-                            <md-menu-content width="4">
-                                <md-menu-item>
-                                    <md-button aria-label="Change File" class="md-primary" ng-click="changeFile(apr,$event)">Change File</md-button>
-                                </md-menu-item>                                
-                                <md-menu-item>
-                                    <md-button aria-label="Edit Thumbnail" class="md-primary" ng-click="editThumbnail(apr,$event)">Change Thumbnail</md-button>
-                                </md-menu-item>
-                                <md-menu-item>
-                                    <md-button aria-label="Edit Month/Yr Coverage" class="md-primary" ng-click="editAPRCoverage(apr,$event)">Edit Month/Yr Coverage</md-button>
-                                </md-menu-item>
-                            </md-menu-content>
-                        </md-menu> -->
+                    <md-card-actions layout="row" layout-align="space-around end">       
+                        <md-button class="md-warn" data-ng-click="confirmDelete($event,'Activity Report',apr)"><strong>Delete</strong></md-button>                 
+                        <md-button aria-label="Open File" class="md-accent" data-ng-show="apr.file_url!==''" data-ng-click="openAR(apr.file_url,apr)"><strong>Open</strong></md-button>
                     </md-card-actions>
                 </md-card>            
             </div>
@@ -85,8 +72,9 @@
                             <span class="md-subhead" data-ng-show="infomaterial.other_info || infomaterial.event_name || infomaterial.newsletter_issue">{{infomaterial.other_info  || infomaterial.event_name || infomaterial.newsletter_issue }}</span>
                         </md-card-title-text>
                     </md-card-title>
-                    <md-card-actions flex="25" layout="row" layout-align="end center">
+                    <md-card-actions flex="25" layout="column" layout-align="space-around end">
                         <md-button class="md-accent" data-ng-click="openFile(infomaterial.file_url,infomaterial)"><strong>Open</strong></md-button>
+                        <md-button class="md-warn" data-ng-click="confirmDelete($event,'Infographic',infomaterial)"><strong>Delete</strong></md-button>
                     </md-card-actions>
                 </md-card>
             </div>
@@ -102,9 +90,10 @@
                             <span class="md-headline" style="font-size:1.25em;line-height:1em;" title="{{folderFile.title}}">{{folderFile.title}}</span>
                         </md-card-title-text>
                     </md-card-title>
-                    <md-card-actions flex="30" layout="row" layout-align="end center">
+                    <md-card-actions flex="30" layout="column" layout-align="space-around end">
                         <md-button class="md-accent"  data-ng-show="folderFile.file_url!==''" data-ng-click="openFile(folderFile.file_url,folderFile)" alt="Open {{folderFile.title}}}"  title="Open {{folderFile.title}}}"><strong>Open</strong></md-button>
                         <md-button class="md-secondary" data-ng-show="folderFile.file_url===''" title="{{folderFile.title}} is unavailable"><strong>Unavailable</strong></md-button>
+                        <md-button class="md-warn" data-ng-click="confirmDelete($event,selectedResourceType,folderFile,kfolder)"><strong>Delete</strong></md-button>
                     </md-card-actions>
                 </md-card>
             </div>
@@ -120,9 +109,10 @@
                             <span class="md-headline" style="font-size:1.25em;line-height:1em;" title="{{wplan.title}}">{{wplan.title}}</span>
                         </md-card-title-text>
                     </md-card-title>
-                    <md-card-actions flex="30" layout="row" layout-align="end center">
+                    <md-card-actions flex="30" layout="column" layout-align="space-around end">
                         <md-button class="md-accent"  data-ng-show="wplan.file_url!==''" data-ng-click="openAR(wplan.file_url,wplan)" alt="Open {{wplan.title}}}"  title="Open {{wplan.title}}}"><strong>Open</strong></md-button>
                         <md-button class="md-secondary" data-ng-show="wplan.file_url===''" title="{{wplan.title}} is unavailable"><strong>Unavailable</strong></md-button>
+                        <md-button class="md-warn" data-ng-click="confirmDelete($event,selectedResourceType,wplan,kfolder)"><strong>Delete</strong></md-button>
                     </md-card-actions>
                 </md-card>
             </div>
@@ -139,9 +129,10 @@
                             <span class="md-headline" style="font-size:1.25em;line-height:1em;" title="{{study.title}}">{{study.title}}</span>
                         </md-card-title-text>
                     </md-card-title>
-                    <md-card-actions flex="30" layout="row" layout-align="end center">
+                    <md-card-actions flex="30" layout="column" layout-align="space-around end">
                         <md-button class="md-accent"  data-ng-show="study.file_url!==''" data-ng-click="openFile(study.file_url,study)" alt="Open {{study.title}}}"  title="Open {{study.title}}}"><strong>Open</strong></md-button>
                         <md-button class="md-secondary" data-ng-show="study.file_url===''" title="{{study.title}} is unavailable"><strong>Unavailable</strong></md-button>
+                        <md-button class="md-warn" data-ng-click="confirmDelete($event,selectedResourceType,study,kfolder)"><strong>Delete</strong></md-button>
                     </md-card-actions>
                 </md-card>
             </div>
@@ -158,9 +149,10 @@
                             <em class="md-truncate" ng-if="law.description"><small>{{law.description}}</small></em>
                         </md-card-title-text>
                     </md-card-title>
-                    <md-card-actions flex="30" layout="row" layout-align="end center">
+                    <md-card-actions flex="30" ayout="column" layout-align="space-around end">
                         <md-button class="md-accent"  data-ng-show="law.file_url!==''" data-ng-click="openLawFile(law.file_url,law)" alt="Open {{law.title}}}"  title="Open {{law.title}}}"><strong>Open</strong></md-button>
                         <md-button class="md-secondary" data-ng-show="law.file_url===''" title="{{law.title}} is unavailable"><strong>Unavailable</strong></md-button>
+                        <md-button class="md-warn" data-ng-click="confirmDelete($event,selectedResourceType,law,kfolder)"><strong>Delete</strong></md-button>
                     </md-card-actions>
                 </md-card>
             </div>         
@@ -176,9 +168,10 @@
                             <span class="md-headline" style="font-size:1.25em;line-height:1em;" title="{{orgdocfile.file_title}}">{{orgdocfile.file_title}}</span>
                         </md-card-title-text>
                     </md-card-title>
-                    <md-card-actions flex="30" layout="row" layout-align="end center">
+                    <md-card-actions flex="30" layout="column" layout-align="space-around end">
                         <md-button class="md-accent"  data-ng-show="orgdocfile.file_url!==''" data-ng-click="openAR(orgdocfile.file_url,orgdocfile)" alt="Open {{orgdocfile.file_title}}}"  title="Open {{orgdocfile.file_title}}}"><strong>Open</strong></md-button>
                         <md-button class="md-secondary" data-ng-show="orgdocfile.file_url===''" title="{{orgdocfile.file_title}} is unavailable"><strong>Unavailable</strong></md-button>
+                        <md-button class="md-warn" data-ng-click="confirmDelete($event,selectedResourceType,orgdocfile,kfolder)"><strong>Delete</strong></md-button>
                     </md-card-actions>
                 </md-card>
             </div>         

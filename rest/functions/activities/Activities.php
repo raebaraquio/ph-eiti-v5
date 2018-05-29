@@ -230,6 +230,146 @@ Class Activities{
         
 		return intval(mysql_insert_id());
 	}
+
+	// Delete
+	function delete_activity_gallery($id) {
+		if ($id==NULL || empty($id)){
+			return 0;
+		}
+
+		$query = "delete 
+					from activities_img_gallery
+					where activities_id_fk = ".$id;
+
+		$deleteResult = mysql_query($query);
+
+        if (!$deleteResult) {
+            return 0;
+        }
+
+        return 1;
+	}
+
+	function delete_activity_presentations($id) {
+		if ($id==NULL || empty($id)){
+			return 0;
+		}
+
+		$query = "delete 
+					from activities_presentations
+					where activities_id_fk = ".$id;
+
+		$deleteResult = mysql_query($query);
+
+        if (!$deleteResult) {
+            return 0;
+        }
+
+        return 1;
+	}
+
+	function delete_activity_days($id){
+		if ($id==NULL || empty($id)){
+			return 0;
+		}
+
+		$query = "delete 
+					from day_of_activities
+					where activities_id_fk = ".$id;
+
+		$deleteResult = mysql_query($query);
+
+        if (!$deleteResult) {
+            return 0;
+        }
+
+        return 1;
+	}
+
+	function delete_activity($id){
+		if ($id==NULL || empty($id)){
+			print(json_encode(
+            		array(
+            		'success'=>false,
+                    'error'=>'no id found',
+                    'status'=>'',
+                    'query'=>'')
+            	)
+            );
+            exit();
+		}
+
+		$deleted_gallery = self::delete_activity_gallery($id);
+		$deleted_presentations = self::delete_activity_presentations($id);
+		$deleted_days = self::delete_activity_days($id);
+
+		if ($deleted_gallery==0){
+			print(json_encode(
+					array(
+						'success'=>false,
+						'error'=>'db delete error',
+						'status'=>'',
+						'query'=>''
+					)
+				)
+			);
+			exit();
+		}
+
+		if ($deleted_presentations==0){
+			print(json_encode(
+					array(
+						'success'=>false,
+						'error'=>'db delete error',
+						'status'=>'',
+						'query'=>''
+					)
+				)
+			);
+			exit();
+		}
+
+		if ($deleted_days==0){
+			print(json_encode(
+					array(
+						'success'=>false,
+						'error'=>'db delete error',
+						'status'=>'',
+						'query'=>''
+					)
+				)
+			);
+			exit();
+		}
+
+		$query = "delete 
+					from activities
+					where id = ".$id;
+
+		$deleteResult = mysql_query($query);
+
+        if (!$deleteResult) {
+            print(json_encode(
+            	array(
+            		'success'=>false,
+                    'error'=>'database',
+                    'status'=>'selectError',
+                    'mysqlerror'=>mysql_error(),
+                    'query'=>$query)
+            	)
+            );
+            exit();
+        }
+
+        print(json_encode(
+        	array(
+        		'success'=>true,
+        		'query'=>$deleted_gallery." ".$deleted_presentations." ".$deleted_days,
+                'status'=>'ok')
+        	)
+        );
+        exit();
+	}
 }
 
 ?>

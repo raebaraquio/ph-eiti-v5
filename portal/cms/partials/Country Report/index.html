@@ -1,42 +1,25 @@
 <md-content layout-padding>
     <h1>Manage Country Report</h1>
     <div layout="column">
-        
         <md-content layout="row" layout-align="start center">
-            <md-input-container flex="45" style="width:300px">
+            <md-input-container ng-hide="current_annex" flex="45" style="width:300px">
                 <label>Select Report</label>
                 <md-select data-ng-model="selectedReport" ng-change="setSelectedReport()">
                     <md-option data-ng-repeat="report in countryreports" value="{{report.title}}">{{report.title}}</md-option>
                 </md-select>
             </md-input-container>
-            <md-button ng-disabled="!selectedReport" class="md-primary fnt--white md-raised" ng-click="addReportFile($event)">Add Files</md-button>  
-            <md-button class="md-accent fnt--white md-raised" ng-click="addCountryReport($event)">Add New Report</md-button>         
-            <!-- <md-content flex="35" layout="row" layout-align="end center">
-                <md-input-container flex="75" ng-show="years.length">
-                    <label>Select Year</label>
-                    <md-select data-ng-model="filterYear">
-                        <md-option data-ng-repeat="year in years" value="{{year}}">{{year}}</md-option>
-                    </md-select>
-                </md-input-container>
-                <md-input-container flex="75" ng-show="lawTypes.length">
-                    <label>Select Type</label>
-                    <md-select data-ng-model="filterContentType">
-                        <md-option data-ng-repeat="lawtype in lawTypes" value="{{lawtype}}">{{lawtype}}</md-option>
-                    </md-select>
-                </md-input-container>
-                <md-input-container flex="75" ng-show="allfolders.length">
-                    <label>Select Folder</label>
-                    <md-select data-ng-model="filterContentType">
-                        <md-option data-ng-repeat="folder in allfolders" value="{{folder.folder_id}}">{{folder.folder_name}}</md-option>
-                    </md-select>
-                </md-input-container>
-            </md-content>       -->      
+            <md-button ng-hide="!current_annex" class="md-primary fnt--white md-raised" ng-click="current_annex=null;getReports();">< Back</md-button>
+            <md-button ng-hide="current_annex" ng-disabled="!selectedReport" class="md-primary fnt--white md-raised" ng-click="addReportFile($event)">Add Files</md-button>  
+            <md-button ng-hide="current_annex" data-ng-if="selectedReport" class="md-warn"  data-ng-click="confirmDelete($event,'Country Report',selectedReport)" alt="Delete {{selectedReport}}"  title="Delete {{selectedReport}}">Delete</md-button>
+            <span ng-hide="current_annex">&nbsp;|&nbsp;</span> <md-button ng-hide="current_annex" class="md-accent fnt--white md-raised" ng-click="addCountryReport($event)">Add New Report</md-button>             
         </md-content>
     </div>
     <md-content flex="100" layout-fill layout-padding layout="row" layout-align="center center">
         <md-progress-circular data-ng-show="getpromise" class="md-secondary" md-mode="indeterminate"></md-progress-circular>
     </md-content>
-    <md-content ng-if="!getpromise">
+
+    <!-- Report level -->
+    <md-content ng-if="!getpromise" ng-hide="current_annex">
         <md-content flex="100" layout-fill layout="row" layout-wrap>
             <md-card flex="45" layout="row" data-ng-repeat="(k,cr) in current_report.content" class="card-container">
                 <div flex="25" layout="left left" class="infographic-card-icon" style="background:url('../{{cr.card_icon_url}}')">
@@ -47,8 +30,9 @@
                             <span class="md-headline" style="font-size:1.25em;line-height:1em;">{{cr.title}}</span>
                         </md-card-title-text>
                     </md-card-title>
-                    <md-card-actions layout="row" layout-align="end center">
-                        <md-button data-ng-if="cr.content_type=='page'" class="md-accent"  data-ng-click="openPage(current_report.title+'/'+cr.title)" alt="Go to {{cr.title}}"  title="Go to {{cr.title}}"><strong>Go to page</strong></md-button>
+                    <md-card-actions layout="row" layout-align="space-around start">
+                        <md-button data-ng-if="cr.content_type" class="md-warn"  data-ng-click="confirmDelete($event,'Country Report Content',cr)" alt="Delete {{cr.title}}"  title="Delete {{cr.title}}"><strong>Delete</strong></md-button>
+                        <md-button data-ng-if="cr.content_type=='page'" class="md-accent"  data-ng-click="selectAnnex($event,cr)" alt="Open {{cr.title}}"  title="Open {{cr.title}}"><strong>Open</strong></md-button>
                         <!-- <md-button data-ng-if="cr.media && cr.file" class="md-accent"  data-ng-click="goto_activity(current_report.id+'/'+cr.href)" alt="Go to {{cr.title}}"  title="Go to {{cr.title}}"><strong>Go to page</strong></md-button>
                         <md-button data-ng-if="cr.media && !cr.file" class="md-secondary" alt="Material not yet available"  title="Material not yet available"><strong>Material unavailable **</strong></md-button> -->
                         <md-button data-ng-if="cr.content_type=='document' && cr.file_url==''" class="md-secondary" alt="Material not yet available"  title="Material not yet available"><strong>Material unavailable</strong></md-button>
@@ -58,7 +42,71 @@
                 </div>                
             </md-card>
         </md-content>    
-        
     </md-content>
 
+    <!-- Annex Level - Completed Reporting Templates and Other Files -->
+    <md-content ng-hide="!current_annex">
+        <md-content flex="100">
+            <div class="mxw-100" data-ng-show="current_annex.content_type=='page' && current_annex.title=='Completed Reporting Templates'">
+                <div class="md-inline-form">
+                    <md-content layout-padding>
+                        <div layout-gt-sm="row">
+                            <md-input-container flex-gt-sm>
+                                <label>Sector</label>
+                                <md-select data-ng-model="selected_AnnexTemplate" data-ng-change="refresh_annexTemplate()">
+                                    <md-option value="Companies">Companies</md-option>
+                                    <md-option value="Government">Government</md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container flex-gt-sm>
+                                <label>Keyword filter</label>
+                                <input data-ng-model="filterAnnexTemplate"/>
+                            </md-input-container>
+                            <md-input-container flex-gt-sm>
+                                <label><strong>{{ (completedTemplates | filter:filterAnnexTemplate).length }} result<span data-ng-show="(completedTemplates | filter:filterAnnexTemplate).length > 1">s</span> found</strong></label>
+                            </md-input-container>                    
+                        </div>            
+                    </md-content>
+                </div>       
+                <md-content>
+                    <div flex="100" layout-fill layout="row" layout-wrap>   
+                        <md-card flex="45" layout="row" data-ng-repeat="(k,cr) in completedTemplates | filter:filterAnnexTemplate" title="{{cr.company_agency_name}}" class="card-container">
+                            <md-card-title flex="60">
+                                <md-card-title-text class="ta-left">
+                                    <span class="md-headline" title="{{cr.company_agency_name}}" style="font-size:1.25em;line-height:1em;">{{shorten(cr.company_agency_name,90)}}</span>
+                                </md-card-title-text>
+                            </md-card-title>
+                            <md-card-actions flex="40" layout="row" layout-align="space-around center">
+                                <md-button class="md-warn" data-ng-if="cr.file_url" data-ng-click="confirmDelete($event,current_annex.title,cr)" alt="Delete {{cr.title}}"  title="Delete {{cr.title}}"><strong>Delete</strong></md-button>
+                                <md-button class="md-accent" data-ng-if="cr.file_url" data-ng-click="open_file(cr.file_url,cr)" alt="Open/Download {{cr.company_agency_name}} Reporting Template"  title="Open/Download {{cr.company_agency_name}} Reporting Template"><strong>Download</strong></md-button>
+                            </md-card-actions>
+                        </md-card>
+                    </div>  
+                    <div class="ta-left" data-ng-show="completedTemplates.length == 0">
+                        <p>Document/s not yet available.</p>
+                    </div>
+                </md-content>
+            </div>
+            <div class="mxw-100" data-ng-show="current_annex.content_type=='page' && current_annex.title!='Completed Reporting Templates'">
+                <md-content>
+                    <div flex="100" layout-fill layout="row" layout-wrap>   
+                        <md-card flex="45" layout="row" data-ng-repeat="(k,cr) in current_annex.otherFiles" title="{{cr.title}}" class="card-container">
+                            <md-card-title flex="60">
+                                <md-card-title-text class="ta-left">
+                                    <span class="md-headline" title="{{cr.title}}" style="font-size:1.25em;line-height:1em;">{{shorten(cr.title,90)}}</span>
+                                </md-card-title-text>
+                            </md-card-title>
+                            <md-card-actions flex="40" layout="row" layout-align="space-around center">
+                                <md-button class="md-warn" data-ng-if="cr.file_url" data-ng-click="confirmDelete($event,current_annex.title,cr)" alt="Delete {{cr.title}}"  title="Delete {{cr.title}}"><strong>Delete</strong></md-button>
+                                <md-button class="md-accent" data-ng-if="cr.file_url" data-ng-click="open_file(cr.file_url,cr)" alt="Open/Download {{cr.title}}"  title="Open/Download {{cr.title}}"><strong>Download</strong></md-button>
+                            </md-card-actions>
+                        </md-card>
+                    </div>  
+                    <div class="ta-left" data-ng-show="otherFiles.length == 0">
+                        <p>Document/s not yet available.</p>
+                    </div>
+                </md-content>
+            </div>
+        </md-content>
+    </md-content>
 </md-content>

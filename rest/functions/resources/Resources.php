@@ -617,6 +617,336 @@ Class Resources{
 		}
 	}
 
+
+	// Delete
+
+	function delete_apr($id){
+		if ($id==NULL || empty($id)){
+			print(json_encode(
+            		array(
+            		'success'=>false,
+                    'error'=>'no id found',
+                    'status'=>'',
+                    'query'=>'')
+            	)
+            );
+            exit();
+		}
+		$query = "delete 
+					from resources_activity_reports 
+					where arid = ".$id;
+
+		$deleteResult = mysql_query($query);
+
+        if (!$deleteResult) {
+            print(json_encode(
+            	array(
+            		'success'=>false,
+                    'error'=>'database',
+                    'status'=>'selectError',
+                    'mysqlerror'=>mysql_error(),
+                    'query'=>$query)
+            	)
+            );
+            exit();
+        }
+
+        print(json_encode(
+        	array(
+        		'success'=>true,
+        		'query'=>$query,
+                'status'=>'ok')
+        	)
+        );
+        exit();
+	}
+
+	function delete_workplan($id){
+		if ($id==NULL || empty($id)){
+			print(json_encode(
+            		array(
+            		'success'=>false,
+                    'error'=>'no id found',
+                    'status'=>'',
+                    'query'=>'')
+            	)
+            );
+            exit();
+		}
+		$query = "delete 
+					from resources_work_plan 
+					where wpid = ".$id;
+
+		$deleteResult = mysql_query($query);
+
+        if (!$deleteResult) {
+            print(json_encode(
+            	array(
+            		'success'=>false,
+                    'error'=>'database',
+                    'status'=>'selectError',
+                    'mysqlerror'=>mysql_error(),
+                    'query'=>$query)
+            	)
+            );
+            exit();
+        }
+
+        print(json_encode(
+        	array(
+        		'success'=>true,
+        		'query'=>$query,
+                'status'=>'ok')
+        	)
+        );
+        exit();
+	}
+
+	function delete_infographic($id){
+		if ($id==NULL || empty($id)){
+			print(json_encode(
+            		array(
+            		'success'=>false,
+                    'error'=>'no id found',
+                    'status'=>'',
+                    'query'=>'')
+            	)
+            );
+            exit();
+		}
+		$query = "delete 
+					from resources_infographics 
+					where infographics_id = ".$id;
+
+		$deleteResult = mysql_query($query);
+
+        if (!$deleteResult) {
+            print(json_encode(
+            	array(
+            		'success'=>false,
+                    'error'=>'database',
+                    'status'=>'selectError',
+                    'mysqlerror'=>mysql_error(),
+                    'query'=>$query)
+            	)
+            );
+            exit();
+        }
+
+        print(json_encode(
+        	array(
+        		'success'=>true,
+        		'query'=>$query,
+                'status'=>'ok')
+        	)
+        );
+        exit();
+	}
+
+	function delete_brochure($id){
+		if ($id==NULL || empty($id)){
+			print(json_encode(
+            		array(
+            		'success'=>false,
+                    'error'=>'no id found',
+                    'status'=>'',
+                    'query'=>'')
+            	)
+            );
+            exit();
+		}
+		$query = "delete 
+					from resources_brochures 
+					where brochures_id = ".$id;
+
+		$deleteResult = mysql_query($query);
+
+        if (!$deleteResult) {
+            print(json_encode(
+            	array(
+            		'success'=>false,
+                    'error'=>'database',
+                    'status'=>'selectError',
+                    'mysqlerror'=>mysql_error(),
+                    'query'=>$query)
+            	)
+            );
+            exit();
+        }
+
+        print(json_encode(
+        	array(
+        		'success'=>true,
+        		'query'=>$query,
+                'status'=>'ok')
+        	)
+        );
+        exit();
+	}
+
+	function delete_law($id) {
+		if ($id==NULL || empty($id)){
+			print(json_encode(
+            		array(
+            		'success'=>false,
+                    'error'=>'no id found',
+                    'status'=>'',
+                    'query'=>'')
+            	)
+            );
+            exit();
+		}
+		$query = "delete 
+					from resources_laws_and_legal_issuances 
+					where lliid = ".$id;
+
+		$deleteResult = mysql_query($query);
+
+        if (!$deleteResult) {
+            print(json_encode(
+            	array(
+            		'success'=>false,
+                    'error'=>'database',
+                    'status'=>'selectError',
+                    'mysqlerror'=>mysql_error(),
+                    'query'=>$query)
+            	)
+            );
+            exit();
+        }
+
+        print(json_encode(
+        	array(
+        		'success'=>true,
+        		'query'=>$query,
+                'status'=>'ok')
+        	)
+        );
+        exit();
+	}
+
+	function delete_study($id){
+		if ($id==NULL || empty($id)){
+			print(json_encode(
+            		array(
+            		'success'=>false,
+                    'error'=>'no id found',
+                    'status'=>'',
+                    'query'=>'')
+            	)
+            );
+            exit();
+		}
+		$query = "delete 
+					from resources_studies 
+					where stid = ".$id;
+
+		$deleteResult = mysql_query($query);
+
+        if (!$deleteResult) {
+            print(json_encode(
+            	array(
+            		'success'=>false,
+                    'error'=>'database',
+                    'status'=>'selectError',
+                    'mysqlerror'=>mysql_error(),
+                    'query'=>$query)
+            	)
+            );
+            exit();
+        }
+
+        print(json_encode(
+        	array(
+        		'success'=>true,
+        		'query'=>$query,
+                'status'=>'ok')
+        	)
+        );
+        exit();
+	}
+
+	function delete_gis($id){
+		if ($id==NULL || empty($id)){
+			print(json_encode(
+            		array(
+            		'success'=>false,
+                    'error'=>'no id found',
+                    'status'=>'',
+                    'query'=>'')
+            	)
+            );
+            exit();
+		}
+		$query = "delete 
+					from resources_gis 
+					where gisid = ".$id;
+
+		$deleteResult = mysql_query($query);
+
+        if (!$deleteResult) {
+            print(json_encode(
+            	array(
+            		'success'=>false,
+                    'error'=>'database',
+                    'status'=>'selectError',
+                    'mysqlerror'=>mysql_error(),
+                    'query'=>$query)
+            	)
+            );
+            exit();
+        }
+
+        print(json_encode(
+        	array(
+        		'success'=>true,
+        		'query'=>$query,
+                'status'=>'ok')
+        	)
+        );
+        exit();
+	}
+
+	function delete_orgdoc($id){
+		if ($id==NULL || empty($id)){
+			print(json_encode(
+            		array(
+            		'success'=>false,
+                    'error'=>'no id found',
+                    'status'=>'',
+                    'query'=>'')
+            	)
+            );
+            exit();
+		}
+		$query = "delete 
+					from resources_organizational_documents
+					where orgdocid = ".$id;
+
+		$deleteResult = mysql_query($query);
+
+        if (!$deleteResult) {
+            print(json_encode(
+            	array(
+            		'success'=>false,
+                    'error'=>'database',
+                    'status'=>'selectError',
+                    'mysqlerror'=>mysql_error(),
+                    'query'=>$query)
+            	)
+            );
+            exit();
+        }
+
+        print(json_encode(
+        	array(
+        		'success'=>true,
+        		'query'=>$query,
+                'status'=>'ok')
+        	)
+        );
+        exit();
+	}
 }
 
 ?>

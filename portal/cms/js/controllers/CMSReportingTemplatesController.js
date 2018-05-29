@@ -16,7 +16,8 @@ var reptempscope;
 	        getContent : getContent,
 	        getContentAndTemplates : getContentAndTemplates,
 	        getReportContentId : getReportContentId,
-	        getReportingTemplates : getReportingTemplates
+			getReportingTemplates : getReportingTemplates,
+			deleteTemplate: deleteTemplate
 	    }
 
 	    return reportingTemplateDataFactory;
@@ -62,7 +63,14 @@ var reptempscope;
 	            url:'../../rest/functions/country-report/get-reporting-templates.php',
 	            method:'GET'
 	        });
-	    }
+		}
+		
+		function deleteTemplate(id){
+			return $http({
+	            url:'../../rest/functions/reporting-templates/delete-reporting-template.php?id='+id,
+	            method:'GET'
+	        });
+		}
 	}
 
 
@@ -154,6 +162,34 @@ var reptempscope;
 			}); 
 		}
 
+		$scope.confirmDelete=function(evt,resourceType,data) {
+            console.log(data)
+			var resourceName = data.title;
+			var rtid = data.rtid;
+			var confirm = $mdDialog.confirm()
+				.title('Delete '+resourceType+'?')
+				.textContent('This action will permanently delete the selected '+resourceType+' ('+resourceName+'). What would you like to do?')
+				.targetEvent(evt)
+				.ok('Yes, Delete '+resourceType)
+				.cancel("No, Don't Delete "+resourceType);
+
+			$mdDialog.show(confirm).then(function() {
+				$scope.deletePromise = reportingTemplateDataFactory.deleteTemplate(rtid);
+				$scope.deletePromise.then(function(response){
+					console.log(response)
+					if (response.data.success) {
+                        getReportingTemplates();
+					}
+					delete $scope.deletePromise;
+				},function(err){
+					console.log(err)
+                    getReportingTemplates();
+					delete $scope.deletePromise;
+				});		
+			}, function() {
+				// do nothing
+			});
+		}
 	}
 
 	addReportingTemplateController.$inject = ['$scope','$mdDialog'];

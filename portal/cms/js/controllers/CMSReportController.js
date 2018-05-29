@@ -25,7 +25,9 @@ var creportscope;
 	        getContentAndTemplates : getContentAndTemplates,
 	        getReportContentId : getReportContentId,
 	        getReportingTemplates : getReportingTemplates,
-	        addReport : addReport
+            addReport : addReport,
+            // deleteReportContent : deleteReportContent,
+            deleteReport : deleteReport
 	    }
 
 	    return reportFactory;
@@ -79,12 +81,36 @@ var creportscope;
 	            method:'POST',
 	            data: data
 	        });
+        }
+        
+        // function deleteReportContent(){
+	    //     return $http({
+	    //         url:'../../rest/functions/country-report/delete-report-content.php',
+	    //         method:'GET'
+	    //     });
+        // }
+        
+        function deleteReport(level,crid,specId,page){
+            let levelParam="", contentParam = "", pageParam = "";
+            if (level!="") {
+                levelParam = "level="+level+"&";
+            }
+            if (specId!=undefined && specId!="" && specId!=null) {
+                contentParam = "&"+level+"="+specId;
+            }
+            if (page!="") {
+                pageParam = "&page="+encodeURIComponent(page);
+            }
+	        return $http({
+	            url:'../../rest/functions/country-report/delete-report.php?'+levelParam+'crid='+crid+contentParam+pageParam,
+	            method:'GET'
+	        });
 	    }
 	}
 
 
-	CMSReportController.$inject = ['$scope','sessionService','reportFactory','$mdDialog'];
-	function CMSReportController($scope,sessionService,reportFactory,$mdDialog) {
+	CMSReportController.$inject = ['$scope','sessionService','reportFactory','$mdDialog','utilsService'];
+	function CMSReportController($scope,sessionService,reportFactory,$mdDialog,utilsService) {
 		if (sessionService.inSession()===false) {
 			window.location.href = '../../portal/';
 		}
@@ -103,7 +129,9 @@ var creportscope;
 
 		$scope.selectedReport = "";
 		$scope.selectedReportObj = {};
-		$scope.current_report = {};
+        $scope.current_report = {};
+        $scope.current_annex = null;
+        
 		function getReports(){
             $scope.selectedReport = "";
             $scope.selectedReportObj = {};
@@ -160,7 +188,77 @@ var creportscope;
 			else {
 				alert('Document not yet available.')
 			}
+        }
+        
+        function getContentAndTemplates(ids,report_title,content_title){
+			$scope.getpromise = reportFactory.getContentAndTemplates(ids,report_title,content_title);
+			$scope.getpromise.then(function(response){
+				delete $scope.getpromise;
+				if (response.data) {
+					var data = response.data;
+					var templatesObj = {};
+					var sectorArr = [];
+					var otherFiles = [];
+					$scope.current_annex = data.annex;
+					if (data.completedTemplates.length > 0) {
+						for (var idx=0;idx<data.completedTemplates.length;idx++){
+							if (utilsService.inArr(sectorArr,data.completedTemplates[idx].sector)===false) {
+								sectorArr.push(data.completedTemplates[idx].sector)
+								templatesObj[data.completedTemplates[idx].sector] = [];
+							}
+							templatesObj[data.completedTemplates[idx].sector].push(data.completedTemplates[idx])
+						}
+						$scope.current_annex.templates = angular.copy(templatesObj);
+					}
+					if (data.files.length > 0) {
+						$scope.current_annex.otherFiles = angular.copy(data.files);	
+					}
+					try {
+						ga('send', 'event', 'Pages', 'loaded', 'Country Reports : '+$scope.current_annex.title);	
+					}
+					catch(gaError){
+						console.log('GA - '+gaError)
+					}
+					$scope.refresh_annexTemplate();
+				}
+			},function(err){
+				delete $scope.getpromise;
+			});
+        }
+        
+		function getContentIds(report,content) { 
+			$scope.getpromise = reportFactory.getReportContentId(report,content);
+			$scope.getpromise.then(function(response){
+				if (response.data) {
+					getContentAndTemplates(response.data,report,content)
+				}
+			},function(err){
+				delete $scope.getpromise;
+			});
 		}
+
+        $scope.selectAnnex=function(eventm,annex) {
+            $scope.current_annex = annex;
+            getContentIds($scope.selectedReport,annex.title);
+        }
+
+        $scope.completedTemplates = [];
+        $scope.selected_AnnexTemplate = 'Companies';
+
+        $scope.refresh_annexTemplate = function(){
+            if ($scope.current_annex.templates) {
+                $scope.completedTemplates = $scope.current_annex.templates[$scope.selected_AnnexTemplate]	
+            }
+        }
+
+        $scope.shorten=function(text, maxLength) {
+            var ret = text;
+            if (ret.length > maxLength) {
+                ret = ret.substr(0,maxLength-3) + "...";
+            }
+            return ret;
+        }
+    
 
 		$scope.setSelectedReport = function() {
 			if ($scope.selectedReport) {
@@ -217,6 +315,77 @@ var creportscope;
                 localStorage.removeItem('selectedReport');
             });
         }
+
+        $scope.confirmDelete=function(evt,resourceType,data) {
+            console.log(data)
+
+            var resourceName = data;
+            var textContent = "This action will permanently delete ";
+            var specId = null;
+            var crid = null;
+            var level = "";
+            var page = "";
+            if ($scope.countryreports.length > 0) {
+                for (var idx=0;idx<$scope.countryreports.length;idx++) {
+                    if ($scope.countryreports[idx].title==$scope.selectedReport) {
+                        crid = $scope.countryreports[idx].crid;
+                        console.log($scope.countryreports[idx])
+                    }
+                }
+            }
+            if (resourceType=='Country Report') {
+                textContent += "the selected Country Report ("+data+") and its contents. You can't undo this action.";
+                level = "";
+            }  
+            else if (resourceType=="Country Report Content"){
+                textContent += data.title+" of "+$scope.selectedReport+".";
+                resourceName = data.title;
+                level = "crcontent_id";
+                specId = data.crcontent_id;
+                if (data.content_type=='page') {
+                    page = data.title;
+                }
+            }
+            else if (resourceType=="Completed Reporting Templates") {
+                level = "crtid";
+                specId = data.crtid;
+                resourceName = data.title+" CRT";
+                textContent += " the completed reporting template of "+data.title+".";
+            }
+            else {
+                level = "file_id";
+                specId = data.file_id;
+                resourceName = data.title;
+                textContent += data.title+".";
+            }
+
+            textContent += " What would you like to do?";
+			var confirm = $mdDialog.confirm()
+				.title('Delete '+resourceType+'?')
+				.textContent(textContent)
+				.targetEvent(evt)
+				.ok('Yes, Delete '+resourceName)
+				.cancel("No, Don't Delete "+resourceName);
+            
+			$mdDialog.show(confirm).then(function() {
+				$scope.deletePromise = reportFactory.deleteReport(level,crid,specId,page);
+				$scope.deletePromise.then(function(response){
+					console.log(response)
+					if (response.data.success) {
+                        getReports();
+                        localStorage.removeItem('coveredYr');
+					}
+					delete $scope.deletePromise;
+				},function(err){
+					console.log(err)
+                    getReports();
+                    localStorage.removeItem('coveredYr');
+					delete $scope.deletePromise;
+				});		
+			}, function() {
+				// do nothing
+			});
+		}
 	}
 
 	addReportController.$inject = ['$scope','$mdDialog','reportFactory'];

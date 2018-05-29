@@ -43,7 +43,8 @@
 							<span class="md-subhead"><strong>{{activity.activity_start_date | formatDate}}</strong></span>
 						</md-card-title-text>
 					</md-card-title>
-					<md-card-actions layout="row" layout-align="end center">
+					<md-card-actions layout="row" layout-align="space-around center">
+                        <md-button class="md-warn" data-ng-click="confirmDelete($event,'Activity',activity)"><strong>Delete</strong></md-button>
 						<md-button class="md-accent" ng-click="selectActivity(k,activity)"><strong>Open</strong></md-button>
 					</md-card-actions>
 				</md-card>
@@ -60,7 +61,7 @@
                         <p><div data-ng-bind-html="activity.writeup_content"></div></p>
                     </md-content>
                 </md-tab>
-                <md-tab label="Program" data-ng-if="activity.program_url!==null">
+                <md-tab label="Program" data-ng-if="activity.program_url!==null && activity.program_url!==''">
                     <md-content class="md-padding">
                         <h1 class="md-display-2">Program</h1>
                         <div layout="column">
@@ -68,7 +69,7 @@
                         </div>
                     </md-content>
                 </md-tab>
-                <md-tab label="Documentation" data-ng-if="activity.documentation_url!==null">
+                <md-tab label="Documentation" data-ng-if="activity.documentation_url!==null && activity.documentation_url!==''">
                     <md-content>
                         <h1 class="md-display-2">Documentation</h1>
                         <div layout="column">
@@ -162,6 +163,7 @@
                 </md-tab>
             </md-tabs>
             <div class="ta-left" data-ng-show="no_content_elem==true">
+                No content available.
             </div>
         </md-content>
         <div>
