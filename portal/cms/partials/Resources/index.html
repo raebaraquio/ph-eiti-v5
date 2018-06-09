@@ -64,7 +64,7 @@
         <md-content flex="100" layout-fill layout="row" layout-wrap ng-if="selectedResourceType==='Infographics' || selectedResourceType==='Brochures'">
             <div flex="100" layout-fill layout="row" layout-wrap>   
                 <md-card flex="45" layout="row" data-ng-repeat="(k,infomaterial) in contentData | filter:{contentType:filterContentType,file_url:filterKeyword,year:filterYear}"  class="card-container">
-                    <div flex="25" layout="left left" class="infographic-card-icon" style="background:url('../../{{infomaterial.cardicon_url}}')">
+                    <div flex="25" class="infographic-card-icon" style="background:url('../../{{infomaterial.cardicon_url}}');height:137px !important">
                     </div>              
                     <md-card-title flex="50">
                         <md-card-title-text class="ta-left">

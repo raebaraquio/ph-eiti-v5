@@ -88,6 +88,25 @@ var activityscope,activitycontentscope;
 				method:'GET'
 			});
 		}
+
+		function deleteActivityContent(section,activityId,eventDay,presentationId){
+			if (!activityId) {
+				return false;
+			}
+			var pathParams = "";
+			if (eventDay!==null) {
+				pathParams += "&eventDay="+eventDay;
+			}
+			if (presentationId!==null){
+				pathParams += "&presentationId="+presentationId;
+			}
+			return $http({
+				url:'../../rest/functions/activities/delete-activity-content.php?id='+activityId+"&section="+section+pathParams,
+				method:'GET'
+			});
+		}
+
+
 	}
 
 	CMSActivitiesController.$inject = ['$scope','sessionService','ActivitiesDataFactory','$mdDialog','$sce'];
@@ -352,6 +371,60 @@ var activityscope,activitycontentscope;
 					getYears(true);
 					delete $scope.deletePromise;
 				});		
+			}, function() {
+				// do nothing
+			});
+		}
+
+		$scope.confirmContentDelete=function(evt,contentType,activityData,eventData,presentationData) {
+			console.log(activityData)
+			console.log(eventData)
+			console.log(presentationData)
+			var msgText = "", actionTxt = "";
+			if (contentType=='About') {
+				msgText = 'the '+contentType+" section";
+				actionTxt = contentType+" section";
+			}
+			else if (contentType=='Presentation') {
+				if (eventData==null) {
+					msgText = "ALL "+contentType+"s under this activity";
+					actionTxt = "ALL "+contentType+"s";
+				}
+				else if (eventData!=null && presentationData==null) {
+					msgText = "the ALL "+contentType+"s from "+eventData.eventDay;
+					actionTxt = eventData.eventDay+" "+contentType+"S";
+				}
+				else if (eventData!=null && presentationData!=null) {
+					msgText = "the selected "+contentType+" ("+presentationData.title+")";
+					actionTxt = contentType;
+				}
+			}
+			else {
+				msgText = " the activity "+contentType;
+				actionTxt = contentType;
+			}
+
+			var aid = activityData.id;
+			var confirm = $mdDialog.confirm()
+				.title('Delete '+actionTxt+'?')
+				.textContent('This action will permanently delete '+msgText+'. What would you like to do?')
+				.targetEvent(evt)
+				.ok('Yes, Delete '+actionTxt)
+				.cancel("No, Don't Delete "+actionTxt);
+
+			$mdDialog.show(confirm).then(function() {
+				// $scope.deletePromise = ActivitiesDataFactory.deleteActivity(aid);
+				// $scope.deletePromise.then(function(response){
+				// 	console.log(response)
+				// 	if (response.data.success) {
+				// 		getYears(true);
+				// 	}
+				// 	delete $scope.deletePromise;
+				// },function(err){
+				// 	console.log(err)
+				// 	getYears(true);
+				// 	delete $scope.deletePromise;
+				// });		
 			}, function() {
 				// do nothing
 			});

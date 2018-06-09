@@ -370,6 +370,156 @@ Class Activities{
         );
         exit();
 	}
+
+	// Delete Content
+	function delete_section_of_activity($activityId,$section) {
+		if ($activityId==NULL || empty($activityId)){
+			print(json_encode(
+					array(
+						'success'=>false,
+						'error'=>'no id',
+						'status'=>''
+					)
+				)
+			);
+			exit();
+		}
+
+		if ($section=="About") {
+			$query = "update activities
+						set writeup_content = ''
+						where id = ".$activityId;
+		}
+		else if ($section=='Program') {
+			$query = "update activities
+						set program_url = ''
+						where id = ".$activityId;
+		}
+		else if ($section=="Documentation") {
+			$query = "update activities
+						set documentation_url = ''
+						where id = ".$activityId;
+		}
+		
+
+		$updateResult = mysql_query($query);
+
+        if (!$updateResult) {
+            print(json_encode(
+            	array(
+            		'success'=>false,
+                    'error'=>'database',
+                    'status'=>'update error',
+                    'mysqlerror'=>mysql_error(),
+                    'query'=>$query)
+            	)
+            );
+            exit();
+        }
+
+        print(json_encode(
+        	array(
+        		'success'=>true,
+        		'query'=>"",
+                'status'=>'ok')
+        	)
+        );
+        exit();
+	}
+
+	function delete_all_activity_presentations($activityId) {
+		if ($activityId==NULL || empty($activityId)){
+			print(json_encode(
+					array(
+						'success'=>false,
+						'error'=>'no id',
+						'status'=>''
+					)
+				)
+			);
+			exit();
+		}
+
+		$query = "delete 
+					from activities_presentations
+					where activities_id_fk = ".$activityId;
+
+		$deleteResult = mysql_query($query);
+
+        if (!$deleteResult) {
+            print(json_encode(
+            	array(
+            		'success'=>false,
+                    'error'=>'database',
+                    'status'=>'delete error',
+                    'mysqlerror'=>mysql_error(),
+                    'query'=>$query)
+            	)
+            );
+            exit();
+        }
+
+        print(json_encode(
+        	array(
+        		'success'=>true,
+        		'query'=>"",
+                'status'=>'ok')
+        	)
+        );
+        exit();
+	}
+
+	function delete_eventday_presentations($activityId,$eventDay) {
+		if ($activityId==NULL || empty($activityId)){
+			print(json_encode(
+					array(
+						'success'=>false,
+						'error'=>'no id',
+						'status'=>''
+					)
+				)
+			);
+			exit();
+		}
+
+		$query = "delete 
+					from day_of_activities
+					where activities_id_fk = ".$id;
+
+		$deleteResult = mysql_query($query);
+
+        if (!$deleteResult) {
+            return 0;
+        }
+
+        return 1;
+	}
+
+	function delete_one_presentation($activityId,$eventDay,$presentationId) {
+		if ($activityId==NULL || empty($activityId)){
+			print(json_encode(
+					array(
+						'success'=>false,
+						'error'=>'no id',
+						'status'=>''
+					)
+				)
+			);
+			exit();
+		}
+
+		$query = "delete 
+					from day_of_activities
+					where activities_id_fk = ".$id;
+
+		$deleteResult = mysql_query($query);
+
+        if (!$deleteResult) {
+            return 0;
+        }
+
+        return 1;
+	}
 }
 
 ?>

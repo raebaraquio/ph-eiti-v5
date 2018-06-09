@@ -57,13 +57,19 @@
             <md-tabs md-dynamic-height md-border-bottom data-ng-show="no_content_elem===false">
                 <md-tab label="About" data-ng-if="activity.writeup_content!==null && activity.writeup_content !== null">
                     <md-content class="md-padding">
-                        <h1 class="md-display-2">About</h1>
+                        <div layout="row" layout-align="space-between center">
+                            <h1 class="md-display-2">About</h1>
+                            <md-button class="md-warn" data-ng-click="confirmContentDelete($event,'About',activity,null,null)"><strong>Delete</strong></md-button>
+                        </div>
                         <p><div data-ng-bind-html="activity.writeup_content"></div></p>
                     </md-content>
                 </md-tab>
                 <md-tab label="Program" data-ng-if="activity.program_url!==null && activity.program_url!==''">
                     <md-content class="md-padding">
-                        <h1 class="md-display-2">Program</h1>
+                        <div layout="row" layout-align="space-between center">
+                            <h1 class="md-display-2">Program</h1>
+                            <md-button class="md-warn" data-ng-click="confirmContentDelete($event,'Program',activity,null,null)"><strong>Delete</strong></md-button>
+                        </div>
                         <div layout="column">
                             <iframe data-ng-if="activity.program_url != null" src="{{activity.program_url}}" style="min-width:850px;min-height:600px;" frameborder="0"></iframe>
                         </div>
@@ -71,7 +77,10 @@
                 </md-tab>
                 <md-tab label="Documentation" data-ng-if="activity.documentation_url!==null && activity.documentation_url!==''">
                     <md-content>
-                        <h1 class="md-display-2">Documentation</h1>
+                        <div layout="row" layout-align="space-between center">
+                            <h1 class="md-display-2">Documentation</h1>
+                            <md-button class="md-warn" data-ng-click="confirmContentDelete($event,'Documentation',activity,null,null)"><strong>Delete</strong></md-button>
+                        </div>
                         <div layout="column">
                             <div layout="column">
                                 <div layout="row">
@@ -101,11 +110,17 @@
                 </md-tab>
                 <md-tab label="Presentations" data-ng-if="activity.presentations.length>0">
                     <md-content class="md-padding">
-                        <h1 class="md-display-2">Presentations</h1>
+                        <div layout="row" layout-align="space-between center">
+                            <h1 class="md-display-2">Presentations</h1>
+                            <md-button class="md-warn" data-ng-click="confirmContentDelete($event,'Presentation',activity,null,null)"><strong>Delete All</strong></md-button>
+                        </div>
                         <p>
                             <div flex="100" layout-fill layout="row" layout-wrap>   
                                 <md-content layout-fill layout="column" layout-wrap data-ng-repeat="(idx,presentation) in activity.presentations" data-ng-if="presentation.eventDay">
-                                    <h2>{{presentation.eventDay}}</h2> 
+                                    <div layout="row" layout-align="start center">
+                                        <h2>{{presentation.eventDay}}</h2> 
+                                        <md-button class="md-warn" ng-show="presentation.presentations.length > 1" data-ng-click="confirmContentDelete($event,'Presentation',activity,presentation,null)"><strong>Delete {{presentation.eventDay}} presentations</strong></md-button>
+                                    </div>
                                     <div flex="100" layout-fill layout="row" layout-wrap>
                                         <md-card flex="45" layout="row" data-ng-repeat="(pidx,pval) in presentation.presentations" class="card-container">
                                             <div flex="10" layout="center center" title="File type: PDF" class="infographic-card-icon infographic-card-icon--pdf"><!-- <img src="../../images/file-icon/pdf-icon.png" class="md-avatar" style="width:100%;height:auto;"/> --><!--
@@ -118,7 +133,8 @@
                                                         <span class="md-subhead" title="{{pval.author}}" style="line-height:1em;">{{pval.author}}</span>
                                                     </md-card-title-text>
                                                 </md-card-title>
-                                                <md-card-actions layout="row" layout-align="end center">
+                                                <md-card-actions layout="row" layout-align="space-between center">
+                                                    <md-button class="md-warn" data-ng-click="confirmContentDelete($event,'Presentation',activity,presentation,pval)"><strong>Delete</strong></md-button>
                                                     <md-button class="md-accent" data-ng-click="download_documentation(pval.src)"><strong>Open</strong></md-button>
                                                 </md-card-actions>  
                                             </div>                                          
@@ -136,7 +152,8 @@
                                                 <span class="md-subhead" title="{{presentation.author}}" style="line-height:1em;">{{presentation.author}}</span>
                                             </md-card-title-text>
                                         </md-card-title>
-                                        <md-card-actions layout="row" layout-align="end center">
+                                        <md-card-actions layout="row" layout-align="space-between center">
+                                            <md-button class="md-warn" data-ng-click="confirmContentDelete($event,'Presentation',activity,null,presentation)"><strong>Delete</strong></md-button>
                                             <md-button class="md-accent" data-ng-click="download_documentation(presentation.src)"><strong>Open</strong></md-button>
                                         </md-card-actions>  
                                     </div>      
