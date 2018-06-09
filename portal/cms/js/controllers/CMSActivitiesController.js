@@ -24,7 +24,8 @@ var activityscope,activitycontentscope;
 			getYears: getYears,
 			getDays: getDays,
 			addWriteUp: addWriteUp,
-			deleteActivity : deleteActivity
+			deleteActivity : deleteActivity,
+			deleteActivityContent : deleteActivityContent
 		};
 		return ActivitiesDataFactory;
 		
@@ -88,6 +89,29 @@ var activityscope,activitycontentscope;
 				method:'GET'
 			});
 		}
+
+		function deleteActivityContent(section,activityId,eventDayId,presentationId,deleteMode){
+			if (activityId==null) {
+				return false;
+			}
+			var pathParams = "";
+			if (eventDayId!==null) {
+				pathParams += "&eventDayId="+eventDayId;
+			}
+			if (presentationId!==null){
+				pathParams += "&presentationId="+presentationId;
+			}
+			if (section=="Presentation") {
+				pathParams += "&deleteMode="+deleteMode;
+			}
+			///////
+			return $http({
+				url:'../../rest/functions/activities/delete-activity-content.php?id='+activityId+"&section="+section+pathParams,
+				method:'GET'
+			});
+		}
+
+
 	}
 
 	CMSActivitiesController.$inject = ['$scope','sessionService','ActivitiesDataFactory','$mdDialog','$sce'];
@@ -157,9 +181,11 @@ var activityscope,activitycontentscope;
 							$scope.activity.gallery.length == 0) {
 							$scope.no_content_elem = true;
 						}
-
+						
+						$scope.activity.writeupContentOriginal = null;
 						if ($scope.activity.writeup_content != null && $scope.activity.writeup_content != '') {
-							$scope.activity.writeup_content = $sce.trustAsHtml('<div>'+$scope.activity.writeup_content+'</div>');		
+							$scope.activity.writeupContentOriginal = angular.copy($scope.activity.writeup_content);
+							$scope.activity.writeup_content = $sce.trustAsHtml('<div>'+$scope.activity.writeup_content+'</div>');	
 						}
 
 						if ($scope.activity.program_url) {
@@ -187,13 +213,17 @@ var activityscope,activitycontentscope;
 							var currDay = ''
 							for (var p=0;p<$scope.activity.presentations.length;p++){
 								if (currDay!==$scope.activity.presentations[p].event_day_str){
-									currDay = $scope.activity.presentations[p].event_day_str
+									currDay = $scope.activity.presentations[p].event_day_str;
 									presentations.push({
+										day_id : $scope.activity.presentations[p].day_id_fk,
 										eventDay : currDay,
 										presentations: []
 									})
 								}
 								presentations[presentations.length-1].presentations.push({
+									activities_id_fk : $scope.activity.presentations[p].activities_id_fk,
+									day_id : $scope.activity.presentations[p].day_id_fk,
+									presentation_id : $scope.activity.presentations[p].presentation_id,
 									title:$scope.activity.presentations[p].presentation_title,
 									author:$scope.activity.presentations[p].presentation_author,
 									src:$scope.activity.presentations[p].presentation_url
@@ -350,6 +380,66 @@ var activityscope,activitycontentscope;
 				},function(err){
 					console.log(err)
 					getYears(true);
+					delete $scope.deletePromise;
+				});		
+			}, function() {
+				// do nothing
+			});
+		}
+
+		$scope.confirmContentDelete=function(evt,contentType,activityData,eventData,presentationData) {
+			var msgText = "", actionTxt = "", deleteMode="";
+			var activityId = activityData.id;
+			var dayEventId = null;
+			var presentationId = null;
+			if (contentType=='About') {
+				msgText = 'the '+contentType+" section";
+				actionTxt = contentType+" section";
+			}
+			else if (contentType=='Presentation') {
+				if (eventData==null) {
+					msgText = "ALL "+contentType+"s under this activity";
+					actionTxt = "ALL "+contentType+"s";
+					deleteMode = "all";
+				}
+				else if (eventData!=null && presentationData==null) {
+					msgText = "the ALL "+contentType+"s from "+eventData.eventDay;
+					actionTxt = eventData.eventDay+" "+contentType+"S";
+					dayEventId = eventData.day_id;
+					deleteMode = "day";
+				}
+				else if (eventData!=null && presentationData!=null) {
+					msgText = "the selected "+contentType+" ("+presentationData.title+")";
+					actionTxt = contentType;
+					dayEventId = eventData.day_id;
+					presentationId = presentationData.presentation_id;
+					deleteMode = "one";
+				}
+			}
+			else {
+				msgText = " the activity "+contentType;
+				actionTxt = contentType;
+			}
+
+			var aid = activityData.id;
+			var confirm = $mdDialog.confirm()
+				.title('Delete '+actionTxt+'?')
+				.textContent('This action will permanently delete '+msgText+'. What would you like to do?')
+				.targetEvent(evt)
+				.ok('Yes, Delete '+actionTxt)
+				.cancel("No, Don't Delete "+actionTxt);
+			
+			$mdDialog.show(confirm).then(function() {
+				$scope.deletePromise = ActivitiesDataFactory.deleteActivityContent(contentType,activityId,dayEventId,presentationId,deleteMode);
+				$scope.deletePromise.then(function(response){
+					if (response.data.success) {
+						getYears(true);
+						$scope.activity = {};
+					}
+					delete $scope.deletePromise;
+				},function(err){
+					getYears(true);
+					$scope.activity = {};
 					delete $scope.deletePromise;
 				});		
 			}, function() {
@@ -563,7 +653,7 @@ var activityscope,activitycontentscope;
 	function addActivityContentController($scope,ActivitiesDataFactory,sessionService,$mdDialog){
 		$scope.activity = JSON.parse(localStorage.getItem('activity'));
 		
-		$scope.contentTypes = ["Write-up (About Section)","Presentations"];
+		$scope.contentTypes = [];
 		$scope.contentType = "";
 		$scope.eventDays = [];
 		$scope.selectedDay = "";
@@ -594,6 +684,10 @@ var activityscope,activitycontentscope;
 
 		function init(){
 			$scope.activity = JSON.parse(localStorage.getItem('activity'));
+			if ($scope.activity.writeupContentOriginal=="" || $scope.activity.writeupContentOriginal==null || JSON.stringify($scope.activity.writeupContentOriginal)=='{}') {
+				$scope.writeup_content = "";
+				$scope.contentTypes.push('Write-up (About Section)');
+			}
 			if ($scope.activity.program_url=="" || $scope.activity.program_url==null) {
 				$scope.programFile = null;
 				$scope.contentTypes.push('Program');
@@ -601,6 +695,17 @@ var activityscope,activitycontentscope;
 			if ($scope.activity.documentation_url=="" || $scope.activity.documentation_url==null) {
 				$scope.documentationFile = null;
 				$scope.contentTypes.push('Documentation');
+			}
+			if ($scope.activity.presentations.length==0) {
+				$scope.presentationfiles = [];
+				$scope.contentTypes.push('Presentations');
+	            for (var idx=0;idx<maxNum;idx++) {
+	                $scope.presentationfiles.push({
+	                    file: null,
+	                    title: '',
+	                    author: ''
+	                });         
+				}
 			}
 
 			var totalFiles = 0;
@@ -615,16 +720,8 @@ var activityscope,activitycontentscope;
 					$scope.selectedDay = returnData[0].event_day;
 				}
 			},function(error){
-			});
 
-			$scope.presentationfiles = [];           
-            for (var idx=0;idx<maxNum;idx++) {
-                $scope.presentationfiles.push({
-                    file: null,
-                    title: '',
-                    author: ''
-                });         
-			}
+			});
 
 		}
 
