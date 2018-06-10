@@ -114,15 +114,16 @@
 					<md-content class="md-padding">
 						<h1 class="md-display-2">Gallery</h1>
 						<div data-ng-show="activity.withOfflineGallery==='1'" flex="100" layout-fill layout="row" layout-wrap>	
-							<md-card flex="30"  data-ng-repeat="(i,tile) in activity.gallery">
-								<img ng-src="{{tile.img_url}}" class="md-card-image" alt="{{tile.img_url}}" title="{{tile.img_url}}">
-							</md-card>
+							<md-card flex="30"  data-ng-repeat="(i,tile) in activity.gallery" ng-show="missingImgCount!=activity.gallery.length">
+								<img ng-src="{{tile.img_url}}" class="md-card-image" alt="{{tile.img_url}}" title="{{tile.img_url}}" id="gallery-offline-image-{{i}}" onerror="hideSiteImg(this)">
+                            </md-card>
+                            <p ng-show="missingImgCount==activity.gallery.length">No photos available.</p>
 						</div>
-						<div data-ng-show="activity.fbPhotoAlbum!==null" class="ta-left">
-							<div data-ng-show="activity.withOfflineGallery===false" class="ta-left" layout="row">
-								<p style="margin-top:0.75em;">No offline photos found.</p> <md-button data-ng-show="activity.withOfflineGallery==='0'" class="md-primary" data-ng-href="{{activity.fbPhotoAlbum_url}}" title="" target="_blank">Click here to view photo album on Facebook.</md-button>
+						<div data-ng-show="activity.fbPhotoAlbum_url!==null" class="ta-left">
+							<div data-ng-show="activity.withOfflineGallery=='0'" class="ta-left">
+								<p style="margin-top:0.75em;">No offline photos found.</p><md-button data-ng-show="activity.withOfflineGallery==='0'" class="md-primary" data-ng-href="{{activity.fbPhotoAlbum_url}}" title="" target="_blank" style="margin-left:0px;padding-left:0px;padding-right:0px;">Click here to view activity photos in PH-EITI Facebook page</md-button>
 							</div>
-							<md-button data-ng-show="activity.withOfflineGallery==='1'" class="md-primary" data-ng-href="{{activity.fbPhotoAlbum_url}}" title="" target="_blank">Click here for more photos</md-button>
+							<md-button data-ng-show="activity.withOfflineGallery==='1'" class="md-primary" data-ng-href="{{activity.fbPhotoAlbum_url}}" title="" target="_blank" style="margin-left:0px;padding-left:0px;padding-right:0px;">Click here to view activity photos in PH-EITI Facebook page</md-button>
 						</div>
 					</md-content>
 				</md-tab>

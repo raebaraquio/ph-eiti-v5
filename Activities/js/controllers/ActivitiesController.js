@@ -1,3 +1,4 @@
+var hideSiteImg = null;
 (function(){
 	'use strict';
 
@@ -59,7 +60,7 @@
 
 		$scope.activity = {};
 		$scope.active_activity_tab = '';
-
+		$scope.missingImgCount = 0;
 		$scope.select_act_tab = function(tab){
 			$scope.active_activity_tab = tab;
 		}
@@ -86,7 +87,7 @@
 				$scope.activity = {};
 				$scope.activities = [];
 				$scope.no_content_elem = false;
-
+				$scope.missingImgCount = 0;
 				if (mode===true) {
 					$scope.getpromise = activitiesHttpFactory.getAll($scope.filterYear);	
 				}
@@ -226,5 +227,12 @@
 		$scope.refreshActivities=function(){
 			$scope.get.activities(true);
 		}
+
+		function hideImageOnError(elem){
+			elem.style.display = 'none';
+			$scope.missingImgCount++;
+		}
+
+		hideSiteImg = hideImageOnError;
 	}
 })();
