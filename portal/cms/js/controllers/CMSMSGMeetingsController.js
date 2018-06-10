@@ -44,13 +44,19 @@ var msgmtgscope;
             });
         }
 
-        function deleteMinutesAnnex(id,annexId){
+        function deleteMinutesAnnex(id,minutesUrl,annexId,annexUrl){
             var pathParam = "";
+            if (minutesUrl!="") {
+                pathParam += "&mUrl="+minutesUrl;
+            }
             if (annexId!=null) {
-                pathParam += "&annexId="+annexId
+                pathParam += "&annexId="+annexId;
+                if (annexUrl!=null) {
+                    pathParam += "&aUrl="+annexUrl;
+                }
             }
             return $http({
-                url:'../../rest/functions/msg-meetings/delete-msg-meeting.php?id='+id+pathParam,
+                url:'../../rest/functions/msg-meetings/delete-minutes-annex.php?id='+id+pathParam,
                 method: 'GET'
             });
         }
@@ -139,6 +145,7 @@ var msgmtgscope;
 
                     if (mtgId===undefined) {
                         $scope.meeting_selected = newMeetings[0];
+                        localStorage.setItem('msgMeetingSelected',JSON.stringify($scope.meeting_selected));
                         $scope.filterTitle = newMeetings[0].mtg_title;
                         $scope.selectedIdx = 0;    
                         localStorage.setItem('lastMeeting',$scope.filterTitle);
@@ -164,6 +171,7 @@ var msgmtgscope;
                 }
             }
             $scope.meeting_selected = s;
+            localStorage.setItem('msgMeetingSelected',JSON.stringify($scope.meeting_selected));
         }
 
 		$scope.open_file=function(src,file){
@@ -199,7 +207,6 @@ var msgmtgscope;
         //////// 
 
         $scope.addMsgMeeting=function(evt){
-
             localStorage.setItem('msgMeetingSelected',JSON.stringify($scope.meeting_selected));
             var template = '';
             var mdDialogObj = {
@@ -219,7 +226,6 @@ var msgmtgscope;
         }
 
         $scope.addMinutes=function(evt){
-
             localStorage.setItem('msgMeetingSelected',JSON.stringify($scope.meeting_selected));
             var template = '';
             var mdDialogObj = {
@@ -269,7 +275,6 @@ var msgmtgscope;
 			$mdDialog.show(confirm).then(function() {
 				$scope.deletePromise = msgMtgDataFactory.deleteMeeting(mid);
 				$scope.deletePromise.then(function(response){
-					console.log(response)
 					if (response.data.success) {
                         getMtgs();
 					}
@@ -288,12 +293,15 @@ var msgmtgscope;
             var msgText = "";
             var mtgId = mtgData.mtgid;
             var annexId = null;
+            var minutesUrl = "", annexUrl = "";
             if (docType=='Minutes') {
                 msgText = " meeting minutes";
+                minutesUrl = mtgData.minutes_url;
             }
             else if (docType=='Annex') {
                 msgText = " selected "+docType+" ("+annexData.title+")";
                 annexId = annexData.annex_id;
+                annexUrl = annexData.file;
             }
             var confirm = $mdDialog.confirm()
                 .title('Delete '+docType+'?')
@@ -303,7 +311,7 @@ var msgmtgscope;
                 .cancel("No, Don't Delete "+docType);
 
             $mdDialog.show(confirm).then(function() {
-                $scope.deletePromise = msgMtgDataFactory.deleteMinutesAnnex(mtgId,annexId);
+                $scope.deletePromise = msgMtgDataFactory.deleteMinutesAnnex(mtgId,minutesUrl,annexId,annexUrl);
                 $scope.deletePromise.then(function(response){
                     if (response.data.success) {
                         getMtgs();
@@ -633,6 +641,23 @@ function newMsgReturn(){
 
 function newMsgAnnexReturn(){
     var iframe = document.getElementById('newmsgannex-iframe')
+    var returnData = iframe.contentDocument.body.innerHTML;
+    if (msgmtgscope) {
+        try {
+            if (returnData!=="unsubmitted" && returnData!=="") {
+                var responseData = JSON.parse(returnData);
+                msgmtgscope.uploadReturnData = responseData;
+                msgmtgscope.$apply();   
+            }
+        }
+        catch(e){
+            console.log(e)
+        }       
+    }
+}
+
+function newMsgMinutesReturn(){
+    var iframe = document.getElementById('newminutes-iframe')
     var returnData = iframe.contentDocument.body.innerHTML;
     if (msgmtgscope) {
         try {

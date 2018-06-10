@@ -61,8 +61,6 @@ if (isset($_POST['orgdoc-submit'])) {
                       'title_id'=>$title_id,
                       'file_url'=>'');
     
-    print(json_encode($currFile));
-    exit();
     if (isset($_FILES['orgdoc-fileinput'])) {
         $orgdoc_filename = basename($_FILES["orgdoc-fileinput"]["name"]);
         $file_tmp_name = $_FILES["orgdoc-fileinput"]["tmp_name"];   

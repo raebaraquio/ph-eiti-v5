@@ -4,8 +4,8 @@
 		<a href="" ng-click="close()" title="Dismiss"><img src="../../images/icons/svg/ic_close_silver_24px.svg" alt="" width="24px"/></a>
 	</md-content>
 	<div layout="column" style="width:100%;margin-top:1em;">
-		<iframe id="newmsgmtg-iframe" name="newmsgmtg-iframe" style="width:0px;height:0px;border:none" border="0" onload="newMsgAnnexReturn()"></iframe>
-		<form name="newMSGmtgForm" id="newMSGmtgForm" enctype="multipart/form-data" method="POST" autocomplete="on" action="../../rest/functions/msg-meetings/add-minutes.php" target="newmsgmtg-iframe"  style="margin-bottom:0px;padding-bottom:0px;">
+		<iframe id="newminutes-iframe" name="newminutes-iframe" style="width:0px;height:0px;border:none" border="0" onload="newMsgMinutesReturn()"></iframe>
+		<form name="newMsgMinutesForm" id="newMsgMinutesForm" enctype="multipart/form-data" method="POST" autocomplete="on" action="../../rest/functions/msg-meetings/add-minutes.php" target="newminutes-iframe"  style="margin-bottom:0px;padding-bottom:0px;">
 			<input type="hidden" name="newmsg-mtgid" id="newmsg-mtgid" value="{{selectedMeeting.mtgid}}"/>
 			<md-content layout="column">			
 				<md-table-container ng-sho=>
@@ -23,7 +23,7 @@
 			</md-content>
 			<md-content layout="row" layout-align="start center" style="margin-top:2em;">
 				<md-button id="newmsg-btn-reset" type="reset" ng-click="resetForm($event)">Reset</md-button>
-				<md-button class="md-raised md-primary fnt--white" ng-disabled="newMSGmtgForm.$invalid" type="submit" name="newmsg-submit">Submit</md-button>	
+				<md-button class="md-raised md-primary fnt--white" ng-disabled="newMsgMinutesForm.$invalid" type="submit" name="newminutes-submit">Submit</md-button>	
 			</md-content>			
 		</form>	
 	</div>

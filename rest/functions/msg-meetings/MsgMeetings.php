@@ -132,12 +132,25 @@ Class MsgMeetings{
         exit();
 	}
 
-    function delete_msg_minutes($id) {
+    function delete_msg_minutes($id,$mUrl) {
         if ($id==NULL || empty($id)){
             print(json_encode(
                     array(
                         'success'=>false,
                         'error'=>'no id',
+                        'status'=>'',
+                        'query'=>''
+                    )
+                )
+            );
+            exit();
+        }
+
+        if (!unlink('../../../'.$mUrl)) {
+            print(json_encode(
+                    array(
+                        'success'=>false,
+                        'error'=>'unlink error',
                         'status'=>'',
                         'query'=>''
                     )
@@ -173,7 +186,7 @@ Class MsgMeetings{
         exit();
     }
 
-    function delete_annex($id,$annex_id){
+    function delete_annex($id,$annex_id,$aUrl){
         if ($id==NULL || empty($id)){
             print(json_encode(
                     array(
@@ -192,6 +205,19 @@ Class MsgMeetings{
                     array(
                         'success'=>false,
                         'error'=>'no id',
+                        'status'=>'',
+                        'query'=>''
+                    )
+                )
+            );
+            exit();
+        }
+
+        if (!unlink('../../../'.$aUrl)) {
+            print(json_encode(
+                    array(
+                        'success'=>false,
+                        'error'=>'unlink error',
                         'status'=>'',
                         'query'=>''
                     )

@@ -37,11 +37,13 @@
             <md-button class="md-raised md-accent" data-ng-click="download_minutes(meeting_selected.minutes_url)" title="Download Minutes of {{meeting_selected.mtg_title}} MSG Meeting">Download Minutes</md-button>           
         </div>
 
-        <div layout="row" style="margin-top:10px;" layout-align="start center">
-            <md-button class="md-raised md-accent" data-ng-click="addMinutes($event)" title="Upload Meeting Minutes">Upload Meeting Minutes</md-button>
-            <md-button class="md-raised md-accent" data-ng-click="addAnnex($event)" title="Add Annex">Add Meeting Annex</md-button>
-        </div>            
+        <div layout="column" style="margin-top:10px;" layout-align="start start">
+            <md-button class="md-raised md-accent" ng-show="meeting_selected.minutes_url=='' || meeting_selected.minutes_url==null" data-ng-click="addMinutes($event)" title="Upload Meeting Minutes">Upload Meeting Minutes</md-button>
+        </div>
 
+        <div layout="column" style="margin-top:10px;" layout-align="start start">
+            <md-button class="md-primary fnt--white md-raised" ng-show="meeting_selected.annexes.length == 0" data-ng-click="addAnnex($event)" title="Add Annex">Add Meeting Annex</md-button>
+        </div>            
         <h3 data-ng-show="meeting_selected.annexes && meeting_selected.annexes.length > 0">Annex</h3>  
         <md-content data-ng-show="meeting_selected.annexes && meeting_selected.annexes.length > 0">
             <div flex="100" layout-fill layout="row" layout-wrap>   

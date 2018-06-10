@@ -3,9 +3,9 @@ require_once('../../classes/Upload.php');
 require_once('../../classes/mysql_connect.php');
 
 function replaceAll($text,$lower) { 
-	if ($lower==TRUE) {
-		$text = strtolower(htmlentities($text)); 	
-	}
+    if ($lower==TRUE) {
+        $text = strtolower(htmlentities($text));    
+    }
     $text = str_replace(get_html_translation_table(), "-", $text);
     $text = str_replace(" ", "-", $text);
     $text = preg_replace("/[-]+/i", "-", $text);
@@ -22,16 +22,16 @@ $contentSection = 'MSGMeeting';
  * 
  * Use the following: 
  *
- * During upload 				'../../..' 
- * When saving to DB 			'../' 
- * When displaying to the UI 	Append '../' 
+ * During upload                '../../..' 
+ * When saving to DB            '../' 
+ * When displaying to the UI    Append '../' 
  * ------------------------------------------
  **/
 
 $numAllowed = 5;
 $errorCount = 0;
 
-if (isset($_POST['newmsg-submit'])) {
+if (isset($_POST['newannex-submit'])) {
 
     $gisfiles = array();    
     $lastError = '';
@@ -61,6 +61,16 @@ if (isset($_POST['newmsg-submit'])) {
 
     //// Check Annexes
     if ($currFile['with_annex']==1) {
+
+        $updateQuery = "update msg_meetings
+                            set with_annex = ".$currFile['with_annex']." where mtgid = ".$mtgid;
+
+        $updated = mysql_query($updateQuery);
+
+        if (!$updated) {
+            $errorCount++;
+            $lastError = "updateFailed";
+        }        
 
         for ($i=0;$i<$numAnnex;$i++) {
 
