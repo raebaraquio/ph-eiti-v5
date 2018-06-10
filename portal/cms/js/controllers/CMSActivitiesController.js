@@ -1,4 +1,4 @@
-var activityscope,activitycontentscope;
+var activityscope,activitycontentscope,hideImg=null;
 (function(){
 	angular
 		.module('cms')
@@ -104,7 +104,6 @@ var activityscope,activitycontentscope;
 			if (section=="Presentation") {
 				pathParams += "&deleteMode="+deleteMode;
 			}
-			///////
 			return $http({
 				url:'../../rest/functions/activities/delete-activity-content.php?id='+activityId+"&section="+section+pathParams,
 				method:'GET'
@@ -152,7 +151,7 @@ var activityscope,activitycontentscope;
 		}
 
 		function getActivities(mode){
-
+			$scope.missingImgCount = 0;
 			$scope.activities = [];
 			$scope.no_content_elem = false;
 			$scope.firstLoad = false;
@@ -259,7 +258,7 @@ var activityscope,activitycontentscope;
 						}
 
 						if ($scope.activity.gallery.length > 0) {
-							$scope.select_act_tab('Gallery')
+							$scope.select_act_tab('Gallery');
 							return
 						}
 					}
@@ -446,6 +445,14 @@ var activityscope,activitycontentscope;
 				// do nothing
 			});
 		}
+
+		$scope.missingImgCount = 0;
+		function hideImageOnError(elem){
+			elem.style.display = 'none';
+			$scope.missingImgCount++;
+		}
+
+		hideImg = hideImageOnError;
 	}
 
 
@@ -708,6 +715,11 @@ var activityscope,activitycontentscope;
 				}
 			}
 
+			/*if ($scope.activity.withOfflineGallery=='0' && $scope.activity.fbPhotoAlbum_url=="") {
+				$scope.newfbphotoalbum_url = "";
+				$scope.contentTypes.push('Facebook Photo Album URL');
+			}*/
+
 			var totalFiles = 0;
 			$scope.writeup_content = "";
 			$scope.contentType = $scope.contentTypes[0];
@@ -880,7 +892,6 @@ var activityscope,activitycontentscope;
 	}
 
 })();
-
 
 function newActivityReturn(){
 	var iframe = document.getElementById('newactivitycontent-iframe')
