@@ -92,4 +92,7 @@ cms.controller('CMSController',['$scope','sessionService','$location','$rootScop
 		}
 	});
 
+	$scope.openManual=function(){
+		window.open('../../document/System Manual/PH-EITI_Portal_-_Content-Manager_v1.pdf');
+	}
 }]);

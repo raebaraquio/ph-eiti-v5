@@ -22,7 +22,7 @@
     <md-content ng-if="!getpromise" ng-hide="current_annex">
         <md-content flex="100" layout-fill layout="row" layout-wrap>
             <md-card flex="45" layout="row" data-ng-repeat="(k,cr) in current_report.content" class="card-container">
-                <div flex="25" layout="left left" class="infographic-card-icon" style="background:url('../{{cr.card_icon_url}}')">
+                <div flex="25" layout="left left" class="infographic-card-icon" style="background:url('../{{cr.card_icon_url}}');height:100%;">
                 </div>              
                 <div flex="75" layout="column">
                     <md-card-title>
