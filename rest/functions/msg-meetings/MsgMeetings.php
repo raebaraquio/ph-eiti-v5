@@ -132,6 +132,100 @@ Class MsgMeetings{
         exit();
 	}
 
+    function delete_msg_minutes($id) {
+        if ($id==NULL || empty($id)){
+            print(json_encode(
+                    array(
+                        'success'=>false,
+                        'error'=>'no id',
+                        'status'=>'',
+                        'query'=>''
+                    )
+                )
+            );
+            exit();
+        }
+        
+        $query = "update msg_meetings set minutes_url = NULL where mtgid=".$id;
+
+        $deleteResult = mysql_query($query);
+
+        if (!$deleteResult) {
+            print(json_encode(
+                    array(
+                        'success'=>false,
+                        'error'=>'db delete error',
+                        'status'=>'',
+                        'query'=>''
+                    )
+                )
+            );
+            exit();
+        }
+
+        print(json_encode(
+            array(
+                'success'=>true,
+                'query'=>$query,
+                'status'=>'ok')
+            )
+        );
+        exit();
+    }
+
+    function delete_annex($id,$annex_id){
+        if ($id==NULL || empty($id)){
+            print(json_encode(
+                    array(
+                        'success'=>false,
+                        'error'=>'no id',
+                        'status'=>'',
+                        'query'=>''
+                    )
+                )
+            );
+            exit();
+        }
+
+        if ($annex_id==NULL || empty($annex_id)){
+            print(json_encode(
+                    array(
+                        'success'=>false,
+                        'error'=>'no id',
+                        'status'=>'',
+                        'query'=>''
+                    )
+                )
+            );
+            exit();
+        }
+        
+        $query = "delete from msg_meetings_file_annexes where mtgid_fk=".$id." and annex_id =".$annex_id;
+
+        $deleteResult = mysql_query($query);
+
+        if (!$deleteResult) {
+            print(json_encode(
+                    array(
+                        'success'=>false,
+                        'error'=>'db delete error',
+                        'status'=>'',
+                        'query'=>''
+                    )
+                )
+            );
+            exit();
+        }
+
+        print(json_encode(
+            array(
+                'success'=>true,
+                'query'=>$query,
+                'status'=>'ok')
+            )
+        );
+        exit();
+    }
 }
 
 ?>
