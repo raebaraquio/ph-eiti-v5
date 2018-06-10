@@ -42,9 +42,13 @@
         </div>
 
         <div layout="column" style="margin-top:10px;" layout-align="start start">
-            <md-button class="md-primary fnt--white md-raised" ng-show="meeting_selected.annexes.length == 0" data-ng-click="addAnnex($event)" title="Add Annex">Add Meeting Annex</md-button>
+            <md-button class="md-primary" ng-show="meeting_selected.annexes.length == 0" data-ng-click="addAnnex($event)" title="Add Annex">Add Meeting Annex</md-button>
         </div>            
-        <h3 data-ng-show="meeting_selected.annexes && meeting_selected.annexes.length > 0">Annex</h3>  
+
+        <div layout="column" layout-align="start start">
+            <h3 data-ng-show="meeting_selected.annexes && meeting_selected.annexes.length > 0">Annex</h3>  
+            <md-button class="md-primary" ng-show="meeting_selected.annexes.length > 0" data-ng-click="addAnnex($event)" title="Add Annex">Add Meeting Annex</md-button>
+        </div>
         <md-content data-ng-show="meeting_selected.annexes && meeting_selected.annexes.length > 0">
             <div flex="100" layout-fill layout="row" layout-wrap>   
                 <md-card flex="45" layout="row" data-ng-repeat="(idx,annex) in meeting_selected.annexes" title="{{annex.title}}" class="card-container">
