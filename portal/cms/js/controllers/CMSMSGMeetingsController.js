@@ -7,7 +7,9 @@ var msgmtgscope;
 		.filter('formatDate',formatDate)
 		.factory('msgMtgDataFactory',msgMtgDataFactory)
 		.controller('CMSMSGMeetingsController',CMSMSGMeetingsController)
-        .controller('addMSGmeetingController',addMSGmeetingController);
+        .controller('addMSGmeetingController',addMSGmeetingController)
+        .controller('addMinutesCtrl',addMinutesCtrl)
+        .controller('addAnnexCtrl',addAnnexCtrl);
 
 	function formatDate(){
         return function(input) {
@@ -20,7 +22,8 @@ var msgmtgscope;
 
 	    var msgMtgDataFactory = {
             getMSGmeetings : getMSGmeetings,
-            deleteMeeting : deleteMeeting
+            deleteMeeting : deleteMeeting,
+            deleteMinutesAnnex : deleteMinutesAnnex
 	    }
 
 	    return msgMtgDataFactory;
@@ -37,6 +40,23 @@ var msgmtgscope;
         function deleteMeeting(id){
             return $http({
                 url:'../../rest/functions/msg-meetings/delete-msg-meeting.php?id='+id,
+                method: 'GET'
+            });
+        }
+
+        function deleteMinutesAnnex(id,minutesUrl,annexId,annexUrl){
+            var pathParam = "";
+            if (minutesUrl!="") {
+                pathParam += "&mUrl="+minutesUrl;
+            }
+            if (annexId!=null) {
+                pathParam += "&annexId="+annexId;
+                if (annexUrl!=null) {
+                    pathParam += "&aUrl="+annexUrl;
+                }
+            }
+            return $http({
+                url:'../../rest/functions/msg-meetings/delete-minutes-annex.php?id='+id+pathParam,
                 method: 'GET'
             });
         }
@@ -111,7 +131,6 @@ var msgmtgscope;
                             newMeetings.push(meetings[i]);
 
                             if (mtgId!==null) {
-                                console.log(mtg)
                                 if (mtgId===mtg.mtgid) {
                                     $scope.meeting_selected = meetings[i];
                                     $scope.filterTitle = meetings[i].mtg_title;
@@ -126,6 +145,7 @@ var msgmtgscope;
 
                     if (mtgId===undefined) {
                         $scope.meeting_selected = newMeetings[0];
+                        localStorage.setItem('msgMeetingSelected',JSON.stringify($scope.meeting_selected));
                         $scope.filterTitle = newMeetings[0].mtg_title;
                         $scope.selectedIdx = 0;    
                         localStorage.setItem('lastMeeting',$scope.filterTitle);
@@ -151,6 +171,7 @@ var msgmtgscope;
                 }
             }
             $scope.meeting_selected = s;
+            localStorage.setItem('msgMeetingSelected',JSON.stringify($scope.meeting_selected));
         }
 
 		$scope.open_file=function(src,file){
@@ -186,6 +207,7 @@ var msgmtgscope;
         //////// 
 
         $scope.addMsgMeeting=function(evt){
+            localStorage.setItem('msgMeetingSelected',JSON.stringify($scope.meeting_selected));
             var template = '';
             var mdDialogObj = {
                 parent: angular.element(document.getElementById('cms-content-placeholder')),
@@ -203,8 +225,44 @@ var msgmtgscope;
             });
         }
 
+        $scope.addMinutes=function(evt){
+            localStorage.setItem('msgMeetingSelected',JSON.stringify($scope.meeting_selected));
+            var template = '';
+            var mdDialogObj = {
+                parent: angular.element(document.getElementById('cms-content-placeholder')),
+                targetEvent: evt,
+                clickOutsideToClose:false,
+                fullscreen: true                
+            };
+            mdDialogObj.controller = addMinutesCtrl;
+            mdDialogObj.templateUrl = 'partials/MSG Meetings/add-minutes.html';
+            $mdDialog.show(mdDialogObj)
+            .then(function(answer) {
+                getMtgs();
+            },function() {
+                getMtgs();
+            });
+        }
+
+        $scope.addAnnex=function(evt){
+            var template = '';
+            var mdDialogObj = {
+                parent: angular.element(document.getElementById('cms-content-placeholder')),
+                targetEvent: evt,
+                clickOutsideToClose:false,
+                fullscreen: true                
+            };
+            mdDialogObj.controller = addAnnexCtrl;
+            mdDialogObj.templateUrl = 'partials/MSG Meetings/add-annex.html';
+            $mdDialog.show(mdDialogObj)
+            .then(function(answer) {
+                getMtgs();
+            },function() {
+                getMtgs();
+            });
+        }
+
         $scope.confirmDelete=function(evt,resourceType,data) {
-            console.log(data)
 			var resourceName = data.mtg_title;
 			var mid = data.mtgid;
 			var confirm = $mdDialog.confirm()
@@ -217,7 +275,6 @@ var msgmtgscope;
 			$mdDialog.show(confirm).then(function() {
 				$scope.deletePromise = msgMtgDataFactory.deleteMeeting(mid);
 				$scope.deletePromise.then(function(response){
-					console.log(response)
 					if (response.data.success) {
                         getMtgs();
 					}
@@ -231,6 +288,43 @@ var msgmtgscope;
 				// do nothing
 			});
 		}
+
+        $scope.confirmDeleteMinutesAnnex=function(evt,docType,mtgData,annexData) {
+            var msgText = "";
+            var mtgId = mtgData.mtgid;
+            var annexId = null;
+            var minutesUrl = "", annexUrl = "";
+            if (docType=='Minutes') {
+                msgText = " meeting minutes";
+                minutesUrl = mtgData.minutes_url;
+            }
+            else if (docType=='Annex') {
+                msgText = " selected "+docType+" ("+annexData.title+")";
+                annexId = annexData.annex_id;
+                annexUrl = annexData.file;
+            }
+            var confirm = $mdDialog.confirm()
+                .title('Delete '+docType+'?')
+                .textContent('This action will permanently delete the selected '+msgText+'. What would you like to do?')
+                .targetEvent(evt)
+                .ok('Yes, Delete '+docType)
+                .cancel("No, Don't Delete "+docType);
+
+            $mdDialog.show(confirm).then(function() {
+                $scope.deletePromise = msgMtgDataFactory.deleteMinutesAnnex(mtgId,minutesUrl,annexId,annexUrl);
+                $scope.deletePromise.then(function(response){
+                    if (response.data.success) {
+                        getMtgs();
+                    }
+                    delete $scope.deletePromise;
+                },function(err){
+                    getMtgs();
+                    delete $scope.deletePromise;
+                });     
+            }, function() {
+                // do nothing
+            });
+        }
 	}
 
     addMSGmeetingController.$inject = ['$scope','$mdDialog'];
@@ -243,7 +337,6 @@ var msgmtgscope;
         $scope.lastMeeting = localStorage.getItem('lastMeeting');
         $scope.with_annex = 0;
         $scope.numAnnex = 0;
-
         var maxNum = 5;
 
         $scope.newmsg = {
@@ -330,12 +423,241 @@ var msgmtgscope;
 
         msgmtgscope = $scope;
     }
+
+    addMinutesCtrl.$inject = ['$scope','$mdDialog'];
+    function addMinutesCtrl($scope,$mdDialog){
+    
+        $scope.errorMessage = "";       
+        // $scope.mtgAnnexes = [];
+        $scope.uploadReturnData = {};
+        $scope.useDate = '';
+        $scope.lastMeeting = localStorage.getItem('lastMeeting');
+        $scope.selectedMeeting = JSON.parse(localStorage.getItem('msgMeetingSelected'));
+        $scope.with_annex = 0;
+        $scope.numAnnex = 0;
+
+        var maxNum = 5; 
+
+        console.log($scope.selectedMeeting)
+
+        $scope.newmsg = {
+            file: null,
+            title: '',
+            date: '',
+            time: '',
+            venue: ''
+        }
+
+        function init(){
+            // for (var idx=0;idx<maxNum;idx++) {
+            //     $scope.mtgAnnexes.push({
+            //         file: null,
+            //         title: ''
+            //     });
+            // }
+        }
+
+        init();
+
+        $scope.onFileChanged = function (evt) {
+            $scope.$apply(function() {
+                if (evt.target.id==='newmsg-minutesfile') {
+                    $scope.newmsg.file = document.getElementById(evt.target.id).files[0];    
+                }
+                else {
+                    // $scope.with_annex = 1;
+                    // var idlen = evt.target.id.split('-');
+                    // var idx = idlen[idlen.length-1];
+                    // if (document.getElementById(evt.target.id).files[0]===undefined) {
+                    //     $scope.mtgAnnexes[idx].file = null;    
+                    // }
+                    // else {
+                    //     $scope.mtgAnnexes[idx].file = document.getElementById(evt.target.id).files[0];
+                    // }
+                }
+            });
+            checkFiles();
+        };
+
+        function checkFiles(){
+            // var withfile = 0;
+            // $scope.numAnnex = 0;
+            // if ($scope.mtgAnnexes) {
+            //     for (var idx=0;idx<$scope.mtgAnnexes.length;idx++) {
+            //         if ($scope.mtgAnnexes[idx].file!==null && $scope.mtgAnnexes[idx].file!==undefined) {
+            //             withfile = 1;
+            //             $scope.numAnnex++;
+            //         }
+            //     }
+            // }
+            // $scope.with_annex = withfile;
+        }
+
+        $scope.resetForm = function(evt) {
+            $scope.with_annex = 0;
+        }
+
+        $scope.$watch('uploadReturnData', function(v){
+            if (v) {
+                try {
+                    if (v.success===true) {
+                        // $scope.resetForm();
+                        var resetBtn = document.getElementById('newmsg-btn-reset');
+                        resetBtn.click();
+                        $mdDialog.hide();
+                    }
+                }
+                catch(e){}
+            }
+        });
+
+        $scope.$watch('newmsg.date',function(v){
+            if (v) {
+                $scope.useDate = moment(v).format('YYYY-MM-DD');
+            }
+        });
+
+        $scope.close=function(){
+            $mdDialog.hide();   
+        }
+
+        msgmtgscope = $scope;
+    }
+
+    addAnnexCtrl.$inject = ['$scope','$mdDialog'];
+    function addAnnexCtrl($scope,$mdDialog){
+    
+        $scope.errorMessage = "";       
+        $scope.mtgAnnexes = [];
+        $scope.uploadReturnData = {};
+        $scope.useDate = '';
+        $scope.lastMeeting = localStorage.getItem('lastMeeting');        
+        $scope.selectedMeeting = JSON.parse(localStorage.getItem('msgMeetingSelected'));
+        $scope.with_annex = 0;
+        $scope.numAnnex = 0;
+
+        var maxNum = 5;
+
+        console.log($scope.selectedMeeting)
+
+        $scope.newmsg = {
+            file: null,
+            title: '',
+            date: '',
+            time: '',
+            venue: ''
+        }
+
+        function init(){
+            for (var idx=0;idx<maxNum;idx++) {
+                $scope.mtgAnnexes.push({
+                    file: null,
+                    title: ''
+                });
+            }
+            console.log($scope.mtgAnnexes)
+        }
+
+        init();
+
+        $scope.onFileChanged = function (evt) {
+            $scope.$apply(function() {
+                if (evt.target.id==='newmsg-minutesfile') {
+                    $scope.newmsg.file = document.getElementById(evt.target.id).files[0];    
+                }
+                else {
+                    $scope.with_annex = 1;
+                    var idlen = evt.target.id.split('-');
+                    var idx = idlen[idlen.length-1];
+                    if (document.getElementById(evt.target.id).files[0]===undefined) {
+                        $scope.mtgAnnexes[idx].file = null;    
+                    }
+                    else {
+                        $scope.mtgAnnexes[idx].file = document.getElementById(evt.target.id).files[0];
+                    }
+                }
+            });
+            checkFiles();
+        };
+
+        function checkFiles(){
+            var withfile = 0;
+            $scope.numAnnex = 0;
+            if ($scope.mtgAnnexes) {
+                for (var idx=0;idx<$scope.mtgAnnexes.length;idx++) {
+                    if ($scope.mtgAnnexes[idx].file!==null && $scope.mtgAnnexes[idx].file!==undefined) {
+                        withfile = 1;
+                        $scope.numAnnex++;
+                    }
+                }
+            }
+            $scope.with_annex = withfile;
+        }
+
+        $scope.resetForm = function(evt) {
+            $scope.with_annex = 0;
+        }
+
+        $scope.$watch('uploadReturnData', function(v){
+            if (v) {
+                try {
+                    if (v.success===true) {
+                        // $scope.resetForm();
+                        var resetBtn = document.getElementById('newmsg-btn-reset');
+                        resetBtn.click();
+                        $mdDialog.hide();
+                    }
+                }
+                catch(e){}
+            }
+        });
+
+        $scope.close=function(){
+            $mdDialog.hide();   
+        }
+
+        msgmtgscope = $scope;
+    }
     
 })();
 
 
 function newMsgReturn(){
     var iframe = document.getElementById('newmsgmtg-iframe')
+    var returnData = iframe.contentDocument.body.innerHTML;
+    if (msgmtgscope) {
+        try {
+            if (returnData!=="unsubmitted" && returnData!=="") {
+                var responseData = JSON.parse(returnData);
+                msgmtgscope.uploadReturnData = responseData;
+                msgmtgscope.$apply();   
+            }
+        }
+        catch(e){
+            console.log(e)
+        }       
+    }
+}
+
+function newMsgAnnexReturn(){
+    var iframe = document.getElementById('newmsgannex-iframe')
+    var returnData = iframe.contentDocument.body.innerHTML;
+    if (msgmtgscope) {
+        try {
+            if (returnData!=="unsubmitted" && returnData!=="") {
+                var responseData = JSON.parse(returnData);
+                msgmtgscope.uploadReturnData = responseData;
+                msgmtgscope.$apply();   
+            }
+        }
+        catch(e){
+            console.log(e)
+        }       
+    }
+}
+
+function newMsgMinutesReturn(){
+    var iframe = document.getElementById('newminutes-iframe')
     var returnData = iframe.contentDocument.body.innerHTML;
     if (msgmtgscope) {
         try {
